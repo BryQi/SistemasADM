@@ -2,26 +2,26 @@
   "sistemasAdmApp": {
     "fotoPozo": {
       "home": {
-        "title": "Foto Pozos",
+        "title": "Photo of the Well",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Foto Pozo",
-        "createOrEditLabel": "Create or edit a Foto Pozo",
-        "notFound": "No Foto Pozos found"
+        "createLabel": "Create a new Photo of the Well",
+        "createOrEditLabel": "Create or edit a Photo of the Well",
+        "notFound": "No Photo of the Well found"
       },
-      "created": "A new Foto Pozo is created with identifier {{ param }}",
-      "updated": "A Foto Pozo is updated with identifier {{ param }}",
-      "deleted": "A Foto Pozo is deleted with identifier {{ param }}",
+      "created": "A new Photo of the Well is created with identifier {{ param }}",
+      "updated": "A Photo of the Well is updated with identifier {{ param }}",
+      "deleted": "A Photo of the Well is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Foto Pozo {{ id }}?"
+        "question": "Are you sure you want to delete Photo of the Well {{ id }}?"
       },
       "detail": {
-        "title": "Foto Pozo"
+        "title": "Photo of the Well"
       },
       "id": "ID",
-      "foto": "Foto",
-      "descripcion": "Descripcion",
+      "foto": "Photo",
+      "descripcion": "Description",
       "createdAt": "Created At",
-      "idPozo": "Id Pozo"
+      "idPozo": "Id Well"
     }
   }
 }

@@ -2,29 +2,29 @@
   "sistemasAdmApp": {
     "pozo": {
       "home": {
-        "title": "Pozos",
+        "title": "Well",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Pozo",
-        "createOrEditLabel": "Create or edit a Pozo",
-        "notFound": "No Pozos found"
+        "createLabel": "Create a new Well",
+        "createOrEditLabel": "Create or edit a Well",
+        "notFound": "No Wells found"
       },
-      "created": "A new Pozo is created with identifier {{ param }}",
-      "updated": "A Pozo is updated with identifier {{ param }}",
-      "deleted": "A Pozo is deleted with identifier {{ param }}",
+      "created": "A new Well is created with identifier {{ param }}",
+      "updated": "A Well is updated with identifier {{ param }}",
+      "deleted": "A Well is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Pozo {{ id }}?"
+        "question": "Are you sure you want to delete Well {{ id }}?"
       },
       "detail": {
-        "title": "Pozo"
+        "title": "Well"
       },
       "id": "ID",
-      "numeropozo": "Numeropozo",
-      "direccion": "Direccion",
-      "ubicacion": "Ubicacion",
-      "tipopozo": "Tipopozo",
+      "numeropozo": "Number well",
+      "direccion": "Direction",
+      "ubicacion": "Location",
+      "tipopozo": "Well Type",
       "createdAt": "Created At",
-      "fotoPozo": "Foto Pozo",
-      "registroInspecciones": "Registro Inspecciones",
+      "fotoPozo": "Photo Well",
+      "registroInspecciones": "Registration Inspections",
       "idDespliegueInfraestructuraTroncalDistribucion": "Id Despliegue Infraestructura Troncal Distribucion",
       "idDespliegueinfraestructuradispersion": "Id Despliegueinfraestructuradispersion",
       "idInfraestructura": "Id Infraestructura"

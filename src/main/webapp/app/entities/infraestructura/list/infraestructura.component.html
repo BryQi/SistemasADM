@@ -25,7 +25,7 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="infraestructuras?.length === 0">
-    <span jhiTranslate="sistemasAdmApp.infraestructura.home.notFound">Ningún Infraestructuras encontrado</span>
+    <span jhiTranslate="sistemasAdmApp.infraestructura.home.notFound">Ninguna Infraestructura encontrada </span>
   </div>
 
   <div class="table-responsive table-entities" id="entities" *ngIf="infraestructuras && infraestructuras.length > 0">
@@ -46,7 +46,7 @@
           </th>
           <th scope="col" jhiSortBy="createdAt">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.infraestructura.createdAt">Created At</span>
+              <span jhiTranslate="sistemasAdmApp.infraestructura.createdAt">Creado el</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>

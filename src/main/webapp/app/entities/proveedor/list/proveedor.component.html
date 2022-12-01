@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="ProveedorHeading">
-    <span jhiTranslate="sistemasAdmApp.proveedor.home.title">Proveedors</span>
+    <span jhiTranslate="sistemasAdmApp.proveedor.home.title">Proveedores</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
@@ -25,7 +25,7 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="proveedors?.length === 0">
-    <span jhiTranslate="sistemasAdmApp.proveedor.home.notFound">Ningún Proveedors encontrado</span>
+    <span jhiTranslate="sistemasAdmApp.proveedor.home.notFound">Ningún Proveedor encontrado</span>
   </div>
 
   <div class="table-responsive table-entities" id="entities" *ngIf="proveedors && proveedors.length > 0">
@@ -40,13 +40,13 @@
           </th>
           <th scope="col" jhiSortBy="razonSocial">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.proveedor.razonSocial">Razon Social</span>
+              <span jhiTranslate="sistemasAdmApp.proveedor.razonSocial">Razón Social</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="contactoTecnico">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.proveedor.contactoTecnico">Contacto Tecnico</span>
+              <span jhiTranslate="sistemasAdmApp.proveedor.contactoTecnico">Contacto Técnico</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -58,7 +58,7 @@
           </th>
           <th scope="col" jhiSortBy="direccion">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.proveedor.direccion">Direccion</span>
+              <span jhiTranslate="sistemasAdmApp.proveedor.direccion">Dirección</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -70,13 +70,13 @@
           </th>
           <th scope="col" jhiSortBy="createdAt">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.proveedor.createdAt">Created At</span>
+              <span jhiTranslate="sistemasAdmApp.proveedor.createdAt">Creado el</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="user.login">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.proveedor.user">User</span>
+              <span jhiTranslate="sistemasAdmApp.proveedor.user">Usuario</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>

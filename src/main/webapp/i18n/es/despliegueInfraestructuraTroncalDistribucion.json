@@ -2,29 +2,29 @@
   "sistemasAdmApp": {
     "despliegueInfraestructuraTroncalDistribucion": {
       "home": {
-        "title": "Despliegue Infraestructura Troncal Distribucions",
+        "title": "Despliegue de Infraestructura Troncal de Distribución",
         "refreshListLabel": "Refrescar lista",
-        "createLabel": "Crear nuevo Despliegue Infraestructura Troncal Distribucion",
-        "createOrEditLabel": "Crear o editar Despliegue Infraestructura Troncal Distribucion",
-        "notFound": "Ningún Despliegue Infraestructura Troncal Distribucions encontrado"
+        "createLabel": "Crear nuevo Despliegue de Infraestructura Troncal de Distribución",
+        "createOrEditLabel": "Crear o editar Despliegue de Infraestructura Troncal de Distribución",
+        "notFound": "Ningún Despliegue de Infraestructura Troncal de Distribución encontrado"
       },
-      "created": "Un nuevo Despliegue Infraestructura Troncal Distribucion ha sido creado con el identificador {{ param }}",
-      "updated": "Un Despliegue Infraestructura Troncal Distribucion ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Despliegue Infraestructura Troncal Distribucion ha sido eliminado con el identificador {{ param }}",
+      "created": "Un nuevo Despliegue de Infraestructura Troncal de Distribución ha sido creado con el identificador {{ param }}",
+      "updated": "Un Despliegue de Infraestructura Troncal de Distribución ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Despliegue de Infraestructura Troncal de Distribución ha sido eliminado con el identificador {{ param }}",
       "delete": {
-        "question": "¿Seguro que quiere eliminar Despliegue Infraestructura Troncal Distribucion {{ id }}?"
+        "question": "¿Seguro que quiere eliminar Despliegue de Infraestructura Troncal de Distribución {{ id }}?"
       },
       "detail": {
-        "title": "Despliegue Infraestructura Troncal Distribucion"
+        "title": "Despliegue de Infraestructura Troncal de Distribución"
       },
       "id": "ID",
       "nombreRuta": "Nombre Ruta",
-      "descripcionRuta": "Descripcion Ruta",
+      "descripcionRuta": "Descripción de Ruta",
       "metrajeInicial": "Metraje Inicial",
       "metrajeFinal": "Metraje Final",
-      "calculoValorPago": "Calculo Valor Pago",
-      "createdAt": "Created At",
-      "despliegueInfraestructuraDispersion": "Despliegue Infraestructura Dispersion",
+      "calculoValorPago": "Cálculo de Valor a Pagar",
+      "createdAt": "Creado el",
+      "despliegueInfraestructuraDispersion": "Despliegue Infraestructura Dispersión",
       "pago": "Pago",
       "pozo": "Pozo"
     }

@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="RegistroInspeccionesHeading">
-    <span jhiTranslate="sistemasAdmApp.registroInspecciones.home.title">Registro Inspecciones</span>
+    <span jhiTranslate="sistemasAdmApp.registroInspecciones.home.title">Registro de Inspecciones</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
@@ -15,7 +15,7 @@
         [routerLink]="['/registro-inspecciones/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="sistemasAdmApp.registroInspecciones.home.createLabel"> Crear nuevo Registro Inspecciones </span>
+        <span jhiTranslate="sistemasAdmApp.registroInspecciones.home.createLabel"> Crear nuevo Registro de Inspecciones </span>
       </button>
     </div>
   </h2>
@@ -25,7 +25,7 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="registroInspecciones?.length === 0">
-    <span jhiTranslate="sistemasAdmApp.registroInspecciones.home.notFound">Ningún Registro Inspecciones encontrado</span>
+    <span jhiTranslate="sistemasAdmApp.registroInspecciones.home.notFound">Ningún Registro de Inspecciones encontrado</span>
   </div>
 
   <div class="table-responsive table-entities" id="entities" *ngIf="registroInspecciones && registroInspecciones.length > 0">
@@ -40,19 +40,19 @@
           </th>
           <th scope="col" jhiSortBy="cumpleAutorizacion">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleAutorizacion">Cumple Autorizacion</span>
+              <span jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleAutorizacion">Cumple Autorización</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="numeroAutorizacion">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.registroInspecciones.numeroAutorizacion">Numero Autorizacion</span>
+              <span jhiTranslate="sistemasAdmApp.registroInspecciones.numeroAutorizacion">Número de Autorización</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="cumpleSenaletica">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleSenaletica">Cumple Senaletica</span>
+              <span jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleSenaletica">Cumple Señalética</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -70,19 +70,19 @@
           </th>
           <th scope="col" jhiSortBy="cumpleArregloCables">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleArregloCables">Cumple Arreglo Cables</span>
+              <span jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleArregloCables">Cumple Arreglo de Cables</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="cumplelimpiezaOrdenPozo">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.registroInspecciones.cumplelimpiezaOrdenPozo">Cumplelimpieza Orden Pozo</span>
+              <span jhiTranslate="sistemasAdmApp.registroInspecciones.cumplelimpiezaOrdenPozo">Cumple limpieza de Orden en el Pozo</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="createdAt">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.registroInspecciones.createdAt">Created At</span>
+              <span jhiTranslate="sistemasAdmApp.registroInspecciones.createdAt">Creado el</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>

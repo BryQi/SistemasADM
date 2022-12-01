@@ -2,7 +2,7 @@
   "sistemasAdmApp": {
     "proveedor": {
       "home": {
-        "title": "Proveedors",
+        "title": "Proveedores",
         "refreshListLabel": "Refrescar lista",
         "createLabel": "Crear nuevo Proveedor",
         "createOrEditLabel": "Crear o editar Proveedor",
@@ -18,16 +18,16 @@
         "title": "Proveedor"
       },
       "id": "ID",
-      "razonSocial": "Razon Social",
-      "contactoTecnico": "Contacto Tecnico",
+      "razonSocial": "Razón Social",
+      "contactoTecnico": "Contacto Técnico",
       "correoEmpresa": "Correo Empresa",
-      "direccion": "Direccion",
+      "direccion": "Dirección",
       "celular": "Celular",
-      "createdAt": "Created At",
+      "createdAt": "Creado el",
       "despliegueinfraestructuradispersion": "Despliegueinfraestructuradispersion",
       "autorizaciones": "Autorizaciones",
       "infraestructura": "Infraestructura",
-      "user": "User"
+      "user": "Usuario"
     }
   }
 }

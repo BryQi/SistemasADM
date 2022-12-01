@@ -25,7 +25,7 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="pagos?.length === 0">
-    <span jhiTranslate="sistemasAdmApp.pago.home.notFound">Ningún Pagos encontrado</span>
+    <span jhiTranslate="sistemasAdmApp.pago.home.notFound">Ningún Pago encontrado</span>
   </div>
 
   <div class="table-responsive table-entities" id="entities" *ngIf="pagos && pagos.length > 0">
@@ -52,21 +52,23 @@
           </th>
           <th scope="col" jhiSortBy="createdAt">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.pago.createdAt">Created At</span>
+              <span jhiTranslate="sistemasAdmApp.pago.createdAt">Creado el</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="idDespliegueInfraestructuraTroncalDistribucion.id">
             <div class="d-flex">
               <span jhiTranslate="sistemasAdmApp.pago.idDespliegueInfraestructuraTroncalDistribucion"
-                >Id Despliegue Infraestructura Troncal Distribucion</span
+                >Id Despliegue de Infraestructura Troncal de Distribución</span
               >
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="idDespliegueinfraestructuradispersion.id">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.pago.idDespliegueinfraestructuradispersion">Id Despliegueinfraestructuradispersion</span>
+              <span jhiTranslate="sistemasAdmApp.pago.idDespliegueinfraestructuradispersion"
+                >Id Despliegue de Infraestructura de Dispersión</span
+              >
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>

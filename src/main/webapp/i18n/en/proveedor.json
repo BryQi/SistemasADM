@@ -2,27 +2,27 @@
   "sistemasAdmApp": {
     "proveedor": {
       "home": {
-        "title": "Proveedors",
+        "title": "Suppliers",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Proveedor",
-        "createOrEditLabel": "Create or edit a Proveedor",
-        "notFound": "No Proveedors found"
+        "createLabel": "Create a new Suppliers",
+        "createOrEditLabel": "Create or edit a Suppliers",
+        "notFound": "No Suppliers found"
       },
-      "created": "A new Proveedor is created with identifier {{ param }}",
-      "updated": "A Proveedor is updated with identifier {{ param }}",
-      "deleted": "A Proveedor is deleted with identifier {{ param }}",
+      "created": "A new Suppliers is created with identifier {{ param }}",
+      "updated": "A Suppliers is updated with identifier {{ param }}",
+      "deleted": "A Suppliers is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Proveedor {{ id }}?"
+        "question": "Are you sure you want to delete Suppliers {{ id }}?"
       },
       "detail": {
-        "title": "Proveedor"
+        "title": "Suppliers"
       },
       "id": "ID",
-      "razonSocial": "Razon Social",
-      "contactoTecnico": "Contacto Tecnico",
-      "correoEmpresa": "Correo Empresa",
-      "direccion": "Direccion",
-      "celular": "Celular",
+      "razonSocial": "Social reason",
+      "contactoTecnico": "Technical Contact",
+      "correoEmpresa": "Company Mail",
+      "direccion": "Direction",
+      "celular": "Cell phone",
       "createdAt": "Created At",
       "despliegueinfraestructuradispersion": "Despliegueinfraestructuradispersion",
       "autorizaciones": "Autorizaciones",

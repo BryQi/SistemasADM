@@ -2,25 +2,25 @@
   "sistemasAdmApp": {
     "fotoPozo": {
       "home": {
-        "title": "Foto Pozos",
+        "title": "Foto del Pozo",
         "refreshListLabel": "Refrescar lista",
-        "createLabel": "Crear nuevo Foto Pozo",
-        "createOrEditLabel": "Crear o editar Foto Pozo",
-        "notFound": "Ningún Foto Pozos encontrado"
+        "createLabel": "Crear nueva Foto del Pozo",
+        "createOrEditLabel": "Crear o editar Foto del Pozo",
+        "notFound": "Ningún Foto del Pozo encontrado"
       },
-      "created": "Un nuevo Foto Pozo ha sido creado con el identificador {{ param }}",
-      "updated": "Un Foto Pozo ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Foto Pozo ha sido eliminado con el identificador {{ param }}",
+      "created": "Una nueva Foto del Pozo ha sido creado con el identificador {{ param }}",
+      "updated": "Una Foto del Pozo ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Una Foto del Pozo ha sido eliminado con el identificador {{ param }}",
       "delete": {
-        "question": "¿Seguro que quiere eliminar Foto Pozo {{ id }}?"
+        "question": "¿Seguro que quiere eliminar Foto del Pozo {{ id }}?"
       },
       "detail": {
-        "title": "Foto Pozo"
+        "title": "Foto del Pozo"
       },
       "id": "ID",
       "foto": "Foto",
-      "descripcion": "Descripcion",
-      "createdAt": "Created At",
+      "descripcion": "Descripción",
+      "createdAt": "Agregada el",
       "idPozo": "Id Pozo"
     }
   }

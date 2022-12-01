@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="DespliegueinfraestructuradispersionHeading">
-    <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.home.title">Despliegueinfraestructuradispersions</span>
+    <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.home.title">Despliegue de Infraestructura de Dispersión</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
@@ -16,7 +16,7 @@
       >
         <fa-icon icon="plus"></fa-icon>
         <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.home.createLabel">
-          Crear nuevo Despliegueinfraestructuradispersion
+          Crear nuevo Despliegue de Infraestructura de Dispersión
         </span>
       </button>
     </div>
@@ -28,7 +28,7 @@
 
   <div class="alert alert-warning" id="no-result" *ngIf="despliegueinfraestructuradispersions?.length === 0">
     <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.home.notFound"
-      >Ningún Despliegueinfraestructuradispersions encontrado</span
+      >Ningún Despliegue de Infraestructura de Dispersión encontrado</span
     >
   </div>
 
@@ -54,13 +54,13 @@
           </th>
           <th scope="col" jhiSortBy="direccion">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.direccion">Direccion</span>
+              <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.direccion">Dirección</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="fechaInstalacion">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.fechaInstalacion">Fecha Instalacion</span>
+              <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.fechaInstalacion">Fecha de Instalación</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -79,7 +79,7 @@
           <th scope="col" jhiSortBy="descripcionDePozosUsadosRuta">
             <div class="d-flex">
               <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.descripcionDePozosUsadosRuta"
-                >Descripcion De Pozos Usados Ruta</span
+                >Descripción De Pozos Usados con Ruta</span
               >
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
@@ -98,20 +98,20 @@
           </th>
           <th scope="col" jhiSortBy="calculoValorPago">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.calculoValorPago">Calculo Valor Pago</span>
+              <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.calculoValorPago">Cálculo de Valor a Pagar</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="createdAt">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.createdAt">Created At</span>
+              <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.createdAt">Creado el</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="idDespliegueInfraestructuraTroncalDistribucion.id">
             <div class="d-flex">
               <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.idDespliegueInfraestructuraTroncalDistribucion"
-                >Id Despliegue Infraestructura Troncal Distribucion</span
+                >Id Despliegue de Infraestructura de Dispersión</span
               >
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
