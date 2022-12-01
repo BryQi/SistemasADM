@@ -1,0 +1,74 @@
+{
+  "applications": "*",
+  "changelogDate": "20221201202114",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "proveedor",
+  "fields": [
+    {
+      "fieldName": "razonSocial",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "contactoTecnico",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "correoEmpresa",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "direccion",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "celular",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Proveedor",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "despliegueinfraestructuradispersion",
+      "otherEntityRelationshipName": "idProveedor",
+      "relationshipName": "despliegueinfraestructuradispersion",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "autorizaciones",
+      "otherEntityRelationshipName": "idProveedor",
+      "relationshipName": "autorizaciones",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "infraestructura",
+      "otherEntityRelationshipName": "idProveedor",
+      "relationshipName": "infraestructura",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "proveedor",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
+    }
+  ],
+  "service": "serviceImpl"
+}

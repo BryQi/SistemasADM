@@ -1,0 +1,32 @@
+{
+  "sistemasAdmApp": {
+    "despliegueInfraestructuraTroncalDistribucion": {
+      "home": {
+        "title": "Despliegue Infraestructura Troncal Distribucions",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Despliegue Infraestructura Troncal Distribucion",
+        "createOrEditLabel": "Crear o editar Despliegue Infraestructura Troncal Distribucion",
+        "notFound": "Ningún Despliegue Infraestructura Troncal Distribucions encontrado"
+      },
+      "created": "Un nuevo Despliegue Infraestructura Troncal Distribucion ha sido creado con el identificador {{ param }}",
+      "updated": "Un Despliegue Infraestructura Troncal Distribucion ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Despliegue Infraestructura Troncal Distribucion ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Despliegue Infraestructura Troncal Distribucion {{ id }}?"
+      },
+      "detail": {
+        "title": "Despliegue Infraestructura Troncal Distribucion"
+      },
+      "id": "ID",
+      "nombreRuta": "Nombre Ruta",
+      "descripcionRuta": "Descripcion Ruta",
+      "metrajeInicial": "Metraje Inicial",
+      "metrajeFinal": "Metraje Final",
+      "calculoValorPago": "Calculo Valor Pago",
+      "createdAt": "Created At",
+      "despliegueInfraestructuraDispersion": "Despliegue Infraestructura Dispersion",
+      "pago": "Pago",
+      "pozo": "Pozo"
+    }
+  }
+}

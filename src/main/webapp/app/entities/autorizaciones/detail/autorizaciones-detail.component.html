@@ -1,0 +1,80 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="autorizaciones">
+      <h2 data-cy="autorizacionesDetailsHeading"><span jhiTranslate="sistemasAdmApp.autorizaciones.detail.title">Autorizaciones</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ autorizaciones.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.cliente">Cliente</span></dt>
+        <dd>
+          <span>{{ autorizaciones.cliente }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.direccionOrigen">Direccion Origen</span></dt>
+        <dd>
+          <span>{{ autorizaciones.direccionOrigen }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.direccionDestino">Direccion Destino</span></dt>
+        <dd>
+          <span>{{ autorizaciones.direccionDestino }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.fechaOperacion">Fecha Operacion</span></dt>
+        <dd>
+          <span>{{ autorizaciones.fechaOperacion | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.ventanaTrabajo">Ventana Trabajo</span></dt>
+        <dd>
+          <span>{{ autorizaciones.ventanaTrabajo }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.contactoTecnico">Contacto Tecnico</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'sistemasAdmApp.ContactoTecnico.' + autorizaciones.contactoTecnico }}">{{
+            autorizaciones.contactoTecnico
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.tipoTrabajo">Tipo Trabajo</span></dt>
+        <dd>
+          <span>{{ autorizaciones.tipoTrabajo }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.observaciones">Observaciones</span></dt>
+        <dd>
+          <span>{{ autorizaciones.observaciones }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ autorizaciones.createdAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.registroInspecciones">Registro Inspecciones</span></dt>
+        <dd>
+          <div *ngIf="autorizaciones.registroInspecciones">
+            <a [routerLink]="['/registro-inspecciones', autorizaciones.registroInspecciones.id, 'view']">{{
+              autorizaciones.registroInspecciones.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.idProveedor">Id Proveedor</span></dt>
+        <dd>
+          <div *ngIf="autorizaciones.idProveedor">
+            <a [routerLink]="['/proveedor', autorizaciones.idProveedor.id, 'view']">{{ autorizaciones.idProveedor.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/autorizaciones', autorizaciones.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+{
+  "applications": "*",
+  "changelogDate": "20221201202120",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "foto_pozo",
+  "fields": [
+    {
+      "fieldName": "foto",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "FotoPozo",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "pozo",
+      "otherEntityRelationshipName": "fotoPozo",
+      "relationshipName": "idPozo",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

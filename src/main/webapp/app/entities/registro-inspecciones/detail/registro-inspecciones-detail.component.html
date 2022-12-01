@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="registroInspecciones">
+      <h2 data-cy="registroInspeccionesDetailsHeading">
+        <span jhiTranslate="sistemasAdmApp.registroInspecciones.detail.title">Registro Inspecciones</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ registroInspecciones.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleAutorizacion">Cumple Autorizacion</span></dt>
+        <dd>
+          <span>{{ registroInspecciones.cumpleAutorizacion }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.registroInspecciones.numeroAutorizacion">Numero Autorizacion</span></dt>
+        <dd>
+          <span>{{ registroInspecciones.numeroAutorizacion }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleSenaletica">Cumple Senaletica</span></dt>
+        <dd>
+          <span>{{ registroInspecciones.cumpleSenaletica }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleConosSeguridad">Cumple Conos Seguridad</span></dt>
+        <dd>
+          <span>{{ registroInspecciones.cumpleConosSeguridad }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleEtiquetado">Cumple Etiquetado</span></dt>
+        <dd>
+          <span>{{ registroInspecciones.cumpleEtiquetado }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleArregloCables">Cumple Arreglo Cables</span></dt>
+        <dd>
+          <span>{{ registroInspecciones.cumpleArregloCables }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.registroInspecciones.cumplelimpiezaOrdenPozo">Cumplelimpieza Orden Pozo</span></dt>
+        <dd>
+          <span>{{ registroInspecciones.cumplelimpiezaOrdenPozo }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.registroInspecciones.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ registroInspecciones.createdAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.registroInspecciones.idPozo">Id Pozo</span></dt>
+        <dd>
+          <div *ngIf="registroInspecciones.idPozo">
+            <a [routerLink]="['/pozo', registroInspecciones.idPozo.id, 'view']">{{ registroInspecciones.idPozo.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/registro-inspecciones', registroInspecciones.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

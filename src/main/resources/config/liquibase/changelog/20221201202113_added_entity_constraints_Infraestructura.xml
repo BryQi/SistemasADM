@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Infraestructura.
+    -->
+    <changeSet id="20221201202113-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="infraestructura_id"
+                                 baseTableName="rel_infraestructura__pozo"
+                                 constraintName="fk_rel_infraestructura__pozo__infraestructura_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="infraestructura"/>
+
+        <addForeignKeyConstraint baseColumnNames="pozo_id"
+                                 baseTableName="rel_infraestructura__pozo"
+                                 constraintName="fk_rel_infraestructura__pozo__pozo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pozo"/>
+
+        <addForeignKeyConstraint baseColumnNames="id_proveedor_id"
+                                 baseTableName="infraestructura"
+                                 constraintName="fk_infraestructura__id_proveedor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="proveedor"/>
+    </changeSet>
+</databaseChangeLog>

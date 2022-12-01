@@ -1,0 +1,206 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-registro-inspecciones-heading"
+        data-cy="RegistroInspeccionesCreateUpdateHeading"
+        jhiTranslate="sistemasAdmApp.registroInspecciones.home.createOrEditLabel"
+      >
+        Crear o editar Registro Inspecciones
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleAutorizacion" for="field_cumpleAutorizacion"
+            >Cumple Autorizacion</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="cumpleAutorizacion"
+            id="field_cumpleAutorizacion"
+            data-cy="cumpleAutorizacion"
+            formControlName="cumpleAutorizacion"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.numeroAutorizacion" for="field_numeroAutorizacion"
+            >Numero Autorizacion</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="numeroAutorizacion"
+            id="field_numeroAutorizacion"
+            data-cy="numeroAutorizacion"
+            formControlName="numeroAutorizacion"
+          />
+          <div
+            *ngIf="
+              editForm.get('numeroAutorizacion')!.invalid &&
+              (editForm.get('numeroAutorizacion')!.dirty || editForm.get('numeroAutorizacion')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('numeroAutorizacion')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('numeroAutorizacion')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Este campo debe ser un número.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleSenaletica" for="field_cumpleSenaletica"
+            >Cumple Senaletica</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="cumpleSenaletica"
+            id="field_cumpleSenaletica"
+            data-cy="cumpleSenaletica"
+            formControlName="cumpleSenaletica"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleConosSeguridad" for="field_cumpleConosSeguridad"
+            >Cumple Conos Seguridad</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="cumpleConosSeguridad"
+            id="field_cumpleConosSeguridad"
+            data-cy="cumpleConosSeguridad"
+            formControlName="cumpleConosSeguridad"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleEtiquetado" for="field_cumpleEtiquetado"
+            >Cumple Etiquetado</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="cumpleEtiquetado"
+            id="field_cumpleEtiquetado"
+            data-cy="cumpleEtiquetado"
+            formControlName="cumpleEtiquetado"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleArregloCables" for="field_cumpleArregloCables"
+            >Cumple Arreglo Cables</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="cumpleArregloCables"
+            id="field_cumpleArregloCables"
+            data-cy="cumpleArregloCables"
+            formControlName="cumpleArregloCables"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="sistemasAdmApp.registroInspecciones.cumplelimpiezaOrdenPozo"
+            for="field_cumplelimpiezaOrdenPozo"
+            >Cumplelimpieza Orden Pozo</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="cumplelimpiezaOrdenPozo"
+            id="field_cumplelimpiezaOrdenPozo"
+            data-cy="cumplelimpiezaOrdenPozo"
+            formControlName="cumplelimpiezaOrdenPozo"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.createdAt" for="field_createdAt">Created At</label>
+          <div class="d-flex">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="datetime-local"
+              class="form-control"
+              name="createdAt"
+              formControlName="createdAt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('createdAt')!.invalid && (editForm.get('createdAt')!.dirty || editForm.get('createdAt')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('createdAt')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('createdAt')?.errors?.datetimelocal"
+              jhiTranslate="entity.validation.datetimelocal"
+            >
+              Este campo debe ser una fecha y hora.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.idPozo" for="field_idPozo">Id Pozo</label>
+          <select
+            class="form-control"
+            id="field_idPozo"
+            data-cy="idPozo"
+            name="idPozo"
+            formControlName="idPozo"
+            [compareWith]="comparePozo"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="pozoOption" *ngFor="let pozoOption of pozosSharedCollection">{{ pozoOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

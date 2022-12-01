@@ -1,0 +1,256 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-despliegue-infraestructura-troncal-distribucion-heading"
+        data-cy="DespliegueInfraestructuraTroncalDistribucionCreateUpdateHeading"
+        jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.home.createOrEditLabel"
+      >
+        Crear o editar Despliegue Infraestructura Troncal Distribucion
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.nombreRuta"
+            for="field_nombreRuta"
+            >Nombre Ruta</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="nombreRuta"
+            id="field_nombreRuta"
+            data-cy="nombreRuta"
+            formControlName="nombreRuta"
+          />
+          <div *ngIf="editForm.get('nombreRuta')!.invalid && (editForm.get('nombreRuta')!.dirty || editForm.get('nombreRuta')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nombreRuta')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.descripcionRuta"
+            for="field_descripcionRuta"
+            >Descripcion Ruta</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="descripcionRuta"
+            id="field_descripcionRuta"
+            data-cy="descripcionRuta"
+            formControlName="descripcionRuta"
+          />
+          <div
+            *ngIf="
+              editForm.get('descripcionRuta')!.invalid &&
+              (editForm.get('descripcionRuta')!.dirty || editForm.get('descripcionRuta')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('descripcionRuta')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.metrajeInicial"
+            for="field_metrajeInicial"
+            >Metraje Inicial</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="metrajeInicial"
+            id="field_metrajeInicial"
+            data-cy="metrajeInicial"
+            formControlName="metrajeInicial"
+          />
+          <div
+            *ngIf="
+              editForm.get('metrajeInicial')!.invalid && (editForm.get('metrajeInicial')!.dirty || editForm.get('metrajeInicial')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('metrajeInicial')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('metrajeInicial')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Este campo debe ser un número.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.metrajeFinal"
+            for="field_metrajeFinal"
+            >Metraje Final</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="metrajeFinal"
+            id="field_metrajeFinal"
+            data-cy="metrajeFinal"
+            formControlName="metrajeFinal"
+          />
+          <div
+            *ngIf="editForm.get('metrajeFinal')!.invalid && (editForm.get('metrajeFinal')!.dirty || editForm.get('metrajeFinal')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('metrajeFinal')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('metrajeFinal')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Este campo debe ser un número.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.calculoValorPago"
+            for="field_calculoValorPago"
+            >Calculo Valor Pago</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="calculoValorPago"
+            id="field_calculoValorPago"
+            data-cy="calculoValorPago"
+            formControlName="calculoValorPago"
+          />
+          <div
+            *ngIf="
+              editForm.get('calculoValorPago')!.invalid &&
+              (editForm.get('calculoValorPago')!.dirty || editForm.get('calculoValorPago')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('calculoValorPago')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('calculoValorPago')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Este campo debe ser un número.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.createdAt"
+            for="field_createdAt"
+            >Created At</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="datetime-local"
+              class="form-control"
+              name="createdAt"
+              formControlName="createdAt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('createdAt')!.invalid && (editForm.get('createdAt')!.dirty || editForm.get('createdAt')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('createdAt')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('createdAt')?.errors?.datetimelocal"
+              jhiTranslate="entity.validation.datetimelocal"
+            >
+              Este campo debe ser una fecha y hora.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.pozo" for="field_pozos">Pozo</label>
+          <select
+            class="form-control"
+            id="field_pozos"
+            data-cy="pozo"
+            multiple
+            name="pozos"
+            formControlName="pozos"
+            [compareWith]="comparePozo"
+          >
+            <option [ngValue]="pozoOption" *ngFor="let pozoOption of pozosSharedCollection">{{ pozoOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

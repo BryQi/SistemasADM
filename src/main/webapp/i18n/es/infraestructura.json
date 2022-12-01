@@ -1,0 +1,27 @@
+{
+  "sistemasAdmApp": {
+    "infraestructura": {
+      "home": {
+        "title": "Infraestructuras",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Infraestructura",
+        "createOrEditLabel": "Crear o editar Infraestructura",
+        "notFound": "Ningún Infraestructuras encontrado"
+      },
+      "created": "Un nuevo Infraestructura ha sido creado con el identificador {{ param }}",
+      "updated": "Un Infraestructura ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Infraestructura ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Infraestructura {{ id }}?"
+      },
+      "detail": {
+        "title": "Infraestructura"
+      },
+      "id": "ID",
+      "tipo": "Tipo",
+      "createdAt": "Created At",
+      "pozo": "Pozo",
+      "idProveedor": "Id Proveedor"
+    }
+  }
+}

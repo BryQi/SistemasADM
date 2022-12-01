@@ -1,0 +1,162 @@
+<div>
+  <h2 id="page-heading" data-cy="DespliegueInfraestructuraTroncalDistribucionHeading">
+    <span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.home.title"
+      >Despliegue Infraestructura Troncal Distribucions</span
+    >
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-despliegue-infraestructura-troncal-distribucion"
+        [routerLink]="['/despliegue-infraestructura-troncal-distribucion/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.home.createLabel">
+          Crear nuevo Despliegue Infraestructura Troncal Distribucion
+        </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="despliegueInfraestructuraTroncalDistribucions?.length === 0">
+    <span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.home.notFound"
+      >Ningún Despliegue Infraestructura Troncal Distribucions encontrado</span
+    >
+  </div>
+
+  <div
+    class="table-responsive table-entities"
+    id="entities"
+    *ngIf="despliegueInfraestructuraTroncalDistribucions && despliegueInfraestructuraTroncalDistribucions.length > 0"
+  >
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nombreRuta">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.nombreRuta">Nombre Ruta</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="descripcionRuta">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.descripcionRuta">Descripcion Ruta</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="metrajeInicial">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.metrajeInicial">Metraje Inicial</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="metrajeFinal">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.metrajeFinal">Metraje Final</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="calculoValorPago">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.calculoValorPago">Calculo Valor Pago</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="createdAt">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.createdAt">Created At</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let despliegueInfraestructuraTroncalDistribucion of despliegueInfraestructuraTroncalDistribucions; trackBy: trackId"
+          data-cy="entityTable"
+        >
+          <td>
+            <a
+              [routerLink]="['/despliegue-infraestructura-troncal-distribucion', despliegueInfraestructuraTroncalDistribucion.id, 'view']"
+              >{{ despliegueInfraestructuraTroncalDistribucion.id }}</a
+            >
+          </td>
+          <td>{{ despliegueInfraestructuraTroncalDistribucion.nombreRuta }}</td>
+          <td>{{ despliegueInfraestructuraTroncalDistribucion.descripcionRuta }}</td>
+          <td>{{ despliegueInfraestructuraTroncalDistribucion.metrajeInicial }}</td>
+          <td>{{ despliegueInfraestructuraTroncalDistribucion.metrajeFinal }}</td>
+          <td>{{ despliegueInfraestructuraTroncalDistribucion.calculoValorPago }}</td>
+          <td>{{ despliegueInfraestructuraTroncalDistribucion.createdAt | formatMediumDatetime }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/despliegue-infraestructura-troncal-distribucion', despliegueInfraestructuraTroncalDistribucion.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/despliegue-infraestructura-troncal-distribucion', despliegueInfraestructuraTroncalDistribucion.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button
+                type="submit"
+                (click)="delete(despliegueInfraestructuraTroncalDistribucion)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="despliegueInfraestructuraTroncalDistribucions && despliegueInfraestructuraTroncalDistribucions.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

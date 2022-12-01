@@ -1,0 +1,11 @@
+id;cumple_autorizacion;numero_autorizacion;cumple_senaletica;cumple_conos_seguridad;cumple_etiquetado;cumple_arreglo_cables;cumplelimpieza_orden_pozo;created_at
+1;false;40545;true;false;false;false;false;2022-12-01T11:39:53
+2;false;67778;true;true;false;true;false;2022-11-30T23:02:00
+3;true;94431;false;true;false;false;false;2022-11-30T22:18:36
+4;true;2700;true;true;false;true;false;2022-12-01T09:59:06
+5;false;70080;true;true;true;true;true;2022-12-01T18:01:12
+6;false;79463;true;true;true;false;false;2022-12-01T12:50:50
+7;true;20006;false;false;false;false;false;2022-12-01T20:13:40
+8;true;19943;true;false;false;true;true;2022-12-01T00:39:08
+9;true;29037;true;true;false;true;false;2022-12-01T03:02:15
+10;true;53871;true;false;false;false;true;2022-11-30T23:49:54

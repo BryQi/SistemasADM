@@ -1,0 +1,34 @@
+{
+  "sistemasAdmApp": {
+    "autorizaciones": {
+      "home": {
+        "title": "Autorizaciones",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Autorizaciones",
+        "createOrEditLabel": "Crear o editar Autorizaciones",
+        "notFound": "Ningún Autorizaciones encontrado"
+      },
+      "created": "Un nuevo Autorizaciones ha sido creado con el identificador {{ param }}",
+      "updated": "Un Autorizaciones ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Autorizaciones ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Autorizaciones {{ id }}?"
+      },
+      "detail": {
+        "title": "Autorizaciones"
+      },
+      "id": "ID",
+      "cliente": "Cliente",
+      "direccionOrigen": "Direccion Origen",
+      "direccionDestino": "Direccion Destino",
+      "fechaOperacion": "Fecha Operacion",
+      "ventanaTrabajo": "Ventana Trabajo",
+      "contactoTecnico": "Contacto Tecnico",
+      "tipoTrabajo": "Tipo Trabajo",
+      "observaciones": "Observaciones",
+      "createdAt": "Created At",
+      "registroInspecciones": "Registro Inspecciones",
+      "idProveedor": "Id Proveedor"
+    }
+  }
+}

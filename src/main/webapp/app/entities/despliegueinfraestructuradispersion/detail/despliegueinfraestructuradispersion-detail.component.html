@@ -1,0 +1,112 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="despliegueinfraestructuradispersion">
+      <h2 data-cy="despliegueinfraestructuradispersionDetailsHeading">
+        <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.detail.title">Despliegueinfraestructuradispersion</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ despliegueinfraestructuradispersion.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.nombreCliente">Nombre Cliente</span></dt>
+        <dd>
+          <span>{{ despliegueinfraestructuradispersion.nombreCliente }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.direccion">Direccion</span></dt>
+        <dd>
+          <span>{{ despliegueinfraestructuradispersion.direccion }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.fechaInstalacion">Fecha Instalacion</span></dt>
+        <dd>
+          <span>{{ despliegueinfraestructuradispersion.fechaInstalacion | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.origen">Origen</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'sistemasAdmApp.Origen.' + despliegueinfraestructuradispersion.origen }}">{{
+            despliegueinfraestructuradispersion.origen
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.destino">Destino</span></dt>
+        <dd>
+          <span>{{ despliegueinfraestructuradispersion.destino }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.descripcionDePozosUsadosRuta"
+            >Descripcion De Pozos Usados Ruta</span
+          >
+        </dt>
+        <dd>
+          <span>{{ despliegueinfraestructuradispersion.descripcionDePozosUsadosRuta }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.metrajeInicial">Metraje Inicial</span></dt>
+        <dd>
+          <span>{{ despliegueinfraestructuradispersion.metrajeInicial }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.metrajeFinal">Metraje Final</span></dt>
+        <dd>
+          <span>{{ despliegueinfraestructuradispersion.metrajeFinal }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.calculoValorPago">Calculo Valor Pago</span></dt>
+        <dd>
+          <span>{{ despliegueinfraestructuradispersion.calculoValorPago }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ despliegueinfraestructuradispersion.createdAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.pozo">Pozo</span></dt>
+        <dd>
+          <span *ngFor="let pozo of despliegueinfraestructuradispersion.pozos; let last = last">
+            <a [routerLink]="['/pozo', pozo.id, 'view']">{{ pozo.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt>
+          <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.idDespliegueInfraestructuraTroncalDistribucion"
+            >Id Despliegue Infraestructura Troncal Distribucion</span
+          >
+        </dt>
+        <dd>
+          <div *ngIf="despliegueinfraestructuradispersion.idDespliegueInfraestructuraTroncalDistribucion">
+            <a
+              [routerLink]="[
+                '/despliegue-infraestructura-troncal-distribucion',
+                despliegueinfraestructuradispersion.idDespliegueInfraestructuraTroncalDistribucion.id,
+                'view'
+              ]"
+              >{{ despliegueinfraestructuradispersion.idDespliegueInfraestructuraTroncalDistribucion.id }}</a
+            >
+          </div>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.idProveedor">Id Proveedor</span></dt>
+        <dd>
+          <div *ngIf="despliegueinfraestructuradispersion.idProveedor">
+            <a [routerLink]="['/proveedor', despliegueinfraestructuradispersion.idProveedor.id, 'view']">{{
+              despliegueinfraestructuradispersion.idProveedor.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button
+        type="button"
+        [routerLink]="['/despliegueinfraestructuradispersion', despliegueinfraestructuradispersion.id, 'edit']"
+        class="btn btn-primary"
+      >
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

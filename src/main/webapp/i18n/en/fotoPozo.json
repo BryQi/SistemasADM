@@ -1,0 +1,27 @@
+{
+  "sistemasAdmApp": {
+    "fotoPozo": {
+      "home": {
+        "title": "Foto Pozos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Foto Pozo",
+        "createOrEditLabel": "Create or edit a Foto Pozo",
+        "notFound": "No Foto Pozos found"
+      },
+      "created": "A new Foto Pozo is created with identifier {{ param }}",
+      "updated": "A Foto Pozo is updated with identifier {{ param }}",
+      "deleted": "A Foto Pozo is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Foto Pozo {{ id }}?"
+      },
+      "detail": {
+        "title": "Foto Pozo"
+      },
+      "id": "ID",
+      "foto": "Foto",
+      "descripcion": "Descripcion",
+      "createdAt": "Created At",
+      "idPozo": "Id Pozo"
+    }
+  }
+}

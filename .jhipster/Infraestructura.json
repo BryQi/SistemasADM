@@ -1,0 +1,40 @@
+{
+  "applications": "*",
+  "changelogDate": "20221201202113",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "infraestructura",
+  "fields": [
+    {
+      "fieldName": "tipo",
+      "fieldType": "Tipo",
+      "fieldValues": "MANGA,NAP,CajaDistribucion,Pedestal,Nodo"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Infraestructura",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "pozo",
+      "otherEntityRelationshipName": "idInfraestructura",
+      "ownerSide": true,
+      "relationshipName": "pozo",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "proveedor",
+      "otherEntityRelationshipName": "infraestructura",
+      "relationshipName": "idProveedor",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

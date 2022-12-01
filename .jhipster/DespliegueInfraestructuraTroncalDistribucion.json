@@ -1,0 +1,66 @@
+{
+  "applications": "*",
+  "changelogDate": "20221201202115",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "despliegue_infraestructura_troncal_distribucion",
+  "fields": [
+    {
+      "fieldName": "nombreRuta",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descripcionRuta",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "metrajeInicial",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "metrajeFinal",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "calculoValorPago",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "DespliegueInfraestructuraTroncalDistribucion",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "despliegueinfraestructuradispersion",
+      "otherEntityRelationshipName": "idDespliegueInfraestructuraTroncalDistribucion",
+      "relationshipName": "despliegueInfraestructuraDispersion",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "pago",
+      "otherEntityRelationshipName": "idDespliegueInfraestructuraTroncalDistribucion",
+      "relationshipName": "pago",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "pozo",
+      "otherEntityRelationshipName": "idDespliegueInfraestructuraTroncalDistribucion",
+      "ownerSide": true,
+      "relationshipName": "pozo",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

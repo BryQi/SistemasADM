@@ -1,0 +1,27 @@
+{
+  "sistemasAdmApp": {
+    "fotoPozo": {
+      "home": {
+        "title": "Foto Pozos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Foto Pozo",
+        "createOrEditLabel": "Crear o editar Foto Pozo",
+        "notFound": "Ningún Foto Pozos encontrado"
+      },
+      "created": "Un nuevo Foto Pozo ha sido creado con el identificador {{ param }}",
+      "updated": "Un Foto Pozo ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Foto Pozo ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Foto Pozo {{ id }}?"
+      },
+      "detail": {
+        "title": "Foto Pozo"
+      },
+      "id": "ID",
+      "foto": "Foto",
+      "descripcion": "Descripcion",
+      "createdAt": "Created At",
+      "idPozo": "Id Pozo"
+    }
+  }
+}

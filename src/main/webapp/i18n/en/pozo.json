@@ -1,0 +1,33 @@
+{
+  "sistemasAdmApp": {
+    "pozo": {
+      "home": {
+        "title": "Pozos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Pozo",
+        "createOrEditLabel": "Create or edit a Pozo",
+        "notFound": "No Pozos found"
+      },
+      "created": "A new Pozo is created with identifier {{ param }}",
+      "updated": "A Pozo is updated with identifier {{ param }}",
+      "deleted": "A Pozo is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Pozo {{ id }}?"
+      },
+      "detail": {
+        "title": "Pozo"
+      },
+      "id": "ID",
+      "numeropozo": "Numeropozo",
+      "direccion": "Direccion",
+      "ubicacion": "Ubicacion",
+      "tipopozo": "Tipopozo",
+      "createdAt": "Created At",
+      "fotoPozo": "Foto Pozo",
+      "registroInspecciones": "Registro Inspecciones",
+      "idDespliegueInfraestructuraTroncalDistribucion": "Id Despliegue Infraestructura Troncal Distribucion",
+      "idDespliegueinfraestructuradispersion": "Id Despliegueinfraestructuradispersion",
+      "idInfraestructura": "Id Infraestructura"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "sistemasAdmApp": {
+    "proveedor": {
+      "home": {
+        "title": "Proveedors",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Proveedor",
+        "createOrEditLabel": "Crear o editar Proveedor",
+        "notFound": "Ningún Proveedors encontrado"
+      },
+      "created": "Un nuevo Proveedor ha sido creado con el identificador {{ param }}",
+      "updated": "Un Proveedor ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Proveedor ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Proveedor {{ id }}?"
+      },
+      "detail": {
+        "title": "Proveedor"
+      },
+      "id": "ID",
+      "razonSocial": "Razon Social",
+      "contactoTecnico": "Contacto Tecnico",
+      "correoEmpresa": "Correo Empresa",
+      "direccion": "Direccion",
+      "celular": "Celular",
+      "createdAt": "Created At",
+      "despliegueinfraestructuradispersion": "Despliegueinfraestructuradispersion",
+      "autorizaciones": "Autorizaciones",
+      "infraestructura": "Infraestructura",
+      "user": "User"
+    }
+  }
+}

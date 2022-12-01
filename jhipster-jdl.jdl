@@ -1,0 +1,135 @@
+entity Infraestructura {
+    tipo Tipo,
+    createdAt ZonedDateTime required
+}
+
+enum Tipo {
+    MANGA, NAP, CajaDistribucion, Pedestal, Nodo
+}
+
+entity Proveedor {
+    razonSocial String required,
+    contactoTecnico String required,
+    correoEmpresa String required,
+    direccion String required,
+    celular Integer required,
+    createdAt ZonedDateTime required
+}
+
+
+entity DespliegueInfraestructuraTroncalDistribucion {
+	nombreRuta String required,
+    descripcionRuta String required,
+    metrajeInicial Double required,
+    metrajeFinal Double required,
+    calculoValorPago Double required,
+    createdAt ZonedDateTime required
+}
+
+entity Despliegueinfraestructuradispersion {
+    nombreCliente String required,
+    direccion String required,
+    fechaInstalacion LocalDate required,
+    origen Origen,
+    destino String required,
+    descripcionDePozosUsadosRuta String required,
+    metrajeInicial Double required,
+    metrajeFinal Double required,
+    calculoValorPago Double required,
+    createdAt ZonedDateTime required
+}
+
+enum Origen {
+    MANGA, NAP, CajaDistribucion, Pedestal, Nodo
+}
+
+
+entity Pozo {
+    numeropozo String required,
+    direccion String required,
+    ubicacion Ubicacion,
+    tipopozo TipoPozo,
+    createdAt ZonedDateTime required
+}
+
+enum Ubicacion {
+	Norte, Sur, Este, Oeste, NorEste, NorOeste, SurEste, SurOeste
+}
+
+enum TipoPozo {
+	PozodePaso, Revision
+}
+
+
+entity Autorizaciones {
+	cliente String required,
+    direccionOrigen String required,
+    direccionDestino Double required,
+    fechaOperacion LocalDate required,
+    ventanaTrabajo String required,
+    contactoTecnico ContactoTecnico,
+    tipoTrabajo String required,
+    observaciones String required,
+    createdAt ZonedDateTime required
+}
+
+enum ContactoTecnico {
+	InSitu
+}
+
+entity RegistroInspecciones {
+    cumpleAutorizacion Boolean,
+    numeroAutorizacion Integer required,
+    cumpleSenaletica Boolean,
+    cumpleConosSeguridad Boolean,
+    cumpleEtiquetado Boolean,
+    cumpleArregloCables Boolean,
+    cumplelimpiezaOrdenPozo Boolean,
+    createdAt ZonedDateTime required
+}
+
+entity FotoPozo {
+	foto Blob required,
+    descripcion String required,
+    createdAt ZonedDateTime required
+}
+
+entity Pago {
+	fechaPago LocalDate required,
+    pago Integer required,
+    createdAt ZonedDateTime required
+}
+
+
+
+
+relationship OneToMany {
+	DespliegueInfraestructuraTroncalDistribucion{despliegueInfraestructuraDispersion} to Despliegueinfraestructuradispersion{idDespliegueInfraestructuraTroncalDistribucion}
+    Proveedor{despliegueinfraestructuradispersion} to Despliegueinfraestructuradispersion{idProveedor},
+    Proveedor{autorizaciones} to Autorizaciones{idProveedor},
+    Pozo{fotoPozo} to FotoPozo{idPozo},
+    Pozo{registroInspecciones} to RegistroInspecciones{idPozo},
+    DespliegueInfraestructuraTroncalDistribucion{Pago} to Pago{idDespliegueInfraestructuraTroncalDistribucion},
+    Despliegueinfraestructuradispersion{Pago} to Pago{idDespliegueinfraestructuradispersion},
+    Proveedor{infraestructura} to Infraestructura{idProveedor}
+}
+
+relationship OneToOne {
+	Autorizaciones{registroInspecciones} to RegistroInspecciones
+}
+
+relationship ManyToMany {
+	DespliegueInfraestructuraTroncalDistribucion{pozo} to Pozo{idDespliegueInfraestructuraTroncalDistribucion},
+    Despliegueinfraestructuradispersion{pozo} to Pozo{idDespliegueinfraestructuradispersion},
+    Infraestructura{pozo} to Pozo{idInfraestructura}
+}
+
+
+// Set pagination options
+
+paginate Infraestructura, Proveedor, DespliegueInfraestructuraTroncalDistribucion, Despliegueinfraestructuradispersion, Pozo, FotoPozo, RegistroInspecciones, Autorizaciones, Pago with pagination
+dto * with mapstruct
+service all with serviceImpl
+
+
+

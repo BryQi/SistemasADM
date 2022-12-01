@@ -1,0 +1,92 @@
+{
+  "applications": "*",
+  "changelogDate": "20221201202116",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "despliegueinfraestructuradispersion",
+  "fields": [
+    {
+      "fieldName": "nombreCliente",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "direccion",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fechaInstalacion",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "origen",
+      "fieldType": "Origen",
+      "fieldValues": "MANGA,NAP,CajaDistribucion,Pedestal,Nodo"
+    },
+    {
+      "fieldName": "destino",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descripcionDePozosUsadosRuta",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "metrajeInicial",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "metrajeFinal",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "calculoValorPago",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Despliegueinfraestructuradispersion",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "pago",
+      "otherEntityRelationshipName": "idDespliegueinfraestructuradispersion",
+      "relationshipName": "pago",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "pozo",
+      "otherEntityRelationshipName": "idDespliegueinfraestructuradispersion",
+      "ownerSide": true,
+      "relationshipName": "pozo",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "despliegueInfraestructuraTroncalDistribucion",
+      "otherEntityRelationshipName": "despliegueInfraestructuraDispersion",
+      "relationshipName": "idDespliegueInfraestructuraTroncalDistribucion",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "proveedor",
+      "otherEntityRelationshipName": "despliegueinfraestructuradispersion",
+      "relationshipName": "idProveedor",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

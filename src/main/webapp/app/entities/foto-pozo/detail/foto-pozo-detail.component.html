@@ -1,0 +1,49 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="fotoPozo">
+      <h2 data-cy="fotoPozoDetailsHeading"><span jhiTranslate="sistemasAdmApp.fotoPozo.detail.title">Foto Pozo</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ fotoPozo.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.fotoPozo.foto">Foto</span></dt>
+        <dd>
+          <div *ngIf="fotoPozo.foto">
+            <a (click)="openFile(fotoPozo.foto, fotoPozo.fotoContentType)" jhiTranslate="entity.action.open">Abrir</a>
+            {{ fotoPozo.fotoContentType }}, {{ byteSize(fotoPozo.foto) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.fotoPozo.descripcion">Descripcion</span></dt>
+        <dd>
+          <span>{{ fotoPozo.descripcion }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.fotoPozo.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ fotoPozo.createdAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.fotoPozo.idPozo">Id Pozo</span></dt>
+        <dd>
+          <div *ngIf="fotoPozo.idPozo">
+            <a [routerLink]="['/pozo', fotoPozo.idPozo.id, 'view']">{{ fotoPozo.idPozo.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/foto-pozo', fotoPozo.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

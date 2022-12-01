@@ -1,0 +1,44 @@
+{
+  "applications": "*",
+  "changelogDate": "20221201202121",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "pago",
+  "fields": [
+    {
+      "fieldName": "fechaPago",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "pago",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Pago",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "despliegueInfraestructuraTroncalDistribucion",
+      "otherEntityRelationshipName": "pago",
+      "relationshipName": "idDespliegueInfraestructuraTroncalDistribucion",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "despliegueinfraestructuradispersion",
+      "otherEntityRelationshipName": "pago",
+      "relationshipName": "idDespliegueinfraestructuradispersion",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,57 @@
+{
+  "applications": "*",
+  "changelogDate": "20221201202119",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "registro_inspecciones",
+  "fields": [
+    {
+      "fieldName": "cumpleAutorizacion",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "numeroAutorizacion",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "cumpleSenaletica",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "cumpleConosSeguridad",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "cumpleEtiquetado",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "cumpleArregloCables",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "cumplelimpiezaOrdenPozo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "RegistroInspecciones",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "pozo",
+      "otherEntityRelationshipName": "registroInspecciones",
+      "relationshipName": "idPozo",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

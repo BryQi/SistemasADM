@@ -1,0 +1,67 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="despliegueInfraestructuraTroncalDistribucion">
+      <h2 data-cy="despliegueInfraestructuraTroncalDistribucionDetailsHeading">
+        <span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.detail.title"
+          >Despliegue Infraestructura Troncal Distribucion</span
+        >
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ despliegueInfraestructuraTroncalDistribucion.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.nombreRuta">Nombre Ruta</span></dt>
+        <dd>
+          <span>{{ despliegueInfraestructuraTroncalDistribucion.nombreRuta }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.descripcionRuta">Descripcion Ruta</span></dt>
+        <dd>
+          <span>{{ despliegueInfraestructuraTroncalDistribucion.descripcionRuta }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.metrajeInicial">Metraje Inicial</span></dt>
+        <dd>
+          <span>{{ despliegueInfraestructuraTroncalDistribucion.metrajeInicial }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.metrajeFinal">Metraje Final</span></dt>
+        <dd>
+          <span>{{ despliegueInfraestructuraTroncalDistribucion.metrajeFinal }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.calculoValorPago">Calculo Valor Pago</span></dt>
+        <dd>
+          <span>{{ despliegueInfraestructuraTroncalDistribucion.calculoValorPago }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ despliegueInfraestructuraTroncalDistribucion.createdAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.pozo">Pozo</span></dt>
+        <dd>
+          <span *ngFor="let pozo of despliegueInfraestructuraTroncalDistribucion.pozos; let last = last">
+            <a [routerLink]="['/pozo', pozo.id, 'view']">{{ pozo.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button
+        type="button"
+        [routerLink]="['/despliegue-infraestructura-troncal-distribucion', despliegueInfraestructuraTroncalDistribucion.id, 'edit']"
+        class="btn btn-primary"
+      >
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="floatType" value="float4" dbms="postgresql"/>
+    <property name="clobType" value="longvarchar" dbms="postgresql"/>
+    <property name="blobType" value="bytea" dbms="postgresql"/>
+    <property name="uuidType" value="uuid" dbms="postgresql"/>
+    <property name="datetimeType" value="datetime" dbms="postgresql"/>
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221201202113_added_entity_Infraestructura.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221201202114_added_entity_Proveedor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221201202115_added_entity_DespliegueInfraestructuraTroncalDistribucion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221201202116_added_entity_Despliegueinfraestructuradispersion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221201202117_added_entity_Pozo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221201202118_added_entity_Autorizaciones.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221201202119_added_entity_RegistroInspecciones.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221201202120_added_entity_FotoPozo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221201202121_added_entity_Pago.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20221201202113_added_entity_constraints_Infraestructura.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221201202115_added_entity_constraints_DespliegueInfraestructuraTroncalDistribucion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221201202116_added_entity_constraints_Despliegueinfraestructuradispersion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221201202118_added_entity_constraints_Autorizaciones.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221201202119_added_entity_constraints_RegistroInspecciones.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221201202120_added_entity_constraints_FotoPozo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221201202121_added_entity_constraints_Pago.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221201202114_added_entity_constraints_Proveedor.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
+</databaseChangeLog>

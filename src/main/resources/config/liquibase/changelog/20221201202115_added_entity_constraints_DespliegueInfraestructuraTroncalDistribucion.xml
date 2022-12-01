@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity DespliegueInfraestructuraTroncalDistribucion.
+    -->
+    <changeSet id="20221201202115-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="despliegue_infraestructura_troncal_distribucion_id"
+                                 baseTableName="rel_despliegue_infraestructura_troncal_distribucion__pozo"
+                                 constraintName="fk_rel_despliegue_infraestructu__despliegue_infraestructu_86_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="despliegue_infraestructura_troncal_distribucion"/>
+
+        <addForeignKeyConstraint baseColumnNames="pozo_id"
+                                 baseTableName="rel_despliegue_infraestructura_troncal_distribucion__pozo"
+                                 constraintName="fk_rel_despliegue_infraestructu__pozo_0d_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pozo"/>
+    </changeSet>
+</databaseChangeLog>

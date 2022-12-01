@@ -1,0 +1,75 @@
+{
+  "applications": "*",
+  "changelogDate": "20221201202117",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "pozo",
+  "fields": [
+    {
+      "fieldName": "numeropozo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "direccion",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ubicacion",
+      "fieldType": "Ubicacion",
+      "fieldValues": "Norte,Sur,Este,Oeste,NorEste,NorOeste,SurEste,SurOeste"
+    },
+    {
+      "fieldName": "tipopozo",
+      "fieldType": "TipoPozo",
+      "fieldValues": "PozodePaso,Revision"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Pozo",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "fotoPozo",
+      "otherEntityRelationshipName": "idPozo",
+      "relationshipName": "fotoPozo",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "registroInspecciones",
+      "otherEntityRelationshipName": "idPozo",
+      "relationshipName": "registroInspecciones",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "despliegueInfraestructuraTroncalDistribucion",
+      "otherEntityRelationshipName": "pozo",
+      "ownerSide": false,
+      "relationshipName": "idDespliegueInfraestructuraTroncalDistribucion",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "despliegueinfraestructuradispersion",
+      "otherEntityRelationshipName": "pozo",
+      "ownerSide": false,
+      "relationshipName": "idDespliegueinfraestructuradispersion",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "infraestructura",
+      "otherEntityRelationshipName": "pozo",
+      "ownerSide": false,
+      "relationshipName": "idInfraestructura",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

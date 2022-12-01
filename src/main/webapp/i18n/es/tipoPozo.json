@@ -1,0 +1,9 @@
+{
+  "sistemasAdmApp": {
+    "TipoPozo": {
+      "null": "",
+      "PozodePaso": "PozodePaso",
+      "Revision": "Revision"
+    }
+  }
+}

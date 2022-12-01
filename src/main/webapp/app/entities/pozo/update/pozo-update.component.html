@@ -1,0 +1,120 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-pozo-heading" data-cy="PozoCreateUpdateHeading" jhiTranslate="sistemasAdmApp.pozo.home.createOrEditLabel">
+        Crear o editar Pozo
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.pozo.numeropozo" for="field_numeropozo">Numeropozo</label>
+          <input
+            type="text"
+            class="form-control"
+            name="numeropozo"
+            id="field_numeropozo"
+            data-cy="numeropozo"
+            formControlName="numeropozo"
+          />
+          <div *ngIf="editForm.get('numeropozo')!.invalid && (editForm.get('numeropozo')!.dirty || editForm.get('numeropozo')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('numeropozo')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.pozo.direccion" for="field_direccion">Direccion</label>
+          <input type="text" class="form-control" name="direccion" id="field_direccion" data-cy="direccion" formControlName="direccion" />
+          <div *ngIf="editForm.get('direccion')!.invalid && (editForm.get('direccion')!.dirty || editForm.get('direccion')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('direccion')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.pozo.ubicacion" for="field_ubicacion">Ubicacion</label>
+          <select class="form-control" name="ubicacion" formControlName="ubicacion" id="field_ubicacion" data-cy="ubicacion">
+            <option [ngValue]="null">{{ 'sistemasAdmApp.Ubicacion.null' | translate }}</option>
+            <option *ngFor="let ubicacion of ubicacionValues" [value]="ubicacion">
+              {{ 'sistemasAdmApp.Ubicacion.' + ubicacion | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.pozo.tipopozo" for="field_tipopozo">Tipopozo</label>
+          <select class="form-control" name="tipopozo" formControlName="tipopozo" id="field_tipopozo" data-cy="tipopozo">
+            <option [ngValue]="null">{{ 'sistemasAdmApp.TipoPozo.null' | translate }}</option>
+            <option *ngFor="let tipoPozo of tipoPozoValues" [value]="tipoPozo">
+              {{ 'sistemasAdmApp.TipoPozo.' + tipoPozo | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.pozo.createdAt" for="field_createdAt">Created At</label>
+          <div class="d-flex">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="datetime-local"
+              class="form-control"
+              name="createdAt"
+              formControlName="createdAt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('createdAt')!.invalid && (editForm.get('createdAt')!.dirty || editForm.get('createdAt')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('createdAt')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('createdAt')?.errors?.datetimelocal"
+              jhiTranslate="entity.validation.datetimelocal"
+            >
+              Este campo debe ser una fecha y hora.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

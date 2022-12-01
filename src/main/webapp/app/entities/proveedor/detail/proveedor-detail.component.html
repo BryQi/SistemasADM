@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="proveedor">
+      <h2 data-cy="proveedorDetailsHeading"><span jhiTranslate="sistemasAdmApp.proveedor.detail.title">Proveedor</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ proveedor.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.proveedor.razonSocial">Razon Social</span></dt>
+        <dd>
+          <span>{{ proveedor.razonSocial }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.proveedor.contactoTecnico">Contacto Tecnico</span></dt>
+        <dd>
+          <span>{{ proveedor.contactoTecnico }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.proveedor.correoEmpresa">Correo Empresa</span></dt>
+        <dd>
+          <span>{{ proveedor.correoEmpresa }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.proveedor.direccion">Direccion</span></dt>
+        <dd>
+          <span>{{ proveedor.direccion }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.proveedor.celular">Celular</span></dt>
+        <dd>
+          <span>{{ proveedor.celular }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.proveedor.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ proveedor.createdAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.proveedor.user">User</span></dt>
+        <dd>
+          <span>{{ proveedor.user?.login }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/proveedor', proveedor.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

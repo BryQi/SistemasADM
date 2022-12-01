@@ -1,0 +1,32 @@
+{
+  "sistemasAdmApp": {
+    "registroInspecciones": {
+      "home": {
+        "title": "Registro Inspecciones",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Registro Inspecciones",
+        "createOrEditLabel": "Crear o editar Registro Inspecciones",
+        "notFound": "Ningún Registro Inspecciones encontrado"
+      },
+      "created": "Un nuevo Registro Inspecciones ha sido creado con el identificador {{ param }}",
+      "updated": "Un Registro Inspecciones ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Registro Inspecciones ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Registro Inspecciones {{ id }}?"
+      },
+      "detail": {
+        "title": "Registro Inspecciones"
+      },
+      "id": "ID",
+      "cumpleAutorizacion": "Cumple Autorizacion",
+      "numeroAutorizacion": "Numero Autorizacion",
+      "cumpleSenaletica": "Cumple Senaletica",
+      "cumpleConosSeguridad": "Cumple Conos Seguridad",
+      "cumpleEtiquetado": "Cumple Etiquetado",
+      "cumpleArregloCables": "Cumple Arreglo Cables",
+      "cumplelimpiezaOrdenPozo": "Cumplelimpieza Orden Pozo",
+      "createdAt": "Created At",
+      "idPozo": "Id Pozo"
+    }
+  }
+}

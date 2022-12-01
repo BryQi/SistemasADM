@@ -1,0 +1,74 @@
+{
+  "applications": "*",
+  "changelogDate": "20221201202118",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "autorizaciones",
+  "fields": [
+    {
+      "fieldName": "cliente",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "direccionOrigen",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "direccionDestino",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fechaOperacion",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ventanaTrabajo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "contactoTecnico",
+      "fieldType": "ContactoTecnico",
+      "fieldValues": "InSitu"
+    },
+    {
+      "fieldName": "tipoTrabajo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "observaciones",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Autorizaciones",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "registroInspecciones",
+      "ownerSide": true,
+      "relationshipName": "registroInspecciones",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "proveedor",
+      "otherEntityRelationshipName": "autorizaciones",
+      "relationshipName": "idProveedor",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}
