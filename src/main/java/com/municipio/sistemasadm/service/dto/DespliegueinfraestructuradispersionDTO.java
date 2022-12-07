@@ -46,6 +46,9 @@ public class DespliegueinfraestructuradispersionDTO implements Serializable {
     @NotNull
     private ZonedDateTime createdAt;
 
+    @NotNull
+    private Float valorMetro;
+
     private Set<PozoDTO> pozos = new HashSet<>();
 
     private DespliegueInfraestructuraTroncalDistribucionDTO idDespliegueInfraestructuraTroncalDistribucion;
@@ -140,6 +143,14 @@ public class DespliegueinfraestructuradispersionDTO implements Serializable {
         this.createdAt = createdAt;
     }
 
+    public Float getValorMetro() {
+        return valorMetro;
+    }
+
+    public void setValorMetro(Float valorMetro) {
+        this.valorMetro = valorMetro;
+    }
+
     public Set<PozoDTO> getPozos() {
         return pozos;
     }
@@ -202,6 +213,7 @@ public class DespliegueinfraestructuradispersionDTO implements Serializable {
             ", metrajeFinal=" + getMetrajeFinal() +
             ", calculoValorPago=" + getCalculoValorPago() +
             ", createdAt='" + getCreatedAt() + "'" +
+            ", valorMetro=" + getValorMetro() +
             ", pozos=" + getPozos() +
             ", idDespliegueInfraestructuraTroncalDistribucion=" + getIdDespliegueInfraestructuraTroncalDistribucion() +
             ", idProveedor=" + getIdProveedor() +

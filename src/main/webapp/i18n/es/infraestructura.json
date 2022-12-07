@@ -8,9 +8,9 @@
         "createOrEditLabel": "Crear o editar Infraestructura",
         "notFound": "Ningún Infraestructuras encontrado"
       },
-      "created": "Una nueva Infraestructura ha sido creado con el identificador {{ param }}",
-      "updated": "Una Infraestructura ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Una Infraestructura ha sido eliminado con el identificador {{ param }}",
+      "created": "Un nuevo Infraestructura ha sido creado con el identificador {{ param }}",
+      "updated": "Un Infraestructura ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Infraestructura ha sido eliminado con el identificador {{ param }}",
       "delete": {
         "question": "¿Seguro que quiere eliminar Infraestructura {{ id }}?"
       },
@@ -19,9 +19,9 @@
       },
       "id": "ID",
       "tipo": "Tipo",
-      "createdAt": "Creada el",
-      "pozo": "Pozo",
-      "idProveedor": "Id Proveedor"
+      "createdAt": "Created At",
+      "idProveedor": "Id Proveedor",
+      "pozo": "Pozo"
     }
   }
 }

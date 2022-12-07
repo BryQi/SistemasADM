@@ -9,6 +9,7 @@ export interface IDespliegueInfraestructuraTroncalDistribucion {
   metrajeFinal?: number | null;
   calculoValorPago?: number | null;
   createdAt?: dayjs.Dayjs | null;
+  valorMetro?: number | null;
   pozos?: Pick<IPozo, 'id'>[] | null;
 }
 

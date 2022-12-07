@@ -22,8 +22,8 @@ describe('Infraestructura Form Service', () => {
             id: expect.any(Object),
             tipo: expect.any(Object),
             createdAt: expect.any(Object),
-            pozos: expect.any(Object),
             idProveedor: expect.any(Object),
+            pozos: expect.any(Object),
           })
         );
       });
@@ -36,8 +36,8 @@ describe('Infraestructura Form Service', () => {
             id: expect.any(Object),
             tipo: expect.any(Object),
             createdAt: expect.any(Object),
-            pozos: expect.any(Object),
             idProveedor: expect.any(Object),
+            pozos: expect.any(Object),
           })
         );
       });

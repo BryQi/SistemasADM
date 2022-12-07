@@ -13,35 +13,39 @@ export const sampleWithRequiredData: IDespliegueInfraestructuraTroncalDistribuci
   metrajeFinal: 43492,
   calculoValorPago: 96510,
   createdAt: dayjs('2022-12-01T01:06'),
+  valorMetro: 90580,
 };
 
 export const sampleWithPartialData: IDespliegueInfraestructuraTroncalDistribucion = {
-  id: 90580,
-  nombreRuta: 'JBOD firmware',
-  descripcionRuta: 'deposit Asistente Buckinghamshire',
-  metrajeInicial: 37340,
-  metrajeFinal: 71889,
-  calculoValorPago: 99975,
-  createdAt: dayjs('2022-11-30T23:21'),
+  id: 47205,
+  nombreRuta: 'Funcionario plug-and-play deposit',
+  descripcionRuta: 'copying Saudi matrix',
+  metrajeInicial: 69645,
+  metrajeFinal: 18668,
+  calculoValorPago: 4507,
+  createdAt: dayjs('2022-12-01T05:01'),
+  valorMetro: 43294,
 };
 
 export const sampleWithFullData: IDespliegueInfraestructuraTroncalDistribucion = {
-  id: 69645,
-  nombreRuta: 'Pelota',
-  descripcionRuta: 'real-time',
-  metrajeInicial: 48594,
-  metrajeFinal: 1799,
-  calculoValorPago: 55399,
-  createdAt: dayjs('2022-12-01T18:59'),
+  id: 25227,
+  nombreRuta: 'flexibilidad Sorprendente Azerbayán',
+  descripcionRuta: 'contenido Negro',
+  metrajeInicial: 802,
+  metrajeFinal: 3865,
+  calculoValorPago: 16237,
+  createdAt: dayjs('2022-12-01T10:45'),
+  valorMetro: 13039,
 };
 
 export const sampleWithNewData: NewDespliegueInfraestructuraTroncalDistribucion = {
-  nombreRuta: 'Bedfordshire Oficial implement',
-  descripcionRuta: 'embrace',
-  metrajeInicial: 9776,
-  metrajeFinal: 81731,
-  calculoValorPago: 88673,
-  createdAt: dayjs('2022-12-01T01:20'),
+  nombreRuta: 'Guapa haptic',
+  descripcionRuta: 'port Interno',
+  metrajeInicial: 47018,
+  metrajeFinal: 19092,
+  calculoValorPago: 15095,
+  createdAt: dayjs('2022-12-01T06:18'),
+  valorMetro: 74256,
   id: null,
 };
 

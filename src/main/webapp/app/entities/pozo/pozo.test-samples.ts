@@ -1,6 +1,5 @@
 import dayjs from 'dayjs/esm';
 
-import { Ubicacion } from 'app/entities/enumerations/ubicacion.model';
 import { TipoPozo } from 'app/entities/enumerations/tipo-pozo.model';
 
 import { IPozo, NewPozo } from './pozo.model';
@@ -10,29 +9,35 @@ export const sampleWithRequiredData: IPozo = {
   numeropozo: 'methodologies Madera',
   direccion: 'SDD strategic',
   createdAt: dayjs('2022-12-01T08:52'),
+  latitud: 'Peso',
+  longitud: 'Aragón de Raton',
 };
 
 export const sampleWithPartialData: IPozo = {
-  id: 18772,
-  numeropozo: 'quantify copying',
-  direccion: 'Raton 24/7',
-  tipopozo: TipoPozo['Revision'],
-  createdAt: dayjs('2022-12-01T02:10'),
+  id: 24073,
+  numeropozo: 'USB Aragón Inversor',
+  direccion: 'proyección Ghana',
+  createdAt: dayjs('2022-12-01T18:19'),
+  latitud: 'Savings Blanco copying',
+  longitud: 'Loan compressing',
 };
 
 export const sampleWithFullData: IPozo = {
-  id: 19719,
-  numeropozo: 'Práctico withdrawal',
-  direccion: '1080p',
-  ubicacion: Ubicacion['Este'],
-  tipopozo: TipoPozo['PozodePaso'],
-  createdAt: dayjs('2022-12-01T18:19'),
+  id: 46576,
+  numeropozo: 'SMS',
+  direccion: 'Grecia Granito',
+  tipopozo: TipoPozo['Revision'],
+  createdAt: dayjs('2022-12-01T14:42'),
+  latitud: 'bandwidth Guantes Granito',
+  longitud: 'array',
 };
 
 export const sampleWithNewData: NewPozo = {
-  numeropozo: 'Savings Blanco copying',
-  direccion: 'Loan compressing',
-  createdAt: dayjs('2022-12-01T09:10'),
+  numeropozo: 'Interfaz Fantástico',
+  direccion: 'Marruecos Blanco',
+  createdAt: dayjs('2022-12-01T01:41'),
+  latitud: 'withdrawal compress Ferrocarril',
+  longitud: 'circuit India',
   id: null,
 };
 

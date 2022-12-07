@@ -48,7 +48,6 @@ public class FotoPozo implements Serializable {
             "registroInspecciones",
             "idDespliegueInfraestructuraTroncalDistribucions",
             "idDespliegueinfraestructuradispersions",
-            "idInfraestructuras",
         },
         allowSetters = true
     )

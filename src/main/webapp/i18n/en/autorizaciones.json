@@ -2,33 +2,33 @@
   "sistemasAdmApp": {
     "autorizaciones": {
       "home": {
-        "title": "Authorizations",
+        "title": "Autorizaciones",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Authorizations",
-        "createOrEditLabel": "Create or edit a Authorizations",
-        "notFound": "No Authorizations found"
+        "createLabel": "Create a new Autorizaciones",
+        "createOrEditLabel": "Create or edit a Autorizaciones",
+        "notFound": "No Autorizaciones found"
       },
-      "created": "A new Authorizations is created with identifier {{ param }}",
-      "updated": "A Authorizations is updated with identifier {{ param }}",
-      "deleted": "A Authorizations is deleted with identifier {{ param }}",
+      "created": "A new Autorizaciones is created with identifier {{ param }}",
+      "updated": "A Autorizaciones is updated with identifier {{ param }}",
+      "deleted": "A Autorizaciones is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Authorizations {{ id }}?"
+        "question": "Are you sure you want to delete Autorizaciones {{ id }}?"
       },
       "detail": {
-        "title": "Authorizations"
+        "title": "Autorizaciones"
       },
       "id": "ID",
-      "cliente": "Customer",
-      "direccionOrigen": "Origin Address",
-      "direccionDestino": "Address Destination",
-      "fechaOperacion": "Date of Operation",
-      "ventanaTrabajo": "Work Window",
-      "contactoTecnico": "Technical Contact",
-      "tipoTrabajo": "Type of Work",
-      "observaciones": "Remarks",
+      "cliente": "Cliente",
+      "direccionOrigen": "Direccion Origen",
+      "direccionDestino": "Direccion Destino",
+      "fechaOperacion": "Fecha Operacion",
+      "ventanaTrabajo": "Ventana Trabajo",
+      "contactoTecnico": "Contacto Tecnico",
+      "tipoTrabajo": "Tipo Trabajo",
+      "observaciones": "Observaciones",
       "createdAt": "Created At",
-      "registroInspecciones": "Record of Inspections",
-      "idProveedor": "Id Supplier"
+      "registroInspecciones": "Registro Inspecciones",
+      "idProveedor": "Id Proveedor"
     }
   }
 }

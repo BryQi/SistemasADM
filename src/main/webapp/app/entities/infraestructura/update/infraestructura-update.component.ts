@@ -7,10 +7,10 @@ import { finalize, map } from 'rxjs/operators';
 import { InfraestructuraFormService, InfraestructuraFormGroup } from './infraestructura-form.service';
 import { IInfraestructura } from '../infraestructura.model';
 import { InfraestructuraService } from '../service/infraestructura.service';
-import { IPozo } from 'app/entities/pozo/pozo.model';
-import { PozoService } from 'app/entities/pozo/service/pozo.service';
 import { IProveedor } from 'app/entities/proveedor/proveedor.model';
 import { ProveedorService } from 'app/entities/proveedor/service/proveedor.service';
+import { IPozo } from 'app/entities/pozo/pozo.model';
+import { PozoService } from 'app/entities/pozo/service/pozo.service';
 import { Tipo } from 'app/entities/enumerations/tipo.model';
 
 @Component({
@@ -22,22 +22,22 @@ export class InfraestructuraUpdateComponent implements OnInit {
   infraestructura: IInfraestructura | null = null;
   tipoValues = Object.keys(Tipo);
 
-  pozosSharedCollection: IPozo[] = [];
   proveedorsSharedCollection: IProveedor[] = [];
+  pozosSharedCollection: IPozo[] = [];
 
   editForm: InfraestructuraFormGroup = this.infraestructuraFormService.createInfraestructuraFormGroup();
 
   constructor(
     protected infraestructuraService: InfraestructuraService,
     protected infraestructuraFormService: InfraestructuraFormService,
-    protected pozoService: PozoService,
     protected proveedorService: ProveedorService,
+    protected pozoService: PozoService,
     protected activatedRoute: ActivatedRoute
   ) {}
 
-  comparePozo = (o1: IPozo | null, o2: IPozo | null): boolean => this.pozoService.comparePozo(o1, o2);
-
   compareProveedor = (o1: IProveedor | null, o2: IProveedor | null): boolean => this.proveedorService.compareProveedor(o1, o2);
+
+  comparePozo = (o1: IPozo | null, o2: IPozo | null): boolean => this.pozoService.comparePozo(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ infraestructura }) => {
@@ -87,23 +87,17 @@ export class InfraestructuraUpdateComponent implements OnInit {
     this.infraestructura = infraestructura;
     this.infraestructuraFormService.resetForm(this.editForm, infraestructura);
 
-    this.pozosSharedCollection = this.pozoService.addPozoToCollectionIfMissing<IPozo>(
-      this.pozosSharedCollection,
-      ...(infraestructura.pozos ?? [])
-    );
     this.proveedorsSharedCollection = this.proveedorService.addProveedorToCollectionIfMissing<IProveedor>(
       this.proveedorsSharedCollection,
       infraestructura.idProveedor
     );
+    this.pozosSharedCollection = this.pozoService.addPozoToCollectionIfMissing<IPozo>(
+      this.pozosSharedCollection,
+      ...(infraestructura.pozos ?? [])
+    );
   }
 
   protected loadRelationshipsOptions(): void {
-    this.pozoService
-      .query()
-      .pipe(map((res: HttpResponse<IPozo[]>) => res.body ?? []))
-      .pipe(map((pozos: IPozo[]) => this.pozoService.addPozoToCollectionIfMissing<IPozo>(pozos, ...(this.infraestructura?.pozos ?? []))))
-      .subscribe((pozos: IPozo[]) => (this.pozosSharedCollection = pozos));
-
     this.proveedorService
       .query()
       .pipe(map((res: HttpResponse<IProveedor[]>) => res.body ?? []))
@@ -113,5 +107,11 @@ export class InfraestructuraUpdateComponent implements OnInit {
         )
       )
       .subscribe((proveedors: IProveedor[]) => (this.proveedorsSharedCollection = proveedors));
+
+    this.pozoService
+      .query()
+      .pipe(map((res: HttpResponse<IPozo[]>) => res.body ?? []))
+      .pipe(map((pozos: IPozo[]) => this.pozoService.addPozoToCollectionIfMissing<IPozo>(pozos, ...(this.infraestructura?.pozos ?? []))))
+      .subscribe((pozos: IPozo[]) => (this.pozosSharedCollection = pozos));
   }
 }

@@ -6,23 +6,23 @@
         "refreshListLabel": "Refrescar lista",
         "createLabel": "Crear nuevo Pago",
         "createOrEditLabel": "Crear o editar Pago",
-        "notFound": "Ningún Pago encontrado"
+        "notFound": "Ningún Pagos encontrado"
       },
       "created": "Un nuevo Pago ha sido creado con el identificador {{ param }}",
       "updated": "Un Pago ha sido actualizado con el identificador {{ param }}",
       "deleted": "Un Pago ha sido eliminado con el identificador {{ param }}",
       "delete": {
-        "question": "¿Seguro que quiere eliminar el Pago {{ id }}?"
+        "question": "¿Seguro que quiere eliminar Pago {{ id }}?"
       },
       "detail": {
         "title": "Pago"
       },
       "id": "ID",
-      "fechaPago": "Fecha de Pago",
+      "fechaPago": "Fecha Pago",
       "pago": "Pago",
-      "createdAt": "Creado el",
-      "idDespliegueInfraestructuraTroncalDistribucion": "Id Despliegue de Infraestructura Troncal de Distribución",
-      "idDespliegueinfraestructuradispersion": "Id Despliegue de Infraestructura de Dispersión"
+      "createdAt": "Created At",
+      "idDespliegueInfraestructuraTroncalDistribucion": "Id Despliegue Infraestructura Troncal Distribucion",
+      "idDespliegueinfraestructuradispersion": "Id Despliegueinfraestructuradispersion"
     }
   }
 }

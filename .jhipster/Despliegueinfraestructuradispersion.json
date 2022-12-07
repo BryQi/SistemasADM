@@ -54,6 +54,11 @@
       "fieldName": "createdAt",
       "fieldType": "ZonedDateTime",
       "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "valorMetro",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
     }
   ],
   "fluentMethods": true,

@@ -12,6 +12,16 @@
     <link rel="icon" href="favicon.ico" />
     <link rel="manifest" href="manifest.webapp" />
     <link rel="stylesheet" href="content/css/loading.css" />
+
+    <!--Inicio mapa-->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="content/css/mapa.css" />
+    <!--Fin mapa-->
     <!-- jhipster-needle-add-resources-to-root - JHipster will add new resources here -->
   </head>
   <body>
@@ -41,6 +51,7 @@
           <!-- This content is for troubleshooting purpose and will be removed when app renders -->
           <h1>An error has occurred :-(</h1>
           <h2>Usual error causes</h2>
+
           <ol>
             <li>
               You started the application from an IDE and you didn't run <code style="color: red">npm start</code> or
@@ -99,6 +110,9 @@
           <!-- end of troubleshooting content -->
         </div>
       </div>
+      <section>
+        <div id="map"></div>
+      </section>
     </jhi-main>
     <noscript>
       <h1>You must enable JavaScript to view this page.</h1>
@@ -124,5 +138,11 @@
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>-->
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""
+    ></script>
   </body>
 </html>

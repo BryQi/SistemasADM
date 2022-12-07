@@ -64,6 +64,9 @@ class DespliegueInfraestructuraTroncalDistribucionResourceIT {
     private static final ZonedDateTime DEFAULT_CREATED_AT = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATED_AT = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
+    private static final Float DEFAULT_VALOR_METRO = 1F;
+    private static final Float UPDATED_VALOR_METRO = 2F;
+
     private static final String ENTITY_API_URL = "/api/despliegue-infraestructura-troncal-distribucions";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -103,7 +106,8 @@ class DespliegueInfraestructuraTroncalDistribucionResourceIT {
             .metrajeInicial(DEFAULT_METRAJE_INICIAL)
             .metrajeFinal(DEFAULT_METRAJE_FINAL)
             .calculoValorPago(DEFAULT_CALCULO_VALOR_PAGO)
-            .createdAt(DEFAULT_CREATED_AT);
+            .createdAt(DEFAULT_CREATED_AT)
+            .valorMetro(DEFAULT_VALOR_METRO);
         return despliegueInfraestructuraTroncalDistribucion;
     }
 
@@ -120,7 +124,8 @@ class DespliegueInfraestructuraTroncalDistribucionResourceIT {
             .metrajeInicial(UPDATED_METRAJE_INICIAL)
             .metrajeFinal(UPDATED_METRAJE_FINAL)
             .calculoValorPago(UPDATED_CALCULO_VALOR_PAGO)
-            .createdAt(UPDATED_CREATED_AT);
+            .createdAt(UPDATED_CREATED_AT)
+            .valorMetro(UPDATED_VALOR_METRO);
         return despliegueInfraestructuraTroncalDistribucion;
     }
 
@@ -157,6 +162,7 @@ class DespliegueInfraestructuraTroncalDistribucionResourceIT {
         assertThat(testDespliegueInfraestructuraTroncalDistribucion.getMetrajeFinal()).isEqualTo(DEFAULT_METRAJE_FINAL);
         assertThat(testDespliegueInfraestructuraTroncalDistribucion.getCalculoValorPago()).isEqualTo(DEFAULT_CALCULO_VALOR_PAGO);
         assertThat(testDespliegueInfraestructuraTroncalDistribucion.getCreatedAt()).isEqualTo(DEFAULT_CREATED_AT);
+        assertThat(testDespliegueInfraestructuraTroncalDistribucion.getValorMetro()).isEqualTo(DEFAULT_VALOR_METRO);
     }
 
     @Test
@@ -330,6 +336,30 @@ class DespliegueInfraestructuraTroncalDistribucionResourceIT {
 
     @Test
     @Transactional
+    void checkValorMetroIsRequired() throws Exception {
+        int databaseSizeBeforeTest = despliegueInfraestructuraTroncalDistribucionRepository.findAll().size();
+        // set the field null
+        despliegueInfraestructuraTroncalDistribucion.setValorMetro(null);
+
+        // Create the DespliegueInfraestructuraTroncalDistribucion, which fails.
+        DespliegueInfraestructuraTroncalDistribucionDTO despliegueInfraestructuraTroncalDistribucionDTO = despliegueInfraestructuraTroncalDistribucionMapper.toDto(
+            despliegueInfraestructuraTroncalDistribucion
+        );
+
+        restDespliegueInfraestructuraTroncalDistribucionMockMvc
+            .perform(
+                post(ENTITY_API_URL)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(TestUtil.convertObjectToJsonBytes(despliegueInfraestructuraTroncalDistribucionDTO))
+            )
+            .andExpect(status().isBadRequest());
+
+        List<DespliegueInfraestructuraTroncalDistribucion> despliegueInfraestructuraTroncalDistribucionList = despliegueInfraestructuraTroncalDistribucionRepository.findAll();
+        assertThat(despliegueInfraestructuraTroncalDistribucionList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void getAllDespliegueInfraestructuraTroncalDistribucions() throws Exception {
         // Initialize the database
         despliegueInfraestructuraTroncalDistribucionRepository.saveAndFlush(despliegueInfraestructuraTroncalDistribucion);
@@ -345,7 +375,8 @@ class DespliegueInfraestructuraTroncalDistribucionResourceIT {
             .andExpect(jsonPath("$.[*].metrajeInicial").value(hasItem(DEFAULT_METRAJE_INICIAL.doubleValue())))
             .andExpect(jsonPath("$.[*].metrajeFinal").value(hasItem(DEFAULT_METRAJE_FINAL.doubleValue())))
             .andExpect(jsonPath("$.[*].calculoValorPago").value(hasItem(DEFAULT_CALCULO_VALOR_PAGO.doubleValue())))
-            .andExpect(jsonPath("$.[*].createdAt").value(hasItem(sameInstant(DEFAULT_CREATED_AT))));
+            .andExpect(jsonPath("$.[*].createdAt").value(hasItem(sameInstant(DEFAULT_CREATED_AT))))
+            .andExpect(jsonPath("$.[*].valorMetro").value(hasItem(DEFAULT_VALOR_METRO.doubleValue())));
     }
 
     @SuppressWarnings({ "unchecked" })
@@ -386,7 +417,8 @@ class DespliegueInfraestructuraTroncalDistribucionResourceIT {
             .andExpect(jsonPath("$.metrajeInicial").value(DEFAULT_METRAJE_INICIAL.doubleValue()))
             .andExpect(jsonPath("$.metrajeFinal").value(DEFAULT_METRAJE_FINAL.doubleValue()))
             .andExpect(jsonPath("$.calculoValorPago").value(DEFAULT_CALCULO_VALOR_PAGO.doubleValue()))
-            .andExpect(jsonPath("$.createdAt").value(sameInstant(DEFAULT_CREATED_AT)));
+            .andExpect(jsonPath("$.createdAt").value(sameInstant(DEFAULT_CREATED_AT)))
+            .andExpect(jsonPath("$.valorMetro").value(DEFAULT_VALOR_METRO.doubleValue()));
     }
 
     @Test
@@ -418,7 +450,8 @@ class DespliegueInfraestructuraTroncalDistribucionResourceIT {
             .metrajeInicial(UPDATED_METRAJE_INICIAL)
             .metrajeFinal(UPDATED_METRAJE_FINAL)
             .calculoValorPago(UPDATED_CALCULO_VALOR_PAGO)
-            .createdAt(UPDATED_CREATED_AT);
+            .createdAt(UPDATED_CREATED_AT)
+            .valorMetro(UPDATED_VALOR_METRO);
         DespliegueInfraestructuraTroncalDistribucionDTO despliegueInfraestructuraTroncalDistribucionDTO = despliegueInfraestructuraTroncalDistribucionMapper.toDto(
             updatedDespliegueInfraestructuraTroncalDistribucion
         );
@@ -443,6 +476,7 @@ class DespliegueInfraestructuraTroncalDistribucionResourceIT {
         assertThat(testDespliegueInfraestructuraTroncalDistribucion.getMetrajeFinal()).isEqualTo(UPDATED_METRAJE_FINAL);
         assertThat(testDespliegueInfraestructuraTroncalDistribucion.getCalculoValorPago()).isEqualTo(UPDATED_CALCULO_VALOR_PAGO);
         assertThat(testDespliegueInfraestructuraTroncalDistribucion.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
+        assertThat(testDespliegueInfraestructuraTroncalDistribucion.getValorMetro()).isEqualTo(UPDATED_VALOR_METRO);
     }
 
     @Test
@@ -559,6 +593,7 @@ class DespliegueInfraestructuraTroncalDistribucionResourceIT {
         assertThat(testDespliegueInfraestructuraTroncalDistribucion.getMetrajeFinal()).isEqualTo(UPDATED_METRAJE_FINAL);
         assertThat(testDespliegueInfraestructuraTroncalDistribucion.getCalculoValorPago()).isEqualTo(UPDATED_CALCULO_VALOR_PAGO);
         assertThat(testDespliegueInfraestructuraTroncalDistribucion.getCreatedAt()).isEqualTo(DEFAULT_CREATED_AT);
+        assertThat(testDespliegueInfraestructuraTroncalDistribucion.getValorMetro()).isEqualTo(DEFAULT_VALOR_METRO);
     }
 
     @Test
@@ -579,7 +614,8 @@ class DespliegueInfraestructuraTroncalDistribucionResourceIT {
             .metrajeInicial(UPDATED_METRAJE_INICIAL)
             .metrajeFinal(UPDATED_METRAJE_FINAL)
             .calculoValorPago(UPDATED_CALCULO_VALOR_PAGO)
-            .createdAt(UPDATED_CREATED_AT);
+            .createdAt(UPDATED_CREATED_AT)
+            .valorMetro(UPDATED_VALOR_METRO);
 
         restDespliegueInfraestructuraTroncalDistribucionMockMvc
             .perform(
@@ -601,6 +637,7 @@ class DespliegueInfraestructuraTroncalDistribucionResourceIT {
         assertThat(testDespliegueInfraestructuraTroncalDistribucion.getMetrajeFinal()).isEqualTo(UPDATED_METRAJE_FINAL);
         assertThat(testDespliegueInfraestructuraTroncalDistribucion.getCalculoValorPago()).isEqualTo(UPDATED_CALCULO_VALOR_PAGO);
         assertThat(testDespliegueInfraestructuraTroncalDistribucion.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
+        assertThat(testDespliegueInfraestructuraTroncalDistribucion.getValorMetro()).isEqualTo(UPDATED_VALOR_METRO);
     }
 
     @Test

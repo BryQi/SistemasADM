@@ -24,18 +24,18 @@
         <dd>
           <span>{{ infraestructura.createdAt | formatMediumDatetime }}</span>
         </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.infraestructura.idProveedor">Id Proveedor</span></dt>
+        <dd>
+          <div *ngIf="infraestructura.idProveedor">
+            <a [routerLink]="['/proveedor', infraestructura.idProveedor.id, 'view']">{{ infraestructura.idProveedor.id }}</a>
+          </div>
+        </dd>
         <dt><span jhiTranslate="sistemasAdmApp.infraestructura.pozo">Pozo</span></dt>
         <dd>
           <span *ngFor="let pozo of infraestructura.pozos; let last = last">
             <a [routerLink]="['/pozo', pozo.id, 'view']">{{ pozo.id }}</a
             >{{ last ? '' : ', ' }}
           </span>
-        </dd>
-        <dt><span jhiTranslate="sistemasAdmApp.infraestructura.idProveedor">Id Proveedor</span></dt>
-        <dd>
-          <div *ngIf="infraestructura.idProveedor">
-            <a [routerLink]="['/proveedor', infraestructura.idProveedor.id, 'view']">{{ infraestructura.idProveedor.id }}</a>
-          </div>
         </dd>
       </dl>
 

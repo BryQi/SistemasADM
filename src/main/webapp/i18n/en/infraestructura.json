@@ -2,26 +2,26 @@
   "sistemasAdmApp": {
     "infraestructura": {
       "home": {
-        "title": "Infrastructure",
+        "title": "Infraestructuras",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Infrastructure",
-        "createOrEditLabel": "Create or edit a Infrastructure",
-        "notFound": "No Infrastructure found"
+        "createLabel": "Create a new Infraestructura",
+        "createOrEditLabel": "Create or edit a Infraestructura",
+        "notFound": "No Infraestructuras found"
       },
-      "created": "A new Infrastructure is created with identifier {{ param }}",
-      "updated": "A Infrastructure is updated with identifier {{ param }}",
-      "deleted": "A Infrastructure is deleted with identifier {{ param }}",
+      "created": "A new Infraestructura is created with identifier {{ param }}",
+      "updated": "A Infraestructura is updated with identifier {{ param }}",
+      "deleted": "A Infraestructura is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Infrastructure {{ id }}?"
+        "question": "Are you sure you want to delete Infraestructura {{ id }}?"
       },
       "detail": {
-        "title": "Infrastructure"
+        "title": "Infraestructura"
       },
       "id": "ID",
-      "tipo": "Type",
+      "tipo": "Tipo",
       "createdAt": "Created At",
-      "pozo": "Well",
-      "idProveedor": "Id Suppliers"
+      "idProveedor": "Id Proveedor",
+      "pozo": "Pozo"
     }
   }
 }

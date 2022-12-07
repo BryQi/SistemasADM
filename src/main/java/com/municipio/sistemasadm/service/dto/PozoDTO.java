@@ -1,7 +1,6 @@
 package com.municipio.sistemasadm.service.dto;
 
 import com.municipio.sistemasadm.domain.enumeration.TipoPozo;
-import com.municipio.sistemasadm.domain.enumeration.Ubicacion;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.Objects;
@@ -21,12 +20,16 @@ public class PozoDTO implements Serializable {
     @NotNull
     private String direccion;
 
-    private Ubicacion ubicacion;
-
     private TipoPozo tipopozo;
 
     @NotNull
     private ZonedDateTime createdAt;
+
+    @NotNull
+    private String latitud;
+
+    @NotNull
+    private String longitud;
 
     public Long getId() {
         return id;
@@ -52,14 +55,6 @@ public class PozoDTO implements Serializable {
         this.direccion = direccion;
     }
 
-    public Ubicacion getUbicacion() {
-        return ubicacion;
-    }
-
-    public void setUbicacion(Ubicacion ubicacion) {
-        this.ubicacion = ubicacion;
-    }
-
     public TipoPozo getTipopozo() {
         return tipopozo;
     }
@@ -74,6 +69,22 @@ public class PozoDTO implements Serializable {
 
     public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
+    }
+
+    public String getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
     }
 
     @Override
@@ -104,9 +115,10 @@ public class PozoDTO implements Serializable {
             "id=" + getId() +
             ", numeropozo='" + getNumeropozo() + "'" +
             ", direccion='" + getDireccion() + "'" +
-            ", ubicacion='" + getUbicacion() + "'" +
             ", tipopozo='" + getTipopozo() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
+            ", latitud='" + getLatitud() + "'" +
+            ", longitud='" + getLongitud() + "'" +
             "}";
     }
 }

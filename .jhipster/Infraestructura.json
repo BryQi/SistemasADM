@@ -23,17 +23,18 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "pozo",
-      "otherEntityRelationshipName": "idInfraestructura",
-      "ownerSide": true,
-      "relationshipName": "pozo",
-      "relationshipType": "many-to-many"
-    },
-    {
       "otherEntityName": "proveedor",
       "otherEntityRelationshipName": "infraestructura",
       "relationshipName": "idProveedor",
       "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "pozo",
+      "otherEntityRelationshipName": "infraestructura",
+      "ownerSide": true,
+      "relationshipName": "pozo",
+      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceImpl"

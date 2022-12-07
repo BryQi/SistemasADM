@@ -4,30 +4,30 @@
       "home": {
         "title": "Autorizaciones",
         "refreshListLabel": "Refrescar lista",
-        "createLabel": "Crear nueva Autorización",
-        "createOrEditLabel": "Crear o editar Autorización",
-        "notFound": "Ninguna Autorización encontrada"
+        "createLabel": "Crear nuevo Autorizaciones",
+        "createOrEditLabel": "Crear o editar Autorizaciones",
+        "notFound": "Ningún Autorizaciones encontrado"
       },
-      "created": "Una nueva Autorización ha sido creado con el identificador {{ param }}",
-      "updated": "Una Autorización ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Una Autorización ha sido eliminado con el identificador {{ param }}",
+      "created": "Un nuevo Autorizaciones ha sido creado con el identificador {{ param }}",
+      "updated": "Un Autorizaciones ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Autorizaciones ha sido eliminado con el identificador {{ param }}",
       "delete": {
-        "question": "¿Seguro que quiere eliminar la Autorización {{ id }}?"
+        "question": "¿Seguro que quiere eliminar Autorizaciones {{ id }}?"
       },
       "detail": {
         "title": "Autorizaciones"
       },
       "id": "ID",
       "cliente": "Cliente",
-      "direccionOrigen": "Dirección de Origen",
-      "direccionDestino": "Dirección Destino",
-      "fechaOperacion": "Fecha de Operación",
-      "ventanaTrabajo": "Ventana de Trabajo",
-      "contactoTecnico": "Contacto Técnico",
-      "tipoTrabajo": "Tipo de Trabajo",
+      "direccionOrigen": "Direccion Origen",
+      "direccionDestino": "Direccion Destino",
+      "fechaOperacion": "Fecha Operacion",
+      "ventanaTrabajo": "Ventana Trabajo",
+      "contactoTecnico": "Contacto Tecnico",
+      "tipoTrabajo": "Tipo Trabajo",
       "observaciones": "Observaciones",
-      "createdAt": "Creado el",
-      "registroInspecciones": "Registro de Inspecciones",
+      "createdAt": "Created At",
+      "registroInspecciones": "Registro Inspecciones",
       "idProveedor": "Id Proveedor"
     }
   }

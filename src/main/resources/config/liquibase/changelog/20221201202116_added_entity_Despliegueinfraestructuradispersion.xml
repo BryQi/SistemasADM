@@ -44,6 +44,9 @@
             <column name="created_at" type="${datetimeType}">
                 <constraints nullable="false" />
             </column>
+            <column name="valor_metro" type="${floatType}">
+                <constraints nullable="false" />
+            </column>
             <column name="id_despliegue_infraestructura_troncal_distribucion_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -96,6 +99,7 @@
             <column name="metraje_final" type="numeric"/>
             <column name="calculo_valor_pago" type="numeric"/>
             <column name="created_at" type="date"/>
+            <column name="valor_metro" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

@@ -51,6 +51,10 @@ public class DespliegueInfraestructuraTroncalDistribucion implements Serializabl
     @Column(name = "created_at", nullable = false)
     private ZonedDateTime createdAt;
 
+    @NotNull
+    @Column(name = "valor_metro", nullable = false)
+    private Float valorMetro;
+
     @OneToMany(mappedBy = "idDespliegueInfraestructuraTroncalDistribucion")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(
@@ -80,7 +84,6 @@ public class DespliegueInfraestructuraTroncalDistribucion implements Serializabl
             "registroInspecciones",
             "idDespliegueInfraestructuraTroncalDistribucions",
             "idDespliegueinfraestructuradispersions",
-            "idInfraestructuras",
         },
         allowSetters = true
     )
@@ -177,6 +180,19 @@ public class DespliegueInfraestructuraTroncalDistribucion implements Serializabl
 
     public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Float getValorMetro() {
+        return this.valorMetro;
+    }
+
+    public DespliegueInfraestructuraTroncalDistribucion valorMetro(Float valorMetro) {
+        this.setValorMetro(valorMetro);
+        return this;
+    }
+
+    public void setValorMetro(Float valorMetro) {
+        this.valorMetro = valorMetro;
     }
 
     public Set<Despliegueinfraestructuradispersion> getDespliegueInfraestructuraDispersions() {
@@ -302,6 +318,7 @@ public class DespliegueInfraestructuraTroncalDistribucion implements Serializabl
             ", metrajeFinal=" + getMetrajeFinal() +
             ", calculoValorPago=" + getCalculoValorPago() +
             ", createdAt='" + getCreatedAt() + "'" +
+            ", valorMetro=" + getValorMetro() +
             "}";
     }
 }

@@ -2,35 +2,36 @@
   "sistemasAdmApp": {
     "despliegueinfraestructuradispersion": {
       "home": {
-        "title": "Despliegue de infraestructura de Dispersión",
+        "title": "Despliegueinfraestructuradispersions",
         "refreshListLabel": "Refrescar lista",
-        "createLabel": "Crear nuevo Despliegue de infraestructura de Dispersión",
-        "createOrEditLabel": "Crear o editar Despliegue de infraestructura de Dispersión",
-        "notFound": "Ningún Despliegue de infraestructura de Dispersión encontrado"
+        "createLabel": "Crear nuevo Despliegueinfraestructuradispersion",
+        "createOrEditLabel": "Crear o editar Despliegueinfraestructuradispersion",
+        "notFound": "Ningún Despliegueinfraestructuradispersions encontrado"
       },
-      "created": "Un nuevo Despliegue de infraestructura de Dispersión ha sido creado con el identificador {{ param }}",
-      "updated": "Un Despliegue de infraestructura de Dispersión ha sido actualizado con el identificador {{ param }}",
-      "deleted": "Un Despliegue de infraestructura de Dispersión ha sido eliminado con el identificador {{ param }}",
+      "created": "Un nuevo Despliegueinfraestructuradispersion ha sido creado con el identificador {{ param }}",
+      "updated": "Un Despliegueinfraestructuradispersion ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Despliegueinfraestructuradispersion ha sido eliminado con el identificador {{ param }}",
       "delete": {
-        "question": "¿Seguro que quiere eliminar Despliegue de infraestructura de Dispersión {{ id }}?"
+        "question": "¿Seguro que quiere eliminar Despliegueinfraestructuradispersion {{ id }}?"
       },
       "detail": {
-        "title": "Despliegue de infraestructura de Dispersión"
+        "title": "Despliegueinfraestructuradispersion"
       },
       "id": "ID",
-      "nombreCliente": "Nombre del Cliente",
-      "direccion": "Dirección",
-      "fechaInstalacion": "Fecha de Instalación",
+      "nombreCliente": "Nombre Cliente",
+      "direccion": "Direccion",
+      "fechaInstalacion": "Fecha Instalacion",
       "origen": "Origen",
       "destino": "Destino",
-      "descripcionDePozosUsadosRuta": "Descripción De Pozos Usados con Ruta",
+      "descripcionDePozosUsadosRuta": "Descripcion De Pozos Usados Ruta",
       "metrajeInicial": "Metraje Inicial",
       "metrajeFinal": "Metraje Final",
-      "calculoValorPago": "Cálculo de Valor a Pagar",
-      "createdAt": "Creado el",
+      "calculoValorPago": "Calculo Valor Pago",
+      "createdAt": "Created At",
+      "valorMetro": "Valor Metro",
       "pago": "Pago",
       "pozo": "Pozo",
-      "idDespliegueInfraestructuraTroncalDistribucion": "Id Despliegue de Infraestructura Troncal de Distribución",
+      "idDespliegueInfraestructuraTroncalDistribucion": "Id Despliegue Infraestructura Troncal Distribucion",
       "idProveedor": "Id Proveedor"
     }
   }

@@ -9,7 +9,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.municipio.sistemasadm.IntegrationTest;
 import com.municipio.sistemasadm.domain.Pozo;
 import com.municipio.sistemasadm.domain.enumeration.TipoPozo;
-import com.municipio.sistemasadm.domain.enumeration.Ubicacion;
 import com.municipio.sistemasadm.repository.PozoRepository;
 import com.municipio.sistemasadm.service.dto.PozoDTO;
 import com.municipio.sistemasadm.service.mapper.PozoMapper;
@@ -44,14 +43,17 @@ class PozoResourceIT {
     private static final String DEFAULT_DIRECCION = "AAAAAAAAAA";
     private static final String UPDATED_DIRECCION = "BBBBBBBBBB";
 
-    private static final Ubicacion DEFAULT_UBICACION = Ubicacion.Norte;
-    private static final Ubicacion UPDATED_UBICACION = Ubicacion.Sur;
-
     private static final TipoPozo DEFAULT_TIPOPOZO = TipoPozo.PozodePaso;
     private static final TipoPozo UPDATED_TIPOPOZO = TipoPozo.Revision;
 
     private static final ZonedDateTime DEFAULT_CREATED_AT = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATED_AT = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+
+    private static final String DEFAULT_LATITUD = "AAAAAAAAAA";
+    private static final String UPDATED_LATITUD = "BBBBBBBBBB";
+
+    private static final String DEFAULT_LONGITUD = "AAAAAAAAAA";
+    private static final String UPDATED_LONGITUD = "BBBBBBBBBB";
 
     private static final String ENTITY_API_URL = "/api/pozos";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -83,9 +85,10 @@ class PozoResourceIT {
         Pozo pozo = new Pozo()
             .numeropozo(DEFAULT_NUMEROPOZO)
             .direccion(DEFAULT_DIRECCION)
-            .ubicacion(DEFAULT_UBICACION)
             .tipopozo(DEFAULT_TIPOPOZO)
-            .createdAt(DEFAULT_CREATED_AT);
+            .createdAt(DEFAULT_CREATED_AT)
+            .latitud(DEFAULT_LATITUD)
+            .longitud(DEFAULT_LONGITUD);
         return pozo;
     }
 
@@ -99,9 +102,10 @@ class PozoResourceIT {
         Pozo pozo = new Pozo()
             .numeropozo(UPDATED_NUMEROPOZO)
             .direccion(UPDATED_DIRECCION)
-            .ubicacion(UPDATED_UBICACION)
             .tipopozo(UPDATED_TIPOPOZO)
-            .createdAt(UPDATED_CREATED_AT);
+            .createdAt(UPDATED_CREATED_AT)
+            .latitud(UPDATED_LATITUD)
+            .longitud(UPDATED_LONGITUD);
         return pozo;
     }
 
@@ -126,9 +130,10 @@ class PozoResourceIT {
         Pozo testPozo = pozoList.get(pozoList.size() - 1);
         assertThat(testPozo.getNumeropozo()).isEqualTo(DEFAULT_NUMEROPOZO);
         assertThat(testPozo.getDireccion()).isEqualTo(DEFAULT_DIRECCION);
-        assertThat(testPozo.getUbicacion()).isEqualTo(DEFAULT_UBICACION);
         assertThat(testPozo.getTipopozo()).isEqualTo(DEFAULT_TIPOPOZO);
         assertThat(testPozo.getCreatedAt()).isEqualTo(DEFAULT_CREATED_AT);
+        assertThat(testPozo.getLatitud()).isEqualTo(DEFAULT_LATITUD);
+        assertThat(testPozo.getLongitud()).isEqualTo(DEFAULT_LONGITUD);
     }
 
     @Test
@@ -206,6 +211,42 @@ class PozoResourceIT {
 
     @Test
     @Transactional
+    void checkLatitudIsRequired() throws Exception {
+        int databaseSizeBeforeTest = pozoRepository.findAll().size();
+        // set the field null
+        pozo.setLatitud(null);
+
+        // Create the Pozo, which fails.
+        PozoDTO pozoDTO = pozoMapper.toDto(pozo);
+
+        restPozoMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(pozoDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Pozo> pozoList = pozoRepository.findAll();
+        assertThat(pozoList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    void checkLongitudIsRequired() throws Exception {
+        int databaseSizeBeforeTest = pozoRepository.findAll().size();
+        // set the field null
+        pozo.setLongitud(null);
+
+        // Create the Pozo, which fails.
+        PozoDTO pozoDTO = pozoMapper.toDto(pozo);
+
+        restPozoMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(pozoDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Pozo> pozoList = pozoRepository.findAll();
+        assertThat(pozoList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void getAllPozos() throws Exception {
         // Initialize the database
         pozoRepository.saveAndFlush(pozo);
@@ -218,9 +259,10 @@ class PozoResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(pozo.getId().intValue())))
             .andExpect(jsonPath("$.[*].numeropozo").value(hasItem(DEFAULT_NUMEROPOZO)))
             .andExpect(jsonPath("$.[*].direccion").value(hasItem(DEFAULT_DIRECCION)))
-            .andExpect(jsonPath("$.[*].ubicacion").value(hasItem(DEFAULT_UBICACION.toString())))
             .andExpect(jsonPath("$.[*].tipopozo").value(hasItem(DEFAULT_TIPOPOZO.toString())))
-            .andExpect(jsonPath("$.[*].createdAt").value(hasItem(sameInstant(DEFAULT_CREATED_AT))));
+            .andExpect(jsonPath("$.[*].createdAt").value(hasItem(sameInstant(DEFAULT_CREATED_AT))))
+            .andExpect(jsonPath("$.[*].latitud").value(hasItem(DEFAULT_LATITUD)))
+            .andExpect(jsonPath("$.[*].longitud").value(hasItem(DEFAULT_LONGITUD)));
     }
 
     @Test
@@ -237,9 +279,10 @@ class PozoResourceIT {
             .andExpect(jsonPath("$.id").value(pozo.getId().intValue()))
             .andExpect(jsonPath("$.numeropozo").value(DEFAULT_NUMEROPOZO))
             .andExpect(jsonPath("$.direccion").value(DEFAULT_DIRECCION))
-            .andExpect(jsonPath("$.ubicacion").value(DEFAULT_UBICACION.toString()))
             .andExpect(jsonPath("$.tipopozo").value(DEFAULT_TIPOPOZO.toString()))
-            .andExpect(jsonPath("$.createdAt").value(sameInstant(DEFAULT_CREATED_AT)));
+            .andExpect(jsonPath("$.createdAt").value(sameInstant(DEFAULT_CREATED_AT)))
+            .andExpect(jsonPath("$.latitud").value(DEFAULT_LATITUD))
+            .andExpect(jsonPath("$.longitud").value(DEFAULT_LONGITUD));
     }
 
     @Test
@@ -264,9 +307,10 @@ class PozoResourceIT {
         updatedPozo
             .numeropozo(UPDATED_NUMEROPOZO)
             .direccion(UPDATED_DIRECCION)
-            .ubicacion(UPDATED_UBICACION)
             .tipopozo(UPDATED_TIPOPOZO)
-            .createdAt(UPDATED_CREATED_AT);
+            .createdAt(UPDATED_CREATED_AT)
+            .latitud(UPDATED_LATITUD)
+            .longitud(UPDATED_LONGITUD);
         PozoDTO pozoDTO = pozoMapper.toDto(updatedPozo);
 
         restPozoMockMvc
@@ -283,9 +327,10 @@ class PozoResourceIT {
         Pozo testPozo = pozoList.get(pozoList.size() - 1);
         assertThat(testPozo.getNumeropozo()).isEqualTo(UPDATED_NUMEROPOZO);
         assertThat(testPozo.getDireccion()).isEqualTo(UPDATED_DIRECCION);
-        assertThat(testPozo.getUbicacion()).isEqualTo(UPDATED_UBICACION);
         assertThat(testPozo.getTipopozo()).isEqualTo(UPDATED_TIPOPOZO);
         assertThat(testPozo.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
+        assertThat(testPozo.getLatitud()).isEqualTo(UPDATED_LATITUD);
+        assertThat(testPozo.getLongitud()).isEqualTo(UPDATED_LONGITUD);
     }
 
     @Test
@@ -381,9 +426,10 @@ class PozoResourceIT {
         Pozo testPozo = pozoList.get(pozoList.size() - 1);
         assertThat(testPozo.getNumeropozo()).isEqualTo(UPDATED_NUMEROPOZO);
         assertThat(testPozo.getDireccion()).isEqualTo(DEFAULT_DIRECCION);
-        assertThat(testPozo.getUbicacion()).isEqualTo(DEFAULT_UBICACION);
         assertThat(testPozo.getTipopozo()).isEqualTo(DEFAULT_TIPOPOZO);
         assertThat(testPozo.getCreatedAt()).isEqualTo(DEFAULT_CREATED_AT);
+        assertThat(testPozo.getLatitud()).isEqualTo(DEFAULT_LATITUD);
+        assertThat(testPozo.getLongitud()).isEqualTo(DEFAULT_LONGITUD);
     }
 
     @Test
@@ -401,9 +447,10 @@ class PozoResourceIT {
         partialUpdatedPozo
             .numeropozo(UPDATED_NUMEROPOZO)
             .direccion(UPDATED_DIRECCION)
-            .ubicacion(UPDATED_UBICACION)
             .tipopozo(UPDATED_TIPOPOZO)
-            .createdAt(UPDATED_CREATED_AT);
+            .createdAt(UPDATED_CREATED_AT)
+            .latitud(UPDATED_LATITUD)
+            .longitud(UPDATED_LONGITUD);
 
         restPozoMockMvc
             .perform(
@@ -419,9 +466,10 @@ class PozoResourceIT {
         Pozo testPozo = pozoList.get(pozoList.size() - 1);
         assertThat(testPozo.getNumeropozo()).isEqualTo(UPDATED_NUMEROPOZO);
         assertThat(testPozo.getDireccion()).isEqualTo(UPDATED_DIRECCION);
-        assertThat(testPozo.getUbicacion()).isEqualTo(UPDATED_UBICACION);
         assertThat(testPozo.getTipopozo()).isEqualTo(UPDATED_TIPOPOZO);
         assertThat(testPozo.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
+        assertThat(testPozo.getLatitud()).isEqualTo(UPDATED_LATITUD);
+        assertThat(testPozo.getLongitud()).isEqualTo(UPDATED_LONGITUD);
     }
 
     @Test

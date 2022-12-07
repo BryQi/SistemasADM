@@ -33,8 +33,8 @@ type InfraestructuraFormGroupContent = {
   id: FormControl<InfraestructuraFormRawValue['id'] | NewInfraestructura['id']>;
   tipo: FormControl<InfraestructuraFormRawValue['tipo']>;
   createdAt: FormControl<InfraestructuraFormRawValue['createdAt']>;
-  pozos: FormControl<InfraestructuraFormRawValue['pozos']>;
   idProveedor: FormControl<InfraestructuraFormRawValue['idProveedor']>;
+  pozos: FormControl<InfraestructuraFormRawValue['pozos']>;
 };
 
 export type InfraestructuraFormGroup = FormGroup<InfraestructuraFormGroupContent>;
@@ -58,8 +58,8 @@ export class InfraestructuraFormService {
       createdAt: new FormControl(infraestructuraRawValue.createdAt, {
         validators: [Validators.required],
       }),
-      pozos: new FormControl(infraestructuraRawValue.pozos ?? []),
       idProveedor: new FormControl(infraestructuraRawValue.idProveedor),
+      pozos: new FormControl(infraestructuraRawValue.pozos ?? []),
     });
   }
 

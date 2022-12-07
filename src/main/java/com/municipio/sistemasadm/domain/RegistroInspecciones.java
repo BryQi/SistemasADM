@@ -58,7 +58,6 @@ public class RegistroInspecciones implements Serializable {
             "registroInspecciones",
             "idDespliegueInfraestructuraTroncalDistribucions",
             "idDespliegueinfraestructuradispersions",
-            "idInfraestructuras",
         },
         allowSetters = true
     )

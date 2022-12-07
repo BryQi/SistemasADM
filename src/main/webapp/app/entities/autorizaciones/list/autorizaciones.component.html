@@ -15,7 +15,7 @@
         [routerLink]="['/autorizaciones/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="sistemasAdmApp.autorizaciones.home.createLabel"> Crear nueva Autorización </span>
+        <span jhiTranslate="sistemasAdmApp.autorizaciones.home.createLabel"> Crear nuevo Autorizaciones </span>
       </button>
     </div>
   </h2>
@@ -25,7 +25,7 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="autorizaciones?.length === 0">
-    <span jhiTranslate="sistemasAdmApp.autorizaciones.home.notFound">Ninguna Autorización encontrada</span>
+    <span jhiTranslate="sistemasAdmApp.autorizaciones.home.notFound">Ningún Autorizaciones encontrado</span>
   </div>
 
   <div class="table-responsive table-entities" id="entities" *ngIf="autorizaciones && autorizaciones.length > 0">
@@ -46,37 +46,37 @@
           </th>
           <th scope="col" jhiSortBy="direccionOrigen">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.autorizaciones.direccionOrigen">Dirección de Origen</span>
+              <span jhiTranslate="sistemasAdmApp.autorizaciones.direccionOrigen">Direccion Origen</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="direccionDestino">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.autorizaciones.direccionDestino">Dirección Destino</span>
+              <span jhiTranslate="sistemasAdmApp.autorizaciones.direccionDestino">Direccion Destino</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="fechaOperacion">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.autorizaciones.fechaOperacion">Fecha de Operación</span>
+              <span jhiTranslate="sistemasAdmApp.autorizaciones.fechaOperacion">Fecha Operacion</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="ventanaTrabajo">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.autorizaciones.ventanaTrabajo">Ventana de Trabajo</span>
+              <span jhiTranslate="sistemasAdmApp.autorizaciones.ventanaTrabajo">Ventana Trabajo</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="contactoTecnico">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.autorizaciones.contactoTecnico">Contacto Técnico</span>
+              <span jhiTranslate="sistemasAdmApp.autorizaciones.contactoTecnico">Contacto Tecnico</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="tipoTrabajo">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.autorizaciones.tipoTrabajo">Tipo de Trabajo</span>
+              <span jhiTranslate="sistemasAdmApp.autorizaciones.tipoTrabajo">Tipo Trabajo</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -88,13 +88,13 @@
           </th>
           <th scope="col" jhiSortBy="createdAt">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.autorizaciones.createdAt">Creado el</span>
+              <span jhiTranslate="sistemasAdmApp.autorizaciones.createdAt">Created At</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="registroInspecciones.id">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.autorizaciones.registroInspecciones">Registro de Inspecciones</span>
+              <span jhiTranslate="sistemasAdmApp.autorizaciones.registroInspecciones">Registro Inspecciones</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>

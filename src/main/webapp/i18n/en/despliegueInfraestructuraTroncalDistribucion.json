@@ -2,31 +2,32 @@
   "sistemasAdmApp": {
     "despliegueInfraestructuraTroncalDistribucion": {
       "home": {
-        "title": "Deployment of Distribution Backbone Infrastructure",
+        "title": "Despliegue Infraestructura Troncal Distribucions",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Deployment of Distribution Backbone Infrastructure",
-        "createOrEditLabel": "Create or edit a Deployment of Distribution Backbone Infrastructure",
-        "notFound": "No Deployment of Distribution Backbone Infrastructure found"
+        "createLabel": "Create a new Despliegue Infraestructura Troncal Distribucion",
+        "createOrEditLabel": "Create or edit a Despliegue Infraestructura Troncal Distribucion",
+        "notFound": "No Despliegue Infraestructura Troncal Distribucions found"
       },
-      "created": "A new Deployment of Distribution Backbone Infrastructure is created with identifier {{ param }}",
-      "updated": "A Deployment of Distribution Backbone Infrastructure is updated with identifier {{ param }}",
-      "deleted": "A Deployment of Distribution Backbone Infrastructure is deleted with identifier {{ param }}",
+      "created": "A new Despliegue Infraestructura Troncal Distribucion is created with identifier {{ param }}",
+      "updated": "A Despliegue Infraestructura Troncal Distribucion is updated with identifier {{ param }}",
+      "deleted": "A Despliegue Infraestructura Troncal Distribucion is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Deployment of Distribution Backbone Infrastructure {{ id }}?"
+        "question": "Are you sure you want to delete Despliegue Infraestructura Troncal Distribucion {{ id }}?"
       },
       "detail": {
-        "title": "Deployment of Distribution Backbone Infrastructure"
+        "title": "Despliegue Infraestructura Troncal Distribucion"
       },
       "id": "ID",
-      "nombreRuta": "Name Route",
-      "descripcionRuta": "Route Description",
-      "metrajeInicial": "Initial footage",
-      "metrajeFinal": "Final Footage",
-      "calculoValorPago": "Payment Value Calculation",
+      "nombreRuta": "Nombre Ruta",
+      "descripcionRuta": "Descripcion Ruta",
+      "metrajeInicial": "Metraje Inicial",
+      "metrajeFinal": "Metraje Final",
+      "calculoValorPago": "Calculo Valor Pago",
       "createdAt": "Created At",
+      "valorMetro": "Valor Metro",
       "despliegueInfraestructuraDispersion": "Despliegue Infraestructura Dispersion",
-      "pago": "Payment",
-      "pozo": "Well"
+      "pago": "Pago",
+      "pozo": "Pozo"
     }
   }
 }

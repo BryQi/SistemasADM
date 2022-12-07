@@ -18,16 +18,16 @@
         "title": "Pozo"
       },
       "id": "ID",
-      "numeropozo": "Número Pozo",
-      "direccion": "Dirección",
-      "ubicacion": "Ubicación",
-      "tipopozo": "Tipo Pozo",
-      "createdAt": "Creado el",
+      "numeropozo": "Numeropozo",
+      "direccion": "Direccion",
+      "tipopozo": "Tipopozo",
+      "createdAt": "Created At",
+      "latitud": "Latitud",
+      "longitud": "Longitud",
       "fotoPozo": "Foto Pozo",
       "registroInspecciones": "Registro Inspecciones",
       "idDespliegueInfraestructuraTroncalDistribucion": "Id Despliegue Infraestructura Troncal Distribucion",
-      "idDespliegueinfraestructuradispersion": "Id Despliegueinfraestructuradispersion",
-      "idInfraestructura": "Id Infraestructura"
+      "idDespliegueinfraestructuradispersion": "Id Despliegueinfraestructuradispersion"
     }
   }
 }

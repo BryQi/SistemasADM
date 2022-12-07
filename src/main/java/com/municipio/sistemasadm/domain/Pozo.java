@@ -2,7 +2,6 @@ package com.municipio.sistemasadm.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.municipio.sistemasadm.domain.enumeration.TipoPozo;
-import com.municipio.sistemasadm.domain.enumeration.Ubicacion;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
@@ -38,16 +37,20 @@ public class Pozo implements Serializable {
     private String direccion;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "ubicacion")
-    private Ubicacion ubicacion;
-
-    @Enumerated(EnumType.STRING)
     @Column(name = "tipopozo")
     private TipoPozo tipopozo;
 
     @NotNull
     @Column(name = "created_at", nullable = false)
     private ZonedDateTime createdAt;
+
+    @NotNull
+    @Column(name = "latitud", nullable = false)
+    private String latitud;
+
+    @NotNull
+    @Column(name = "longitud", nullable = false)
+    private String longitud;
 
     @OneToMany(mappedBy = "idPozo")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -71,11 +74,6 @@ public class Pozo implements Serializable {
         allowSetters = true
     )
     private Set<Despliegueinfraestructuradispersion> idDespliegueinfraestructuradispersions = new HashSet<>();
-
-    @ManyToMany(mappedBy = "pozos")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "pozos", "idProveedor" }, allowSetters = true)
-    private Set<Infraestructura> idInfraestructuras = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -118,19 +116,6 @@ public class Pozo implements Serializable {
         this.direccion = direccion;
     }
 
-    public Ubicacion getUbicacion() {
-        return this.ubicacion;
-    }
-
-    public Pozo ubicacion(Ubicacion ubicacion) {
-        this.setUbicacion(ubicacion);
-        return this;
-    }
-
-    public void setUbicacion(Ubicacion ubicacion) {
-        this.ubicacion = ubicacion;
-    }
-
     public TipoPozo getTipopozo() {
         return this.tipopozo;
     }
@@ -155,6 +140,32 @@ public class Pozo implements Serializable {
 
     public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getLatitud() {
+        return this.latitud;
+    }
+
+    public Pozo latitud(String latitud) {
+        this.setLatitud(latitud);
+        return this;
+    }
+
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
+    }
+
+    public String getLongitud() {
+        return this.longitud;
+    }
+
+    public Pozo longitud(String longitud) {
+        this.setLongitud(longitud);
+        return this;
+    }
+
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
     }
 
     public Set<FotoPozo> getFotoPozos() {
@@ -289,37 +300,6 @@ public class Pozo implements Serializable {
         return this;
     }
 
-    public Set<Infraestructura> getIdInfraestructuras() {
-        return this.idInfraestructuras;
-    }
-
-    public void setIdInfraestructuras(Set<Infraestructura> infraestructuras) {
-        if (this.idInfraestructuras != null) {
-            this.idInfraestructuras.forEach(i -> i.removePozo(this));
-        }
-        if (infraestructuras != null) {
-            infraestructuras.forEach(i -> i.addPozo(this));
-        }
-        this.idInfraestructuras = infraestructuras;
-    }
-
-    public Pozo idInfraestructuras(Set<Infraestructura> infraestructuras) {
-        this.setIdInfraestructuras(infraestructuras);
-        return this;
-    }
-
-    public Pozo addIdInfraestructura(Infraestructura infraestructura) {
-        this.idInfraestructuras.add(infraestructura);
-        infraestructura.getPozos().add(this);
-        return this;
-    }
-
-    public Pozo removeIdInfraestructura(Infraestructura infraestructura) {
-        this.idInfraestructuras.remove(infraestructura);
-        infraestructura.getPozos().remove(this);
-        return this;
-    }
-
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -346,9 +326,10 @@ public class Pozo implements Serializable {
             "id=" + getId() +
             ", numeropozo='" + getNumeropozo() + "'" +
             ", direccion='" + getDireccion() + "'" +
-            ", ubicacion='" + getUbicacion() + "'" +
             ", tipopozo='" + getTipopozo() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
+            ", latitud='" + getLatitud() + "'" +
+            ", longitud='" + getLongitud() + "'" +
             "}";
     }
 }

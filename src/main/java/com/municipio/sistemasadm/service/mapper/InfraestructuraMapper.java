@@ -15,12 +15,17 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring")
 public interface InfraestructuraMapper extends EntityMapper<InfraestructuraDTO, Infraestructura> {
-    @Mapping(target = "pozos", source = "pozos", qualifiedByName = "pozoIdSet")
     @Mapping(target = "idProveedor", source = "idProveedor", qualifiedByName = "proveedorId")
+    @Mapping(target = "pozos", source = "pozos", qualifiedByName = "pozoIdSet")
     InfraestructuraDTO toDto(Infraestructura s);
 
     @Mapping(target = "removePozo", ignore = true)
     Infraestructura toEntity(InfraestructuraDTO infraestructuraDTO);
+
+    @Named("proveedorId")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    ProveedorDTO toDtoProveedorId(Proveedor proveedor);
 
     @Named("pozoId")
     @BeanMapping(ignoreByDefault = true)
@@ -31,9 +36,4 @@ public interface InfraestructuraMapper extends EntityMapper<InfraestructuraDTO, 
     default Set<PozoDTO> toDtoPozoIdSet(Set<Pozo> pozo) {
         return pozo.stream().map(this::toDtoPozoId).collect(Collectors.toSet());
     }
-
-    @Named("proveedorId")
-    @BeanMapping(ignoreByDefault = true)
-    @Mapping(target = "id", source = "id")
-    ProveedorDTO toDtoProveedorId(Proveedor proveedor);
 }

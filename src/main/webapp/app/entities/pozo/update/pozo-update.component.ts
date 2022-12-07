@@ -7,17 +7,22 @@ import { finalize } from 'rxjs/operators';
 import { PozoFormService, PozoFormGroup } from './pozo-form.service';
 import { IPozo } from '../pozo.model';
 import { PozoService } from '../service/pozo.service';
-import { Ubicacion } from 'app/entities/enumerations/ubicacion.model';
 import { TipoPozo } from 'app/entities/enumerations/tipo-pozo.model';
+
+import { Map, marker, popup, tileLayer } from 'leaflet';
 
 @Component({
   selector: 'jhi-pozo-update',
   templateUrl: './pozo-update.component.html',
 })
 export class PozoUpdateComponent implements OnInit {
+  // THEN
+  public field_latitud = '';
+  public field_longitud = 'Aqui longitud';
+  // this.
+
   isSaving = false;
   pozo: IPozo | null = null;
-  ubicacionValues = Object.keys(Ubicacion);
   tipoPozoValues = Object.keys(TipoPozo);
 
   editForm: PozoFormGroup = this.pozoFormService.createPozoFormGroup();
@@ -25,6 +30,35 @@ export class PozoUpdateComponent implements OnInit {
   constructor(protected pozoService: PozoService, protected pozoFormService: PozoFormService, protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
+    const map = new Map('map').setView([-4.0041, -79.1983], 13);
+
+    tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    const myMarker = marker([-4.0041, -79.1983], { title: 'Mi Ubicación', alt: 'The Big I', draggable: true })
+      .addTo(map)
+      .on('dragend', function onMapClick() {
+        const coord = String(myMarker.getLatLng()).split(',');
+
+        //this.field_longitud.lat = coord[0];
+
+        const lat = coord[0].split('(');
+        const lng = coord[1].split(')');
+
+        popup()
+          .setLatLng(myMarker.getLatLng())
+          .setContent('Localización.' + ' ' + coord[0].toString() + ' ' + coord[1].toString())
+          .openOn(map);
+
+        //myMarker.bindPopup("Moved to: " + lat[1] + ", " + lng[0] + ".");
+
+        map.on('click', onMapClick);
+      });
+
+    //Fin Agregar el mapa e iniciar el mapa
+
     this.activatedRoute.data.subscribe(({ pozo }) => {
       this.pozo = pozo;
       if (pozo) {

@@ -22,12 +22,12 @@ describe('Pozo Form Service', () => {
             id: expect.any(Object),
             numeropozo: expect.any(Object),
             direccion: expect.any(Object),
-            ubicacion: expect.any(Object),
             tipopozo: expect.any(Object),
             createdAt: expect.any(Object),
+            latitud: expect.any(Object),
+            longitud: expect.any(Object),
             idDespliegueInfraestructuraTroncalDistribucions: expect.any(Object),
             idDespliegueinfraestructuradispersions: expect.any(Object),
-            idInfraestructuras: expect.any(Object),
           })
         );
       });
@@ -40,12 +40,12 @@ describe('Pozo Form Service', () => {
             id: expect.any(Object),
             numeropozo: expect.any(Object),
             direccion: expect.any(Object),
-            ubicacion: expect.any(Object),
             tipopozo: expect.any(Object),
             createdAt: expect.any(Object),
+            latitud: expect.any(Object),
+            longitud: expect.any(Object),
             idDespliegueInfraestructuraTroncalDistribucions: expect.any(Object),
             idDespliegueinfraestructuradispersions: expect.any(Object),
-            idInfraestructuras: expect.any(Object),
           })
         );
       });

@@ -26,6 +26,7 @@ describe('DespliegueInfraestructuraTroncalDistribucion Form Service', () => {
             metrajeFinal: expect.any(Object),
             calculoValorPago: expect.any(Object),
             createdAt: expect.any(Object),
+            valorMetro: expect.any(Object),
             pozos: expect.any(Object),
           })
         );
@@ -43,6 +44,7 @@ describe('DespliegueInfraestructuraTroncalDistribucion Form Service', () => {
             metrajeFinal: expect.any(Object),
             calculoValorPago: expect.any(Object),
             createdAt: expect.any(Object),
+            valorMetro: expect.any(Object),
             pozos: expect.any(Object),
           })
         );

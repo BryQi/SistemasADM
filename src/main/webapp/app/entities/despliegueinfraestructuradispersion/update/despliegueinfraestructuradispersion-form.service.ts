@@ -43,6 +43,7 @@ type DespliegueinfraestructuradispersionFormGroupContent = {
   metrajeFinal: FormControl<DespliegueinfraestructuradispersionFormRawValue['metrajeFinal']>;
   calculoValorPago: FormControl<DespliegueinfraestructuradispersionFormRawValue['calculoValorPago']>;
   createdAt: FormControl<DespliegueinfraestructuradispersionFormRawValue['createdAt']>;
+  valorMetro: FormControl<DespliegueinfraestructuradispersionFormRawValue['valorMetro']>;
   pozos: FormControl<DespliegueinfraestructuradispersionFormRawValue['pozos']>;
   idDespliegueInfraestructuraTroncalDistribucion: FormControl<
     DespliegueinfraestructuradispersionFormRawValue['idDespliegueInfraestructuraTroncalDistribucion']
@@ -96,6 +97,9 @@ export class DespliegueinfraestructuradispersionFormService {
         validators: [Validators.required],
       }),
       createdAt: new FormControl(despliegueinfraestructuradispersionRawValue.createdAt, {
+        validators: [Validators.required],
+      }),
+      valorMetro: new FormControl(despliegueinfraestructuradispersionRawValue.valorMetro, {
         validators: [Validators.required],
       }),
       pozos: new FormControl(despliegueinfraestructuradispersionRawValue.pozos ?? []),

@@ -66,7 +66,7 @@ public class Proveedor implements Serializable {
 
     @OneToMany(mappedBy = "idProveedor")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "pozos", "idProveedor" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "idProveedor", "pozos" }, allowSetters = true)
     private Set<Infraestructura> infraestructuras = new HashSet<>();
 
     @ManyToOne(optional = false)

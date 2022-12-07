@@ -21,9 +21,9 @@ public class InfraestructuraDTO implements Serializable {
     @NotNull
     private ZonedDateTime createdAt;
 
-    private Set<PozoDTO> pozos = new HashSet<>();
-
     private ProveedorDTO idProveedor;
+
+    private Set<PozoDTO> pozos = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -49,20 +49,20 @@ public class InfraestructuraDTO implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public Set<PozoDTO> getPozos() {
-        return pozos;
-    }
-
-    public void setPozos(Set<PozoDTO> pozos) {
-        this.pozos = pozos;
-    }
-
     public ProveedorDTO getIdProveedor() {
         return idProveedor;
     }
 
     public void setIdProveedor(ProveedorDTO idProveedor) {
         this.idProveedor = idProveedor;
+    }
+
+    public Set<PozoDTO> getPozos() {
+        return pozos;
+    }
+
+    public void setPozos(Set<PozoDTO> pozos) {
+        this.pozos = pozos;
     }
 
     @Override
@@ -93,8 +93,8 @@ public class InfraestructuraDTO implements Serializable {
             "id=" + getId() +
             ", tipo='" + getTipo() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
-            ", pozos=" + getPozos() +
             ", idProveedor=" + getIdProveedor() +
+            ", pozos=" + getPozos() +
             "}";
     }
 }

@@ -1,11 +1,11 @@
-id;nombre_ruta;descripcion_ruta;metraje_inicial;metraje_final;calculo_valor_pago;created_at
-1;microchip Puerta;Seguridada Granito;27374;97729;14721;2022-12-01T01:12:47
-2;integrated Partida;Algodón Operaciones parse;9019;36480;7598;2022-12-01T07:45:03
-3;optimize quantifying transmit;Account Solar;8878;73956;66186;2022-12-01T08:55:03
-4;Pequeño;programming Sorprendente;78481;66974;43765;2022-12-01T10:31:30
-5;Berkshire calculate application;Guantes optical;87959;21303;61016;2022-12-01T06:13:25
-6;Acero;multi-byte SAS Comodos;46955;59795;33695;2022-12-01T03:07:55
-7;multi-byte JBOD;SCSI Investment;61875;17744;38226;2022-12-01T02:22:51
-8;Librería el;deposit Fantástico;72544;2451;25973;2022-11-30T22:15:06
-9;Andalucía Escalinata colaboración;Rústico;76893;41903;28430;2022-12-01T08:15:03
-10;invoice;Coordinador;12095;57872;28988;2022-12-01T13:05:06
+id;nombre_ruta;descripcion_ruta;metraje_inicial;metraje_final;calculo_valor_pago;created_at;valor_metro
+1;microchip Puerta;Seguridada Granito;27374;97729;14721;2022-12-01T01:12:47;50263
+2;reboot Account;disintermediate;64343;96212;55007;2022-12-01T15:59:33;74536
+3;Burundi Sorprendente optimize;Peso redundant Account;47401;88791;18842;2022-12-01T18:13:23;73956
+4;Explanada Bricolaje;Heredado Buckinghamshire Won;99781;48535;44008;2022-12-01T10:23:29;74111
+5;generación efficient;Guantes;78858;86678;58605;2022-11-30T23:14:37;21303
+6;Principado Ladrillo;SAS;52087;20918;18923;2022-12-01T09:05:04;59795
+7;interface Account;grow PCI Avon;17744;38226;74887;2022-12-01T10:53:01;2551
+8;Bedfordshire;Poblado Deportes;22841;72544;2451;2022-12-01T14:07:13;92093
+9;Andalucía Escalinata colaboración;Rústico;76893;41903;28430;2022-12-01T08:15:03;16871
+10;parse Coordinador;Canarias;16724;94393;5989;2022-11-30T20:22:34;73369

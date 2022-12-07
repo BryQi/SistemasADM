@@ -36,6 +36,13 @@ public class Infraestructura implements Serializable {
     @Column(name = "created_at", nullable = false)
     private ZonedDateTime createdAt;
 
+    @ManyToOne
+    @JsonIgnoreProperties(
+        value = { "despliegueinfraestructuradispersions", "autorizaciones", "infraestructuras", "user" },
+        allowSetters = true
+    )
+    private Proveedor idProveedor;
+
     @ManyToMany
     @JoinTable(
         name = "rel_infraestructura__pozo",
@@ -49,18 +56,10 @@ public class Infraestructura implements Serializable {
             "registroInspecciones",
             "idDespliegueInfraestructuraTroncalDistribucions",
             "idDespliegueinfraestructuradispersions",
-            "idInfraestructuras",
         },
         allowSetters = true
     )
     private Set<Pozo> pozos = new HashSet<>();
-
-    @ManyToOne
-    @JsonIgnoreProperties(
-        value = { "despliegueinfraestructuradispersions", "autorizaciones", "infraestructuras", "user" },
-        allowSetters = true
-    )
-    private Proveedor idProveedor;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -103,6 +102,19 @@ public class Infraestructura implements Serializable {
         this.createdAt = createdAt;
     }
 
+    public Proveedor getIdProveedor() {
+        return this.idProveedor;
+    }
+
+    public void setIdProveedor(Proveedor proveedor) {
+        this.idProveedor = proveedor;
+    }
+
+    public Infraestructura idProveedor(Proveedor proveedor) {
+        this.setIdProveedor(proveedor);
+        return this;
+    }
+
     public Set<Pozo> getPozos() {
         return this.pozos;
     }
@@ -118,26 +130,11 @@ public class Infraestructura implements Serializable {
 
     public Infraestructura addPozo(Pozo pozo) {
         this.pozos.add(pozo);
-        pozo.getIdInfraestructuras().add(this);
         return this;
     }
 
     public Infraestructura removePozo(Pozo pozo) {
         this.pozos.remove(pozo);
-        pozo.getIdInfraestructuras().remove(this);
-        return this;
-    }
-
-    public Proveedor getIdProveedor() {
-        return this.idProveedor;
-    }
-
-    public void setIdProveedor(Proveedor proveedor) {
-        this.idProveedor = proveedor;
-    }
-
-    public Infraestructura idProveedor(Proveedor proveedor) {
-        this.setIdProveedor(proveedor);
         return this;
     }
 

@@ -16,11 +16,6 @@
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "ubicacion",
-      "fieldType": "Ubicacion",
-      "fieldValues": "Norte,Sur,Este,Oeste,NorEste,NorOeste,SurEste,SurOeste"
-    },
-    {
       "fieldName": "tipopozo",
       "fieldType": "TipoPozo",
       "fieldValues": "PozodePaso,Revision"
@@ -28,6 +23,16 @@
     {
       "fieldName": "createdAt",
       "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "latitud",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "longitud",
+      "fieldType": "String",
       "fieldValidateRules": ["required"]
     }
   ],
@@ -61,13 +66,6 @@
       "otherEntityRelationshipName": "pozo",
       "ownerSide": false,
       "relationshipName": "idDespliegueinfraestructuradispersion",
-      "relationshipType": "many-to-many"
-    },
-    {
-      "otherEntityName": "infraestructura",
-      "otherEntityRelationshipName": "pozo",
-      "ownerSide": false,
-      "relationshipName": "idInfraestructura",
       "relationshipType": "many-to-many"
     }
   ],

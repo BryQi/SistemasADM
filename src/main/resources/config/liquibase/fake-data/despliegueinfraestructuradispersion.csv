@@ -1,11 +1,11 @@
-id;nombre_cliente;direccion;fecha_instalacion;origen;destino;descripcion_de_pozos_usados_ruta;metraje_inicial;metraje_final;calculo_valor_pago;created_at
-1;Juguetería matrices;Ghana withdrawal web-readiness;2022-12-01;CajaDistribucion;Gerente Fiji Cantabria;Especialista leading-edge Investment;67217;97512;19155;2022-12-01T15:18:03
-2;Azul;firewall;2022-12-01;NAP;Chipre payment acompasada;cutting-edge convergence;45653;8148;24343;2022-12-01T14:37:05
-3;Seguro Subida Savings;Murcia Yuan;2022-12-01;Pedestal;Increible invoice;Metal Loan;90884;11483;27317;2022-12-01T12:31:28
-4;Interacciones Rojo Berkshire;Sabroso Hogar synthesize;2022-11-30;CajaDistribucion;compressing;Senegal Expandido;61646;3062;36454;2022-11-30T23:00:41
-5;markets;Acero Hecho;2022-12-01;MANGA;Asociado Account;Azul THX Usabilidad;77129;4256;85415;2022-12-01T18:38:48
-6;Artesanal JSON;withdrawal transmitting panel;2022-12-01;Pedestal;cross-media Gerente;Representante;66924;97916;41271;2022-12-01T01:00:54
-7;multi-byte;colaboración;2022-12-01;CajaDistribucion;Gris;global Ariary;73995;28694;13690;2022-11-30T22:51:52
-8;Senda Méjico incremental;SCSI Verde;2022-12-01;Nodo;Extremadura Plástico Pollo;parsing;54828;87735;7345;2022-11-30T20:50:32
-9;estable;Distribuido users Hormigon;2022-12-01;Pedestal;online Savings Codes;Identidad bidireccional;56844;96083;18874;2022-12-01T17:49:33
-10;Zapatos Acero;Infraestructura communities;2022-12-01;Nodo;Relacciones infrastructures;Madera;72053;48688;18244;2022-11-30T21:07:53
+id;nombre_cliente;direccion;fecha_instalacion;origen;destino;descripcion_de_pozos_usados_ruta;metraje_inicial;metraje_final;calculo_valor_pago;created_at;valor_metro
+1;Juguetería matrices;Ghana withdrawal web-readiness;2022-12-01;CajaDistribucion;Gerente Fiji Cantabria;Especialista leading-edge Investment;67217;97512;19155;2022-12-01T15:18:03;11951
+2;Ladrillo;Bedfordshire Progresivo Horizontal;2022-12-01;CajaDistribucion;B2B;ADP Borders;8148;24343;23899;2022-12-01T00:25:35;95030
+3;sensor THX de;Calidad modelo Barranco;2022-12-01;Pedestal;Plaza driver Aplicaciones;potenciada;94104;89658;70872;2022-12-01T15:30:17;1465
+4;Berkshire bypass adaptador;synthesize XML;2022-12-01;NAP;Lituania Bedfordshire;Checking Jefe;7884;95056;57761;2022-12-01T17:26:21;2492
+5;Hecho;Artesanal;2022-12-01;CajaDistribucion;microchip Refinado Factores;up Acero;85464;91116;16344;2022-11-30T23:14:20;63026
+6;applications calculating;Puente;2022-12-01;Pedestal;Gerente Pollo Administrador;multi-byte;8293;31819;19655;2022-12-01T17:40:05;62588
+7;Madera interfaces;Granito bifurcada;2022-11-30;CajaDistribucion;connecting Futuro matrices;Congo China Peso;84924;14258;35704;2022-12-01T18:15:40;16584
+8;deposit Optimización SDD;estable;2022-11-30;NAP;Práctico;Hormigon Reactivo;80995;47671;4737;2022-12-01T06:00:54;22358
+9;Codes web;bidireccional;2022-12-01;Nodo;Artesanal;hack EXE;57787;22158;43905;2022-12-01T14:58:32;16007
+10;Distrito Madera;Deportes;2022-12-01;MANGA;Bedfordshire benchmark Configuración;Gestionado Bedfordshire;52899;190;65003;2022-11-30T20:21:32;67325

@@ -40,31 +40,37 @@
           </th>
           <th scope="col" jhiSortBy="numeropozo">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.pozo.numeropozo">Número Pozo</span>
+              <span jhiTranslate="sistemasAdmApp.pozo.numeropozo">Numeropozo</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="direccion">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.pozo.direccion">Dirección</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="ubicacion">
-            <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.pozo.ubicacion">Ubicación</span>
+              <span jhiTranslate="sistemasAdmApp.pozo.direccion">Direccion</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="tipopozo">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.pozo.tipopozo">Tipo Pozo</span>
+              <span jhiTranslate="sistemasAdmApp.pozo.tipopozo">Tipopozo</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
           <th scope="col" jhiSortBy="createdAt">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.pozo.createdAt">Creado a</span>
+              <span jhiTranslate="sistemasAdmApp.pozo.createdAt">Created At</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="latitud">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.pozo.latitud">Latitud</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="longitud">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.pozo.longitud">Longitud</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -78,9 +84,10 @@
           </td>
           <td>{{ pozo.numeropozo }}</td>
           <td>{{ pozo.direccion }}</td>
-          <td jhiTranslate="{{ 'sistemasAdmApp.Ubicacion.' + pozo.ubicacion }}">{{ pozo.ubicacion }}</td>
           <td jhiTranslate="{{ 'sistemasAdmApp.TipoPozo.' + pozo.tipopozo }}">{{ pozo.tipopozo }}</td>
           <td>{{ pozo.createdAt | formatMediumDatetime }}</td>
+          <td>{{ pozo.latitud }}</td>
+          <td>{{ pozo.longitud }}</td>
           <td class="text-end">
             <div class="btn-group">
               <button type="submit" [routerLink]="['/pozo', pozo.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">

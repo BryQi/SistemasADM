@@ -29,19 +29,19 @@ type NewPozoFormRawValue = FormValueOf<NewPozo>;
 
 type PozoFormDefaults = Pick<
   NewPozo,
-  'id' | 'createdAt' | 'idDespliegueInfraestructuraTroncalDistribucions' | 'idDespliegueinfraestructuradispersions' | 'idInfraestructuras'
+  'id' | 'createdAt' | 'idDespliegueInfraestructuraTroncalDistribucions' | 'idDespliegueinfraestructuradispersions'
 >;
 
 type PozoFormGroupContent = {
   id: FormControl<PozoFormRawValue['id'] | NewPozo['id']>;
   numeropozo: FormControl<PozoFormRawValue['numeropozo']>;
   direccion: FormControl<PozoFormRawValue['direccion']>;
-  ubicacion: FormControl<PozoFormRawValue['ubicacion']>;
   tipopozo: FormControl<PozoFormRawValue['tipopozo']>;
   createdAt: FormControl<PozoFormRawValue['createdAt']>;
+  latitud: FormControl<PozoFormRawValue['latitud']>;
+  longitud: FormControl<PozoFormRawValue['longitud']>;
   idDespliegueInfraestructuraTroncalDistribucions: FormControl<PozoFormRawValue['idDespliegueInfraestructuraTroncalDistribucions']>;
   idDespliegueinfraestructuradispersions: FormControl<PozoFormRawValue['idDespliegueinfraestructuradispersions']>;
-  idInfraestructuras: FormControl<PozoFormRawValue['idInfraestructuras']>;
 };
 
 export type PozoFormGroup = FormGroup<PozoFormGroupContent>;
@@ -67,14 +67,18 @@ export class PozoFormService {
       direccion: new FormControl(pozoRawValue.direccion, {
         validators: [Validators.required],
       }),
-      ubicacion: new FormControl(pozoRawValue.ubicacion),
       tipopozo: new FormControl(pozoRawValue.tipopozo),
       createdAt: new FormControl(pozoRawValue.createdAt, {
         validators: [Validators.required],
       }),
+      latitud: new FormControl(pozoRawValue.latitud, {
+        validators: [Validators.required],
+      }),
+      longitud: new FormControl(pozoRawValue.longitud, {
+        validators: [Validators.required],
+      }),
       idDespliegueInfraestructuraTroncalDistribucions: new FormControl(pozoRawValue.idDespliegueInfraestructuraTroncalDistribucions ?? []),
       idDespliegueinfraestructuradispersions: new FormControl(pozoRawValue.idDespliegueinfraestructuradispersions ?? []),
-      idInfraestructuras: new FormControl(pozoRawValue.idInfraestructuras ?? []),
     });
   }
 
@@ -100,7 +104,6 @@ export class PozoFormService {
       createdAt: currentTime,
       idDespliegueInfraestructuraTroncalDistribucions: [],
       idDespliegueinfraestructuradispersions: [],
-      idInfraestructuras: [],
     };
   }
 
@@ -119,7 +122,6 @@ export class PozoFormService {
       createdAt: pozo.createdAt ? pozo.createdAt.format(DATE_TIME_FORMAT) : undefined,
       idDespliegueInfraestructuraTroncalDistribucions: pozo.idDespliegueInfraestructuraTroncalDistribucions ?? [],
       idDespliegueinfraestructuradispersions: pozo.idDespliegueinfraestructuradispersions ?? [],
-      idInfraestructuras: pozo.idInfraestructuras ?? [],
     };
   }
 }

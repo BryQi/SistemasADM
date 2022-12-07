@@ -8,6 +8,12 @@
     -->
     <changeSet id="20221201202113-2" author="jhipster">
 
+        <addForeignKeyConstraint baseColumnNames="id_proveedor_id"
+                                 baseTableName="infraestructura"
+                                 constraintName="fk_infraestructura__id_proveedor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="proveedor"/>
+
         <addForeignKeyConstraint baseColumnNames="infraestructura_id"
                                  baseTableName="rel_infraestructura__pozo"
                                  constraintName="fk_rel_infraestructura__pozo__infraestructura_id"
@@ -19,11 +25,5 @@
                                  constraintName="fk_rel_infraestructura__pozo__pozo_id"
                                  referencedColumnNames="id"
                                  referencedTableName="pozo"/>
-
-        <addForeignKeyConstraint baseColumnNames="id_proveedor_id"
-                                 baseTableName="infraestructura"
-                                 constraintName="fk_infraestructura__id_proveedor_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="proveedor"/>
     </changeSet>
 </databaseChangeLog>

@@ -16,6 +16,7 @@ export interface IDespliegueinfraestructuradispersion {
   metrajeFinal?: number | null;
   calculoValorPago?: number | null;
   createdAt?: dayjs.Dayjs | null;
+  valorMetro?: number | null;
   pozos?: Pick<IPozo, 'id'>[] | null;
   idDespliegueInfraestructuraTroncalDistribucion?: Pick<IDespliegueInfraestructuraTroncalDistribucion, 'id'> | null;
   idProveedor?: Pick<IProveedor, 'id'> | null;

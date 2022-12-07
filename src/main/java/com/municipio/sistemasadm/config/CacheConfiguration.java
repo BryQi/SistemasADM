@@ -80,6 +80,52 @@ public class CacheConfiguration {
                 com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
                 ".despliegueInfraestructuraDispersions"
             );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(cm, com.municipio.sistemasadm.domain.Pozo.class.getName() + ".infraestructuras");
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
             // jhipster-needle-ehcache-add-entry
         };
     }

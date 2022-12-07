@@ -49,16 +49,6 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="sistemasAdmApp.pozo.ubicacion" for="field_ubicacion">Ubicacion</label>
-          <select class="form-control" name="ubicacion" formControlName="ubicacion" id="field_ubicacion" data-cy="ubicacion">
-            <option [ngValue]="null">{{ 'sistemasAdmApp.Ubicacion.null' | translate }}</option>
-            <option *ngFor="let ubicacion of ubicacionValues" [value]="ubicacion">
-              {{ 'sistemasAdmApp.Ubicacion.' + ubicacion | translate }}
-            </option>
-          </select>
-        </div>
-
-        <div class="row mb-3">
           <label class="form-label" jhiTranslate="sistemasAdmApp.pozo.tipopozo" for="field_tipopozo">Tipopozo</label>
           <select class="form-control" name="tipopozo" formControlName="tipopozo" id="field_tipopozo" data-cy="tipopozo">
             <option [ngValue]="null">{{ 'sistemasAdmApp.TipoPozo.null' | translate }}</option>
@@ -66,6 +56,57 @@
               {{ 'sistemasAdmApp.TipoPozo.' + tipoPozo | translate }}
             </option>
           </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_ubicacion2">Selecciona ubicación del pozo</label>
+          <div id="map"></div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.pozo.latitud" for="field_latitud">Latitud</label>
+          <input
+            type="text"
+            class="form-control"
+            name="latitud"
+            id="field_latitud"
+            data-cy="latitud"
+            formControlName="latitud"
+            [(ngModel)]="field_latitud"
+          />
+          <div *ngIf="editForm.get('latitud')!.invalid && (editForm.get('latitud')!.dirty || editForm.get('latitud')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('latitud')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+          </div>
+        </div>
+
+        <!--<button (click)="modificarValor()">Cambiar nombre a 'Otro nombre'</button>-->
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.pozo.longitud" for="field_longitud">Longitud</label>
+          <input
+            type="text"
+            class="form-control"
+            name="longitud"
+            id="field_longitud"
+            data-cy="longitud"
+            formControlName="longitud"
+            [(ngModel)]="field_longitud"
+          />
+          <div *ngIf="editForm.get('longitud')!.invalid && (editForm.get('longitud')!.dirty || editForm.get('longitud')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('longitud')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+          </div>
         </div>
 
         <div class="row mb-3">

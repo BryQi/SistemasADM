@@ -42,6 +42,10 @@
         <dd>
           <span>{{ despliegueInfraestructuraTroncalDistribucion.createdAt | formatMediumDatetime }}</span>
         </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.valorMetro">Valor Metro</span></dt>
+        <dd>
+          <span>{{ despliegueInfraestructuraTroncalDistribucion.valorMetro }}</span>
+        </dd>
         <dt><span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.pozo">Pozo</span></dt>
         <dd>
           <span *ngFor="let pozo of despliegueInfraestructuraTroncalDistribucion.pozos; let last = last">

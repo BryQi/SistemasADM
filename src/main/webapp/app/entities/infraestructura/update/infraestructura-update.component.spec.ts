@@ -9,10 +9,10 @@ import { of, Subject, from } from 'rxjs';
 import { InfraestructuraFormService } from './infraestructura-form.service';
 import { InfraestructuraService } from '../service/infraestructura.service';
 import { IInfraestructura } from '../infraestructura.model';
-import { IPozo } from 'app/entities/pozo/pozo.model';
-import { PozoService } from 'app/entities/pozo/service/pozo.service';
 import { IProveedor } from 'app/entities/proveedor/proveedor.model';
 import { ProveedorService } from 'app/entities/proveedor/service/proveedor.service';
+import { IPozo } from 'app/entities/pozo/pozo.model';
+import { PozoService } from 'app/entities/pozo/service/pozo.service';
 
 import { InfraestructuraUpdateComponent } from './infraestructura-update.component';
 
@@ -22,8 +22,8 @@ describe('Infraestructura Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let infraestructuraFormService: InfraestructuraFormService;
   let infraestructuraService: InfraestructuraService;
-  let pozoService: PozoService;
   let proveedorService: ProveedorService;
+  let pozoService: PozoService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -46,35 +46,13 @@ describe('Infraestructura Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     infraestructuraFormService = TestBed.inject(InfraestructuraFormService);
     infraestructuraService = TestBed.inject(InfraestructuraService);
-    pozoService = TestBed.inject(PozoService);
     proveedorService = TestBed.inject(ProveedorService);
+    pozoService = TestBed.inject(PozoService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should call Pozo query and add missing value', () => {
-      const infraestructura: IInfraestructura = { id: 456 };
-      const pozos: IPozo[] = [{ id: 78503 }];
-      infraestructura.pozos = pozos;
-
-      const pozoCollection: IPozo[] = [{ id: 49994 }];
-      jest.spyOn(pozoService, 'query').mockReturnValue(of(new HttpResponse({ body: pozoCollection })));
-      const additionalPozos = [...pozos];
-      const expectedCollection: IPozo[] = [...additionalPozos, ...pozoCollection];
-      jest.spyOn(pozoService, 'addPozoToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ infraestructura });
-      comp.ngOnInit();
-
-      expect(pozoService.query).toHaveBeenCalled();
-      expect(pozoService.addPozoToCollectionIfMissing).toHaveBeenCalledWith(
-        pozoCollection,
-        ...additionalPozos.map(expect.objectContaining)
-      );
-      expect(comp.pozosSharedCollection).toEqual(expectedCollection);
-    });
-
     it('Should call Proveedor query and add missing value', () => {
       const infraestructura: IInfraestructura = { id: 456 };
       const idProveedor: IProveedor = { id: 82963 };
@@ -97,18 +75,40 @@ describe('Infraestructura Management Update Component', () => {
       expect(comp.proveedorsSharedCollection).toEqual(expectedCollection);
     });
 
-    it('Should update editForm', () => {
+    it('Should call Pozo query and add missing value', () => {
       const infraestructura: IInfraestructura = { id: 456 };
-      const pozo: IPozo = { id: 85630 };
-      infraestructura.pozos = [pozo];
-      const idProveedor: IProveedor = { id: 66994 };
-      infraestructura.idProveedor = idProveedor;
+      const pozos: IPozo[] = [{ id: 78503 }];
+      infraestructura.pozos = pozos;
+
+      const pozoCollection: IPozo[] = [{ id: 49994 }];
+      jest.spyOn(pozoService, 'query').mockReturnValue(of(new HttpResponse({ body: pozoCollection })));
+      const additionalPozos = [...pozos];
+      const expectedCollection: IPozo[] = [...additionalPozos, ...pozoCollection];
+      jest.spyOn(pozoService, 'addPozoToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ infraestructura });
       comp.ngOnInit();
 
-      expect(comp.pozosSharedCollection).toContain(pozo);
+      expect(pozoService.query).toHaveBeenCalled();
+      expect(pozoService.addPozoToCollectionIfMissing).toHaveBeenCalledWith(
+        pozoCollection,
+        ...additionalPozos.map(expect.objectContaining)
+      );
+      expect(comp.pozosSharedCollection).toEqual(expectedCollection);
+    });
+
+    it('Should update editForm', () => {
+      const infraestructura: IInfraestructura = { id: 456 };
+      const idProveedor: IProveedor = { id: 66994 };
+      infraestructura.idProveedor = idProveedor;
+      const pozo: IPozo = { id: 85630 };
+      infraestructura.pozos = [pozo];
+
+      activatedRoute.data = of({ infraestructura });
+      comp.ngOnInit();
+
       expect(comp.proveedorsSharedCollection).toContain(idProveedor);
+      expect(comp.pozosSharedCollection).toContain(pozo);
       expect(comp.infraestructura).toEqual(infraestructura);
     });
   });
@@ -182,16 +182,6 @@ describe('Infraestructura Management Update Component', () => {
   });
 
   describe('Compare relationships', () => {
-    describe('comparePozo', () => {
-      it('Should forward to pozoService', () => {
-        const entity = { id: 123 };
-        const entity2 = { id: 456 };
-        jest.spyOn(pozoService, 'comparePozo');
-        comp.comparePozo(entity, entity2);
-        expect(pozoService.comparePozo).toHaveBeenCalledWith(entity, entity2);
-      });
-    });
-
     describe('compareProveedor', () => {
       it('Should forward to proveedorService', () => {
         const entity = { id: 123 };
@@ -199,6 +189,16 @@ describe('Infraestructura Management Update Component', () => {
         jest.spyOn(proveedorService, 'compareProveedor');
         comp.compareProveedor(entity, entity2);
         expect(proveedorService.compareProveedor).toHaveBeenCalledWith(entity, entity2);
+      });
+    });
+
+    describe('comparePozo', () => {
+      it('Should forward to pozoService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(pozoService, 'comparePozo');
+        comp.comparePozo(entity, entity2);
+        expect(pozoService.comparePozo).toHaveBeenCalledWith(entity, entity2);
       });
     });
   });

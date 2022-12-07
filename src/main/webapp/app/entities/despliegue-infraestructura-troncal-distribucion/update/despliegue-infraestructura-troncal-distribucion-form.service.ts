@@ -48,6 +48,7 @@ type DespliegueInfraestructuraTroncalDistribucionFormGroupContent = {
   metrajeFinal: FormControl<DespliegueInfraestructuraTroncalDistribucionFormRawValue['metrajeFinal']>;
   calculoValorPago: FormControl<DespliegueInfraestructuraTroncalDistribucionFormRawValue['calculoValorPago']>;
   createdAt: FormControl<DespliegueInfraestructuraTroncalDistribucionFormRawValue['createdAt']>;
+  valorMetro: FormControl<DespliegueInfraestructuraTroncalDistribucionFormRawValue['valorMetro']>;
   pozos: FormControl<DespliegueInfraestructuraTroncalDistribucionFormRawValue['pozos']>;
 };
 
@@ -87,6 +88,9 @@ export class DespliegueInfraestructuraTroncalDistribucionFormService {
         validators: [Validators.required],
       }),
       createdAt: new FormControl(despliegueInfraestructuraTroncalDistribucionRawValue.createdAt, {
+        validators: [Validators.required],
+      }),
+      valorMetro: new FormControl(despliegueInfraestructuraTroncalDistribucionRawValue.valorMetro, {
         validators: [Validators.required],
       }),
       pozos: new FormControl(despliegueInfraestructuraTroncalDistribucionRawValue.pozos ?? []),

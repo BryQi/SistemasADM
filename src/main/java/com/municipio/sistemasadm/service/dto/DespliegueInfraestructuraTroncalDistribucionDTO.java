@@ -33,6 +33,9 @@ public class DespliegueInfraestructuraTroncalDistribucionDTO implements Serializ
     @NotNull
     private ZonedDateTime createdAt;
 
+    @NotNull
+    private Float valorMetro;
+
     private Set<PozoDTO> pozos = new HashSet<>();
 
     public Long getId() {
@@ -91,6 +94,14 @@ public class DespliegueInfraestructuraTroncalDistribucionDTO implements Serializ
         this.createdAt = createdAt;
     }
 
+    public Float getValorMetro() {
+        return valorMetro;
+    }
+
+    public void setValorMetro(Float valorMetro) {
+        this.valorMetro = valorMetro;
+    }
+
     public Set<PozoDTO> getPozos() {
         return pozos;
     }
@@ -131,6 +142,7 @@ public class DespliegueInfraestructuraTroncalDistribucionDTO implements Serializ
             ", metrajeFinal=" + getMetrajeFinal() +
             ", calculoValorPago=" + getCalculoValorPago() +
             ", createdAt='" + getCreatedAt() + "'" +
+            ", valorMetro=" + getValorMetro() +
             ", pozos=" + getPozos() +
             "}";
     }

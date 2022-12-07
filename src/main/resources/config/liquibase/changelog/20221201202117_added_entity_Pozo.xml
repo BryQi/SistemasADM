@@ -20,13 +20,16 @@
             <column name="direccion" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="ubicacion" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
             <column name="tipopozo" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <column name="created_at" type="${datetimeType}">
+                <constraints nullable="false" />
+            </column>
+            <column name="latitud" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="longitud" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
@@ -53,9 +56,10 @@
             <column name="id" type="numeric"/>
             <column name="numeropozo" type="string"/>
             <column name="direccion" type="string"/>
-            <column name="ubicacion" type="string"/>
             <column name="tipopozo" type="string"/>
             <column name="created_at" type="date"/>
+            <column name="latitud" type="string"/>
+            <column name="longitud" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>
