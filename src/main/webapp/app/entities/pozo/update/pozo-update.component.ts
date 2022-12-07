@@ -18,7 +18,7 @@ import { Map, marker, popup, tileLayer } from 'leaflet';
 export class PozoUpdateComponent implements OnInit {
   // THEN
   public field_latitud = '';
-  public field_longitud = 'Aqui longitud';
+  public field_longitud = 'Aqui longitud fffff';
   // this.
 
   isSaving = false;
