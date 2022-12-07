@@ -302,14 +302,19 @@
           <label class="form-label" jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.valorMetro" for="field_valorMetro"
             >Valor Metro</label
           >
-          <input
+          <select
             type="number"
             class="form-control"
             name="valorMetro"
             id="field_valorMetro"
             data-cy="valorMetro"
             formControlName="valorMetro"
-          />
+          >
+            <option value="0,05">$0,05</option>
+            <option value="0,10">$0,10</option>
+            <option value="0,15">$0,15</option>
+            <option value="0,20">$0,20</option>
+          </select>
           <div *ngIf="editForm.get('valorMetro')!.invalid && (editForm.get('valorMetro')!.dirty || editForm.get('valorMetro')!.touched)">
             <small
               class="form-text text-danger"
