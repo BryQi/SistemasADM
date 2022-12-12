@@ -12,6 +12,7 @@ import { IDespliegueInfraestructuraTroncalDistribucion } from '../despliegue-inf
 import { DespliegueInfraestructuraTroncalDistribucionService } from '../service/despliegue-infraestructura-troncal-distribucion.service';
 import { IPozo } from 'app/entities/pozo/pozo.model';
 import { PozoService } from 'app/entities/pozo/service/pozo.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'jhi-despliegue-infraestructura-troncal-distribucion-update',
@@ -20,11 +21,13 @@ import { PozoService } from 'app/entities/pozo/service/pozo.service';
 export class DespliegueInfraestructuraTroncalDistribucionUpdateComponent implements OnInit {
   isSaving = false;
   despliegueInfraestructuraTroncalDistribucion: IDespliegueInfraestructuraTroncalDistribucion | null = null;
+  form_val!: FormGroup;
 
   pozosSharedCollection: IPozo[] = [];
 
   editForm: DespliegueInfraestructuraTroncalDistribucionFormGroup =
     this.despliegueInfraestructuraTroncalDistribucionFormService.createDespliegueInfraestructuraTroncalDistribucionFormGroup();
+  formBuilder: any;
 
   constructor(
     protected despliegueInfraestructuraTroncalDistribucionService: DespliegueInfraestructuraTroncalDistribucionService,
@@ -44,8 +47,27 @@ export class DespliegueInfraestructuraTroncalDistribucionUpdateComponent impleme
 
       this.loadRelationshipsOptions();
     });
+    /* de aquí */
+    this.form_val = this.formBuilder.group({
+      metrajeInicial: new FormControl(0),
+      metrajeFinal: new FormControl(0),
+      valorMetro: new FormControl(0),
+      calculoValorPago: new FormControl(0),
+    });
+    /* hasta acá */
   }
+  /* de aquí */
+  calcvalor(event: any) {
+    console.log(event.target.value);
+    let metrajei = this.editForm.controls['metrajeInicial'].value || 0;
+    let metrajef = this.editForm.controls['metrajeFinal'].value || 0;
+    let valormet = this.editForm.controls['valorMetro'].value || 0;
 
+    let result = (metrajef - metrajei) * valormet;
+
+    this.editForm.controls['calculoValorPago'].setValue(parseFloat(result.toFixed(2)));
+  }
+  /* hasta acá */
   previousState(): void {
     window.history.back();
   }
