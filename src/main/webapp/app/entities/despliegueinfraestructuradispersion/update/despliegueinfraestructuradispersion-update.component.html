@@ -228,6 +228,42 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.valorMetro" for="field_valorMetro"
+            >Valor Metro</label
+          >
+          <select
+            type="number"
+            class="form-control"
+            name="valorMetro"
+            id="field_valorMetro"
+            data-cy="valorMetro"
+            formControlName="valorMetro"
+            (change)="calcvalor($event)"
+          >
+            <option value="0.05">$0,05</option>
+            <option value="0.10">$0,10</option>
+            <option value="0.15">$0,15</option>
+            <option value="0.20">$0,20</option>
+          </select>
+          <div *ngIf="editForm.get('valorMetro')!.invalid && (editForm.get('valorMetro')!.dirty || editForm.get('valorMetro')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('valorMetro')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('valorMetro')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Este campo debe ser un número.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
           <label
             class="form-label"
             jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.calculoValorPago"
@@ -294,41 +330,6 @@
               jhiTranslate="entity.validation.datetimelocal"
             >
               Este campo debe ser una fecha y hora.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.valorMetro" for="field_valorMetro"
-            >Valor Metro</label
-          >
-          <select
-            type="number"
-            class="form-control"
-            name="valorMetro"
-            id="field_valorMetro"
-            data-cy="valorMetro"
-            formControlName="valorMetro"
-          >
-            <option value="0,05">$0,05</option>
-            <option value="0,10">$0,10</option>
-            <option value="0,15">$0,15</option>
-            <option value="0,20">$0,20</option>
-          </select>
-          <div *ngIf="editForm.get('valorMetro')!.invalid && (editForm.get('valorMetro')!.dirty || editForm.get('valorMetro')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('valorMetro')?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              Este campo es obligatorio.
-            </small>
-            <small
-              class="form-text text-danger"
-              [hidden]="!editForm.get('valorMetro')?.errors?.number"
-              jhiTranslate="entity.validation.number"
-            >
-              Este campo debe ser un número.
             </small>
           </div>
         </div>

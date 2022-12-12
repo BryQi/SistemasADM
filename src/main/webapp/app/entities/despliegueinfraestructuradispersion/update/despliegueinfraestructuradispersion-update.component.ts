@@ -17,6 +17,11 @@ import { DespliegueInfraestructuraTroncalDistribucionService } from 'app/entitie
 import { IProveedor } from 'app/entities/proveedor/proveedor.model';
 import { ProveedorService } from 'app/entities/proveedor/service/proveedor.service';
 import { Origen } from 'app/entities/enumerations/origen.model';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+
+/* de aquí */
+
+/* hasta acá */
 
 @Component({
   selector: 'jhi-despliegueinfraestructuradispersion-update',
@@ -24,6 +29,8 @@ import { Origen } from 'app/entities/enumerations/origen.model';
 })
 export class DespliegueinfraestructuradispersionUpdateComponent implements OnInit {
   isSaving = false;
+  form_val!: FormGroup;
+
   despliegueinfraestructuradispersion: IDespliegueinfraestructuradispersion | null = null;
   origenValues = Object.keys(Origen);
 
@@ -40,7 +47,8 @@ export class DespliegueinfraestructuradispersionUpdateComponent implements OnIni
     protected pozoService: PozoService,
     protected despliegueInfraestructuraTroncalDistribucionService: DespliegueInfraestructuraTroncalDistribucionService,
     protected proveedorService: ProveedorService,
-    protected activatedRoute: ActivatedRoute
+    protected activatedRoute: ActivatedRoute,
+    private formBuilder: FormBuilder
   ) {}
 
   comparePozo = (o1: IPozo | null, o2: IPozo | null): boolean => this.pozoService.comparePozo(o1, o2);
@@ -61,6 +69,23 @@ export class DespliegueinfraestructuradispersionUpdateComponent implements OnIni
 
       this.loadRelationshipsOptions();
     });
+    this.form_val = this.formBuilder.group({
+      metrajeInicial: new FormControl(0),
+      metrajeFinal: new FormControl(0),
+      valorMetro: new FormControl(0),
+      calculoValorPago: new FormControl(0),
+    });
+  }
+
+  calcvalor(event: any) {
+    console.log(event.target.value);
+    let metrajei = this.editForm.controls['metrajeInicial'].value || 0;
+    let metrajef = this.editForm.controls['metrajeFinal'].value || 0;
+    let valormet = this.editForm.controls['valorMetro'].value || 0;
+
+    let result = (metrajef - metrajei) * valormet;
+
+    this.editForm.controls['calculoValorPago'].setValue(parseFloat(result.toFixed(2)));
   }
 
   previousState(): void {
