@@ -3,6 +3,7 @@
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
       <span class="logo-img"></span>
       <span jhiTranslate="global.title" class="navbar-title">SistemasADM</span>
+
       <span class="navbar-version">{{ version }}</span>
     </a>
     <a
@@ -274,6 +275,16 @@
             </span>
           </a>
           <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="account-menu">
+            <div class="alert alert-success" *ngSwitchCase="true">
+              <span
+                id="home-logged-message"
+                *ngIf="account"
+                jhiTranslate="home.logged.message2"
+                [translateValues]="{ username: account.login }"
+                >Está conectado como "{{ account.login }}".</span
+              >
+            </div>
+
             <li *ngSwitchCase="true">
               <a
                 class="dropdown-item"

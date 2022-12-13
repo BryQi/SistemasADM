@@ -1,13 +1,14 @@
 {
   "home": {
-    "title": "Welcome, Java Hipster!",
-    "subtitle": "This is your homepage",
+    "title": "",
+    "subtitle": "LOJA's Municipal Ductería Administration System",
     "logged": {
-      "message": "You are logged in as user \"{{username}}\"."
+      "message": "¡Welcome {{username}}!",
+      "message2": "You are commented as \"{{username}}\""
     },
-    "question": "If you have any question on JHipster:",
+    "question": "Contact:",
     "link": {
-      "homepage": "JHipster homepage",
+      "homepage": "Municipality of Loja",
       "stackoverflow": "JHipster on Stack Overflow",
       "bugtracker": "JHipster bug tracker",
       "chat": "JHipster public chat room",
