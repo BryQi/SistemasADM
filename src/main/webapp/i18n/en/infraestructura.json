@@ -20,7 +20,7 @@
       "id": "ID",
       "tipo": "Tipo",
       "createdAt": "Created At",
-      "idProveedor": "Id Proveedor",
+      "idProveedor": "Service Provider",
       "pozo": "Pozo"
     }
   }

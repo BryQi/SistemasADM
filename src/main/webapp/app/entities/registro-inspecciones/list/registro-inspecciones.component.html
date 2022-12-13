@@ -38,6 +38,20 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+
+          <th scope="col" jhiSortBy="idPozo.id">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.registroInspecciones.idPozo">Pozo Inspeccionado</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="provedorinspeciones.id">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.registroInspecciones.provedorinspeciones">Provedor Inspeccionado</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+
           <th scope="col" jhiSortBy="cumpleAutorizacion">
             <div class="d-flex">
               <span jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleAutorizacion">Cumple Autorizacion</span>
@@ -86,12 +100,7 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="idPozo.id">
-            <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.registroInspecciones.idPozo">Id Pozo</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
+
           <th scope="col"></th>
         </tr>
       </thead>
@@ -100,6 +109,20 @@
           <td>
             <a [routerLink]="['/registro-inspecciones', registroInspecciones.id, 'view']">{{ registroInspecciones.id }}</a>
           </td>
+
+          <td>
+            <div *ngIf="registroInspecciones.idPozo">
+              <a [routerLink]="['/pozo', registroInspecciones.idPozo.id, 'view']">{{ registroInspecciones.idPozo.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="registroInspecciones.provedorinspeciones">
+              <a [routerLink]="['/proveedor', registroInspecciones.provedorinspeciones.id, 'view']">{{
+                registroInspecciones.provedorinspeciones.id
+              }}</a>
+            </div>
+          </td>
+
           <td>{{ registroInspecciones.cumpleAutorizacion }}</td>
           <td>{{ registroInspecciones.numeroAutorizacion }}</td>
           <td>{{ registroInspecciones.cumpleSenaletica }}</td>
@@ -108,11 +131,7 @@
           <td>{{ registroInspecciones.cumpleArregloCables }}</td>
           <td>{{ registroInspecciones.cumplelimpiezaOrdenPozo }}</td>
           <td>{{ registroInspecciones.createdAt | formatMediumDatetime }}</td>
-          <td>
-            <div *ngIf="registroInspecciones.idPozo">
-              <a [routerLink]="['/pozo', registroInspecciones.idPozo.id, 'view']">{{ registroInspecciones.idPozo.id }}</a>
-            </div>
-          </td>
+
           <td class="text-end">
             <div class="btn-group">
               <button

@@ -34,24 +34,36 @@
         <dd>
           <span>{{ despliegueInfraestructuraTroncalDistribucion.metrajeFinal }}</span>
         </dd>
-        <dt><span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.calculoValorPago">Calculo Valor Pago</span></dt>
-        <dd>
-          <span>{{ despliegueInfraestructuraTroncalDistribucion.calculoValorPago }}</span>
-        </dd>
-        <dt><span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.createdAt">Created At</span></dt>
-        <dd>
-          <span>{{ despliegueInfraestructuraTroncalDistribucion.createdAt | formatMediumDatetime }}</span>
-        </dd>
+
         <dt><span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.valorMetro">Valor Metro</span></dt>
         <dd>
           <span>{{ despliegueInfraestructuraTroncalDistribucion.valorMetro }}</span>
         </dd>
+
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.calculoValorPago">Calculo Valor Pago</span></dt>
+        <dd>
+          <span>{{ despliegueInfraestructuraTroncalDistribucion.calculoValorPago }}</span>
+        </dd>
+
         <dt><span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.pozo">Pozo</span></dt>
         <dd>
           <span *ngFor="let pozo of despliegueInfraestructuraTroncalDistribucion.pozos; let last = last">
             <a [routerLink]="['/pozo', pozo.id, 'view']">{{ pozo.id }}</a
             >{{ last ? '' : ', ' }}
           </span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.infraestructura">Infraestructura</span></dt>
+        <dd>
+          <div *ngIf="despliegueInfraestructuraTroncalDistribucion.infraestructura">
+            <a [routerLink]="['/infraestructura', despliegueInfraestructuraTroncalDistribucion.infraestructura.id, 'view']">{{
+              despliegueInfraestructuraTroncalDistribucion.infraestructura.id
+            }}</a>
+          </div>
+        </dd>
+
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ despliegueInfraestructuraTroncalDistribucion.createdAt | formatMediumDatetime }}</span>
         </dd>
       </dl>
 

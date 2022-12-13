@@ -13,5 +13,11 @@
                                  constraintName="fk_registro_inspecciones__id_pozo_id"
                                  referencedColumnNames="id"
                                  referencedTableName="pozo"/>
+
+        <addForeignKeyConstraint baseColumnNames="provedorinspeciones_id"
+                                 baseTableName="registro_inspecciones"
+                                 constraintName="fk_registro_inspecciones__provedorinspeciones_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="proveedor"/>
     </changeSet>
 </databaseChangeLog>

@@ -51,6 +51,12 @@
       "otherEntityRelationshipName": "registroInspecciones",
       "relationshipName": "idPozo",
       "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "proveedor",
+      "relationshipName": "provedorinspeciones",
+      "relationshipType": "many-to-one"
     }
   ],
   "service": "serviceImpl"

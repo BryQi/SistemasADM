@@ -36,10 +36,6 @@ public class Autorizaciones implements Serializable {
     private String direccionOrigen;
 
     @NotNull
-    @Column(name = "direccion_destino", nullable = false)
-    private Double direccionDestino;
-
-    @NotNull
     @Column(name = "fecha_operacion", nullable = false)
     private LocalDate fechaOperacion;
 
@@ -63,17 +59,25 @@ public class Autorizaciones implements Serializable {
     @Column(name = "created_at", nullable = false)
     private ZonedDateTime createdAt;
 
-    @JsonIgnoreProperties(value = { "idPozo" }, allowSetters = true)
-    @OneToOne
-    @JoinColumn(unique = true)
-    private RegistroInspecciones registroInspecciones;
+    @NotNull
+    @Column(name = "direccion_destino", nullable = false)
+    private String direccionDestino;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "despliegueinfraestructuradispersions", "autorizaciones", "infraestructuras" }, allowSetters = true)
+    private Proveedor idProveedor;
 
     @ManyToOne
     @JsonIgnoreProperties(
-        value = { "despliegueinfraestructuradispersions", "autorizaciones", "infraestructuras", "user" },
+        value = {
+            "fotoPozos",
+            "registroInspecciones",
+            "idDespliegueInfraestructuraTroncalDistribucions",
+            "idDespliegueinfraestructuradispersions",
+        },
         allowSetters = true
     )
-    private Proveedor idProveedor;
+    private Pozo pozo;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -114,19 +118,6 @@ public class Autorizaciones implements Serializable {
 
     public void setDireccionOrigen(String direccionOrigen) {
         this.direccionOrigen = direccionOrigen;
-    }
-
-    public Double getDireccionDestino() {
-        return this.direccionDestino;
-    }
-
-    public Autorizaciones direccionDestino(Double direccionDestino) {
-        this.setDireccionDestino(direccionDestino);
-        return this;
-    }
-
-    public void setDireccionDestino(Double direccionDestino) {
-        this.direccionDestino = direccionDestino;
     }
 
     public LocalDate getFechaOperacion() {
@@ -207,17 +198,17 @@ public class Autorizaciones implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public RegistroInspecciones getRegistroInspecciones() {
-        return this.registroInspecciones;
+    public String getDireccionDestino() {
+        return this.direccionDestino;
     }
 
-    public void setRegistroInspecciones(RegistroInspecciones registroInspecciones) {
-        this.registroInspecciones = registroInspecciones;
-    }
-
-    public Autorizaciones registroInspecciones(RegistroInspecciones registroInspecciones) {
-        this.setRegistroInspecciones(registroInspecciones);
+    public Autorizaciones direccionDestino(String direccionDestino) {
+        this.setDireccionDestino(direccionDestino);
         return this;
+    }
+
+    public void setDireccionDestino(String direccionDestino) {
+        this.direccionDestino = direccionDestino;
     }
 
     public Proveedor getIdProveedor() {
@@ -230,6 +221,19 @@ public class Autorizaciones implements Serializable {
 
     public Autorizaciones idProveedor(Proveedor proveedor) {
         this.setIdProveedor(proveedor);
+        return this;
+    }
+
+    public Pozo getPozo() {
+        return this.pozo;
+    }
+
+    public void setPozo(Pozo pozo) {
+        this.pozo = pozo;
+    }
+
+    public Autorizaciones pozo(Pozo pozo) {
+        this.setPozo(pozo);
         return this;
     }
 
@@ -259,13 +263,13 @@ public class Autorizaciones implements Serializable {
             "id=" + getId() +
             ", cliente='" + getCliente() + "'" +
             ", direccionOrigen='" + getDireccionOrigen() + "'" +
-            ", direccionDestino=" + getDireccionDestino() +
             ", fechaOperacion='" + getFechaOperacion() + "'" +
             ", ventanaTrabajo='" + getVentanaTrabajo() + "'" +
             ", contactoTecnico='" + getContactoTecnico() + "'" +
             ", tipoTrabajo='" + getTipoTrabajo() + "'" +
             ", observaciones='" + getObservaciones() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
+            ", direccionDestino='" + getDireccionDestino() + "'" +
             "}";
     }
 }

@@ -26,6 +26,38 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.infraestructura.idProveedor" for="field_idProveedor"
+            >Proveedor de Servicio</label
+          >
+          <select
+            class="form-control"
+            id="field_idProveedor"
+            data-cy="idProveedor"
+            name="idProveedor"
+            formControlName="idProveedor"
+            [compareWith]="compareProveedor"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="proveedorOption" *ngFor="let proveedorOption of proveedorsSharedCollection">{{ proveedorOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="sistemasAdmApp.infraestructura.pozo" for="field_pozos">Pozo</label>
+          <select
+            class="form-control"
+            id="field_pozos"
+            data-cy="pozo"
+            multiple
+            name="pozos"
+            formControlName="pozos"
+            [compareWith]="comparePozo"
+          >
+            <option [ngValue]="pozoOption" *ngFor="let pozoOption of pozosSharedCollection">{{ pozoOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
           <label class="form-label" jhiTranslate="sistemasAdmApp.infraestructura.createdAt" for="field_createdAt">Created At</label>
           <div class="d-flex">
             <input
@@ -54,36 +86,6 @@
               Este campo debe ser una fecha y hora.
             </small>
           </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="sistemasAdmApp.infraestructura.idProveedor" for="field_idProveedor">Id Proveedor</label>
-          <select
-            class="form-control"
-            id="field_idProveedor"
-            data-cy="idProveedor"
-            name="idProveedor"
-            formControlName="idProveedor"
-            [compareWith]="compareProveedor"
-          >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="proveedorOption" *ngFor="let proveedorOption of proveedorsSharedCollection">{{ proveedorOption.id }}</option>
-          </select>
-        </div>
-
-        <div class="row mb-3">
-          <label jhiTranslate="sistemasAdmApp.infraestructura.pozo" for="field_pozos">Pozo</label>
-          <select
-            class="form-control"
-            id="field_pozos"
-            data-cy="pozo"
-            multiple
-            name="pozos"
-            formControlName="pozos"
-            [compareWith]="comparePozo"
-          >
-            <option [ngValue]="pozoOption" *ngFor="let pozoOption of pozosSharedCollection">{{ pozoOption.id }}</option>
-          </select>
         </div>
       </div>
 

@@ -74,12 +74,6 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="user.login">
-            <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.proveedor.user">User</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -94,9 +88,6 @@
           <td>{{ proveedor.direccion }}</td>
           <td>{{ proveedor.celular }}</td>
           <td>{{ proveedor.createdAt | formatMediumDatetime }}</td>
-          <td>
-            {{ proveedor.user?.login }}
-          </td>
           <td class="text-end">
             <div class="btn-group">
               <button

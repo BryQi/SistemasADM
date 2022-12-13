@@ -57,10 +57,32 @@
             </option>
           </select>
         </div>
-
         <div class="row mb-3">
           <label class="form-label" for="field_ubicacion2">Selecciona ubicación del pozo</label>
           <div id="map"></div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.pozo.longitud" for="field_longitud">Longitud</label>
+          <input
+            type="text"
+            class="form-control"
+            name="longitud"
+            id="field_longitud"
+            data-cy="longitud"
+            formControlName="longitud"
+            [(ngModel)]="field_longitud"
+            readonly
+          />
+          <div *ngIf="editForm.get('longitud')!.invalid && (editForm.get('longitud')!.dirty || editForm.get('longitud')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('longitud')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+          </div>
         </div>
 
         <div class="row mb-3">
@@ -73,35 +95,12 @@
             data-cy="latitud"
             formControlName="latitud"
             [(ngModel)]="field_latitud"
+            readonly
           />
           <div *ngIf="editForm.get('latitud')!.invalid && (editForm.get('latitud')!.dirty || editForm.get('latitud')!.touched)">
             <small
               class="form-text text-danger"
               *ngIf="editForm.get('latitud')?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              Este campo es obligatorio.
-            </small>
-          </div>
-        </div>
-
-        <!--<button (click)="modificarValor()">Cambiar nombre a 'Otro nombre'</button>-->
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="sistemasAdmApp.pozo.longitud" for="field_longitud">Longitud</label>
-          <input
-            type="text"
-            class="form-control"
-            name="longitud"
-            id="field_longitud"
-            data-cy="longitud"
-            formControlName="longitud"
-            [(ngModel)]="field_longitud"
-          />
-          <div *ngIf="editForm.get('longitud')!.invalid && (editForm.get('longitud')!.dirty || editForm.get('longitud')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('longitud')?.errors?.required"
               jhiTranslate="entity.validation.required"
             >
               Este campo es obligatorio.

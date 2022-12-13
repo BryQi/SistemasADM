@@ -20,9 +20,6 @@
             <column name="direccion_origen" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="direccion_destino" type="double">
-                <constraints nullable="false" />
-            </column>
             <column name="fecha_operacion" type="date">
                 <constraints nullable="false" />
             </column>
@@ -41,10 +38,13 @@
             <column name="created_at" type="${datetimeType}">
                 <constraints nullable="false" />
             </column>
-            <column name="registro_inspecciones_id" type="bigint">
-                <constraints nullable="true" unique="true" uniqueConstraintName="ux_autorizaciones__registro_inspecciones_id" />
+            <column name="direccion_destino" type="varchar(255)">
+                <constraints nullable="false" />
             </column>
             <column name="id_proveedor_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="pozo_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
@@ -71,13 +71,13 @@
             <column name="id" type="numeric"/>
             <column name="cliente" type="string"/>
             <column name="direccion_origen" type="string"/>
-            <column name="direccion_destino" type="numeric"/>
             <column name="fecha_operacion" type="date"/>
             <column name="ventana_trabajo" type="string"/>
             <column name="contacto_tecnico" type="string"/>
             <column name="tipo_trabajo" type="string"/>
             <column name="observaciones" type="string"/>
             <column name="created_at" type="date"/>
+            <column name="direccion_destino" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

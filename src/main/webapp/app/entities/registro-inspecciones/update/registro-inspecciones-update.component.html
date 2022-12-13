@@ -18,6 +18,38 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.idPozo" for="field_idPozo">Pozo Inspeccionado</label>
+          <select
+            class="form-control"
+            id="field_idPozo"
+            data-cy="idPozo"
+            name="idPozo"
+            formControlName="idPozo"
+            [compareWith]="comparePozo"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="pozoOption" *ngFor="let pozoOption of pozosSharedCollection">{{ pozoOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.provedorinspeciones" for="field_provedorinspeciones"
+            >Proveedor Inspeccionado</label
+          >
+          <select
+            class="form-control"
+            id="field_provedorinspeciones"
+            data-cy="provedorinspeciones"
+            name="provedorinspeciones"
+            formControlName="provedorinspeciones"
+            [compareWith]="compareProveedor"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="proveedorOption" *ngFor="let proveedorOption of proveedorsSharedCollection">{{ proveedorOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
           <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleAutorizacion" for="field_cumpleAutorizacion"
             >Cumple Autorizacion</label
           >
@@ -140,7 +172,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.createdAt" for="field_createdAt">Created At</label>
+          <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.createdAt" for="field_createdAt">Creado el</label>
           <div class="d-flex">
             <input
               id="field_createdAt"
@@ -168,21 +200,6 @@
               Este campo debe ser una fecha y hora.
             </small>
           </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.idPozo" for="field_idPozo">Id Pozo</label>
-          <select
-            class="form-control"
-            id="field_idPozo"
-            data-cy="idPozo"
-            name="idPozo"
-            formControlName="idPozo"
-            [compareWith]="comparePozo"
-          >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="pozoOption" *ngFor="let pozoOption of pozosSharedCollection">{{ pozoOption.id }}</option>
-          </select>
         </div>
       </div>
 

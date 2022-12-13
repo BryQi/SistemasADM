@@ -65,6 +65,12 @@
       "ownerSide": true,
       "relationshipName": "pozo",
       "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "infraestructura",
+      "relationshipName": "infraestructura",
+      "relationshipType": "many-to-one"
     }
   ],
   "service": "serviceImpl"

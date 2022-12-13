@@ -33,6 +33,8 @@ public class RegistroInspeccionesDTO implements Serializable {
 
     private PozoDTO idPozo;
 
+    private ProveedorDTO provedorinspeciones;
+
     public Long getId() {
         return id;
     }
@@ -113,6 +115,14 @@ public class RegistroInspeccionesDTO implements Serializable {
         this.idPozo = idPozo;
     }
 
+    public ProveedorDTO getProvedorinspeciones() {
+        return provedorinspeciones;
+    }
+
+    public void setProvedorinspeciones(ProveedorDTO provedorinspeciones) {
+        this.provedorinspeciones = provedorinspeciones;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -148,6 +158,7 @@ public class RegistroInspeccionesDTO implements Serializable {
             ", cumplelimpiezaOrdenPozo='" + getCumplelimpiezaOrdenPozo() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
             ", idPozo=" + getIdPozo() +
+            ", provedorinspeciones=" + getProvedorinspeciones() +
             "}";
     }
 }

@@ -11,6 +11,8 @@ import { DespliegueInfraestructuraTroncalDistribucionService } from '../service/
 import { IDespliegueInfraestructuraTroncalDistribucion } from '../despliegue-infraestructura-troncal-distribucion.model';
 import { IPozo } from 'app/entities/pozo/pozo.model';
 import { PozoService } from 'app/entities/pozo/service/pozo.service';
+import { IInfraestructura } from 'app/entities/infraestructura/infraestructura.model';
+import { InfraestructuraService } from 'app/entities/infraestructura/service/infraestructura.service';
 
 import { DespliegueInfraestructuraTroncalDistribucionUpdateComponent } from './despliegue-infraestructura-troncal-distribucion-update.component';
 
@@ -21,6 +23,7 @@ describe('DespliegueInfraestructuraTroncalDistribucion Management Update Compone
   let despliegueInfraestructuraTroncalDistribucionFormService: DespliegueInfraestructuraTroncalDistribucionFormService;
   let despliegueInfraestructuraTroncalDistribucionService: DespliegueInfraestructuraTroncalDistribucionService;
   let pozoService: PozoService;
+  let infraestructuraService: InfraestructuraService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -44,6 +47,7 @@ describe('DespliegueInfraestructuraTroncalDistribucion Management Update Compone
     despliegueInfraestructuraTroncalDistribucionFormService = TestBed.inject(DespliegueInfraestructuraTroncalDistribucionFormService);
     despliegueInfraestructuraTroncalDistribucionService = TestBed.inject(DespliegueInfraestructuraTroncalDistribucionService);
     pozoService = TestBed.inject(PozoService);
+    infraestructuraService = TestBed.inject(InfraestructuraService);
 
     comp = fixture.componentInstance;
   });
@@ -71,15 +75,40 @@ describe('DespliegueInfraestructuraTroncalDistribucion Management Update Compone
       expect(comp.pozosSharedCollection).toEqual(expectedCollection);
     });
 
+    it('Should call Infraestructura query and add missing value', () => {
+      const despliegueInfraestructuraTroncalDistribucion: IDespliegueInfraestructuraTroncalDistribucion = { id: 456 };
+      const infraestructura: IInfraestructura = { id: 13653 };
+      despliegueInfraestructuraTroncalDistribucion.infraestructura = infraestructura;
+
+      const infraestructuraCollection: IInfraestructura[] = [{ id: 98994 }];
+      jest.spyOn(infraestructuraService, 'query').mockReturnValue(of(new HttpResponse({ body: infraestructuraCollection })));
+      const additionalInfraestructuras = [infraestructura];
+      const expectedCollection: IInfraestructura[] = [...additionalInfraestructuras, ...infraestructuraCollection];
+      jest.spyOn(infraestructuraService, 'addInfraestructuraToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ despliegueInfraestructuraTroncalDistribucion });
+      comp.ngOnInit();
+
+      expect(infraestructuraService.query).toHaveBeenCalled();
+      expect(infraestructuraService.addInfraestructuraToCollectionIfMissing).toHaveBeenCalledWith(
+        infraestructuraCollection,
+        ...additionalInfraestructuras.map(expect.objectContaining)
+      );
+      expect(comp.infraestructurasSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const despliegueInfraestructuraTroncalDistribucion: IDespliegueInfraestructuraTroncalDistribucion = { id: 456 };
       const pozo: IPozo = { id: 70073 };
       despliegueInfraestructuraTroncalDistribucion.pozos = [pozo];
+      const infraestructura: IInfraestructura = { id: 45134 };
+      despliegueInfraestructuraTroncalDistribucion.infraestructura = infraestructura;
 
       activatedRoute.data = of({ despliegueInfraestructuraTroncalDistribucion });
       comp.ngOnInit();
 
       expect(comp.pozosSharedCollection).toContain(pozo);
+      expect(comp.infraestructurasSharedCollection).toContain(infraestructura);
       expect(comp.despliegueInfraestructuraTroncalDistribucion).toEqual(despliegueInfraestructuraTroncalDistribucion);
     });
   });
@@ -166,6 +195,16 @@ describe('DespliegueInfraestructuraTroncalDistribucion Management Update Compone
         jest.spyOn(pozoService, 'comparePozo');
         comp.comparePozo(entity, entity2);
         expect(pozoService.comparePozo).toHaveBeenCalledWith(entity, entity2);
+      });
+    });
+
+    describe('compareInfraestructura', () => {
+      it('Should forward to infraestructuraService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(infraestructuraService, 'compareInfraestructura');
+        comp.compareInfraestructura(entity, entity2);
+        expect(infraestructuraService.compareInfraestructura).toHaveBeenCalledWith(entity, entity2);
       });
     });
   });

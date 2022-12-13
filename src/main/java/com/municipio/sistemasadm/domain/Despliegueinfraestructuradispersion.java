@@ -100,14 +100,11 @@ public class Despliegueinfraestructuradispersion implements Serializable {
     private Set<Pozo> pozos = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "despliegueInfraestructuraDispersions", "pagos", "pozos" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "despliegueInfraestructuraDispersions", "pagos", "pozos", "infraestructura" }, allowSetters = true)
     private DespliegueInfraestructuraTroncalDistribucion idDespliegueInfraestructuraTroncalDistribucion;
 
     @ManyToOne
-    @JsonIgnoreProperties(
-        value = { "despliegueinfraestructuradispersions", "autorizaciones", "infraestructuras", "user" },
-        allowSetters = true
-    )
+    @JsonIgnoreProperties(value = { "despliegueinfraestructuradispersions", "autorizaciones", "infraestructuras" }, allowSetters = true)
     private Proveedor idProveedor;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

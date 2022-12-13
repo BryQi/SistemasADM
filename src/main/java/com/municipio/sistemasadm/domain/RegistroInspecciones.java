@@ -63,6 +63,10 @@ public class RegistroInspecciones implements Serializable {
     )
     private Pozo idPozo;
 
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "despliegueinfraestructuradispersions", "autorizaciones", "infraestructuras" }, allowSetters = true)
+    private Proveedor provedorinspeciones;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -192,6 +196,19 @@ public class RegistroInspecciones implements Serializable {
 
     public RegistroInspecciones idPozo(Pozo pozo) {
         this.setIdPozo(pozo);
+        return this;
+    }
+
+    public Proveedor getProvedorinspeciones() {
+        return this.provedorinspeciones;
+    }
+
+    public void setProvedorinspeciones(Proveedor proveedor) {
+        this.provedorinspeciones = proveedor;
+    }
+
+    public RegistroInspecciones provedorinspeciones(Proveedor proveedor) {
+        this.setProvedorinspeciones(proveedor);
         return this;
     }
 

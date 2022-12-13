@@ -126,6 +126,92 @@ public class CacheConfiguration {
                 com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
                 ".despliegueInfraestructuraDispersions"
             );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(cm, com.municipio.sistemasadm.domain.Proveedor.class.getName() + ".users");
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
             // jhipster-needle-ehcache-add-entry
         };
     }

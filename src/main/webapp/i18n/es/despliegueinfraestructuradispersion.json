@@ -30,9 +30,9 @@
       "createdAt": "Created At",
       "valorMetro": "Valor Metro",
       "pago": "Pago",
-      "pozo": "Pozo",
-      "idDespliegueInfraestructuraTroncalDistribucion": "Id Despliegue Infraestructura Troncal Distribucion",
-      "idProveedor": "Id Proveedor"
+      "pozo": "Pozos Utilizados",
+      "idDespliegueInfraestructuraTroncalDistribucion": "Troncal de Distribucion Usada",
+      "idProveedor": "Proveedor de Servicio"
     }
   }
 }

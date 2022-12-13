@@ -26,10 +26,10 @@ public class PozoDTO implements Serializable {
     private ZonedDateTime createdAt;
 
     @NotNull
-    private String latitud;
+    private String longitud;
 
     @NotNull
-    private String longitud;
+    private String latitud;
 
     public Long getId() {
         return id;
@@ -71,20 +71,20 @@ public class PozoDTO implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public String getLatitud() {
-        return latitud;
-    }
-
-    public void setLatitud(String latitud) {
-        this.latitud = latitud;
-    }
-
     public String getLongitud() {
         return longitud;
     }
 
     public void setLongitud(String longitud) {
         this.longitud = longitud;
+    }
+
+    public String getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
     }
 
     @Override
@@ -117,8 +117,8 @@ public class PozoDTO implements Serializable {
             ", direccion='" + getDireccion() + "'" +
             ", tipopozo='" + getTipopozo() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
-            ", latitud='" + getLatitud() + "'" +
             ", longitud='" + getLongitud() + "'" +
+            ", latitud='" + getLatitud() + "'" +
             "}";
     }
 }

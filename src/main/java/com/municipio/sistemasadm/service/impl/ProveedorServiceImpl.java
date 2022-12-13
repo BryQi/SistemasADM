@@ -69,15 +69,11 @@ public class ProveedorServiceImpl implements ProveedorService {
         return proveedorRepository.findAll(pageable).map(proveedorMapper::toDto);
     }
 
-    public Page<ProveedorDTO> findAllWithEagerRelationships(Pageable pageable) {
-        return proveedorRepository.findAllWithEagerRelationships(pageable).map(proveedorMapper::toDto);
-    }
-
     @Override
     @Transactional(readOnly = true)
     public Optional<ProveedorDTO> findOne(Long id) {
         log.debug("Request to get Proveedor : {}", id);
-        return proveedorRepository.findOneWithEagerRelationships(id).map(proveedorMapper::toDto);
+        return proveedorRepository.findById(id).map(proveedorMapper::toDto);
     }
 
     @Override

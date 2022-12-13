@@ -25,8 +25,9 @@
       "cumpleEtiquetado": "Cumple Etiquetado",
       "cumpleArregloCables": "Cumple Arreglo Cables",
       "cumplelimpiezaOrdenPozo": "Cumplelimpieza Orden Pozo",
-      "createdAt": "Created At",
-      "idPozo": "Id Pozo"
+      "createdAt": "Creado el",
+      "idPozo": "Pozo Inspeccionado",
+      "provedorinspeciones": "Proveedor Inspeccionado"
     }
   }
 }

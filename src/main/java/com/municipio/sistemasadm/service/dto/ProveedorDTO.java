@@ -31,8 +31,6 @@ public class ProveedorDTO implements Serializable {
     @NotNull
     private ZonedDateTime createdAt;
 
-    private UserDTO user;
-
     public Long getId() {
         return id;
     }
@@ -89,14 +87,6 @@ public class ProveedorDTO implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public UserDTO getUser() {
-        return user;
-    }
-
-    public void setUser(UserDTO user) {
-        this.user = user;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -129,7 +119,6 @@ public class ProveedorDTO implements Serializable {
             ", direccion='" + getDireccion() + "'" +
             ", celular=" + getCelular() +
             ", createdAt='" + getCreatedAt() + "'" +
-            ", user=" + getUser() +
             "}";
     }
 }

@@ -26,7 +26,6 @@ describe('Proveedor Form Service', () => {
             direccion: expect.any(Object),
             celular: expect.any(Object),
             createdAt: expect.any(Object),
-            user: expect.any(Object),
           })
         );
       });
@@ -43,7 +42,6 @@ describe('Proveedor Form Service', () => {
             direccion: expect.any(Object),
             celular: expect.any(Object),
             createdAt: expect.any(Object),
-            user: expect.any(Object),
           })
         );
       });

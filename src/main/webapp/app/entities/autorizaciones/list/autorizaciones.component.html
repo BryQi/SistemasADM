@@ -86,24 +86,27 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="createdAt">
-            <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.autorizaciones.createdAt">Created At</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="registroInspecciones.id">
-            <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.autorizaciones.registroInspecciones">Registro Inspecciones</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
+
           <th scope="col" jhiSortBy="idProveedor.id">
             <div class="d-flex">
               <span jhiTranslate="sistemasAdmApp.autorizaciones.idProveedor">Id Proveedor</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="pozo.id">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.autorizaciones.pozo">Pozo</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+
+          <th scope="col" jhiSortBy="createdAt">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.autorizaciones.createdAt">Created At</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+
           <th scope="col"></th>
         </tr>
       </thead>
@@ -122,19 +125,20 @@
           </td>
           <td>{{ autorizaciones.tipoTrabajo }}</td>
           <td>{{ autorizaciones.observaciones }}</td>
-          <td>{{ autorizaciones.createdAt | formatMediumDatetime }}</td>
-          <td>
-            <div *ngIf="autorizaciones.registroInspecciones">
-              <a [routerLink]="['/registro-inspecciones', autorizaciones.registroInspecciones.id, 'view']">{{
-                autorizaciones.registroInspecciones.id
-              }}</a>
-            </div>
-          </td>
+
           <td>
             <div *ngIf="autorizaciones.idProveedor">
               <a [routerLink]="['/proveedor', autorizaciones.idProveedor.id, 'view']">{{ autorizaciones.idProveedor.id }}</a>
             </div>
           </td>
+          <td>
+            <div *ngIf="autorizaciones.pozo">
+              <a [routerLink]="['/pozo', autorizaciones.pozo.id, 'view']">{{ autorizaciones.pozo.id }}</a>
+            </div>
+          </td>
+
+          <td>{{ autorizaciones.createdAt | formatMediumDatetime }}</td>
+
           <td class="text-end">
             <div class="btn-group">
               <button

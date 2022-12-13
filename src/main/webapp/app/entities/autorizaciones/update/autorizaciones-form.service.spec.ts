@@ -22,15 +22,15 @@ describe('Autorizaciones Form Service', () => {
             id: expect.any(Object),
             cliente: expect.any(Object),
             direccionOrigen: expect.any(Object),
-            direccionDestino: expect.any(Object),
             fechaOperacion: expect.any(Object),
             ventanaTrabajo: expect.any(Object),
             contactoTecnico: expect.any(Object),
             tipoTrabajo: expect.any(Object),
             observaciones: expect.any(Object),
             createdAt: expect.any(Object),
-            registroInspecciones: expect.any(Object),
+            direccionDestino: expect.any(Object),
             idProveedor: expect.any(Object),
+            pozo: expect.any(Object),
           })
         );
       });
@@ -43,15 +43,15 @@ describe('Autorizaciones Form Service', () => {
             id: expect.any(Object),
             cliente: expect.any(Object),
             direccionOrigen: expect.any(Object),
-            direccionDestino: expect.any(Object),
             fechaOperacion: expect.any(Object),
             ventanaTrabajo: expect.any(Object),
             contactoTecnico: expect.any(Object),
             tipoTrabajo: expect.any(Object),
             observaciones: expect.any(Object),
             createdAt: expect.any(Object),
-            registroInspecciones: expect.any(Object),
+            direccionDestino: expect.any(Object),
             idProveedor: expect.any(Object),
+            pozo: expect.any(Object),
           })
         );
       });

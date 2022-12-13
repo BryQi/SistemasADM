@@ -29,6 +29,7 @@ describe('RegistroInspecciones Form Service', () => {
             cumplelimpiezaOrdenPozo: expect.any(Object),
             createdAt: expect.any(Object),
             idPozo: expect.any(Object),
+            provedorinspeciones: expect.any(Object),
           })
         );
       });
@@ -48,6 +49,7 @@ describe('RegistroInspecciones Form Service', () => {
             cumplelimpiezaOrdenPozo: expect.any(Object),
             createdAt: expect.any(Object),
             idPozo: expect.any(Object),
+            provedorinspeciones: expect.any(Object),
           })
         );
       });

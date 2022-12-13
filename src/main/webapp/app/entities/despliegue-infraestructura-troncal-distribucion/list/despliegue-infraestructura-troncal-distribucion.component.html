@@ -72,24 +72,35 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="calculoValorPago">
-            <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.calculoValorPago">Calculo Valor Pago</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="createdAt">
-            <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.createdAt">Created At</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
+
           <th scope="col" jhiSortBy="valorMetro">
             <div class="d-flex">
               <span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.valorMetro">Valor Metro</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+
+          <th scope="col" jhiSortBy="calculoValorPago">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.calculoValorPago">Calculo Valor Pago</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+
+          <th scope="col" jhiSortBy="infraestructura.id">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.infraestructura">Infraestructura</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+
+          <th scope="col" jhiSortBy="createdAt">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.createdAt">Created At</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+
           <th scope="col"></th>
         </tr>
       </thead>
@@ -108,9 +119,19 @@
           <td>{{ despliegueInfraestructuraTroncalDistribucion.descripcionRuta }}</td>
           <td>{{ despliegueInfraestructuraTroncalDistribucion.metrajeInicial }}</td>
           <td>{{ despliegueInfraestructuraTroncalDistribucion.metrajeFinal }}</td>
-          <td>{{ despliegueInfraestructuraTroncalDistribucion.calculoValorPago }}</td>
-          <td>{{ despliegueInfraestructuraTroncalDistribucion.createdAt | formatMediumDatetime }}</td>
           <td>{{ despliegueInfraestructuraTroncalDistribucion.valorMetro }}</td>
+          <td>{{ despliegueInfraestructuraTroncalDistribucion.calculoValorPago }}</td>
+
+          <td>
+            <div *ngIf="despliegueInfraestructuraTroncalDistribucion.infraestructura">
+              <a [routerLink]="['/infraestructura', despliegueInfraestructuraTroncalDistribucion.infraestructura.id, 'view']">{{
+                despliegueInfraestructuraTroncalDistribucion.infraestructura.id
+              }}</a>
+            </div>
+          </td>
+
+          <td>{{ despliegueInfraestructuraTroncalDistribucion.createdAt | formatMediumDatetime }}</td>
+
           <td class="text-end">
             <div class="btn-group">
               <button

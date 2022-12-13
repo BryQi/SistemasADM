@@ -17,6 +17,7 @@ import { DespliegueInfraestructuraTroncalDistribucionService } from 'app/entitie
 import { IProveedor } from 'app/entities/proveedor/proveedor.model';
 import { ProveedorService } from 'app/entities/proveedor/service/proveedor.service';
 import { Origen } from 'app/entities/enumerations/origen.model';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'jhi-despliegueinfraestructuradispersion-update',
@@ -33,6 +34,8 @@ export class DespliegueinfraestructuradispersionUpdateComponent implements OnIni
 
   editForm: DespliegueinfraestructuradispersionFormGroup =
     this.despliegueinfraestructuradispersionFormService.createDespliegueinfraestructuradispersionFormGroup();
+  form_val: any;
+  formBuilder: any;
 
   constructor(
     protected despliegueinfraestructuradispersionService: DespliegueinfraestructuradispersionService,
@@ -61,6 +64,23 @@ export class DespliegueinfraestructuradispersionUpdateComponent implements OnIni
 
       this.loadRelationshipsOptions();
     });
+    this.form_val = this.formBuilder.group({
+      metrajeInicial: new FormControl(0),
+      metrajeFinal: new FormControl(0),
+      valorMetro: new FormControl(0),
+      calculoValorPago: new FormControl(0),
+    });
+  }
+
+  calcvalor(event: any) {
+    console.log(event.target.value);
+    let metrajei = this.editForm.controls['metrajeInicial'].value || 0;
+    let metrajef = this.editForm.controls['metrajeFinal'].value || 0;
+    let valormet = this.editForm.controls['valorMetro'].value || 0;
+
+    let result = (metrajef - metrajei) * valormet;
+
+    this.editForm.controls['calculoValorPago'].setValue(parseFloat(result.toFixed(2)));
   }
 
   previousState(): void {

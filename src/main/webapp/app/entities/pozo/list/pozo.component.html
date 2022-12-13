@@ -56,9 +56,10 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="createdAt">
+
+          <th scope="col" jhiSortBy="longitud">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.pozo.createdAt">Created At</span>
+              <span jhiTranslate="sistemasAdmApp.pozo.longitud">Longitud</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -68,9 +69,9 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="longitud">
+          <th scope="col" jhiSortBy="createdAt">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.pozo.longitud">Longitud</span>
+              <span jhiTranslate="sistemasAdmApp.pozo.createdAt">Created At</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -85,9 +86,11 @@
           <td>{{ pozo.numeropozo }}</td>
           <td>{{ pozo.direccion }}</td>
           <td jhiTranslate="{{ 'sistemasAdmApp.TipoPozo.' + pozo.tipopozo }}">{{ pozo.tipopozo }}</td>
-          <td>{{ pozo.createdAt | formatMediumDatetime }}</td>
-          <td>{{ pozo.latitud }}</td>
+
           <td>{{ pozo.longitud }}</td>
+          <td>{{ pozo.latitud }}</td>
+
+          <td>{{ pozo.createdAt | formatMediumDatetime }}</td>
           <td class="text-end">
             <div class="btn-group">
               <button type="submit" [routerLink]="['/pozo', pozo.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">

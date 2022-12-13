@@ -37,10 +37,7 @@ public class Infraestructura implements Serializable {
     private ZonedDateTime createdAt;
 
     @ManyToOne
-    @JsonIgnoreProperties(
-        value = { "despliegueinfraestructuradispersions", "autorizaciones", "infraestructuras", "user" },
-        allowSetters = true
-    )
+    @JsonIgnoreProperties(value = { "despliegueinfraestructuradispersions", "autorizaciones", "infraestructuras" }, allowSetters = true)
     private Proveedor idProveedor;
 
     @ManyToMany

@@ -8,9 +8,15 @@
     -->
     <changeSet id="20221201202114-2" author="jhipster">
 
+        <addForeignKeyConstraint baseColumnNames="proveedor_id"
+                                 baseTableName="rel_proveedor__user"
+                                 constraintName="fk_rel_proveedor__user__proveedor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="proveedor"/>
+
         <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="proveedor"
-                                 constraintName="fk_proveedor__user_id"
+                                 baseTableName="rel_proveedor__user"
+                                 constraintName="fk_rel_proveedor__user__user_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
     </changeSet>

@@ -48,10 +48,18 @@
         <dd>
           <span>{{ registroInspecciones.createdAt | formatMediumDatetime }}</span>
         </dd>
-        <dt><span jhiTranslate="sistemasAdmApp.registroInspecciones.idPozo">Id Pozo</span></dt>
+        <dt><span jhiTranslate="sistemasAdmApp.registroInspecciones.idPozo">Pozo Inspeccionado</span></dt>
         <dd>
           <div *ngIf="registroInspecciones.idPozo">
             <a [routerLink]="['/pozo', registroInspecciones.idPozo.id, 'view']">{{ registroInspecciones.idPozo.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.registroInspecciones.provedorinspeciones">Provedor Inspeciones</span></dt>
+        <dd>
+          <div *ngIf="registroInspecciones.provedorinspeciones">
+            <a [routerLink]="['/proveedor', registroInspecciones.provedorinspeciones.id, 'view']">{{
+              registroInspecciones.provedorinspeciones.id
+            }}</a>
           </div>
         </dd>
       </dl>

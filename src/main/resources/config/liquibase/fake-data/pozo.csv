@@ -1,4 +1,4 @@
-id;numeropozo;direccion;tipopozo;created_at;latitud;longitud
+id;numeropozo;direccion;tipopozo;created_at;longitud;latitud
 1;Paseo copy Hormigon;PCI;PozodePaso;2022-12-01T12:52:18;Guantes;Valenciana Paraguay
 2;Borders Desarrollador;partnerships;PozodePaso;2022-12-01T02:18:56;back el;Raton Juguetería
 3;Islands;Mascotas Adelante;PozodePaso;2022-12-01T11:01:05;Account;Metal Galicia Inteligente

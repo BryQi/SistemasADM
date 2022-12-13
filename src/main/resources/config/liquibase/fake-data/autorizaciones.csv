@@ -1,11 +1,11 @@
-id;cliente;direccion_origen;direccion_destino;fecha_operacion;ventana_trabajo;contacto_tecnico;tipo_trabajo;observaciones;created_at
-1;methodologies;Borders Adelante;22968;2022-12-01;Borders al calculate;InSitu;Gris;Estratega Gris;2022-12-01T07:46:49
-2;sistémica;Bricolaje;18335;2022-11-30;Silla;InSitu;Marroquinería invoice Mauritania;Agente;2022-12-01T02:25:33
-3;Nacional Baleares Avanzado;withdrawal compressing de;64546;2022-12-01;Facilitador;InSitu;eyeballs;Cantabria Loan;2022-12-01T12:40:24
-4;Bedfordshire;Mesa;38141;2022-12-01;withdrawal;InSitu;HTTP Artesanal International;target;2022-12-01T00:16:38
-5;payment Tenge;Metal Morado;76399;2022-12-01;secundaria;InSitu;Calleja;Fantástico back-end;2022-12-01T09:18:54
-6;Albania Moldavia;invoice Castilla Money;37852;2022-12-01;Pizza Verde withdrawal;InSitu;de exploit;producto Quinta;2022-12-01T18:18:27
-7;Cabo;Buckinghamshire;13000;2022-12-01;parse metódica bidireccional;InSitu;global;Sudán Pública;2022-12-01T06:40:36
-8;fritas moderador invoice;Oficial;4711;2022-11-30;digital Interno;InSitu;Salida Borders robust;Juguetería optimize Dollar;2022-12-01T02:20:13
-9;Informática;Auto;16492;2022-12-01;Ensalada Intranet capacitor;InSitu;global Morado Rústico;Facilitador;2022-12-01T07:59:36
-10;granular;multitarea convergence;42039;2022-12-01;microchip Lado;InSitu;Increible Arrabal asíncrona;Edificio Artesanal;2022-12-01T05:09:09
+id;cliente;direccion_origen;fecha_operacion;ventana_trabajo;contacto_tecnico;tipo_trabajo;observaciones;created_at;direccion_destino
+1;methodologies;Borders Adelante;2022-12-01;Central;InSitu;Amarillo;Director Gris;2022-12-01T07:35:27;Ejecutivo robust Increible
+2;Haiti;Acero Programa Metal;2022-12-01;Auto Agente;InSitu;Nacional Baleares Avanzado;withdrawal compressing de;2022-12-01T04:51:49;cero
+3;digital Amarillo Cantabria;Aplicaciones Bebes;2022-12-01;Mesa;InSitu;Metal;Queso;2022-12-01T19:23:58;Artesanal International Gorro
+4;payment Tenge;Metal Morado;2022-12-01;Negro Refinado Plaza;InSitu;back-end Paseo Juguetería;JBOD bypass;2022-12-01T10:16:14;Money
+5;Terrenos SAS;bluetooth Morado de;2022-12-01;hard digital microchip;InSitu;Zapatos Buckinghamshire;Guapa;2022-11-30T21:27:24;metódica bidireccional
+6;Gris Borders synthesizing;Global fritas moderador;2022-12-01;fidelidad Salchichas División;InSitu;Interno;sensor sensor;2022-12-01T02:51:34;Hormigon Gris
+7;Dollar copy Personal;backing Madera;2022-11-30;paralelismo Representante;InSitu;contexto Checking;Violeta Malagasy granular;2022-12-01T11:31:43;invoice
+8;Administrador La;Lado invoice;2022-12-01;Arrabal asíncrona Irak;InSitu;Market;Cliente digital maximize;2022-12-01T12:23:02;Rústico Centrado Morado
+9;Amarillo;back-end deposit;2022-12-01;Metal Pre-emptivo Central;InSitu;Canarias móbil;TCP compress;2022-12-01T14:57:58;Re-contextualizado Consultor
+10;payment Loan;Castilla-La;2022-12-01;value-added Sincronizado Amarillo;InSitu;Sección;integrate Administrador partnerships;2022-12-01T20:00:34;Account

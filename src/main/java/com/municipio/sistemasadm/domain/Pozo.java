@@ -45,12 +45,12 @@ public class Pozo implements Serializable {
     private ZonedDateTime createdAt;
 
     @NotNull
-    @Column(name = "latitud", nullable = false)
-    private String latitud;
-
-    @NotNull
     @Column(name = "longitud", nullable = false)
     private String longitud;
+
+    @NotNull
+    @Column(name = "latitud", nullable = false)
+    private String latitud;
 
     @OneToMany(mappedBy = "idPozo")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -59,12 +59,12 @@ public class Pozo implements Serializable {
 
     @OneToMany(mappedBy = "idPozo")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "idPozo" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "idPozo", "provedorinspeciones" }, allowSetters = true)
     private Set<RegistroInspecciones> registroInspecciones = new HashSet<>();
 
     @ManyToMany(mappedBy = "pozos")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "despliegueInfraestructuraDispersions", "pagos", "pozos" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "despliegueInfraestructuraDispersions", "pagos", "pozos", "infraestructura" }, allowSetters = true)
     private Set<DespliegueInfraestructuraTroncalDistribucion> idDespliegueInfraestructuraTroncalDistribucions = new HashSet<>();
 
     @ManyToMany(mappedBy = "pozos")
@@ -142,19 +142,6 @@ public class Pozo implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public String getLatitud() {
-        return this.latitud;
-    }
-
-    public Pozo latitud(String latitud) {
-        this.setLatitud(latitud);
-        return this;
-    }
-
-    public void setLatitud(String latitud) {
-        this.latitud = latitud;
-    }
-
     public String getLongitud() {
         return this.longitud;
     }
@@ -166,6 +153,19 @@ public class Pozo implements Serializable {
 
     public void setLongitud(String longitud) {
         this.longitud = longitud;
+    }
+
+    public String getLatitud() {
+        return this.latitud;
+    }
+
+    public Pozo latitud(String latitud) {
+        this.setLatitud(latitud);
+        return this;
+    }
+
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
     }
 
     public Set<FotoPozo> getFotoPozos() {
@@ -328,8 +328,8 @@ public class Pozo implements Serializable {
             ", direccion='" + getDireccion() + "'" +
             ", tipopozo='" + getTipopozo() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
-            ", latitud='" + getLatitud() + "'" +
             ", longitud='" + getLongitud() + "'" +
+            ", latitud='" + getLatitud() + "'" +
             "}";
     }
 }

@@ -39,7 +39,7 @@ public class Pago implements Serializable {
     private ZonedDateTime createdAt;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "despliegueInfraestructuraDispersions", "pagos", "pozos" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "despliegueInfraestructuraDispersions", "pagos", "pozos", "infraestructura" }, allowSetters = true)
     private DespliegueInfraestructuraTroncalDistribucion idDespliegueInfraestructuraTroncalDistribucion;
 
     @ManyToOne

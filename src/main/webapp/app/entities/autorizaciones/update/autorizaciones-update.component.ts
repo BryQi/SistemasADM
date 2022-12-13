@@ -7,10 +7,10 @@ import { finalize, map } from 'rxjs/operators';
 import { AutorizacionesFormService, AutorizacionesFormGroup } from './autorizaciones-form.service';
 import { IAutorizaciones } from '../autorizaciones.model';
 import { AutorizacionesService } from '../service/autorizaciones.service';
-import { IRegistroInspecciones } from 'app/entities/registro-inspecciones/registro-inspecciones.model';
-import { RegistroInspeccionesService } from 'app/entities/registro-inspecciones/service/registro-inspecciones.service';
 import { IProveedor } from 'app/entities/proveedor/proveedor.model';
 import { ProveedorService } from 'app/entities/proveedor/service/proveedor.service';
+import { IPozo } from 'app/entities/pozo/pozo.model';
+import { PozoService } from 'app/entities/pozo/service/pozo.service';
 import { ContactoTecnico } from 'app/entities/enumerations/contacto-tecnico.model';
 
 @Component({
@@ -22,23 +22,22 @@ export class AutorizacionesUpdateComponent implements OnInit {
   autorizaciones: IAutorizaciones | null = null;
   contactoTecnicoValues = Object.keys(ContactoTecnico);
 
-  registroInspeccionesSharedCollection: IRegistroInspecciones[] = [];
   proveedorsSharedCollection: IProveedor[] = [];
+  pozosSharedCollection: IPozo[] = [];
 
   editForm: AutorizacionesFormGroup = this.autorizacionesFormService.createAutorizacionesFormGroup();
 
   constructor(
     protected autorizacionesService: AutorizacionesService,
     protected autorizacionesFormService: AutorizacionesFormService,
-    protected registroInspeccionesService: RegistroInspeccionesService,
     protected proveedorService: ProveedorService,
+    protected pozoService: PozoService,
     protected activatedRoute: ActivatedRoute
   ) {}
 
-  compareRegistroInspecciones = (o1: IRegistroInspecciones | null, o2: IRegistroInspecciones | null): boolean =>
-    this.registroInspeccionesService.compareRegistroInspecciones(o1, o2);
-
   compareProveedor = (o1: IProveedor | null, o2: IProveedor | null): boolean => this.proveedorService.compareProveedor(o1, o2);
+
+  comparePozo = (o1: IPozo | null, o2: IPozo | null): boolean => this.pozoService.comparePozo(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ autorizaciones }) => {
@@ -88,31 +87,14 @@ export class AutorizacionesUpdateComponent implements OnInit {
     this.autorizaciones = autorizaciones;
     this.autorizacionesFormService.resetForm(this.editForm, autorizaciones);
 
-    this.registroInspeccionesSharedCollection =
-      this.registroInspeccionesService.addRegistroInspeccionesToCollectionIfMissing<IRegistroInspecciones>(
-        this.registroInspeccionesSharedCollection,
-        autorizaciones.registroInspecciones
-      );
     this.proveedorsSharedCollection = this.proveedorService.addProveedorToCollectionIfMissing<IProveedor>(
       this.proveedorsSharedCollection,
       autorizaciones.idProveedor
     );
+    this.pozosSharedCollection = this.pozoService.addPozoToCollectionIfMissing<IPozo>(this.pozosSharedCollection, autorizaciones.pozo);
   }
 
   protected loadRelationshipsOptions(): void {
-    this.registroInspeccionesService
-      .query()
-      .pipe(map((res: HttpResponse<IRegistroInspecciones[]>) => res.body ?? []))
-      .pipe(
-        map((registroInspecciones: IRegistroInspecciones[]) =>
-          this.registroInspeccionesService.addRegistroInspeccionesToCollectionIfMissing<IRegistroInspecciones>(
-            registroInspecciones,
-            this.autorizaciones?.registroInspecciones
-          )
-        )
-      )
-      .subscribe((registroInspecciones: IRegistroInspecciones[]) => (this.registroInspeccionesSharedCollection = registroInspecciones));
-
     this.proveedorService
       .query()
       .pipe(map((res: HttpResponse<IProveedor[]>) => res.body ?? []))
@@ -122,5 +104,11 @@ export class AutorizacionesUpdateComponent implements OnInit {
         )
       )
       .subscribe((proveedors: IProveedor[]) => (this.proveedorsSharedCollection = proveedors));
+
+    this.pozoService
+      .query()
+      .pipe(map((res: HttpResponse<IPozo[]>) => res.body ?? []))
+      .pipe(map((pozos: IPozo[]) => this.pozoService.addPozoToCollectionIfMissing<IPozo>(pozos, this.autorizaciones?.pozo)))
+      .subscribe((pozos: IPozo[]) => (this.pozosSharedCollection = pozos));
   }
 }

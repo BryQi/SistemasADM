@@ -26,17 +26,18 @@
         <dd>
           <span jhiTranslate="{{ 'sistemasAdmApp.TipoPozo.' + pozo.tipopozo }}">{{ pozo.tipopozo }}</span>
         </dd>
-        <dt><span jhiTranslate="sistemasAdmApp.pozo.createdAt">Created At</span></dt>
+
+        <dt><span jhiTranslate="sistemasAdmApp.pozo.longitud">Longitud</span></dt>
         <dd>
-          <span>{{ pozo.createdAt | formatMediumDatetime }}</span>
+          <span>{{ pozo.longitud }}</span>
         </dd>
         <dt><span jhiTranslate="sistemasAdmApp.pozo.latitud">Latitud</span></dt>
         <dd>
           <span>{{ pozo.latitud }}</span>
         </dd>
-        <dt><span jhiTranslate="sistemasAdmApp.pozo.longitud">Longitud</span></dt>
+        <dt><span jhiTranslate="sistemasAdmApp.pozo.createdAt">Created At</span></dt>
         <dd>
-          <span>{{ pozo.longitud }}</span>
+          <span>{{ pozo.createdAt | formatMediumDatetime }}</span>
         </dd>
       </dl>
 

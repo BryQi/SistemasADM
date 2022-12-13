@@ -38,6 +38,8 @@ public class DespliegueInfraestructuraTroncalDistribucionDTO implements Serializ
 
     private Set<PozoDTO> pozos = new HashSet<>();
 
+    private InfraestructuraDTO infraestructura;
+
     public Long getId() {
         return id;
     }
@@ -110,6 +112,14 @@ public class DespliegueInfraestructuraTroncalDistribucionDTO implements Serializ
         this.pozos = pozos;
     }
 
+    public InfraestructuraDTO getInfraestructura() {
+        return infraestructura;
+    }
+
+    public void setInfraestructura(InfraestructuraDTO infraestructura) {
+        this.infraestructura = infraestructura;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -144,6 +154,7 @@ public class DespliegueInfraestructuraTroncalDistribucionDTO implements Serializ
             ", createdAt='" + getCreatedAt() + "'" +
             ", valorMetro=" + getValorMetro() +
             ", pozos=" + getPozos() +
+            ", infraestructura=" + getInfraestructura() +
             "}";
     }
 }

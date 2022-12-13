@@ -61,17 +61,13 @@ public class Proveedor implements Serializable {
 
     @OneToMany(mappedBy = "idProveedor")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "registroInspecciones", "idProveedor" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "idProveedor", "pozo" }, allowSetters = true)
     private Set<Autorizaciones> autorizaciones = new HashSet<>();
 
     @OneToMany(mappedBy = "idProveedor")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "idProveedor", "pozos" }, allowSetters = true)
     private Set<Infraestructura> infraestructuras = new HashSet<>();
-
-    @ManyToOne(optional = false)
-    @NotNull
-    private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -256,19 +252,6 @@ public class Proveedor implements Serializable {
     public Proveedor removeInfraestructura(Infraestructura infraestructura) {
         this.infraestructuras.remove(infraestructura);
         infraestructura.setIdProveedor(null);
-        return this;
-    }
-
-    public User getUser() {
-        return this.user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Proveedor user(User user) {
-        this.setUser(user);
         return this;
     }
 

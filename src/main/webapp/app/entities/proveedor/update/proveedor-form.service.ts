@@ -37,7 +37,6 @@ type ProveedorFormGroupContent = {
   direccion: FormControl<ProveedorFormRawValue['direccion']>;
   celular: FormControl<ProveedorFormRawValue['celular']>;
   createdAt: FormControl<ProveedorFormRawValue['createdAt']>;
-  user: FormControl<ProveedorFormRawValue['user']>;
 };
 
 export type ProveedorFormGroup = FormGroup<ProveedorFormGroupContent>;
@@ -73,9 +72,6 @@ export class ProveedorFormService {
         validators: [Validators.required],
       }),
       createdAt: new FormControl(proveedorRawValue.createdAt, {
-        validators: [Validators.required],
-      }),
-      user: new FormControl(proveedorRawValue.user, {
         validators: [Validators.required],
       }),
     });

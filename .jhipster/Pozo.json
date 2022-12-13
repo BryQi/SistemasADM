@@ -26,12 +26,12 @@
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "latitud",
+      "fieldName": "longitud",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "longitud",
+      "fieldName": "latitud",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
     }

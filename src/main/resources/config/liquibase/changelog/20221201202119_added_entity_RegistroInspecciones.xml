@@ -41,6 +41,9 @@
             <column name="id_pozo_id" type="bigint">
                 <constraints nullable="true" />
             </column>
+            <column name="provedorinspeciones_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
         <dropDefaultValue tableName="registro_inspecciones" columnName="created_at" columnDataType="${datetimeType}"/>

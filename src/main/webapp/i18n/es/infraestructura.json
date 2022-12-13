@@ -19,8 +19,8 @@
       },
       "id": "ID",
       "tipo": "Tipo",
-      "createdAt": "Created At",
-      "idProveedor": "Id Proveedor",
+      "createdAt": "Creado el",
+      "idProveedor": "Proveedor de Servicio",
       "pozo": "Pozo"
     }
   }

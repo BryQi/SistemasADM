@@ -48,23 +48,23 @@
         <dd>
           <span>{{ autorizaciones.observaciones }}</span>
         </dd>
-        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.createdAt">Created At</span></dt>
-        <dd>
-          <span>{{ autorizaciones.createdAt | formatMediumDatetime }}</span>
-        </dd>
-        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.registroInspecciones">Registro Inspecciones</span></dt>
-        <dd>
-          <div *ngIf="autorizaciones.registroInspecciones">
-            <a [routerLink]="['/registro-inspecciones', autorizaciones.registroInspecciones.id, 'view']">{{
-              autorizaciones.registroInspecciones.id
-            }}</a>
-          </div>
-        </dd>
+
         <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.idProveedor">Id Proveedor</span></dt>
         <dd>
           <div *ngIf="autorizaciones.idProveedor">
             <a [routerLink]="['/proveedor', autorizaciones.idProveedor.id, 'view']">{{ autorizaciones.idProveedor.id }}</a>
           </div>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.pozo">Pozo</span></dt>
+        <dd>
+          <div *ngIf="autorizaciones.pozo">
+            <a [routerLink]="['/pozo', autorizaciones.pozo.id, 'view']">{{ autorizaciones.pozo.id }}</a>
+          </div>
+        </dd>
+
+        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ autorizaciones.createdAt | formatMediumDatetime }}</span>
         </dd>
       </dl>
 

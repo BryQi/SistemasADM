@@ -16,11 +16,6 @@
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "direccionDestino",
-      "fieldType": "Double",
-      "fieldValidateRules": ["required"]
-    },
-    {
       "fieldName": "fechaOperacion",
       "fieldType": "LocalDate",
       "fieldValidateRules": ["required"]
@@ -49,6 +44,11 @@
       "fieldName": "createdAt",
       "fieldType": "ZonedDateTime",
       "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "direccionDestino",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
     }
   ],
   "fluentMethods": true,
@@ -58,15 +58,15 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "registroInspecciones",
-      "ownerSide": true,
-      "relationshipName": "registroInspecciones",
-      "relationshipType": "one-to-one"
-    },
-    {
       "otherEntityName": "proveedor",
       "otherEntityRelationshipName": "autorizaciones",
       "relationshipName": "idProveedor",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "pozo",
+      "relationshipName": "pozo",
       "relationshipType": "many-to-one"
     }
   ],

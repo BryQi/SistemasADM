@@ -30,9 +30,9 @@
       "createdAt": "Created At",
       "valorMetro": "Valor Metro",
       "pago": "Pago",
-      "pozo": "Pozo",
-      "idDespliegueInfraestructuraTroncalDistribucion": "Id Despliegue Infraestructura Troncal Distribucion",
-      "idProveedor": "Id Proveedor"
+      "pozo": "Wells Used",
+      "idDespliegueInfraestructuraTroncalDistribucion": "Used Distribution Trunk",
+      "idProveedor": "Service Provider"
     }
   }
 }

@@ -10,9 +10,6 @@ import { ProveedorFormService } from './proveedor-form.service';
 import { ProveedorService } from '../service/proveedor.service';
 import { IProveedor } from '../proveedor.model';
 
-import { IUser } from 'app/entities/user/user.model';
-import { UserService } from 'app/entities/user/user.service';
-
 import { ProveedorUpdateComponent } from './proveedor-update.component';
 
 describe('Proveedor Management Update Component', () => {
@@ -21,7 +18,6 @@ describe('Proveedor Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let proveedorFormService: ProveedorFormService;
   let proveedorService: ProveedorService;
-  let userService: UserService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -44,43 +40,17 @@ describe('Proveedor Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     proveedorFormService = TestBed.inject(ProveedorFormService);
     proveedorService = TestBed.inject(ProveedorService);
-    userService = TestBed.inject(UserService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should call User query and add missing value', () => {
-      const proveedor: IProveedor = { id: 456 };
-      const user: IUser = { id: 88138 };
-      proveedor.user = user;
-
-      const userCollection: IUser[] = [{ id: 96911 }];
-      jest.spyOn(userService, 'query').mockReturnValue(of(new HttpResponse({ body: userCollection })));
-      const additionalUsers = [user];
-      const expectedCollection: IUser[] = [...additionalUsers, ...userCollection];
-      jest.spyOn(userService, 'addUserToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ proveedor });
-      comp.ngOnInit();
-
-      expect(userService.query).toHaveBeenCalled();
-      expect(userService.addUserToCollectionIfMissing).toHaveBeenCalledWith(
-        userCollection,
-        ...additionalUsers.map(expect.objectContaining)
-      );
-      expect(comp.usersSharedCollection).toEqual(expectedCollection);
-    });
-
     it('Should update editForm', () => {
       const proveedor: IProveedor = { id: 456 };
-      const user: IUser = { id: 70574 };
-      proveedor.user = user;
 
       activatedRoute.data = of({ proveedor });
       comp.ngOnInit();
 
-      expect(comp.usersSharedCollection).toContain(user);
       expect(comp.proveedor).toEqual(proveedor);
     });
   });
@@ -150,18 +120,6 @@ describe('Proveedor Management Update Component', () => {
       expect(proveedorService.update).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('Compare relationships', () => {
-    describe('compareUser', () => {
-      it('Should forward to userService', () => {
-        const entity = { id: 123 };
-        const entity2 = { id: 456 };
-        jest.spyOn(userService, 'compareUser');
-        comp.compareUser(entity, entity2);
-        expect(userService.compareUser).toHaveBeenCalledWith(entity, entity2);
-      });
     });
   });
 });

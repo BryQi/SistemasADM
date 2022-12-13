@@ -27,7 +27,8 @@
       "valorMetro": "Valor Metro",
       "despliegueInfraestructuraDispersion": "Despliegue Infraestructura Dispersion",
       "pago": "Pago",
-      "pozo": "Pozo"
+      "pozo": "Wells used",
+      "infraestructura": "Output infrastructure"
     }
   }
 }

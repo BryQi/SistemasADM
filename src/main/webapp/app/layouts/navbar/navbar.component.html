@@ -39,11 +39,17 @@
           <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
             <span>
               <fa-icon icon="th-list"></fa-icon>
-              <span jhiTranslate="global.menu.entities.main">Entidades</span>
+              <span jhiTranslate="global.menu.entities.main">Proceso</span>
             </span>
           </a>
           <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
-            <li>
+            <li
+              *jhiHasAnyAuthority="'ROLE_ADMIN'"
+              ngbDropdown
+              display="dynamic"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
               <a
                 class="dropdown-item"
                 routerLink="pozo"
@@ -56,7 +62,13 @@
               </a>
             </li>
 
-            <li>
+            <li
+              *jhiHasAnyAuthority="'ROLE_ADMIN'"
+              ngbDropdown
+              display="dynamic"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
               <a
                 class="dropdown-item"
                 routerLink="proveedor"
@@ -121,7 +133,13 @@
                 <span jhiTranslate="global.menu.entities.autorizaciones">Autorizaciones</span>
               </a>
             </li>
-            <li>
+            <li
+              *jhiHasAnyAuthority="'ROLE_ADMIN'"
+              ngbDropdown
+              display="dynamic"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
               <a
                 class="dropdown-item"
                 routerLink="registro-inspecciones"
@@ -145,7 +163,13 @@
                 <span jhiTranslate="global.menu.entities.fotoPozo">Foto Pozo</span>
               </a>
             </li>
-            <li>
+            <li
+              *jhiHasAnyAuthority="'ROLE_ADMIN'"
+              ngbDropdown
+              display="dynamic"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
               <a
                 class="dropdown-item"
                 routerLink="pago"

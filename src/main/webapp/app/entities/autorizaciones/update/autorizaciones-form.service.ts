@@ -33,15 +33,15 @@ type AutorizacionesFormGroupContent = {
   id: FormControl<AutorizacionesFormRawValue['id'] | NewAutorizaciones['id']>;
   cliente: FormControl<AutorizacionesFormRawValue['cliente']>;
   direccionOrigen: FormControl<AutorizacionesFormRawValue['direccionOrigen']>;
-  direccionDestino: FormControl<AutorizacionesFormRawValue['direccionDestino']>;
   fechaOperacion: FormControl<AutorizacionesFormRawValue['fechaOperacion']>;
   ventanaTrabajo: FormControl<AutorizacionesFormRawValue['ventanaTrabajo']>;
   contactoTecnico: FormControl<AutorizacionesFormRawValue['contactoTecnico']>;
   tipoTrabajo: FormControl<AutorizacionesFormRawValue['tipoTrabajo']>;
   observaciones: FormControl<AutorizacionesFormRawValue['observaciones']>;
   createdAt: FormControl<AutorizacionesFormRawValue['createdAt']>;
-  registroInspecciones: FormControl<AutorizacionesFormRawValue['registroInspecciones']>;
+  direccionDestino: FormControl<AutorizacionesFormRawValue['direccionDestino']>;
   idProveedor: FormControl<AutorizacionesFormRawValue['idProveedor']>;
+  pozo: FormControl<AutorizacionesFormRawValue['pozo']>;
 };
 
 export type AutorizacionesFormGroup = FormGroup<AutorizacionesFormGroupContent>;
@@ -67,9 +67,6 @@ export class AutorizacionesFormService {
       direccionOrigen: new FormControl(autorizacionesRawValue.direccionOrigen, {
         validators: [Validators.required],
       }),
-      direccionDestino: new FormControl(autorizacionesRawValue.direccionDestino, {
-        validators: [Validators.required],
-      }),
       fechaOperacion: new FormControl(autorizacionesRawValue.fechaOperacion, {
         validators: [Validators.required],
       }),
@@ -86,8 +83,11 @@ export class AutorizacionesFormService {
       createdAt: new FormControl(autorizacionesRawValue.createdAt, {
         validators: [Validators.required],
       }),
-      registroInspecciones: new FormControl(autorizacionesRawValue.registroInspecciones),
+      direccionDestino: new FormControl(autorizacionesRawValue.direccionDestino, {
+        validators: [Validators.required],
+      }),
       idProveedor: new FormControl(autorizacionesRawValue.idProveedor),
+      pozo: new FormControl(autorizacionesRawValue.pozo),
     });
   }
 

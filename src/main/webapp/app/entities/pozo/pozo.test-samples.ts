@@ -9,8 +9,8 @@ export const sampleWithRequiredData: IPozo = {
   numeropozo: 'methodologies Madera',
   direccion: 'SDD strategic',
   createdAt: dayjs('2022-12-01T08:52'),
-  latitud: 'Peso',
-  longitud: 'Aragón de Raton',
+  longitud: 'Peso',
+  latitud: 'Aragón de Raton',
 };
 
 export const sampleWithPartialData: IPozo = {
@@ -18,8 +18,8 @@ export const sampleWithPartialData: IPozo = {
   numeropozo: 'USB Aragón Inversor',
   direccion: 'proyección Ghana',
   createdAt: dayjs('2022-12-01T18:19'),
-  latitud: 'Savings Blanco copying',
-  longitud: 'Loan compressing',
+  longitud: 'Savings Blanco copying',
+  latitud: 'Loan compressing',
 };
 
 export const sampleWithFullData: IPozo = {
@@ -28,16 +28,16 @@ export const sampleWithFullData: IPozo = {
   direccion: 'Grecia Granito',
   tipopozo: TipoPozo['Revision'],
   createdAt: dayjs('2022-12-01T14:42'),
-  latitud: 'bandwidth Guantes Granito',
-  longitud: 'array',
+  longitud: 'bandwidth Guantes Granito',
+  latitud: 'array',
 };
 
 export const sampleWithNewData: NewPozo = {
   numeropozo: 'Interfaz Fantástico',
   direccion: 'Marruecos Blanco',
   createdAt: dayjs('2022-12-01T01:41'),
-  latitud: 'withdrawal compress Ferrocarril',
-  longitud: 'circuit India',
+  longitud: 'withdrawal compress Ferrocarril',
+  latitud: 'circuit India',
   id: null,
 };
 

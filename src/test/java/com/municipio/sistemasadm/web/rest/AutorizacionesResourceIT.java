@@ -44,9 +44,6 @@ class AutorizacionesResourceIT {
     private static final String DEFAULT_DIRECCION_ORIGEN = "AAAAAAAAAA";
     private static final String UPDATED_DIRECCION_ORIGEN = "BBBBBBBBBB";
 
-    private static final Double DEFAULT_DIRECCION_DESTINO = 1D;
-    private static final Double UPDATED_DIRECCION_DESTINO = 2D;
-
     private static final LocalDate DEFAULT_FECHA_OPERACION = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_FECHA_OPERACION = LocalDate.now(ZoneId.systemDefault());
 
@@ -64,6 +61,9 @@ class AutorizacionesResourceIT {
 
     private static final ZonedDateTime DEFAULT_CREATED_AT = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATED_AT = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+
+    private static final String DEFAULT_DIRECCION_DESTINO = "AAAAAAAAAA";
+    private static final String UPDATED_DIRECCION_DESTINO = "BBBBBBBBBB";
 
     private static final String ENTITY_API_URL = "/api/autorizaciones";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -95,13 +95,13 @@ class AutorizacionesResourceIT {
         Autorizaciones autorizaciones = new Autorizaciones()
             .cliente(DEFAULT_CLIENTE)
             .direccionOrigen(DEFAULT_DIRECCION_ORIGEN)
-            .direccionDestino(DEFAULT_DIRECCION_DESTINO)
             .fechaOperacion(DEFAULT_FECHA_OPERACION)
             .ventanaTrabajo(DEFAULT_VENTANA_TRABAJO)
             .contactoTecnico(DEFAULT_CONTACTO_TECNICO)
             .tipoTrabajo(DEFAULT_TIPO_TRABAJO)
             .observaciones(DEFAULT_OBSERVACIONES)
-            .createdAt(DEFAULT_CREATED_AT);
+            .createdAt(DEFAULT_CREATED_AT)
+            .direccionDestino(DEFAULT_DIRECCION_DESTINO);
         return autorizaciones;
     }
 
@@ -115,13 +115,13 @@ class AutorizacionesResourceIT {
         Autorizaciones autorizaciones = new Autorizaciones()
             .cliente(UPDATED_CLIENTE)
             .direccionOrigen(UPDATED_DIRECCION_ORIGEN)
-            .direccionDestino(UPDATED_DIRECCION_DESTINO)
             .fechaOperacion(UPDATED_FECHA_OPERACION)
             .ventanaTrabajo(UPDATED_VENTANA_TRABAJO)
             .contactoTecnico(UPDATED_CONTACTO_TECNICO)
             .tipoTrabajo(UPDATED_TIPO_TRABAJO)
             .observaciones(UPDATED_OBSERVACIONES)
-            .createdAt(UPDATED_CREATED_AT);
+            .createdAt(UPDATED_CREATED_AT)
+            .direccionDestino(UPDATED_DIRECCION_DESTINO);
         return autorizaciones;
     }
 
@@ -148,13 +148,13 @@ class AutorizacionesResourceIT {
         Autorizaciones testAutorizaciones = autorizacionesList.get(autorizacionesList.size() - 1);
         assertThat(testAutorizaciones.getCliente()).isEqualTo(DEFAULT_CLIENTE);
         assertThat(testAutorizaciones.getDireccionOrigen()).isEqualTo(DEFAULT_DIRECCION_ORIGEN);
-        assertThat(testAutorizaciones.getDireccionDestino()).isEqualTo(DEFAULT_DIRECCION_DESTINO);
         assertThat(testAutorizaciones.getFechaOperacion()).isEqualTo(DEFAULT_FECHA_OPERACION);
         assertThat(testAutorizaciones.getVentanaTrabajo()).isEqualTo(DEFAULT_VENTANA_TRABAJO);
         assertThat(testAutorizaciones.getContactoTecnico()).isEqualTo(DEFAULT_CONTACTO_TECNICO);
         assertThat(testAutorizaciones.getTipoTrabajo()).isEqualTo(DEFAULT_TIPO_TRABAJO);
         assertThat(testAutorizaciones.getObservaciones()).isEqualTo(DEFAULT_OBSERVACIONES);
         assertThat(testAutorizaciones.getCreatedAt()).isEqualTo(DEFAULT_CREATED_AT);
+        assertThat(testAutorizaciones.getDireccionDestino()).isEqualTo(DEFAULT_DIRECCION_DESTINO);
     }
 
     @Test
@@ -204,26 +204,6 @@ class AutorizacionesResourceIT {
         int databaseSizeBeforeTest = autorizacionesRepository.findAll().size();
         // set the field null
         autorizaciones.setDireccionOrigen(null);
-
-        // Create the Autorizaciones, which fails.
-        AutorizacionesDTO autorizacionesDTO = autorizacionesMapper.toDto(autorizaciones);
-
-        restAutorizacionesMockMvc
-            .perform(
-                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(autorizacionesDTO))
-            )
-            .andExpect(status().isBadRequest());
-
-        List<Autorizaciones> autorizacionesList = autorizacionesRepository.findAll();
-        assertThat(autorizacionesList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    void checkDireccionDestinoIsRequired() throws Exception {
-        int databaseSizeBeforeTest = autorizacionesRepository.findAll().size();
-        // set the field null
-        autorizaciones.setDireccionDestino(null);
 
         // Create the Autorizaciones, which fails.
         AutorizacionesDTO autorizacionesDTO = autorizacionesMapper.toDto(autorizaciones);
@@ -340,6 +320,26 @@ class AutorizacionesResourceIT {
 
     @Test
     @Transactional
+    void checkDireccionDestinoIsRequired() throws Exception {
+        int databaseSizeBeforeTest = autorizacionesRepository.findAll().size();
+        // set the field null
+        autorizaciones.setDireccionDestino(null);
+
+        // Create the Autorizaciones, which fails.
+        AutorizacionesDTO autorizacionesDTO = autorizacionesMapper.toDto(autorizaciones);
+
+        restAutorizacionesMockMvc
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(autorizacionesDTO))
+            )
+            .andExpect(status().isBadRequest());
+
+        List<Autorizaciones> autorizacionesList = autorizacionesRepository.findAll();
+        assertThat(autorizacionesList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void getAllAutorizaciones() throws Exception {
         // Initialize the database
         autorizacionesRepository.saveAndFlush(autorizaciones);
@@ -352,13 +352,13 @@ class AutorizacionesResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(autorizaciones.getId().intValue())))
             .andExpect(jsonPath("$.[*].cliente").value(hasItem(DEFAULT_CLIENTE)))
             .andExpect(jsonPath("$.[*].direccionOrigen").value(hasItem(DEFAULT_DIRECCION_ORIGEN)))
-            .andExpect(jsonPath("$.[*].direccionDestino").value(hasItem(DEFAULT_DIRECCION_DESTINO.doubleValue())))
             .andExpect(jsonPath("$.[*].fechaOperacion").value(hasItem(DEFAULT_FECHA_OPERACION.toString())))
             .andExpect(jsonPath("$.[*].ventanaTrabajo").value(hasItem(DEFAULT_VENTANA_TRABAJO)))
             .andExpect(jsonPath("$.[*].contactoTecnico").value(hasItem(DEFAULT_CONTACTO_TECNICO.toString())))
             .andExpect(jsonPath("$.[*].tipoTrabajo").value(hasItem(DEFAULT_TIPO_TRABAJO)))
             .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES)))
-            .andExpect(jsonPath("$.[*].createdAt").value(hasItem(sameInstant(DEFAULT_CREATED_AT))));
+            .andExpect(jsonPath("$.[*].createdAt").value(hasItem(sameInstant(DEFAULT_CREATED_AT))))
+            .andExpect(jsonPath("$.[*].direccionDestino").value(hasItem(DEFAULT_DIRECCION_DESTINO)));
     }
 
     @Test
@@ -375,13 +375,13 @@ class AutorizacionesResourceIT {
             .andExpect(jsonPath("$.id").value(autorizaciones.getId().intValue()))
             .andExpect(jsonPath("$.cliente").value(DEFAULT_CLIENTE))
             .andExpect(jsonPath("$.direccionOrigen").value(DEFAULT_DIRECCION_ORIGEN))
-            .andExpect(jsonPath("$.direccionDestino").value(DEFAULT_DIRECCION_DESTINO.doubleValue()))
             .andExpect(jsonPath("$.fechaOperacion").value(DEFAULT_FECHA_OPERACION.toString()))
             .andExpect(jsonPath("$.ventanaTrabajo").value(DEFAULT_VENTANA_TRABAJO))
             .andExpect(jsonPath("$.contactoTecnico").value(DEFAULT_CONTACTO_TECNICO.toString()))
             .andExpect(jsonPath("$.tipoTrabajo").value(DEFAULT_TIPO_TRABAJO))
             .andExpect(jsonPath("$.observaciones").value(DEFAULT_OBSERVACIONES))
-            .andExpect(jsonPath("$.createdAt").value(sameInstant(DEFAULT_CREATED_AT)));
+            .andExpect(jsonPath("$.createdAt").value(sameInstant(DEFAULT_CREATED_AT)))
+            .andExpect(jsonPath("$.direccionDestino").value(DEFAULT_DIRECCION_DESTINO));
     }
 
     @Test
@@ -406,13 +406,13 @@ class AutorizacionesResourceIT {
         updatedAutorizaciones
             .cliente(UPDATED_CLIENTE)
             .direccionOrigen(UPDATED_DIRECCION_ORIGEN)
-            .direccionDestino(UPDATED_DIRECCION_DESTINO)
             .fechaOperacion(UPDATED_FECHA_OPERACION)
             .ventanaTrabajo(UPDATED_VENTANA_TRABAJO)
             .contactoTecnico(UPDATED_CONTACTO_TECNICO)
             .tipoTrabajo(UPDATED_TIPO_TRABAJO)
             .observaciones(UPDATED_OBSERVACIONES)
-            .createdAt(UPDATED_CREATED_AT);
+            .createdAt(UPDATED_CREATED_AT)
+            .direccionDestino(UPDATED_DIRECCION_DESTINO);
         AutorizacionesDTO autorizacionesDTO = autorizacionesMapper.toDto(updatedAutorizaciones);
 
         restAutorizacionesMockMvc
@@ -429,13 +429,13 @@ class AutorizacionesResourceIT {
         Autorizaciones testAutorizaciones = autorizacionesList.get(autorizacionesList.size() - 1);
         assertThat(testAutorizaciones.getCliente()).isEqualTo(UPDATED_CLIENTE);
         assertThat(testAutorizaciones.getDireccionOrigen()).isEqualTo(UPDATED_DIRECCION_ORIGEN);
-        assertThat(testAutorizaciones.getDireccionDestino()).isEqualTo(UPDATED_DIRECCION_DESTINO);
         assertThat(testAutorizaciones.getFechaOperacion()).isEqualTo(UPDATED_FECHA_OPERACION);
         assertThat(testAutorizaciones.getVentanaTrabajo()).isEqualTo(UPDATED_VENTANA_TRABAJO);
         assertThat(testAutorizaciones.getContactoTecnico()).isEqualTo(UPDATED_CONTACTO_TECNICO);
         assertThat(testAutorizaciones.getTipoTrabajo()).isEqualTo(UPDATED_TIPO_TRABAJO);
         assertThat(testAutorizaciones.getObservaciones()).isEqualTo(UPDATED_OBSERVACIONES);
         assertThat(testAutorizaciones.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
+        assertThat(testAutorizaciones.getDireccionDestino()).isEqualTo(UPDATED_DIRECCION_DESTINO);
     }
 
     @Test
@@ -533,13 +533,13 @@ class AutorizacionesResourceIT {
         Autorizaciones testAutorizaciones = autorizacionesList.get(autorizacionesList.size() - 1);
         assertThat(testAutorizaciones.getCliente()).isEqualTo(UPDATED_CLIENTE);
         assertThat(testAutorizaciones.getDireccionOrigen()).isEqualTo(UPDATED_DIRECCION_ORIGEN);
-        assertThat(testAutorizaciones.getDireccionDestino()).isEqualTo(DEFAULT_DIRECCION_DESTINO);
         assertThat(testAutorizaciones.getFechaOperacion()).isEqualTo(DEFAULT_FECHA_OPERACION);
         assertThat(testAutorizaciones.getVentanaTrabajo()).isEqualTo(DEFAULT_VENTANA_TRABAJO);
         assertThat(testAutorizaciones.getContactoTecnico()).isEqualTo(DEFAULT_CONTACTO_TECNICO);
         assertThat(testAutorizaciones.getTipoTrabajo()).isEqualTo(DEFAULT_TIPO_TRABAJO);
         assertThat(testAutorizaciones.getObservaciones()).isEqualTo(DEFAULT_OBSERVACIONES);
         assertThat(testAutorizaciones.getCreatedAt()).isEqualTo(DEFAULT_CREATED_AT);
+        assertThat(testAutorizaciones.getDireccionDestino()).isEqualTo(DEFAULT_DIRECCION_DESTINO);
     }
 
     @Test
@@ -557,13 +557,13 @@ class AutorizacionesResourceIT {
         partialUpdatedAutorizaciones
             .cliente(UPDATED_CLIENTE)
             .direccionOrigen(UPDATED_DIRECCION_ORIGEN)
-            .direccionDestino(UPDATED_DIRECCION_DESTINO)
             .fechaOperacion(UPDATED_FECHA_OPERACION)
             .ventanaTrabajo(UPDATED_VENTANA_TRABAJO)
             .contactoTecnico(UPDATED_CONTACTO_TECNICO)
             .tipoTrabajo(UPDATED_TIPO_TRABAJO)
             .observaciones(UPDATED_OBSERVACIONES)
-            .createdAt(UPDATED_CREATED_AT);
+            .createdAt(UPDATED_CREATED_AT)
+            .direccionDestino(UPDATED_DIRECCION_DESTINO);
 
         restAutorizacionesMockMvc
             .perform(
@@ -579,13 +579,13 @@ class AutorizacionesResourceIT {
         Autorizaciones testAutorizaciones = autorizacionesList.get(autorizacionesList.size() - 1);
         assertThat(testAutorizaciones.getCliente()).isEqualTo(UPDATED_CLIENTE);
         assertThat(testAutorizaciones.getDireccionOrigen()).isEqualTo(UPDATED_DIRECCION_ORIGEN);
-        assertThat(testAutorizaciones.getDireccionDestino()).isEqualTo(UPDATED_DIRECCION_DESTINO);
         assertThat(testAutorizaciones.getFechaOperacion()).isEqualTo(UPDATED_FECHA_OPERACION);
         assertThat(testAutorizaciones.getVentanaTrabajo()).isEqualTo(UPDATED_VENTANA_TRABAJO);
         assertThat(testAutorizaciones.getContactoTecnico()).isEqualTo(UPDATED_CONTACTO_TECNICO);
         assertThat(testAutorizaciones.getTipoTrabajo()).isEqualTo(UPDATED_TIPO_TRABAJO);
         assertThat(testAutorizaciones.getObservaciones()).isEqualTo(UPDATED_OBSERVACIONES);
         assertThat(testAutorizaciones.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
+        assertThat(testAutorizaciones.getDireccionDestino()).isEqualTo(UPDATED_DIRECCION_DESTINO);
     }
 
     @Test

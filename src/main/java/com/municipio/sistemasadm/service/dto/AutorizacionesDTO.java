@@ -22,9 +22,6 @@ public class AutorizacionesDTO implements Serializable {
     private String direccionOrigen;
 
     @NotNull
-    private Double direccionDestino;
-
-    @NotNull
     private LocalDate fechaOperacion;
 
     @NotNull
@@ -41,9 +38,12 @@ public class AutorizacionesDTO implements Serializable {
     @NotNull
     private ZonedDateTime createdAt;
 
-    private RegistroInspeccionesDTO registroInspecciones;
+    @NotNull
+    private String direccionDestino;
 
     private ProveedorDTO idProveedor;
+
+    private PozoDTO pozo;
 
     public Long getId() {
         return id;
@@ -67,14 +67,6 @@ public class AutorizacionesDTO implements Serializable {
 
     public void setDireccionOrigen(String direccionOrigen) {
         this.direccionOrigen = direccionOrigen;
-    }
-
-    public Double getDireccionDestino() {
-        return direccionDestino;
-    }
-
-    public void setDireccionDestino(Double direccionDestino) {
-        this.direccionDestino = direccionDestino;
     }
 
     public LocalDate getFechaOperacion() {
@@ -125,12 +117,12 @@ public class AutorizacionesDTO implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public RegistroInspeccionesDTO getRegistroInspecciones() {
-        return registroInspecciones;
+    public String getDireccionDestino() {
+        return direccionDestino;
     }
 
-    public void setRegistroInspecciones(RegistroInspeccionesDTO registroInspecciones) {
-        this.registroInspecciones = registroInspecciones;
+    public void setDireccionDestino(String direccionDestino) {
+        this.direccionDestino = direccionDestino;
     }
 
     public ProveedorDTO getIdProveedor() {
@@ -139,6 +131,14 @@ public class AutorizacionesDTO implements Serializable {
 
     public void setIdProveedor(ProveedorDTO idProveedor) {
         this.idProveedor = idProveedor;
+    }
+
+    public PozoDTO getPozo() {
+        return pozo;
+    }
+
+    public void setPozo(PozoDTO pozo) {
+        this.pozo = pozo;
     }
 
     @Override
@@ -169,15 +169,15 @@ public class AutorizacionesDTO implements Serializable {
             "id=" + getId() +
             ", cliente='" + getCliente() + "'" +
             ", direccionOrigen='" + getDireccionOrigen() + "'" +
-            ", direccionDestino=" + getDireccionDestino() +
             ", fechaOperacion='" + getFechaOperacion() + "'" +
             ", ventanaTrabajo='" + getVentanaTrabajo() + "'" +
             ", contactoTecnico='" + getContactoTecnico() + "'" +
             ", tipoTrabajo='" + getTipoTrabajo() + "'" +
             ", observaciones='" + getObservaciones() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
-            ", registroInspecciones=" + getRegistroInspecciones() +
+            ", direccionDestino='" + getDireccionDestino() + "'" +
             ", idProveedor=" + getIdProveedor() +
+            ", pozo=" + getPozo() +
             "}";
     }
 }

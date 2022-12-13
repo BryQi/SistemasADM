@@ -9,8 +9,8 @@ export interface IPozo {
   direccion?: string | null;
   tipopozo?: TipoPozo | null;
   createdAt?: dayjs.Dayjs | null;
-  latitud?: string | null;
   longitud?: string | null;
+  latitud?: string | null;
   idDespliegueInfraestructuraTroncalDistribucions?: Pick<IDespliegueInfraestructuraTroncalDistribucion, 'id'>[] | null;
   idDespliegueinfraestructuradispersions?: Pick<IDespliegueinfraestructuradispersion, 'id'>[] | null;
 }

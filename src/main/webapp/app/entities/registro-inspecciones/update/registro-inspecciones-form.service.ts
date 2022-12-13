@@ -50,6 +50,7 @@ type RegistroInspeccionesFormGroupContent = {
   cumplelimpiezaOrdenPozo: FormControl<RegistroInspeccionesFormRawValue['cumplelimpiezaOrdenPozo']>;
   createdAt: FormControl<RegistroInspeccionesFormRawValue['createdAt']>;
   idPozo: FormControl<RegistroInspeccionesFormRawValue['idPozo']>;
+  provedorinspeciones: FormControl<RegistroInspeccionesFormRawValue['provedorinspeciones']>;
 };
 
 export type RegistroInspeccionesFormGroup = FormGroup<RegistroInspeccionesFormGroupContent>;
@@ -84,6 +85,7 @@ export class RegistroInspeccionesFormService {
         validators: [Validators.required],
       }),
       idPozo: new FormControl(registroInspeccionesRawValue.idPozo),
+      provedorinspeciones: new FormControl(registroInspeccionesRawValue.provedorinspeciones),
     });
   }
 

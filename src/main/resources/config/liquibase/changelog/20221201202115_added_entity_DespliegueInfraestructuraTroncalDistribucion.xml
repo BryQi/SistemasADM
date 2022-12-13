@@ -35,6 +35,9 @@
             <column name="valor_metro" type="${floatType}">
                 <constraints nullable="false" />
             </column>
+            <column name="infraestructura_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
         <dropDefaultValue tableName="despliegue_infraestructura_troncal_distribucion" columnName="created_at" columnDataType="${datetimeType}"/>

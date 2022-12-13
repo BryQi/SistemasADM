@@ -3,36 +3,26 @@ package com.municipio.sistemasadm.web.rest;
 import static com.municipio.sistemasadm.web.rest.TestUtil.sameInstant;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.municipio.sistemasadm.IntegrationTest;
 import com.municipio.sistemasadm.domain.Proveedor;
-import com.municipio.sistemasadm.domain.User;
 import com.municipio.sistemasadm.repository.ProveedorRepository;
-import com.municipio.sistemasadm.service.ProveedorService;
 import com.municipio.sistemasadm.service.dto.ProveedorDTO;
 import com.municipio.sistemasadm.service.mapper.ProveedorMapper;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import javax.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -42,7 +32,6 @@ import org.springframework.transaction.annotation.Transactional;
  * Integration tests for the {@link ProveedorResource} REST controller.
  */
 @IntegrationTest
-@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 class ProveedorResourceIT {
@@ -74,14 +63,8 @@ class ProveedorResourceIT {
     @Autowired
     private ProveedorRepository proveedorRepository;
 
-    @Mock
-    private ProveedorRepository proveedorRepositoryMock;
-
     @Autowired
     private ProveedorMapper proveedorMapper;
-
-    @Mock
-    private ProveedorService proveedorServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -105,11 +88,6 @@ class ProveedorResourceIT {
             .direccion(DEFAULT_DIRECCION)
             .celular(DEFAULT_CELULAR)
             .createdAt(DEFAULT_CREATED_AT);
-        // Add required entity
-        User user = UserResourceIT.createEntity(em);
-        em.persist(user);
-        em.flush();
-        proveedor.setUser(user);
         return proveedor;
     }
 
@@ -127,11 +105,6 @@ class ProveedorResourceIT {
             .direccion(UPDATED_DIRECCION)
             .celular(UPDATED_CELULAR)
             .createdAt(UPDATED_CREATED_AT);
-        // Add required entity
-        User user = UserResourceIT.createEntity(em);
-        em.persist(user);
-        em.flush();
-        proveedor.setUser(user);
         return proveedor;
     }
 
@@ -307,23 +280,6 @@ class ProveedorResourceIT {
             .andExpect(jsonPath("$.[*].direccion").value(hasItem(DEFAULT_DIRECCION)))
             .andExpect(jsonPath("$.[*].celular").value(hasItem(DEFAULT_CELULAR)))
             .andExpect(jsonPath("$.[*].createdAt").value(hasItem(sameInstant(DEFAULT_CREATED_AT))));
-    }
-
-    @SuppressWarnings({ "unchecked" })
-    void getAllProveedorsWithEagerRelationshipsIsEnabled() throws Exception {
-        when(proveedorServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restProveedorMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
-
-        verify(proveedorServiceMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
-    @SuppressWarnings({ "unchecked" })
-    void getAllProveedorsWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(proveedorServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restProveedorMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
-        verify(proveedorRepositoryMock, times(1)).findAll(any(Pageable.class));
     }
 
     @Test

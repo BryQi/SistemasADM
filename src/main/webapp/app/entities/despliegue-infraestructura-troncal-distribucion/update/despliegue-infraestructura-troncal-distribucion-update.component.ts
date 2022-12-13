@@ -12,6 +12,9 @@ import { IDespliegueInfraestructuraTroncalDistribucion } from '../despliegue-inf
 import { DespliegueInfraestructuraTroncalDistribucionService } from '../service/despliegue-infraestructura-troncal-distribucion.service';
 import { IPozo } from 'app/entities/pozo/pozo.model';
 import { PozoService } from 'app/entities/pozo/service/pozo.service';
+import { IInfraestructura } from 'app/entities/infraestructura/infraestructura.model';
+import { InfraestructuraService } from 'app/entities/infraestructura/service/infraestructura.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'jhi-despliegue-infraestructura-troncal-distribucion-update',
@@ -22,18 +25,25 @@ export class DespliegueInfraestructuraTroncalDistribucionUpdateComponent impleme
   despliegueInfraestructuraTroncalDistribucion: IDespliegueInfraestructuraTroncalDistribucion | null = null;
 
   pozosSharedCollection: IPozo[] = [];
+  infraestructurasSharedCollection: IInfraestructura[] = [];
 
   editForm: DespliegueInfraestructuraTroncalDistribucionFormGroup =
     this.despliegueInfraestructuraTroncalDistribucionFormService.createDespliegueInfraestructuraTroncalDistribucionFormGroup();
+  form_val: any;
+  formBuilder: any;
 
   constructor(
     protected despliegueInfraestructuraTroncalDistribucionService: DespliegueInfraestructuraTroncalDistribucionService,
     protected despliegueInfraestructuraTroncalDistribucionFormService: DespliegueInfraestructuraTroncalDistribucionFormService,
     protected pozoService: PozoService,
+    protected infraestructuraService: InfraestructuraService,
     protected activatedRoute: ActivatedRoute
   ) {}
 
   comparePozo = (o1: IPozo | null, o2: IPozo | null): boolean => this.pozoService.comparePozo(o1, o2);
+
+  compareInfraestructura = (o1: IInfraestructura | null, o2: IInfraestructura | null): boolean =>
+    this.infraestructuraService.compareInfraestructura(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ despliegueInfraestructuraTroncalDistribucion }) => {
@@ -44,7 +54,28 @@ export class DespliegueInfraestructuraTroncalDistribucionUpdateComponent impleme
 
       this.loadRelationshipsOptions();
     });
+
+    /* de aquí */
+    this.form_val = this.formBuilder.group({
+      metrajeInicial: new FormControl(0),
+      metrajeFinal: new FormControl(0),
+      valorMetro: new FormControl(0),
+      calculoValorPago: new FormControl(0),
+    });
+    /* hasta acá */
   }
+  /* de aquí */
+  calcvalor(event: any) {
+    console.log(event.target.value);
+    let metrajei = this.editForm.controls['metrajeInicial'].value || 0;
+    let metrajef = this.editForm.controls['metrajeFinal'].value || 0;
+    let valormet = this.editForm.controls['valorMetro'].value || 0;
+
+    let result = (metrajef - metrajei) * valormet;
+
+    this.editForm.controls['calculoValorPago'].setValue(parseFloat(result.toFixed(2)));
+  }
+  /* hasta acá */
 
   previousState(): void {
     window.history.back();
@@ -92,6 +123,10 @@ export class DespliegueInfraestructuraTroncalDistribucionUpdateComponent impleme
       this.pozosSharedCollection,
       ...(despliegueInfraestructuraTroncalDistribucion.pozos ?? [])
     );
+    this.infraestructurasSharedCollection = this.infraestructuraService.addInfraestructuraToCollectionIfMissing<IInfraestructura>(
+      this.infraestructurasSharedCollection,
+      despliegueInfraestructuraTroncalDistribucion.infraestructura
+    );
   }
 
   protected loadRelationshipsOptions(): void {
@@ -104,5 +139,18 @@ export class DespliegueInfraestructuraTroncalDistribucionUpdateComponent impleme
         )
       )
       .subscribe((pozos: IPozo[]) => (this.pozosSharedCollection = pozos));
+
+    this.infraestructuraService
+      .query()
+      .pipe(map((res: HttpResponse<IInfraestructura[]>) => res.body ?? []))
+      .pipe(
+        map((infraestructuras: IInfraestructura[]) =>
+          this.infraestructuraService.addInfraestructuraToCollectionIfMissing<IInfraestructura>(
+            infraestructuras,
+            this.despliegueInfraestructuraTroncalDistribucion?.infraestructura
+          )
+        )
+      )
+      .subscribe((infraestructuras: IInfraestructura[]) => (this.infraestructurasSharedCollection = infraestructuras));
   }
 }

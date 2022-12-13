@@ -89,6 +89,10 @@ public class DespliegueInfraestructuraTroncalDistribucion implements Serializabl
     )
     private Set<Pozo> pozos = new HashSet<>();
 
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "idProveedor", "pozos" }, allowSetters = true)
+    private Infraestructura infraestructura;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -285,6 +289,19 @@ public class DespliegueInfraestructuraTroncalDistribucion implements Serializabl
     public DespliegueInfraestructuraTroncalDistribucion removePozo(Pozo pozo) {
         this.pozos.remove(pozo);
         pozo.getIdDespliegueInfraestructuraTroncalDistribucions().remove(this);
+        return this;
+    }
+
+    public Infraestructura getInfraestructura() {
+        return this.infraestructura;
+    }
+
+    public void setInfraestructura(Infraestructura infraestructura) {
+        this.infraestructura = infraestructura;
+    }
+
+    public DespliegueInfraestructuraTroncalDistribucion infraestructura(Infraestructura infraestructura) {
+        this.setInfraestructura(infraestructura);
         return this;
     }
 

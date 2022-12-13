@@ -38,8 +38,8 @@ type PozoFormGroupContent = {
   direccion: FormControl<PozoFormRawValue['direccion']>;
   tipopozo: FormControl<PozoFormRawValue['tipopozo']>;
   createdAt: FormControl<PozoFormRawValue['createdAt']>;
-  latitud: FormControl<PozoFormRawValue['latitud']>;
   longitud: FormControl<PozoFormRawValue['longitud']>;
+  latitud: FormControl<PozoFormRawValue['latitud']>;
   idDespliegueInfraestructuraTroncalDistribucions: FormControl<PozoFormRawValue['idDespliegueInfraestructuraTroncalDistribucions']>;
   idDespliegueinfraestructuradispersions: FormControl<PozoFormRawValue['idDespliegueinfraestructuradispersions']>;
 };
@@ -71,10 +71,10 @@ export class PozoFormService {
       createdAt: new FormControl(pozoRawValue.createdAt, {
         validators: [Validators.required],
       }),
-      latitud: new FormControl(pozoRawValue.latitud, {
+      longitud: new FormControl(pozoRawValue.longitud, {
         validators: [Validators.required],
       }),
-      longitud: new FormControl(pozoRawValue.longitud, {
+      latitud: new FormControl(pozoRawValue.latitud, {
         validators: [Validators.required],
       }),
       idDespliegueInfraestructuraTroncalDistribucions: new FormControl(pozoRawValue.idDespliegueInfraestructuraTroncalDistribucions ?? []),

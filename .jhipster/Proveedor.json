@@ -59,15 +59,6 @@
       "otherEntityRelationshipName": "idProveedor",
       "relationshipName": "infraestructura",
       "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityField": "login",
-      "otherEntityName": "user",
-      "otherEntityRelationshipName": "proveedor",
-      "ownerSide": true,
-      "relationshipName": "user",
-      "relationshipType": "many-to-one",
-      "relationshipValidateRules": ["required"]
     }
   ],
   "service": "serviceImpl"

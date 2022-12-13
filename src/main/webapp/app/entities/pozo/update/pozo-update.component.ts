@@ -9,6 +9,7 @@ import { IPozo } from '../pozo.model';
 import { PozoService } from '../service/pozo.service';
 import { TipoPozo } from 'app/entities/enumerations/tipo-pozo.model';
 
+//import exp from 'constants';
 import { Map, marker, popup, tileLayer } from 'leaflet';
 
 @Component({
@@ -16,10 +17,10 @@ import { Map, marker, popup, tileLayer } from 'leaflet';
   templateUrl: './pozo-update.component.html',
 })
 export class PozoUpdateComponent implements OnInit {
-  // THEN
-  public field_latitud = '';
-  public field_longitud = 'Aqui longitud fffff';
-  // this.
+  zoom = 13;
+
+  field_longitud = ' ';
+  field_latitud = ' ';
 
   isSaving = false;
   pozo: IPozo | null = null;
@@ -29,6 +30,7 @@ export class PozoUpdateComponent implements OnInit {
 
   constructor(protected pozoService: PozoService, protected pozoFormService: PozoFormService, protected activatedRoute: ActivatedRoute) {}
 
+  //Inicio Agregar el mapa e iniciar el mapa
   ngOnInit(): void {
     const map = new Map('map').setView([-4.0041, -79.1983], 13);
 
@@ -39,26 +41,30 @@ export class PozoUpdateComponent implements OnInit {
 
     const myMarker = marker([-4.0041, -79.1983], { title: 'Mi Ubicación', alt: 'The Big I', draggable: true })
       .addTo(map)
-      .on('dragend', function onMapClick() {
-        const coord = String(myMarker.getLatLng()).split(',');
+      .on('moveend', event => {
+        event.target;
+        //const coord = String(myMarker.getLatLng()).split(',');
+        const coord = myMarker.getLatLng();
 
-        //this.field_longitud.lat = coord[0];
+        const longitud = `${String(coord.lng)}`; // lng también es una propiedad de latlng
+        const latitud = `${String(coord.lat)}`; // lat  es una propiedad de latlng
 
-        const lat = coord[0].split('(');
-        const lng = coord[1].split(')');
+        //alert("Acabas de hacer clic en: \n latitud: " + latitud + "\n longitud: " + longitud);
 
-        popup()
-          .setLatLng(myMarker.getLatLng())
-          .setContent('Localización.' + ' ' + coord[0].toString() + ' ' + coord[1].toString())
+        this.field_longitud = longitud;
+        this.field_latitud = latitud;
+
+        popup({
+          offset: [0, -30],
+        })
+          .setLatLng([coord.lat, coord.lng])
+          .setContent(`Ubicación Geográfica del Pozo \n  ${String(coord.lng)} \n  ${String(coord.lat)}`)
           .openOn(map);
 
         //myMarker.bindPopup("Moved to: " + lat[1] + ", " + lng[0] + ".");
-
-        map.on('click', onMapClick);
       });
 
     //Fin Agregar el mapa e iniciar el mapa
-
     this.activatedRoute.data.subscribe(({ pozo }) => {
       this.pozo = pozo;
       if (pozo) {

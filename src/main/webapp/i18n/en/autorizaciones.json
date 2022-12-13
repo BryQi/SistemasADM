@@ -20,15 +20,15 @@
       "id": "ID",
       "cliente": "Cliente",
       "direccionOrigen": "Direccion Origen",
-      "direccionDestino": "Direccion Destino",
       "fechaOperacion": "Fecha Operacion",
       "ventanaTrabajo": "Ventana Trabajo",
       "contactoTecnico": "Contacto Tecnico",
       "tipoTrabajo": "Tipo Trabajo",
       "observaciones": "Observaciones",
       "createdAt": "Created At",
-      "registroInspecciones": "Registro Inspecciones",
-      "idProveedor": "Id Proveedor"
+      "direccionDestino": "Direccion Destino",
+      "idProveedor": "Service Provider",
+      "pozo": "Outlet well"
     }
   }
 }

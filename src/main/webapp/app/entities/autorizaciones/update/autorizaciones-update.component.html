@@ -35,14 +35,20 @@
           <label class="form-label" jhiTranslate="sistemasAdmApp.autorizaciones.direccionOrigen" for="field_direccionOrigen"
             >Direccion Origen</label
           >
-          <input
+          <select
             type="text"
             class="form-control"
             name="direccionOrigen"
             id="field_direccionOrigen"
             data-cy="direccionOrigen"
             formControlName="direccionOrigen"
-          />
+          >
+            <option value="MANGA">MANGA</option>
+            <option value="NAP">NAP</option>
+            <option value="CajaDistribucion">Caja Distribucion</option>
+            <option value="Pedestal">Pedestal</option>
+            <option value="Nodo">Nodo</option>
+          </select>
           <div
             *ngIf="
               editForm.get('direccionOrigen')!.invalid &&
@@ -64,7 +70,7 @@
             >Direccion Destino</label
           >
           <input
-            type="number"
+            type="text"
             class="form-control"
             name="direccionDestino"
             id="field_direccionDestino"
@@ -222,6 +228,31 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.autorizaciones.idProveedor" for="field_idProveedor"
+            >Proveedor de Servicio</label
+          >
+          <select
+            class="form-control"
+            id="field_idProveedor"
+            data-cy="idProveedor"
+            name="idProveedor"
+            formControlName="idProveedor"
+            [compareWith]="compareProveedor"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="proveedorOption" *ngFor="let proveedorOption of proveedorsSharedCollection">{{ proveedorOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.autorizaciones.pozo" for="field_pozo">Pozo de salida</label>
+          <select class="form-control" id="field_pozo" data-cy="pozo" name="pozo" formControlName="pozo" [compareWith]="comparePozo">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="pozoOption" *ngFor="let pozoOption of pozosSharedCollection">{{ pozoOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
           <label class="form-label" jhiTranslate="sistemasAdmApp.autorizaciones.createdAt" for="field_createdAt">Created At</label>
           <div class="d-flex">
             <input
@@ -250,40 +281,6 @@
               Este campo debe ser una fecha y hora.
             </small>
           </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="sistemasAdmApp.autorizaciones.registroInspecciones" for="field_registroInspecciones"
-            >Registro Inspecciones</label
-          >
-          <select
-            class="form-control"
-            id="field_registroInspecciones"
-            data-cy="registroInspecciones"
-            name="registroInspecciones"
-            formControlName="registroInspecciones"
-            [compareWith]="compareRegistroInspecciones"
-          >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="registroInspeccionesOption" *ngFor="let registroInspeccionesOption of registroInspeccionesSharedCollection">
-              {{ registroInspeccionesOption.id }}
-            </option>
-          </select>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="sistemasAdmApp.autorizaciones.idProveedor" for="field_idProveedor">Id Proveedor</label>
-          <select
-            class="form-control"
-            id="field_idProveedor"
-            data-cy="idProveedor"
-            name="idProveedor"
-            formControlName="idProveedor"
-            [compareWith]="compareProveedor"
-          >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="proveedorOption" *ngFor="let proveedorOption of proveedorsSharedCollection">{{ proveedorOption.id }}</option>
-          </select>
         </div>
       </div>
 

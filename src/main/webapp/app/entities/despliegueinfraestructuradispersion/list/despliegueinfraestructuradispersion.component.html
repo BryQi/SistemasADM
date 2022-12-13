@@ -102,12 +102,7 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="createdAt">
-            <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.createdAt">Created At</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
+
           <th scope="col" jhiSortBy="valorMetro">
             <div class="d-flex">
               <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.valorMetro">Valor Metro</span>
@@ -128,6 +123,14 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+
+          <th scope="col" jhiSortBy="createdAt">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.createdAt">Created At</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+
           <th scope="col"></th>
         </tr>
       </thead>
@@ -152,7 +155,7 @@
           <td>{{ despliegueinfraestructuradispersion.metrajeInicial }}</td>
           <td>{{ despliegueinfraestructuradispersion.metrajeFinal }}</td>
           <td>{{ despliegueinfraestructuradispersion.calculoValorPago }}</td>
-          <td>{{ despliegueinfraestructuradispersion.createdAt | formatMediumDatetime }}</td>
+
           <td>{{ despliegueinfraestructuradispersion.valorMetro }}</td>
           <td>
             <div *ngIf="despliegueinfraestructuradispersion.idDespliegueInfraestructuraTroncalDistribucion">
@@ -173,6 +176,9 @@
               }}</a>
             </div>
           </td>
+
+          <td>{{ despliegueinfraestructuradispersion.createdAt | formatMediumDatetime }}</td>
+
           <td class="text-end">
             <div class="btn-group">
               <button

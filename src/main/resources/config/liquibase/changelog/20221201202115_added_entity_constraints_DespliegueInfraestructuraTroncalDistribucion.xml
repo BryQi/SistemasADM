@@ -19,5 +19,11 @@
                                  constraintName="fk_rel_despliegue_infraestructu__pozo_0d_id"
                                  referencedColumnNames="id"
                                  referencedTableName="pozo"/>
+
+        <addForeignKeyConstraint baseColumnNames="infraestructura_id"
+                                 baseTableName="despliegue_infraestructura_troncal_distribucion"
+                                 constraintName="fk_despliegue_infraestructura_t__infraestructura_94_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="infraestructura"/>
     </changeSet>
 </databaseChangeLog>

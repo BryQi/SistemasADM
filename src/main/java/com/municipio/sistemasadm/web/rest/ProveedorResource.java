@@ -142,21 +142,12 @@ public class ProveedorResource {
      * {@code GET  /proveedors} : get all the proveedors.
      *
      * @param pageable the pagination information.
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of proveedors in body.
      */
     @GetMapping("/proveedors")
-    public ResponseEntity<List<ProveedorDTO>> getAllProveedors(
-        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
-        @RequestParam(required = false, defaultValue = "false") boolean eagerload
-    ) {
+    public ResponseEntity<List<ProveedorDTO>> getAllProveedors(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
         log.debug("REST request to get a page of Proveedors");
-        Page<ProveedorDTO> page;
-        if (eagerload) {
-            page = proveedorService.findAllWithEagerRelationships(pageable);
-        } else {
-            page = proveedorService.findAll(pageable);
-        }
+        Page<ProveedorDTO> page = proveedorService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

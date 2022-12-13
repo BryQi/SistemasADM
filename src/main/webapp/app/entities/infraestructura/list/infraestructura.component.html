@@ -44,18 +44,21 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="createdAt">
-            <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.infraestructura.createdAt">Created At</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
+
           <th scope="col" jhiSortBy="idProveedor.id">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.infraestructura.idProveedor">Id Proveedor</span>
+              <span jhiTranslate="sistemasAdmApp.infraestructura.idProveedor">Proveedor de Servicio</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+
+          <th scope="col" jhiSortBy="createdAt">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.infraestructura.createdAt">Creado el</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+
           <th scope="col"></th>
         </tr>
       </thead>
@@ -65,12 +68,13 @@
             <a [routerLink]="['/infraestructura', infraestructura.id, 'view']">{{ infraestructura.id }}</a>
           </td>
           <td jhiTranslate="{{ 'sistemasAdmApp.Tipo.' + infraestructura.tipo }}">{{ infraestructura.tipo }}</td>
-          <td>{{ infraestructura.createdAt | formatMediumDatetime }}</td>
+
           <td>
             <div *ngIf="infraestructura.idProveedor">
               <a [routerLink]="['/proveedor', infraestructura.idProveedor.id, 'view']">{{ infraestructura.idProveedor.id }}</a>
             </div>
           </td>
+          <td>{{ infraestructura.createdAt | formatMediumDatetime }}</td>
           <td class="text-end">
             <div class="btn-group">
               <button
