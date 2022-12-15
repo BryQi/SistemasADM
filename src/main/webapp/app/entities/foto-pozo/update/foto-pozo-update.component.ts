@@ -99,14 +99,14 @@ export class FotoPozoUpdateComponent implements OnInit {
     this.fotoPozo = fotoPozo;
     this.fotoPozoFormService.resetForm(this.editForm, fotoPozo);
 
-    this.pozosSharedCollection = this.pozoService.addPozoToCollectionIfMissing<IPozo>(this.pozosSharedCollection, fotoPozo.idPozo);
+    this.pozosSharedCollection = this.pozoService.addPozoToCollectionIfMissing<IPozo>(this.pozosSharedCollection, fotoPozo.numeropozo);
   }
 
   protected loadRelationshipsOptions(): void {
     this.pozoService
       .query()
       .pipe(map((res: HttpResponse<IPozo[]>) => res.body ?? []))
-      .pipe(map((pozos: IPozo[]) => this.pozoService.addPozoToCollectionIfMissing<IPozo>(pozos, this.fotoPozo?.idPozo)))
+      .pipe(map((pozos: IPozo[]) => this.pozoService.addPozoToCollectionIfMissing<IPozo>(pozos, this.fotoPozo?.numeropozo)))
       .subscribe((pozos: IPozo[]) => (this.pozosSharedCollection = pozos));
   }
 }

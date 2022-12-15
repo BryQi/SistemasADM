@@ -22,10 +22,6 @@
         <dd>
           <span>{{ autorizaciones.direccionOrigen }}</span>
         </dd>
-        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.direccionDestino">Direccion Destino</span></dt>
-        <dd>
-          <span>{{ autorizaciones.direccionDestino }}</span>
-        </dd>
         <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.fechaOperacion">Fecha Operacion</span></dt>
         <dd>
           <span>{{ autorizaciones.fechaOperacion | formatMediumDate }}</span>
@@ -49,16 +45,20 @@
           <span>{{ autorizaciones.observaciones }}</span>
         </dd>
 
-        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.idProveedor">Id Proveedor</span></dt>
+        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.direccionDestino">Direccion Destino</span></dt>
         <dd>
-          <div *ngIf="autorizaciones.idProveedor">
-            <a [routerLink]="['/proveedor', autorizaciones.idProveedor.id, 'view']">{{ autorizaciones.idProveedor.id }}</a>
+          <span>{{ autorizaciones.direccionDestino }}</span>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.razonSocial">Razon Social</span></dt>
+        <dd>
+          <div *ngIf="autorizaciones.razonSocial">
+            <a [routerLink]="['/proveedor', autorizaciones.razonSocial.id, 'view']">{{ autorizaciones.razonSocial.razonSocial }}</a>
           </div>
         </dd>
-        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.pozo">Pozo</span></dt>
+        <dt><span jhiTranslate="sistemasAdmApp.autorizaciones.numeropozo">Numeropozo</span></dt>
         <dd>
-          <div *ngIf="autorizaciones.pozo">
-            <a [routerLink]="['/pozo', autorizaciones.pozo.id, 'view']">{{ autorizaciones.pozo.id }}</a>
+          <div *ngIf="autorizaciones.numeropozo">
+            <a [routerLink]="['/pozo', autorizaciones.numeropozo.id, 'view']">{{ autorizaciones.numeropozo.numeropozo }}</a>
           </div>
         </dd>
 

@@ -142,12 +142,21 @@ public class PagoResource {
      * {@code GET  /pagos} : get all the pagos.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of pagos in body.
      */
     @GetMapping("/pagos")
-    public ResponseEntity<List<PagoDTO>> getAllPagos(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
+    public ResponseEntity<List<PagoDTO>> getAllPagos(
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false, defaultValue = "false") boolean eagerload
+    ) {
         log.debug("REST request to get a page of Pagos");
-        Page<PagoDTO> page = pagoService.findAll(pageable);
+        Page<PagoDTO> page;
+        if (eagerload) {
+            page = pagoService.findAllWithEagerRelationships(pageable);
+        } else {
+            page = pagoService.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

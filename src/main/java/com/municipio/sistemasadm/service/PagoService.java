@@ -42,6 +42,14 @@ public interface PagoService {
     Page<PagoDTO> findAll(Pageable pageable);
 
     /**
+     * Get all the pagos with eager load of many-to-many relationships.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<PagoDTO> findAllWithEagerRelationships(Pageable pageable);
+
+    /**
      * Get the "id" pago.
      *
      * @param id the id of the entity.

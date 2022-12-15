@@ -28,12 +28,12 @@ describe('Despliegueinfraestructuradispersion Form Service', () => {
             descripcionDePozosUsadosRuta: expect.any(Object),
             metrajeInicial: expect.any(Object),
             metrajeFinal: expect.any(Object),
-            calculoValorPago: expect.any(Object),
             createdAt: expect.any(Object),
             valorMetro: expect.any(Object),
-            pozos: expect.any(Object),
-            idDespliegueInfraestructuraTroncalDistribucion: expect.any(Object),
-            idProveedor: expect.any(Object),
+            calculoValorPagoD: expect.any(Object),
+            nombreRuta: expect.any(Object),
+            razonSocial: expect.any(Object),
+            numeropozos: expect.any(Object),
           })
         );
       });
@@ -52,12 +52,12 @@ describe('Despliegueinfraestructuradispersion Form Service', () => {
             descripcionDePozosUsadosRuta: expect.any(Object),
             metrajeInicial: expect.any(Object),
             metrajeFinal: expect.any(Object),
-            calculoValorPago: expect.any(Object),
             createdAt: expect.any(Object),
             valorMetro: expect.any(Object),
-            pozos: expect.any(Object),
-            idDespliegueInfraestructuraTroncalDistribucion: expect.any(Object),
-            idProveedor: expect.any(Object),
+            calculoValorPagoD: expect.any(Object),
+            nombreRuta: expect.any(Object),
+            razonSocial: expect.any(Object),
+            numeropozos: expect.any(Object),
           })
         );
       });

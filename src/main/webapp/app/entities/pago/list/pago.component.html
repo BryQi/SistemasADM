@@ -50,26 +50,33 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+
+          <th scope="col" jhiSortBy="razonSocial.razonSocial">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.pago.razonSocial">Razon Social</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="calculoValorPago.calculoValorPago">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.pago.calculoValorPago">Calculo Valor Pago</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="calculoValorPagoD.calculoValorPagoD">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.pago.calculoValorPagoD">Calculo Valor Pago D</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+
           <th scope="col" jhiSortBy="createdAt">
             <div class="d-flex">
               <span jhiTranslate="sistemasAdmApp.pago.createdAt">Created At</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="idDespliegueInfraestructuraTroncalDistribucion.id">
-            <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.pago.idDespliegueInfraestructuraTroncalDistribucion"
-                >Id Despliegue Infraestructura Troncal Distribucion</span
-              >
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="idDespliegueinfraestructuradispersion.id">
-            <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.pago.idDespliegueinfraestructuradispersion">Id Despliegueinfraestructuradispersion</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
+
           <th scope="col"></th>
         </tr>
       </thead>
@@ -80,26 +87,29 @@
           </td>
           <td>{{ pago.fechaPago | formatMediumDate }}</td>
           <td>{{ pago.pago }}</td>
-          <td>{{ pago.createdAt | formatMediumDatetime }}</td>
+
           <td>
-            <div *ngIf="pago.idDespliegueInfraestructuraTroncalDistribucion">
-              <a
-                [routerLink]="[
-                  '/despliegue-infraestructura-troncal-distribucion',
-                  pago.idDespliegueInfraestructuraTroncalDistribucion.id,
-                  'view'
-                ]"
-                >{{ pago.idDespliegueInfraestructuraTroncalDistribucion.id }}</a
-              >
+            <div *ngIf="pago.razonSocial">
+              <a [routerLink]="['/proveedor', pago.razonSocial.id, 'view']">{{ pago.razonSocial.razonSocial }}</a>
             </div>
           </td>
           <td>
-            <div *ngIf="pago.idDespliegueinfraestructuradispersion">
-              <a [routerLink]="['/despliegueinfraestructuradispersion', pago.idDespliegueinfraestructuradispersion.id, 'view']">{{
-                pago.idDespliegueinfraestructuradispersion.id
+            <div *ngIf="pago.calculoValorPago">
+              <a [routerLink]="['/despliegue-infraestructura-troncal-distribucion', pago.calculoValorPago.id, 'view']">{{
+                pago.calculoValorPago.calculoValorPago
               }}</a>
             </div>
           </td>
+          <td>
+            <div *ngIf="pago.calculoValorPagoD">
+              <a [routerLink]="['/despliegueinfraestructuradispersion', pago.calculoValorPagoD.id, 'view']">{{
+                pago.calculoValorPagoD.calculoValorPagoD
+              }}</a>
+            </div>
+          </td>
+
+          <td>{{ pago.createdAt | formatMediumDatetime }}</td>
+
           <td class="text-end">
             <div class="btn-group">
               <button type="submit" [routerLink]="['/pago', pago.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">

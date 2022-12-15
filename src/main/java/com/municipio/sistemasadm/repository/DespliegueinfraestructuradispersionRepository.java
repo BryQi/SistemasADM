@@ -19,14 +19,30 @@ import org.springframework.stereotype.Repository;
 public interface DespliegueinfraestructuradispersionRepository
     extends DespliegueinfraestructuradispersionRepositoryWithBagRelationships, JpaRepository<Despliegueinfraestructuradispersion, Long> {
     default Optional<Despliegueinfraestructuradispersion> findOneWithEagerRelationships(Long id) {
-        return this.fetchBagRelationships(this.findById(id));
+        return this.fetchBagRelationships(this.findOneWithToOneRelationships(id));
     }
 
     default List<Despliegueinfraestructuradispersion> findAllWithEagerRelationships() {
-        return this.fetchBagRelationships(this.findAll());
+        return this.fetchBagRelationships(this.findAllWithToOneRelationships());
     }
 
     default Page<Despliegueinfraestructuradispersion> findAllWithEagerRelationships(Pageable pageable) {
-        return this.fetchBagRelationships(this.findAll(pageable));
+        return this.fetchBagRelationships(this.findAllWithToOneRelationships(pageable));
     }
+
+    @Query(
+        value = "select distinct despliegueinfraestructuradispersion from Despliegueinfraestructuradispersion despliegueinfraestructuradispersion left join fetch despliegueinfraestructuradispersion.nombreRuta left join fetch despliegueinfraestructuradispersion.razonSocial",
+        countQuery = "select count(distinct despliegueinfraestructuradispersion) from Despliegueinfraestructuradispersion despliegueinfraestructuradispersion"
+    )
+    Page<Despliegueinfraestructuradispersion> findAllWithToOneRelationships(Pageable pageable);
+
+    @Query(
+        "select distinct despliegueinfraestructuradispersion from Despliegueinfraestructuradispersion despliegueinfraestructuradispersion left join fetch despliegueinfraestructuradispersion.nombreRuta left join fetch despliegueinfraestructuradispersion.razonSocial"
+    )
+    List<Despliegueinfraestructuradispersion> findAllWithToOneRelationships();
+
+    @Query(
+        "select despliegueinfraestructuradispersion from Despliegueinfraestructuradispersion despliegueinfraestructuradispersion left join fetch despliegueinfraestructuradispersion.nombreRuta left join fetch despliegueinfraestructuradispersion.razonSocial where despliegueinfraestructuradispersion.id =:id"
+    )
+    Optional<Despliegueinfraestructuradispersion> findOneWithToOneRelationships(@Param("id") Long id);
 }

@@ -31,9 +31,9 @@ public class RegistroInspeccionesDTO implements Serializable {
     @NotNull
     private ZonedDateTime createdAt;
 
-    private PozoDTO idPozo;
+    private ProveedorDTO razonSocial;
 
-    private ProveedorDTO provedorinspeciones;
+    private PozoDTO numeropozo;
 
     public Long getId() {
         return id;
@@ -107,20 +107,20 @@ public class RegistroInspeccionesDTO implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public PozoDTO getIdPozo() {
-        return idPozo;
+    public ProveedorDTO getRazonSocial() {
+        return razonSocial;
     }
 
-    public void setIdPozo(PozoDTO idPozo) {
-        this.idPozo = idPozo;
+    public void setRazonSocial(ProveedorDTO razonSocial) {
+        this.razonSocial = razonSocial;
     }
 
-    public ProveedorDTO getProvedorinspeciones() {
-        return provedorinspeciones;
+    public PozoDTO getNumeropozo() {
+        return numeropozo;
     }
 
-    public void setProvedorinspeciones(ProveedorDTO provedorinspeciones) {
-        this.provedorinspeciones = provedorinspeciones;
+    public void setNumeropozo(PozoDTO numeropozo) {
+        this.numeropozo = numeropozo;
     }
 
     @Override
@@ -157,8 +157,8 @@ public class RegistroInspeccionesDTO implements Serializable {
             ", cumpleArregloCables='" + getCumpleArregloCables() + "'" +
             ", cumplelimpiezaOrdenPozo='" + getCumplelimpiezaOrdenPozo() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
-            ", idPozo=" + getIdPozo() +
-            ", provedorinspeciones=" + getProvedorinspeciones() +
+            ", razonSocial=" + getRazonSocial() +
+            ", numeropozo=" + getNumeropozo() +
             "}";
     }
 }

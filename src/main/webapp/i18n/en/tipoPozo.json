@@ -2,8 +2,8 @@
   "sistemasAdmApp": {
     "TipoPozo": {
       "null": "",
-      "PozodePaso": "PozodePaso",
-      "Revision": "Revision"
+      "PozodePaso": "Passage Well",
+      "Revision": "Review"
     }
   }
 }

@@ -28,7 +28,7 @@ describe('DespliegueInfraestructuraTroncalDistribucion Form Service', () => {
             createdAt: expect.any(Object),
             valorMetro: expect.any(Object),
             pozos: expect.any(Object),
-            infraestructura: expect.any(Object),
+            razonSocial: expect.any(Object),
           })
         );
       });
@@ -47,7 +47,7 @@ describe('DespliegueInfraestructuraTroncalDistribucion Form Service', () => {
             createdAt: expect.any(Object),
             valorMetro: expect.any(Object),
             pozos: expect.any(Object),
-            infraestructura: expect.any(Object),
+            razonSocial: expect.any(Object),
           })
         );
       });

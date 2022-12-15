@@ -48,29 +48,20 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "despliegueinfraestructuradispersion",
-      "otherEntityRelationshipName": "idDespliegueInfraestructuraTroncalDistribucion",
-      "relationshipName": "despliegueInfraestructuraDispersion",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityName": "pago",
-      "otherEntityRelationshipName": "idDespliegueInfraestructuraTroncalDistribucion",
-      "relationshipName": "pago",
-      "relationshipType": "one-to-many"
-    },
-    {
+      "otherEntityField": "numeropozo",
       "otherEntityName": "pozo",
-      "otherEntityRelationshipName": "idDespliegueInfraestructuraTroncalDistribucion",
+      "otherEntityRelationshipName": "numeropozo",
       "ownerSide": true,
       "relationshipName": "pozo",
-      "relationshipType": "many-to-many"
+      "relationshipType": "many-to-many",
+      "relationshipValidateRules": ["required"]
     },
     {
-      "otherEntityField": "id",
-      "otherEntityName": "infraestructura",
-      "relationshipName": "infraestructura",
-      "relationshipType": "many-to-one"
+      "otherEntityField": "razonSocial",
+      "otherEntityName": "proveedor",
+      "relationshipName": "razonSocial",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
     }
   ],
   "service": "serviceImpl"

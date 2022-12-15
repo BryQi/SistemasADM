@@ -8,16 +8,16 @@
     -->
     <changeSet id="20221201202119-2" author="jhipster">
 
-        <addForeignKeyConstraint baseColumnNames="id_pozo_id"
+        <addForeignKeyConstraint baseColumnNames="razon_social_id"
                                  baseTableName="registro_inspecciones"
-                                 constraintName="fk_registro_inspecciones__id_pozo_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="pozo"/>
-
-        <addForeignKeyConstraint baseColumnNames="provedorinspeciones_id"
-                                 baseTableName="registro_inspecciones"
-                                 constraintName="fk_registro_inspecciones__provedorinspeciones_id"
+                                 constraintName="fk_registro_inspecciones__razon_social_id"
                                  referencedColumnNames="id"
                                  referencedTableName="proveedor"/>
+
+        <addForeignKeyConstraint baseColumnNames="numeropozo_id"
+                                 baseTableName="registro_inspecciones"
+                                 constraintName="fk_registro_inspecciones__numeropozo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pozo"/>
     </changeSet>
 </databaseChangeLog>

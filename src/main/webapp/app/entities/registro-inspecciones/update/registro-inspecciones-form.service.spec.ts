@@ -28,8 +28,8 @@ describe('RegistroInspecciones Form Service', () => {
             cumpleArregloCables: expect.any(Object),
             cumplelimpiezaOrdenPozo: expect.any(Object),
             createdAt: expect.any(Object),
-            idPozo: expect.any(Object),
-            provedorinspeciones: expect.any(Object),
+            razonSocial: expect.any(Object),
+            numeropozo: expect.any(Object),
           })
         );
       });
@@ -48,8 +48,8 @@ describe('RegistroInspecciones Form Service', () => {
             cumpleArregloCables: expect.any(Object),
             cumplelimpiezaOrdenPozo: expect.any(Object),
             createdAt: expect.any(Object),
-            idPozo: expect.any(Object),
-            provedorinspeciones: expect.any(Object),
+            razonSocial: expect.any(Object),
+            numeropozo: expect.any(Object),
           })
         );
       });

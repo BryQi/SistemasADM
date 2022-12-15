@@ -18,16 +18,16 @@
         "title": "Registro Inspecciones"
       },
       "id": "ID",
-      "cumpleAutorizacion": "Cumple Autorizacion",
-      "numeroAutorizacion": "Numero Autorizacion",
-      "cumpleSenaletica": "Cumple Senaletica",
-      "cumpleConosSeguridad": "Cumple Conos Seguridad",
-      "cumpleEtiquetado": "Cumple Etiquetado",
-      "cumpleArregloCables": "Cumple Arreglo Cables",
-      "cumplelimpiezaOrdenPozo": "Cumplelimpieza Orden Pozo",
+      "cumpleAutorizacion": "Cumple con la Autorización",
+      "numeroAutorizacion": "Numero de Autorización",
+      "cumpleSenaletica": "Cumple con la Senaletica",
+      "cumpleConosSeguridad": "Cumple con los Conos de Seguridad",
+      "cumpleEtiquetado": "Cumple con el Etiquetado",
+      "cumpleArregloCables": "Cumple con el Arreglo del Cable",
+      "cumplelimpiezaOrdenPozo": "Cumple con la limpieza y Orden del Pozo",
       "createdAt": "Creado el",
-      "idPozo": "Pozo Inspeccionado",
-      "provedorinspeciones": "Proveedor Inspeccionado"
+      "razonSocial": "Proveedor inspeccionado",
+      "numeropozo": "Pozo inspeccionado"
     }
   }
 }

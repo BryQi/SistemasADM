@@ -1,10 +1,7 @@
 package com.municipio.sistemasadm.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
@@ -50,24 +47,6 @@ public class Proveedor implements Serializable {
     @NotNull
     @Column(name = "created_at", nullable = false)
     private ZonedDateTime createdAt;
-
-    @OneToMany(mappedBy = "idProveedor")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(
-        value = { "pagos", "pozos", "idDespliegueInfraestructuraTroncalDistribucion", "idProveedor" },
-        allowSetters = true
-    )
-    private Set<Despliegueinfraestructuradispersion> despliegueinfraestructuradispersions = new HashSet<>();
-
-    @OneToMany(mappedBy = "idProveedor")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "idProveedor", "pozo" }, allowSetters = true)
-    private Set<Autorizaciones> autorizaciones = new HashSet<>();
-
-    @OneToMany(mappedBy = "idProveedor")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "idProveedor", "pozos" }, allowSetters = true)
-    private Set<Infraestructura> infraestructuras = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -160,99 +139,6 @@ public class Proveedor implements Serializable {
 
     public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public Set<Despliegueinfraestructuradispersion> getDespliegueinfraestructuradispersions() {
-        return this.despliegueinfraestructuradispersions;
-    }
-
-    public void setDespliegueinfraestructuradispersions(Set<Despliegueinfraestructuradispersion> despliegueinfraestructuradispersions) {
-        if (this.despliegueinfraestructuradispersions != null) {
-            this.despliegueinfraestructuradispersions.forEach(i -> i.setIdProveedor(null));
-        }
-        if (despliegueinfraestructuradispersions != null) {
-            despliegueinfraestructuradispersions.forEach(i -> i.setIdProveedor(this));
-        }
-        this.despliegueinfraestructuradispersions = despliegueinfraestructuradispersions;
-    }
-
-    public Proveedor despliegueinfraestructuradispersions(Set<Despliegueinfraestructuradispersion> despliegueinfraestructuradispersions) {
-        this.setDespliegueinfraestructuradispersions(despliegueinfraestructuradispersions);
-        return this;
-    }
-
-    public Proveedor addDespliegueinfraestructuradispersion(Despliegueinfraestructuradispersion despliegueinfraestructuradispersion) {
-        this.despliegueinfraestructuradispersions.add(despliegueinfraestructuradispersion);
-        despliegueinfraestructuradispersion.setIdProveedor(this);
-        return this;
-    }
-
-    public Proveedor removeDespliegueinfraestructuradispersion(Despliegueinfraestructuradispersion despliegueinfraestructuradispersion) {
-        this.despliegueinfraestructuradispersions.remove(despliegueinfraestructuradispersion);
-        despliegueinfraestructuradispersion.setIdProveedor(null);
-        return this;
-    }
-
-    public Set<Autorizaciones> getAutorizaciones() {
-        return this.autorizaciones;
-    }
-
-    public void setAutorizaciones(Set<Autorizaciones> autorizaciones) {
-        if (this.autorizaciones != null) {
-            this.autorizaciones.forEach(i -> i.setIdProveedor(null));
-        }
-        if (autorizaciones != null) {
-            autorizaciones.forEach(i -> i.setIdProveedor(this));
-        }
-        this.autorizaciones = autorizaciones;
-    }
-
-    public Proveedor autorizaciones(Set<Autorizaciones> autorizaciones) {
-        this.setAutorizaciones(autorizaciones);
-        return this;
-    }
-
-    public Proveedor addAutorizaciones(Autorizaciones autorizaciones) {
-        this.autorizaciones.add(autorizaciones);
-        autorizaciones.setIdProveedor(this);
-        return this;
-    }
-
-    public Proveedor removeAutorizaciones(Autorizaciones autorizaciones) {
-        this.autorizaciones.remove(autorizaciones);
-        autorizaciones.setIdProveedor(null);
-        return this;
-    }
-
-    public Set<Infraestructura> getInfraestructuras() {
-        return this.infraestructuras;
-    }
-
-    public void setInfraestructuras(Set<Infraestructura> infraestructuras) {
-        if (this.infraestructuras != null) {
-            this.infraestructuras.forEach(i -> i.setIdProveedor(null));
-        }
-        if (infraestructuras != null) {
-            infraestructuras.forEach(i -> i.setIdProveedor(this));
-        }
-        this.infraestructuras = infraestructuras;
-    }
-
-    public Proveedor infraestructuras(Set<Infraestructura> infraestructuras) {
-        this.setInfraestructuras(infraestructuras);
-        return this;
-    }
-
-    public Proveedor addInfraestructura(Infraestructura infraestructura) {
-        this.infraestructuras.add(infraestructura);
-        infraestructura.setIdProveedor(this);
-        return this;
-    }
-
-    public Proveedor removeInfraestructura(Infraestructura infraestructura) {
-        this.infraestructuras.remove(infraestructura);
-        infraestructura.setIdProveedor(null);
-        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

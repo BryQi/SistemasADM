@@ -25,15 +25,17 @@
         <dd>
           <span>{{ fotoPozo.descripcion }}</span>
         </dd>
+
+        <dt><span jhiTranslate="sistemasAdmApp.fotoPozo.numeropozo">Numeropozo</span></dt>
+        <dd>
+          <div *ngIf="fotoPozo.numeropozo">
+            <a [routerLink]="['/pozo', fotoPozo.numeropozo.id, 'view']">{{ fotoPozo.numeropozo.numeropozo }}</a>
+          </div>
+        </dd>
+
         <dt><span jhiTranslate="sistemasAdmApp.fotoPozo.createdAt">Created At</span></dt>
         <dd>
           <span>{{ fotoPozo.createdAt | formatMediumDatetime }}</span>
-        </dd>
-        <dt><span jhiTranslate="sistemasAdmApp.fotoPozo.idPozo">Id Pozo</span></dt>
-        <dd>
-          <div *ngIf="fotoPozo.idPozo">
-            <a [routerLink]="['/pozo', fotoPozo.idPozo.id, 'view']">{{ fotoPozo.idPozo.id }}</a>
-          </div>
         </dd>
       </dl>
 

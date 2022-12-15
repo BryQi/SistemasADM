@@ -50,18 +50,21 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+
+          <th scope="col" jhiSortBy="numeropozo.numeropozo">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.fotoPozo.numeropozo">Numeropozo</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+
           <th scope="col" jhiSortBy="createdAt">
             <div class="d-flex">
               <span jhiTranslate="sistemasAdmApp.fotoPozo.createdAt">Created At</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="idPozo.id">
-            <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.fotoPozo.idPozo">Id Pozo</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
+
           <th scope="col"></th>
         </tr>
       </thead>
@@ -75,12 +78,15 @@
             <span *ngIf="fotoPozo.foto">{{ fotoPozo.fotoContentType }}, {{ byteSize(fotoPozo.foto) }}</span>
           </td>
           <td>{{ fotoPozo.descripcion }}</td>
-          <td>{{ fotoPozo.createdAt | formatMediumDatetime }}</td>
+
           <td>
-            <div *ngIf="fotoPozo.idPozo">
-              <a [routerLink]="['/pozo', fotoPozo.idPozo.id, 'view']">{{ fotoPozo.idPozo.id }}</a>
+            <div *ngIf="fotoPozo.numeropozo">
+              <a [routerLink]="['/pozo', fotoPozo.numeropozo.id, 'view']">{{ fotoPozo.numeropozo.numeropozo }}</a>
             </div>
           </td>
+
+          <td>{{ fotoPozo.createdAt | formatMediumDatetime }}</td>
+
           <td class="text-end">
             <div class="btn-group">
               <button

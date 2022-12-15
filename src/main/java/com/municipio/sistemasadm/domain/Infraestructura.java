@@ -1,6 +1,5 @@
 package com.municipio.sistemasadm.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.municipio.sistemasadm.domain.enumeration.Tipo;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
@@ -36,27 +35,19 @@ public class Infraestructura implements Serializable {
     @Column(name = "created_at", nullable = false)
     private ZonedDateTime createdAt;
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = { "despliegueinfraestructuradispersions", "autorizaciones", "infraestructuras" }, allowSetters = true)
-    private Proveedor idProveedor;
+    @ManyToOne(optional = false)
+    @NotNull
+    private Proveedor razonSocial;
 
     @ManyToMany
+    @NotNull
     @JoinTable(
-        name = "rel_infraestructura__pozo",
+        name = "rel_infraestructura__numeropozo",
         joinColumns = @JoinColumn(name = "infraestructura_id"),
-        inverseJoinColumns = @JoinColumn(name = "pozo_id")
+        inverseJoinColumns = @JoinColumn(name = "numeropozo_id")
     )
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(
-        value = {
-            "fotoPozos",
-            "registroInspecciones",
-            "idDespliegueInfraestructuraTroncalDistribucions",
-            "idDespliegueinfraestructuradispersions",
-        },
-        allowSetters = true
-    )
-    private Set<Pozo> pozos = new HashSet<>();
+    private Set<Pozo> numeropozos = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -99,39 +90,39 @@ public class Infraestructura implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public Proveedor getIdProveedor() {
-        return this.idProveedor;
+    public Proveedor getRazonSocial() {
+        return this.razonSocial;
     }
 
-    public void setIdProveedor(Proveedor proveedor) {
-        this.idProveedor = proveedor;
+    public void setRazonSocial(Proveedor proveedor) {
+        this.razonSocial = proveedor;
     }
 
-    public Infraestructura idProveedor(Proveedor proveedor) {
-        this.setIdProveedor(proveedor);
+    public Infraestructura razonSocial(Proveedor proveedor) {
+        this.setRazonSocial(proveedor);
         return this;
     }
 
-    public Set<Pozo> getPozos() {
-        return this.pozos;
+    public Set<Pozo> getNumeropozos() {
+        return this.numeropozos;
     }
 
-    public void setPozos(Set<Pozo> pozos) {
-        this.pozos = pozos;
+    public void setNumeropozos(Set<Pozo> pozos) {
+        this.numeropozos = pozos;
     }
 
-    public Infraestructura pozos(Set<Pozo> pozos) {
-        this.setPozos(pozos);
+    public Infraestructura numeropozos(Set<Pozo> pozos) {
+        this.setNumeropozos(pozos);
         return this;
     }
 
-    public Infraestructura addPozo(Pozo pozo) {
-        this.pozos.add(pozo);
+    public Infraestructura addNumeropozo(Pozo pozo) {
+        this.numeropozos.add(pozo);
         return this;
     }
 
-    public Infraestructura removePozo(Pozo pozo) {
-        this.pozos.remove(pozo);
+    public Infraestructura removeNumeropozo(Pozo pozo) {
+        this.numeropozos.remove(pozo);
         return this;
     }
 

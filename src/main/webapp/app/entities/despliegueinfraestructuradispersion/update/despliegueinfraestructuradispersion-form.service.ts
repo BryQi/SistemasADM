@@ -29,7 +29,7 @@ type DespliegueinfraestructuradispersionFormRawValue = FormValueOf<IDesplieguein
 
 type NewDespliegueinfraestructuradispersionFormRawValue = FormValueOf<NewDespliegueinfraestructuradispersion>;
 
-type DespliegueinfraestructuradispersionFormDefaults = Pick<NewDespliegueinfraestructuradispersion, 'id' | 'createdAt' | 'pozos'>;
+type DespliegueinfraestructuradispersionFormDefaults = Pick<NewDespliegueinfraestructuradispersion, 'id' | 'createdAt' | 'numeropozos'>;
 
 type DespliegueinfraestructuradispersionFormGroupContent = {
   id: FormControl<DespliegueinfraestructuradispersionFormRawValue['id'] | NewDespliegueinfraestructuradispersion['id']>;
@@ -41,14 +41,12 @@ type DespliegueinfraestructuradispersionFormGroupContent = {
   descripcionDePozosUsadosRuta: FormControl<DespliegueinfraestructuradispersionFormRawValue['descripcionDePozosUsadosRuta']>;
   metrajeInicial: FormControl<DespliegueinfraestructuradispersionFormRawValue['metrajeInicial']>;
   metrajeFinal: FormControl<DespliegueinfraestructuradispersionFormRawValue['metrajeFinal']>;
-  calculoValorPago: FormControl<DespliegueinfraestructuradispersionFormRawValue['calculoValorPago']>;
   createdAt: FormControl<DespliegueinfraestructuradispersionFormRawValue['createdAt']>;
   valorMetro: FormControl<DespliegueinfraestructuradispersionFormRawValue['valorMetro']>;
-  pozos: FormControl<DespliegueinfraestructuradispersionFormRawValue['pozos']>;
-  idDespliegueInfraestructuraTroncalDistribucion: FormControl<
-    DespliegueinfraestructuradispersionFormRawValue['idDespliegueInfraestructuraTroncalDistribucion']
-  >;
-  idProveedor: FormControl<DespliegueinfraestructuradispersionFormRawValue['idProveedor']>;
+  calculoValorPagoD: FormControl<DespliegueinfraestructuradispersionFormRawValue['calculoValorPagoD']>;
+  nombreRuta: FormControl<DespliegueinfraestructuradispersionFormRawValue['nombreRuta']>;
+  razonSocial: FormControl<DespliegueinfraestructuradispersionFormRawValue['razonSocial']>;
+  numeropozos: FormControl<DespliegueinfraestructuradispersionFormRawValue['numeropozos']>;
 };
 
 export type DespliegueinfraestructuradispersionFormGroup = FormGroup<DespliegueinfraestructuradispersionFormGroupContent>;
@@ -93,20 +91,22 @@ export class DespliegueinfraestructuradispersionFormService {
       metrajeFinal: new FormControl(despliegueinfraestructuradispersionRawValue.metrajeFinal, {
         validators: [Validators.required],
       }),
-      calculoValorPago: new FormControl(despliegueinfraestructuradispersionRawValue.calculoValorPago, {
-        validators: [Validators.required],
-      }),
       createdAt: new FormControl(despliegueinfraestructuradispersionRawValue.createdAt, {
         validators: [Validators.required],
       }),
       valorMetro: new FormControl(despliegueinfraestructuradispersionRawValue.valorMetro, {
         validators: [Validators.required],
       }),
-      pozos: new FormControl(despliegueinfraestructuradispersionRawValue.pozos ?? []),
-      idDespliegueInfraestructuraTroncalDistribucion: new FormControl(
-        despliegueinfraestructuradispersionRawValue.idDespliegueInfraestructuraTroncalDistribucion
-      ),
-      idProveedor: new FormControl(despliegueinfraestructuradispersionRawValue.idProveedor),
+      calculoValorPagoD: new FormControl(despliegueinfraestructuradispersionRawValue.calculoValorPagoD, {
+        validators: [Validators.required],
+      }),
+      nombreRuta: new FormControl(despliegueinfraestructuradispersionRawValue.nombreRuta, {
+        validators: [Validators.required],
+      }),
+      razonSocial: new FormControl(despliegueinfraestructuradispersionRawValue.razonSocial, {
+        validators: [Validators.required],
+      }),
+      numeropozos: new FormControl(despliegueinfraestructuradispersionRawValue.numeropozos ?? []),
     });
   }
 
@@ -141,7 +141,7 @@ export class DespliegueinfraestructuradispersionFormService {
     return {
       id: null,
       createdAt: currentTime,
-      pozos: [],
+      numeropozos: [],
     };
   }
 
@@ -166,7 +166,7 @@ export class DespliegueinfraestructuradispersionFormService {
       createdAt: despliegueinfraestructuradispersion.createdAt
         ? despliegueinfraestructuradispersion.createdAt.format(DATE_TIME_FORMAT)
         : undefined,
-      pozos: despliegueinfraestructuradispersion.pozos ?? [],
+      numeropozos: despliegueinfraestructuradispersion.numeropozos ?? [],
     };
   }
 }

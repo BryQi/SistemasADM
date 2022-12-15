@@ -38,16 +38,18 @@ public class Pago implements Serializable {
     @Column(name = "created_at", nullable = false)
     private ZonedDateTime createdAt;
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = { "despliegueInfraestructuraDispersions", "pagos", "pozos", "infraestructura" }, allowSetters = true)
-    private DespliegueInfraestructuraTroncalDistribucion idDespliegueInfraestructuraTroncalDistribucion;
+    @ManyToOne(optional = false)
+    @NotNull
+    private Proveedor razonSocial;
 
     @ManyToOne
-    @JsonIgnoreProperties(
-        value = { "pagos", "pozos", "idDespliegueInfraestructuraTroncalDistribucion", "idProveedor" },
-        allowSetters = true
-    )
-    private Despliegueinfraestructuradispersion idDespliegueinfraestructuradispersion;
+    @JsonIgnoreProperties(value = { "pozos", "razonSocial" }, allowSetters = true)
+    private DespliegueInfraestructuraTroncalDistribucion calculoValorPago;
+
+    @ManyToOne(optional = false)
+    @NotNull
+    @JsonIgnoreProperties(value = { "nombreRuta", "razonSocial", "numeropozos" }, allowSetters = true)
+    private Despliegueinfraestructuradispersion calculoValorPagoD;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -103,33 +105,42 @@ public class Pago implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public DespliegueInfraestructuraTroncalDistribucion getIdDespliegueInfraestructuraTroncalDistribucion() {
-        return this.idDespliegueInfraestructuraTroncalDistribucion;
+    public Proveedor getRazonSocial() {
+        return this.razonSocial;
     }
 
-    public void setIdDespliegueInfraestructuraTroncalDistribucion(
-        DespliegueInfraestructuraTroncalDistribucion despliegueInfraestructuraTroncalDistribucion
-    ) {
-        this.idDespliegueInfraestructuraTroncalDistribucion = despliegueInfraestructuraTroncalDistribucion;
+    public void setRazonSocial(Proveedor proveedor) {
+        this.razonSocial = proveedor;
     }
 
-    public Pago idDespliegueInfraestructuraTroncalDistribucion(
-        DespliegueInfraestructuraTroncalDistribucion despliegueInfraestructuraTroncalDistribucion
-    ) {
-        this.setIdDespliegueInfraestructuraTroncalDistribucion(despliegueInfraestructuraTroncalDistribucion);
+    public Pago razonSocial(Proveedor proveedor) {
+        this.setRazonSocial(proveedor);
         return this;
     }
 
-    public Despliegueinfraestructuradispersion getIdDespliegueinfraestructuradispersion() {
-        return this.idDespliegueinfraestructuradispersion;
+    public DespliegueInfraestructuraTroncalDistribucion getCalculoValorPago() {
+        return this.calculoValorPago;
     }
 
-    public void setIdDespliegueinfraestructuradispersion(Despliegueinfraestructuradispersion despliegueinfraestructuradispersion) {
-        this.idDespliegueinfraestructuradispersion = despliegueinfraestructuradispersion;
+    public void setCalculoValorPago(DespliegueInfraestructuraTroncalDistribucion despliegueInfraestructuraTroncalDistribucion) {
+        this.calculoValorPago = despliegueInfraestructuraTroncalDistribucion;
     }
 
-    public Pago idDespliegueinfraestructuradispersion(Despliegueinfraestructuradispersion despliegueinfraestructuradispersion) {
-        this.setIdDespliegueinfraestructuradispersion(despliegueinfraestructuradispersion);
+    public Pago calculoValorPago(DespliegueInfraestructuraTroncalDistribucion despliegueInfraestructuraTroncalDistribucion) {
+        this.setCalculoValorPago(despliegueInfraestructuraTroncalDistribucion);
+        return this;
+    }
+
+    public Despliegueinfraestructuradispersion getCalculoValorPagoD() {
+        return this.calculoValorPagoD;
+    }
+
+    public void setCalculoValorPagoD(Despliegueinfraestructuradispersion despliegueinfraestructuradispersion) {
+        this.calculoValorPagoD = despliegueinfraestructuradispersion;
+    }
+
+    public Pago calculoValorPagoD(Despliegueinfraestructuradispersion despliegueinfraestructuradispersion) {
+        this.setCalculoValorPagoD(despliegueinfraestructuradispersion);
         return this;
     }
 

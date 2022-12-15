@@ -107,6 +107,7 @@ export class RegistroInspeccionesComponent implements OnInit {
     const queryObject = {
       page: pageToLoad - 1,
       size: this.itemsPerPage,
+      eagerload: true,
       sort: this.getSortQueryParam(predicate, ascending),
     };
     return this.registroInspeccionesService.query(queryObject).pipe(tap(() => (this.isLoading = false)));

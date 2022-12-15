@@ -46,17 +46,17 @@
       "fieldValidateRules": ["required"]
     },
     {
-      "fieldName": "calculoValorPago",
-      "fieldType": "Double",
-      "fieldValidateRules": ["required"]
-    },
-    {
       "fieldName": "createdAt",
       "fieldType": "ZonedDateTime",
       "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "valorMetro",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "calculoValorPagoD",
       "fieldType": "Float",
       "fieldValidateRules": ["required"]
     }
@@ -68,29 +68,27 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "pago",
-      "otherEntityRelationshipName": "idDespliegueinfraestructuradispersion",
-      "relationshipName": "pago",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityName": "pozo",
-      "otherEntityRelationshipName": "idDespliegueinfraestructuradispersion",
-      "ownerSide": true,
-      "relationshipName": "pozo",
-      "relationshipType": "many-to-many"
-    },
-    {
+      "otherEntityField": "nombreRuta",
       "otherEntityName": "despliegueInfraestructuraTroncalDistribucion",
-      "otherEntityRelationshipName": "despliegueInfraestructuraDispersion",
-      "relationshipName": "idDespliegueInfraestructuraTroncalDistribucion",
-      "relationshipType": "many-to-one"
+      "relationshipName": "nombreRuta",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
     },
     {
+      "otherEntityField": "razonSocial",
       "otherEntityName": "proveedor",
-      "otherEntityRelationshipName": "despliegueinfraestructuradispersion",
-      "relationshipName": "idProveedor",
-      "relationshipType": "many-to-one"
+      "relationshipName": "razonSocial",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
+    },
+    {
+      "otherEntityField": "numeropozo",
+      "otherEntityName": "pozo",
+      "otherEntityRelationshipName": "numeropozo",
+      "ownerSide": true,
+      "relationshipName": "numeropozo",
+      "relationshipType": "many-to-many",
+      "relationshipValidateRules": ["required"]
     }
   ],
   "service": "serviceImpl"

@@ -18,38 +18,6 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.idPozo" for="field_idPozo">Pozo Inspeccionado</label>
-          <select
-            class="form-control"
-            id="field_idPozo"
-            data-cy="idPozo"
-            name="idPozo"
-            formControlName="idPozo"
-            [compareWith]="comparePozo"
-          >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="pozoOption" *ngFor="let pozoOption of pozosSharedCollection">{{ pozoOption.id }}</option>
-          </select>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.provedorinspeciones" for="field_provedorinspeciones"
-            >Proveedor Inspeccionado</label
-          >
-          <select
-            class="form-control"
-            id="field_provedorinspeciones"
-            data-cy="provedorinspeciones"
-            name="provedorinspeciones"
-            formControlName="provedorinspeciones"
-            [compareWith]="compareProveedor"
-          >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="proveedorOption" *ngFor="let proveedorOption of proveedorsSharedCollection">{{ proveedorOption.id }}</option>
-          </select>
-        </div>
-
-        <div class="row mb-3">
           <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.cumpleAutorizacion" for="field_cumpleAutorizacion"
             >Cumple Autorizacion</label
           >
@@ -172,34 +140,91 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.createdAt" for="field_createdAt">Creado el</label>
-          <div class="d-flex">
-            <input
-              id="field_createdAt"
-              data-cy="createdAt"
-              type="datetime-local"
-              class="form-control"
-              name="createdAt"
-              formControlName="createdAt"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
-          </div>
-          <div *ngIf="editForm.get('createdAt')!.invalid && (editForm.get('createdAt')!.dirty || editForm.get('createdAt')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('createdAt')?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              Este campo es obligatorio.
-            </small>
-            <small
-              class="form-text text-danger"
-              [hidden]="!editForm.get('createdAt')?.errors?.datetimelocal"
-              jhiTranslate="entity.validation.datetimelocal"
-            >
-              Este campo debe ser una fecha y hora.
-            </small>
-          </div>
+          <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.razonSocial" for="field_razonSocial"
+            >Razon Social</label
+          >
+          <select
+            class="form-control"
+            id="field_razonSocial"
+            data-cy="razonSocial"
+            name="razonSocial"
+            formControlName="razonSocial"
+            [compareWith]="compareProveedor"
+          >
+            <option *ngIf="!editForm.get('razonSocial')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="proveedorOption" *ngFor="let proveedorOption of proveedorsSharedCollection">
+              {{ proveedorOption.razonSocial }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['razonSocial'])!.invalid && (editForm.get(['razonSocial'])!.dirty || editForm.get(['razonSocial'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['razonSocial'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.numeropozo" for="field_numeropozo">Numeropozo</label>
+          <select
+            class="form-control"
+            id="field_numeropozo"
+            data-cy="numeropozo"
+            name="numeropozo"
+            formControlName="numeropozo"
+            [compareWith]="comparePozo"
+          >
+            <option *ngIf="!editForm.get('numeropozo')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="pozoOption" *ngFor="let pozoOption of pozosSharedCollection">{{ pozoOption.numeropozo }}</option>
+          </select>
+        </div>
+
+        <div
+          *ngIf="editForm.get(['numeropozo'])!.invalid && (editForm.get(['numeropozo'])!.dirty || editForm.get(['numeropozo'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['numeropozo'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="sistemasAdmApp.registroInspecciones.createdAt" for="field_createdAt">Created At</label>
+        <div class="d-flex">
+          <input
+            id="field_createdAt"
+            data-cy="createdAt"
+            type="datetime-local"
+            class="form-control"
+            name="createdAt"
+            formControlName="createdAt"
+            placeholder="YYYY-MM-DD HH:mm"
+          />
+        </div>
+        <div *ngIf="editForm.get('createdAt')!.invalid && (editForm.get('createdAt')!.dirty || editForm.get('createdAt')!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get('createdAt')?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+          <small
+            class="form-text text-danger"
+            [hidden]="!editForm.get('createdAt')?.errors?.datetimelocal"
+            jhiTranslate="entity.validation.datetimelocal"
+          >
+            Este campo debe ser una fecha y hora.
+          </small>
         </div>
       </div>
 

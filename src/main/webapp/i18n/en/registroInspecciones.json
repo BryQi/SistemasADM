@@ -2,32 +2,32 @@
   "sistemasAdmApp": {
     "registroInspecciones": {
       "home": {
-        "title": "Registro Inspecciones",
+        "title": "Registration Inspections",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Registro Inspecciones",
-        "createOrEditLabel": "Create or edit a Registro Inspecciones",
-        "notFound": "No Registro Inspecciones found"
+        "createLabel": "Create a new Registration Inspections",
+        "createOrEditLabel": "Create or edit a Registration Inspections",
+        "notFound": "No Registration Inspections found"
       },
-      "created": "A new Registro Inspecciones is created with identifier {{ param }}",
-      "updated": "A Registro Inspecciones is updated with identifier {{ param }}",
-      "deleted": "A Registro Inspecciones is deleted with identifier {{ param }}",
+      "created": "A new Registration Inspections is created with identifier {{ param }}",
+      "updated": "A Registration Inspections is updated with identifier {{ param }}",
+      "deleted": "A Registration Inspections is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Registro Inspecciones {{ id }}?"
+        "question": "Are you sure you want to delete Registration Inspections {{ id }}?"
       },
       "detail": {
-        "title": "Registro Inspecciones"
+        "title": "Registration Inspections"
       },
       "id": "ID",
-      "cumpleAutorizacion": "Cumple Autorizacion",
-      "numeroAutorizacion": "Numero Autorizacion",
-      "cumpleSenaletica": "Cumple Senaletica",
-      "cumpleConosSeguridad": "Cumple Conos Seguridad",
-      "cumpleEtiquetado": "Cumple Etiquetado",
-      "cumpleArregloCables": "Cumple Arreglo Cables",
-      "cumplelimpiezaOrdenPozo": "Cumplelimpieza Orden Pozo",
+      "cumpleAutorizacion": "Complies with the Authorization",
+      "numeroAutorizacion": "Authorization Number",
+      "cumpleSenaletica": "Complies with the Senaletics",
+      "cumpleConosSeguridad": "Complies with Safety Cones",
+      "cumpleEtiquetado": "Complies with Labeling",
+      "cumpleArregloCables": "Complies with Cable Arrangement",
+      "cumplelimpiezaOrdenPozo": "Complies with the cleanliness and orderliness of the well",
       "createdAt": "Created At",
-      "idPozo": "Well Inspected",
-      "provedorinspeciones": "Supplier Inspected"
+      "razonSocial": "Supplier inspected",
+      "numeropozo": "Well inspected"
     }
   }
 }

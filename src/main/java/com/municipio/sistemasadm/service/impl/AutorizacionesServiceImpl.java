@@ -69,11 +69,15 @@ public class AutorizacionesServiceImpl implements AutorizacionesService {
         return autorizacionesRepository.findAll(pageable).map(autorizacionesMapper::toDto);
     }
 
+    public Page<AutorizacionesDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return autorizacionesRepository.findAllWithEagerRelationships(pageable).map(autorizacionesMapper::toDto);
+    }
+
     @Override
     @Transactional(readOnly = true)
     public Optional<AutorizacionesDTO> findOne(Long id) {
         log.debug("Request to get Autorizaciones : {}", id);
-        return autorizacionesRepository.findById(id).map(autorizacionesMapper::toDto);
+        return autorizacionesRepository.findOneWithEagerRelationships(id).map(autorizacionesMapper::toDto);
     }
 
     @Override

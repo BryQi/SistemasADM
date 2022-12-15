@@ -10,12 +10,12 @@ import {
 } from './despliegueinfraestructuradispersion-form.service';
 import { IDespliegueinfraestructuradispersion } from '../despliegueinfraestructuradispersion.model';
 import { DespliegueinfraestructuradispersionService } from '../service/despliegueinfraestructuradispersion.service';
-import { IPozo } from 'app/entities/pozo/pozo.model';
-import { PozoService } from 'app/entities/pozo/service/pozo.service';
 import { IDespliegueInfraestructuraTroncalDistribucion } from 'app/entities/despliegue-infraestructura-troncal-distribucion/despliegue-infraestructura-troncal-distribucion.model';
 import { DespliegueInfraestructuraTroncalDistribucionService } from 'app/entities/despliegue-infraestructura-troncal-distribucion/service/despliegue-infraestructura-troncal-distribucion.service';
 import { IProveedor } from 'app/entities/proveedor/proveedor.model';
 import { ProveedorService } from 'app/entities/proveedor/service/proveedor.service';
+import { IPozo } from 'app/entities/pozo/pozo.model';
+import { PozoService } from 'app/entities/pozo/service/pozo.service';
 import { Origen } from 'app/entities/enumerations/origen.model';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
@@ -28,9 +28,9 @@ export class DespliegueinfraestructuradispersionUpdateComponent implements OnIni
   despliegueinfraestructuradispersion: IDespliegueinfraestructuradispersion | null = null;
   origenValues = Object.keys(Origen);
 
-  pozosSharedCollection: IPozo[] = [];
   despliegueInfraestructuraTroncalDistribucionsSharedCollection: IDespliegueInfraestructuraTroncalDistribucion[] = [];
   proveedorsSharedCollection: IProveedor[] = [];
+  pozosSharedCollection: IPozo[] = [];
 
   editForm: DespliegueinfraestructuradispersionFormGroup =
     this.despliegueinfraestructuradispersionFormService.createDespliegueinfraestructuradispersionFormGroup();
@@ -40,13 +40,11 @@ export class DespliegueinfraestructuradispersionUpdateComponent implements OnIni
   constructor(
     protected despliegueinfraestructuradispersionService: DespliegueinfraestructuradispersionService,
     protected despliegueinfraestructuradispersionFormService: DespliegueinfraestructuradispersionFormService,
-    protected pozoService: PozoService,
     protected despliegueInfraestructuraTroncalDistribucionService: DespliegueInfraestructuraTroncalDistribucionService,
     protected proveedorService: ProveedorService,
+    protected pozoService: PozoService,
     protected activatedRoute: ActivatedRoute
   ) {}
-
-  comparePozo = (o1: IPozo | null, o2: IPozo | null): boolean => this.pozoService.comparePozo(o1, o2);
 
   compareDespliegueInfraestructuraTroncalDistribucion = (
     o1: IDespliegueInfraestructuraTroncalDistribucion | null,
@@ -54,6 +52,8 @@ export class DespliegueinfraestructuradispersionUpdateComponent implements OnIni
   ): boolean => this.despliegueInfraestructuraTroncalDistribucionService.compareDespliegueInfraestructuraTroncalDistribucion(o1, o2);
 
   compareProveedor = (o1: IProveedor | null, o2: IProveedor | null): boolean => this.proveedorService.compareProveedor(o1, o2);
+
+  comparePozo = (o1: IPozo | null, o2: IPozo | null): boolean => this.pozoService.comparePozo(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ despliegueinfraestructuradispersion }) => {
@@ -64,6 +64,7 @@ export class DespliegueinfraestructuradispersionUpdateComponent implements OnIni
 
       this.loadRelationshipsOptions();
     });
+
     this.form_val = this.formBuilder.group({
       metrajeInicial: new FormControl(0),
       metrajeFinal: new FormControl(0),
@@ -78,9 +79,9 @@ export class DespliegueinfraestructuradispersionUpdateComponent implements OnIni
     let metrajef = this.editForm.controls['metrajeFinal'].value || 0;
     let valormet = this.editForm.controls['valorMetro'].value || 0;
 
-    let result = (metrajef - metrajei) * valormet;
+    let result = (metrajef - metrajei) * -valormet + -1;
 
-    this.editForm.controls['calculoValorPago'].setValue(parseFloat(result.toFixed(2)));
+    this.editForm.controls['calculoValorPagoD'].setValue(parseFloat(result.toFixed(2)));
   }
 
   previousState(): void {
@@ -122,32 +123,22 @@ export class DespliegueinfraestructuradispersionUpdateComponent implements OnIni
     this.despliegueinfraestructuradispersion = despliegueinfraestructuradispersion;
     this.despliegueinfraestructuradispersionFormService.resetForm(this.editForm, despliegueinfraestructuradispersion);
 
-    this.pozosSharedCollection = this.pozoService.addPozoToCollectionIfMissing<IPozo>(
-      this.pozosSharedCollection,
-      ...(despliegueinfraestructuradispersion.pozos ?? [])
-    );
     this.despliegueInfraestructuraTroncalDistribucionsSharedCollection =
       this.despliegueInfraestructuraTroncalDistribucionService.addDespliegueInfraestructuraTroncalDistribucionToCollectionIfMissing<IDespliegueInfraestructuraTroncalDistribucion>(
         this.despliegueInfraestructuraTroncalDistribucionsSharedCollection,
-        despliegueinfraestructuradispersion.idDespliegueInfraestructuraTroncalDistribucion
+        despliegueinfraestructuradispersion.nombreRuta
       );
     this.proveedorsSharedCollection = this.proveedorService.addProveedorToCollectionIfMissing<IProveedor>(
       this.proveedorsSharedCollection,
-      despliegueinfraestructuradispersion.idProveedor
+      despliegueinfraestructuradispersion.razonSocial
+    );
+    this.pozosSharedCollection = this.pozoService.addPozoToCollectionIfMissing<IPozo>(
+      this.pozosSharedCollection,
+      ...(despliegueinfraestructuradispersion.numeropozos ?? [])
     );
   }
 
   protected loadRelationshipsOptions(): void {
-    this.pozoService
-      .query()
-      .pipe(map((res: HttpResponse<IPozo[]>) => res.body ?? []))
-      .pipe(
-        map((pozos: IPozo[]) =>
-          this.pozoService.addPozoToCollectionIfMissing<IPozo>(pozos, ...(this.despliegueinfraestructuradispersion?.pozos ?? []))
-        )
-      )
-      .subscribe((pozos: IPozo[]) => (this.pozosSharedCollection = pozos));
-
     this.despliegueInfraestructuraTroncalDistribucionService
       .query()
       .pipe(map((res: HttpResponse<IDespliegueInfraestructuraTroncalDistribucion[]>) => res.body ?? []))
@@ -155,7 +146,7 @@ export class DespliegueinfraestructuradispersionUpdateComponent implements OnIni
         map((despliegueInfraestructuraTroncalDistribucions: IDespliegueInfraestructuraTroncalDistribucion[]) =>
           this.despliegueInfraestructuraTroncalDistribucionService.addDespliegueInfraestructuraTroncalDistribucionToCollectionIfMissing<IDespliegueInfraestructuraTroncalDistribucion>(
             despliegueInfraestructuraTroncalDistribucions,
-            this.despliegueinfraestructuradispersion?.idDespliegueInfraestructuraTroncalDistribucion
+            this.despliegueinfraestructuradispersion?.nombreRuta
           )
         )
       )
@@ -171,10 +162,20 @@ export class DespliegueinfraestructuradispersionUpdateComponent implements OnIni
         map((proveedors: IProveedor[]) =>
           this.proveedorService.addProveedorToCollectionIfMissing<IProveedor>(
             proveedors,
-            this.despliegueinfraestructuradispersion?.idProveedor
+            this.despliegueinfraestructuradispersion?.razonSocial
           )
         )
       )
       .subscribe((proveedors: IProveedor[]) => (this.proveedorsSharedCollection = proveedors));
+
+    this.pozoService
+      .query()
+      .pipe(map((res: HttpResponse<IPozo[]>) => res.body ?? []))
+      .pipe(
+        map((pozos: IPozo[]) =>
+          this.pozoService.addPozoToCollectionIfMissing<IPozo>(pozos, ...(this.despliegueinfraestructuradispersion?.numeropozos ?? []))
+        )
+      )
+      .subscribe((pozos: IPozo[]) => (this.pozosSharedCollection = pozos));
   }
 }

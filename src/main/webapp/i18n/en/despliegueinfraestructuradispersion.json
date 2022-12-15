@@ -2,37 +2,36 @@
   "sistemasAdmApp": {
     "despliegueinfraestructuradispersion": {
       "home": {
-        "title": "Despliegueinfraestructuradispersions",
+        "title": "Deployment of dispersion infrastructure",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Despliegueinfraestructuradispersion",
-        "createOrEditLabel": "Create or edit a Despliegueinfraestructuradispersion",
-        "notFound": "No Despliegueinfraestructuradispersions found"
+        "createLabel": "Create a new Deployment of dispersion infrastructure",
+        "createOrEditLabel": "Create or edit a Deployment of dispersion infrastructure",
+        "notFound": "No Deployment of dispersion infrastructure found"
       },
-      "created": "A new Despliegueinfraestructuradispersion is created with identifier {{ param }}",
-      "updated": "A Despliegueinfraestructuradispersion is updated with identifier {{ param }}",
-      "deleted": "A Despliegueinfraestructuradispersion is deleted with identifier {{ param }}",
+      "created": "A new Deployment of dispersion infrastructure is created with identifier {{ param }}",
+      "updated": "A Deployment of dispersion infrastructure is updated with identifier {{ param }}",
+      "deleted": "A Deployment of dispersion infrastructure is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Despliegueinfraestructuradispersion {{ id }}?"
+        "question": "Are you sure you want to delete Deployment of dispersion infrastructure {{ id }}?"
       },
       "detail": {
-        "title": "Despliegueinfraestructuradispersion"
+        "title": "Deployment of dispersion infrastructure"
       },
       "id": "ID",
-      "nombreCliente": "Nombre Cliente",
-      "direccion": "Direccion",
-      "fechaInstalacion": "Fecha Instalacion",
-      "origen": "Origen",
-      "destino": "Destino",
-      "descripcionDePozosUsadosRuta": "Descripcion De Pozos Usados Ruta",
-      "metrajeInicial": "Metraje Inicial",
-      "metrajeFinal": "Metraje Final",
-      "calculoValorPago": "Calculo Valor Pago",
+      "nombreCliente": "Customer Name",
+      "direccion": "Address",
+      "fechaInstalacion": "Installation Date",
+      "origen": "Origin",
+      "destino": "Destination",
+      "descripcionDePozosUsadosRuta": "Description",
+      "metrajeInicial": "Initial footage",
+      "metrajeFinal": "Final Footage",
       "createdAt": "Created At",
-      "valorMetro": "Valor Metro",
-      "pago": "Pago",
-      "pozo": "Wells Used",
-      "idDespliegueInfraestructuraTroncalDistribucion": "Used Distribution Trunk",
-      "idProveedor": "Service Provider"
+      "valorMetro": "Metro Value",
+      "calculoValorPagoD": "Total Payable",
+      "nombreRuta": "Distribution trunk Used",
+      "razonSocial": "Supplier",
+      "numeropozo": "Wells Used"
     }
   }
 }

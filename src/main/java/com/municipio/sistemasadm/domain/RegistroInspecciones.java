@@ -1,6 +1,5 @@
 package com.municipio.sistemasadm.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import javax.persistence.*;
@@ -51,21 +50,13 @@ public class RegistroInspecciones implements Serializable {
     @Column(name = "created_at", nullable = false)
     private ZonedDateTime createdAt;
 
-    @ManyToOne
-    @JsonIgnoreProperties(
-        value = {
-            "fotoPozos",
-            "registroInspecciones",
-            "idDespliegueInfraestructuraTroncalDistribucions",
-            "idDespliegueinfraestructuradispersions",
-        },
-        allowSetters = true
-    )
-    private Pozo idPozo;
+    @ManyToOne(optional = false)
+    @NotNull
+    private Proveedor razonSocial;
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = { "despliegueinfraestructuradispersions", "autorizaciones", "infraestructuras" }, allowSetters = true)
-    private Proveedor provedorinspeciones;
+    @ManyToOne(optional = false)
+    @NotNull
+    private Pozo numeropozo;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -186,29 +177,29 @@ public class RegistroInspecciones implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public Pozo getIdPozo() {
-        return this.idPozo;
+    public Proveedor getRazonSocial() {
+        return this.razonSocial;
     }
 
-    public void setIdPozo(Pozo pozo) {
-        this.idPozo = pozo;
+    public void setRazonSocial(Proveedor proveedor) {
+        this.razonSocial = proveedor;
     }
 
-    public RegistroInspecciones idPozo(Pozo pozo) {
-        this.setIdPozo(pozo);
+    public RegistroInspecciones razonSocial(Proveedor proveedor) {
+        this.setRazonSocial(proveedor);
         return this;
     }
 
-    public Proveedor getProvedorinspeciones() {
-        return this.provedorinspeciones;
+    public Pozo getNumeropozo() {
+        return this.numeropozo;
     }
 
-    public void setProvedorinspeciones(Proveedor proveedor) {
-        this.provedorinspeciones = proveedor;
+    public void setNumeropozo(Pozo pozo) {
+        this.numeropozo = pozo;
     }
 
-    public RegistroInspecciones provedorinspeciones(Proveedor proveedor) {
-        this.setProvedorinspeciones(proveedor);
+    public RegistroInspecciones numeropozo(Pozo pozo) {
+        this.setNumeropozo(pozo);
         return this;
     }
 

@@ -28,16 +28,24 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "razonSocial",
+      "otherEntityName": "proveedor",
+      "relationshipName": "razonSocial",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
+    },
+    {
+      "otherEntityField": "calculoValorPago",
       "otherEntityName": "despliegueInfraestructuraTroncalDistribucion",
-      "otherEntityRelationshipName": "pago",
-      "relationshipName": "idDespliegueInfraestructuraTroncalDistribucion",
+      "relationshipName": "calculoValorPago",
       "relationshipType": "many-to-one"
     },
     {
+      "otherEntityField": "calculoValorPagoD",
       "otherEntityName": "despliegueinfraestructuradispersion",
-      "otherEntityRelationshipName": "pago",
-      "relationshipName": "idDespliegueinfraestructuradispersion",
-      "relationshipType": "many-to-one"
+      "relationshipName": "calculoValorPagoD",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
     }
   ],
   "service": "serviceImpl"

@@ -25,7 +25,7 @@ public class DespliegueinfraestructuradispersionRepositoryWithBagRelationshipsIm
     public Optional<Despliegueinfraestructuradispersion> fetchBagRelationships(
         Optional<Despliegueinfraestructuradispersion> despliegueinfraestructuradispersion
     ) {
-        return despliegueinfraestructuradispersion.map(this::fetchPozos);
+        return despliegueinfraestructuradispersion.map(this::fetchNumeropozos);
     }
 
     @Override
@@ -43,13 +43,13 @@ public class DespliegueinfraestructuradispersionRepositoryWithBagRelationshipsIm
     public List<Despliegueinfraestructuradispersion> fetchBagRelationships(
         List<Despliegueinfraestructuradispersion> despliegueinfraestructuradispersions
     ) {
-        return Optional.of(despliegueinfraestructuradispersions).map(this::fetchPozos).orElse(Collections.emptyList());
+        return Optional.of(despliegueinfraestructuradispersions).map(this::fetchNumeropozos).orElse(Collections.emptyList());
     }
 
-    Despliegueinfraestructuradispersion fetchPozos(Despliegueinfraestructuradispersion result) {
+    Despliegueinfraestructuradispersion fetchNumeropozos(Despliegueinfraestructuradispersion result) {
         return entityManager
             .createQuery(
-                "select despliegueinfraestructuradispersion from Despliegueinfraestructuradispersion despliegueinfraestructuradispersion left join fetch despliegueinfraestructuradispersion.pozos where despliegueinfraestructuradispersion is :despliegueinfraestructuradispersion",
+                "select despliegueinfraestructuradispersion from Despliegueinfraestructuradispersion despliegueinfraestructuradispersion left join fetch despliegueinfraestructuradispersion.numeropozos where despliegueinfraestructuradispersion is :despliegueinfraestructuradispersion",
                 Despliegueinfraestructuradispersion.class
             )
             .setParameter("despliegueinfraestructuradispersion", result)
@@ -57,14 +57,16 @@ public class DespliegueinfraestructuradispersionRepositoryWithBagRelationshipsIm
             .getSingleResult();
     }
 
-    List<Despliegueinfraestructuradispersion> fetchPozos(List<Despliegueinfraestructuradispersion> despliegueinfraestructuradispersions) {
+    List<Despliegueinfraestructuradispersion> fetchNumeropozos(
+        List<Despliegueinfraestructuradispersion> despliegueinfraestructuradispersions
+    ) {
         HashMap<Object, Integer> order = new HashMap<>();
         IntStream
             .range(0, despliegueinfraestructuradispersions.size())
             .forEach(index -> order.put(despliegueinfraestructuradispersions.get(index).getId(), index));
         List<Despliegueinfraestructuradispersion> result = entityManager
             .createQuery(
-                "select distinct despliegueinfraestructuradispersion from Despliegueinfraestructuradispersion despliegueinfraestructuradispersion left join fetch despliegueinfraestructuradispersion.pozos where despliegueinfraestructuradispersion in :despliegueinfraestructuradispersions",
+                "select distinct despliegueinfraestructuradispersion from Despliegueinfraestructuradispersion despliegueinfraestructuradispersion left join fetch despliegueinfraestructuradispersion.numeropozos where despliegueinfraestructuradispersion in :despliegueinfraestructuradispersions",
                 Despliegueinfraestructuradispersion.class
             )
             .setParameter("despliegueinfraestructuradispersions", despliegueinfraestructuradispersions)

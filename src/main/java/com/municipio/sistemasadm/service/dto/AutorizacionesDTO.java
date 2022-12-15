@@ -41,9 +41,9 @@ public class AutorizacionesDTO implements Serializable {
     @NotNull
     private String direccionDestino;
 
-    private ProveedorDTO idProveedor;
+    private ProveedorDTO razonSocial;
 
-    private PozoDTO pozo;
+    private PozoDTO numeropozo;
 
     public Long getId() {
         return id;
@@ -125,20 +125,20 @@ public class AutorizacionesDTO implements Serializable {
         this.direccionDestino = direccionDestino;
     }
 
-    public ProveedorDTO getIdProveedor() {
-        return idProveedor;
+    public ProveedorDTO getRazonSocial() {
+        return razonSocial;
     }
 
-    public void setIdProveedor(ProveedorDTO idProveedor) {
-        this.idProveedor = idProveedor;
+    public void setRazonSocial(ProveedorDTO razonSocial) {
+        this.razonSocial = razonSocial;
     }
 
-    public PozoDTO getPozo() {
-        return pozo;
+    public PozoDTO getNumeropozo() {
+        return numeropozo;
     }
 
-    public void setPozo(PozoDTO pozo) {
-        this.pozo = pozo;
+    public void setNumeropozo(PozoDTO numeropozo) {
+        this.numeropozo = numeropozo;
     }
 
     @Override
@@ -176,8 +176,8 @@ public class AutorizacionesDTO implements Serializable {
             ", observaciones='" + getObservaciones() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
             ", direccionDestino='" + getDireccionDestino() + "'" +
-            ", idProveedor=" + getIdProveedor() +
-            ", pozo=" + getPozo() +
+            ", razonSocial=" + getRazonSocial() +
+            ", numeropozo=" + getNumeropozo() +
             "}";
     }
 }

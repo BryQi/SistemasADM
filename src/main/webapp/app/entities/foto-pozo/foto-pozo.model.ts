@@ -7,7 +7,7 @@ export interface IFotoPozo {
   fotoContentType?: string | null;
   descripcion?: string | null;
   createdAt?: dayjs.Dayjs | null;
-  idPozo?: Pick<IPozo, 'id'> | null;
+  numeropozo?: Pick<IPozo, 'id' | 'numeropozo'> | null;
 }
 
 export type NewFotoPozo = Omit<IFotoPozo, 'id'> & { id: null };

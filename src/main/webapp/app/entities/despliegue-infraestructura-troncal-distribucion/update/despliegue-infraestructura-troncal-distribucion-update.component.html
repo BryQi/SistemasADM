@@ -202,6 +202,7 @@
             id="field_calculoValorPago"
             data-cy="calculoValorPago"
             formControlName="calculoValorPago"
+            readonly
           />
           <div
             *ngIf="
@@ -227,7 +228,7 @@
         </div>
 
         <div class="row mb-3">
-          <label jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.pozo" for="field_pozos">Pozos utilizados</label>
+          <label jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.pozo" for="field_pozos">Pozo</label>
           <select
             class="form-control"
             id="field_pozos"
@@ -237,30 +238,47 @@
             formControlName="pozos"
             [compareWith]="comparePozo"
           >
-            <option [ngValue]="pozoOption" *ngFor="let pozoOption of pozosSharedCollection">{{ pozoOption.id }}</option>
+            <option [ngValue]="pozoOption" *ngFor="let pozoOption of pozosSharedCollection">{{ pozoOption.numeropozo }}</option>
           </select>
+        </div>
+
+        <div *ngIf="editForm.get(['pozos'])!.invalid && (editForm.get(['pozos'])!.dirty || editForm.get(['pozos'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['pozos'])?.errors?.required" jhiTranslate="entity.validation.required">
+            Este campo es obligatorio.
+          </small>
         </div>
 
         <div class="row mb-3">
           <label
             class="form-label"
-            jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.infraestructura"
-            for="field_infraestructura"
-            >Infraestructura de salida</label
+            jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.razonSocial"
+            for="field_razonSocial"
+            >Razon Social</label
           >
           <select
             class="form-control"
-            id="field_infraestructura"
-            data-cy="infraestructura"
-            name="infraestructura"
-            formControlName="infraestructura"
-            [compareWith]="compareInfraestructura"
+            id="field_razonSocial"
+            data-cy="razonSocial"
+            name="razonSocial"
+            formControlName="razonSocial"
+            [compareWith]="compareProveedor"
           >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="infraestructuraOption" *ngFor="let infraestructuraOption of infraestructurasSharedCollection">
-              {{ infraestructuraOption.id }}
+            <option *ngIf="!editForm.get('razonSocial')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="proveedorOption" *ngFor="let proveedorOption of proveedorsSharedCollection">
+              {{ proveedorOption.razonSocial }}
             </option>
           </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['razonSocial'])!.invalid && (editForm.get(['razonSocial'])!.dirty || editForm.get(['razonSocial'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['razonSocial'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
         </div>
 
         <div class="row mb-3">
@@ -268,7 +286,7 @@
             class="form-label"
             jhiTranslate="sistemasAdmApp.despliegueInfraestructuraTroncalDistribucion.createdAt"
             for="field_createdAt"
-            >Created At</label
+            >Creado el</label
           >
           <div class="d-flex">
             <input

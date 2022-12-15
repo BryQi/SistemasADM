@@ -26,8 +26,6 @@ describe('Pozo Form Service', () => {
             createdAt: expect.any(Object),
             longitud: expect.any(Object),
             latitud: expect.any(Object),
-            idDespliegueInfraestructuraTroncalDistribucions: expect.any(Object),
-            idDespliegueinfraestructuradispersions: expect.any(Object),
           })
         );
       });
@@ -44,8 +42,6 @@ describe('Pozo Form Service', () => {
             createdAt: expect.any(Object),
             longitud: expect.any(Object),
             latitud: expect.any(Object),
-            idDespliegueInfraestructuraTroncalDistribucions: expect.any(Object),
-            idDespliegueinfraestructuradispersions: expect.any(Object),
           })
         );
       });

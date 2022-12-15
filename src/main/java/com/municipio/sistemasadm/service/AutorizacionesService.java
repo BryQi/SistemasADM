@@ -42,6 +42,14 @@ public interface AutorizacionesService {
     Page<AutorizacionesDTO> findAll(Pageable pageable);
 
     /**
+     * Get all the autorizaciones with eager load of many-to-many relationships.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<AutorizacionesDTO> findAllWithEagerRelationships(Pageable pageable);
+
+    /**
      * Get the "id" autorizaciones.
      *
      * @param id the id of the entity.

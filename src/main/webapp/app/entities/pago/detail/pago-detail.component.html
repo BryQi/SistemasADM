@@ -22,36 +22,33 @@
         <dd>
           <span>{{ pago.pago }}</span>
         </dd>
+
+        <dt><span jhiTranslate="sistemasAdmApp.pago.razonSocial">Razon Social</span></dt>
+        <dd>
+          <div *ngIf="pago.razonSocial">
+            <a [routerLink]="['/proveedor', pago.razonSocial.id, 'view']">{{ pago.razonSocial.razonSocial }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.pago.calculoValorPago">Calculo Valor Pago</span></dt>
+        <dd>
+          <div *ngIf="pago.calculoValorPago">
+            <a [routerLink]="['/despliegue-infraestructura-troncal-distribucion', pago.calculoValorPago.id, 'view']">{{
+              pago.calculoValorPago.calculoValorPago
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.pago.calculoValorPagoD">Calculo Valor Pago D</span></dt>
+        <dd>
+          <div *ngIf="pago.calculoValorPagoD">
+            <a [routerLink]="['/despliegueinfraestructuradispersion', pago.calculoValorPagoD.id, 'view']">{{
+              pago.calculoValorPagoD.calculoValorPagoD
+            }}</a>
+          </div>
+        </dd>
+
         <dt><span jhiTranslate="sistemasAdmApp.pago.createdAt">Created At</span></dt>
         <dd>
           <span>{{ pago.createdAt | formatMediumDatetime }}</span>
-        </dd>
-        <dt>
-          <span jhiTranslate="sistemasAdmApp.pago.idDespliegueInfraestructuraTroncalDistribucion"
-            >Id Despliegue Infraestructura Troncal Distribucion</span
-          >
-        </dt>
-        <dd>
-          <div *ngIf="pago.idDespliegueInfraestructuraTroncalDistribucion">
-            <a
-              [routerLink]="[
-                '/despliegue-infraestructura-troncal-distribucion',
-                pago.idDespliegueInfraestructuraTroncalDistribucion.id,
-                'view'
-              ]"
-              >{{ pago.idDespliegueInfraestructuraTroncalDistribucion.id }}</a
-            >
-          </div>
-        </dd>
-        <dt>
-          <span jhiTranslate="sistemasAdmApp.pago.idDespliegueinfraestructuradispersion">Id Despliegueinfraestructuradispersion</span>
-        </dt>
-        <dd>
-          <div *ngIf="pago.idDespliegueinfraestructuradispersion">
-            <a [routerLink]="['/despliegueinfraestructuradispersion', pago.idDespliegueinfraestructuradispersion.id, 'view']">{{
-              pago.idDespliegueinfraestructuradispersion.id
-            }}</a>
-          </div>
         </dd>
       </dl>
 

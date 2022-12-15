@@ -69,11 +69,15 @@ public class FotoPozoServiceImpl implements FotoPozoService {
         return fotoPozoRepository.findAll(pageable).map(fotoPozoMapper::toDto);
     }
 
+    public Page<FotoPozoDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return fotoPozoRepository.findAllWithEagerRelationships(pageable).map(fotoPozoMapper::toDto);
+    }
+
     @Override
     @Transactional(readOnly = true)
     public Optional<FotoPozoDTO> findOne(Long id) {
         log.debug("Request to get FotoPozo : {}", id);
-        return fotoPozoRepository.findById(id).map(fotoPozoMapper::toDto);
+        return fotoPozoRepository.findOneWithEagerRelationships(id).map(fotoPozoMapper::toDto);
     }
 
     @Override

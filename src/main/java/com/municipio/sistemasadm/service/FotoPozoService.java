@@ -42,6 +42,14 @@ public interface FotoPozoService {
     Page<FotoPozoDTO> findAll(Pageable pageable);
 
     /**
+     * Get all the fotoPozos with eager load of many-to-many relationships.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<FotoPozoDTO> findAllWithEagerRelationships(Pageable pageable);
+
+    /**
      * Get the "id" fotoPozo.
      *
      * @param id the id of the entity.

@@ -22,7 +22,7 @@ public class InfraestructuraRepositoryWithBagRelationshipsImpl implements Infrae
 
     @Override
     public Optional<Infraestructura> fetchBagRelationships(Optional<Infraestructura> infraestructura) {
-        return infraestructura.map(this::fetchPozos);
+        return infraestructura.map(this::fetchNumeropozos);
     }
 
     @Override
@@ -36,13 +36,13 @@ public class InfraestructuraRepositoryWithBagRelationshipsImpl implements Infrae
 
     @Override
     public List<Infraestructura> fetchBagRelationships(List<Infraestructura> infraestructuras) {
-        return Optional.of(infraestructuras).map(this::fetchPozos).orElse(Collections.emptyList());
+        return Optional.of(infraestructuras).map(this::fetchNumeropozos).orElse(Collections.emptyList());
     }
 
-    Infraestructura fetchPozos(Infraestructura result) {
+    Infraestructura fetchNumeropozos(Infraestructura result) {
         return entityManager
             .createQuery(
-                "select infraestructura from Infraestructura infraestructura left join fetch infraestructura.pozos where infraestructura is :infraestructura",
+                "select infraestructura from Infraestructura infraestructura left join fetch infraestructura.numeropozos where infraestructura is :infraestructura",
                 Infraestructura.class
             )
             .setParameter("infraestructura", result)
@@ -50,12 +50,12 @@ public class InfraestructuraRepositoryWithBagRelationshipsImpl implements Infrae
             .getSingleResult();
     }
 
-    List<Infraestructura> fetchPozos(List<Infraestructura> infraestructuras) {
+    List<Infraestructura> fetchNumeropozos(List<Infraestructura> infraestructuras) {
         HashMap<Object, Integer> order = new HashMap<>();
         IntStream.range(0, infraestructuras.size()).forEach(index -> order.put(infraestructuras.get(index).getId(), index));
         List<Infraestructura> result = entityManager
             .createQuery(
-                "select distinct infraestructura from Infraestructura infraestructura left join fetch infraestructura.pozos where infraestructura in :infraestructuras",
+                "select distinct infraestructura from Infraestructura infraestructura left join fetch infraestructura.numeropozos where infraestructura in :infraestructuras",
                 Infraestructura.class
             )
             .setParameter("infraestructuras", infraestructuras)

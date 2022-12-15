@@ -55,12 +55,12 @@ describe('Autorizaciones Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Proveedor query and add missing value', () => {
       const autorizaciones: IAutorizaciones = { id: 456 };
-      const idProveedor: IProveedor = { id: 12675 };
-      autorizaciones.idProveedor = idProveedor;
+      const razonSocial: IProveedor = { id: 12675 };
+      autorizaciones.razonSocial = razonSocial;
 
       const proveedorCollection: IProveedor[] = [{ id: 91927 }];
       jest.spyOn(proveedorService, 'query').mockReturnValue(of(new HttpResponse({ body: proveedorCollection })));
-      const additionalProveedors = [idProveedor];
+      const additionalProveedors = [razonSocial];
       const expectedCollection: IProveedor[] = [...additionalProveedors, ...proveedorCollection];
       jest.spyOn(proveedorService, 'addProveedorToCollectionIfMissing').mockReturnValue(expectedCollection);
 
@@ -77,12 +77,12 @@ describe('Autorizaciones Management Update Component', () => {
 
     it('Should call Pozo query and add missing value', () => {
       const autorizaciones: IAutorizaciones = { id: 456 };
-      const pozo: IPozo = { id: 80601 };
-      autorizaciones.pozo = pozo;
+      const numeropozo: IPozo = { id: 80601 };
+      autorizaciones.numeropozo = numeropozo;
 
       const pozoCollection: IPozo[] = [{ id: 42451 }];
       jest.spyOn(pozoService, 'query').mockReturnValue(of(new HttpResponse({ body: pozoCollection })));
-      const additionalPozos = [pozo];
+      const additionalPozos = [numeropozo];
       const expectedCollection: IPozo[] = [...additionalPozos, ...pozoCollection];
       jest.spyOn(pozoService, 'addPozoToCollectionIfMissing').mockReturnValue(expectedCollection);
 
@@ -99,16 +99,16 @@ describe('Autorizaciones Management Update Component', () => {
 
     it('Should update editForm', () => {
       const autorizaciones: IAutorizaciones = { id: 456 };
-      const idProveedor: IProveedor = { id: 68432 };
-      autorizaciones.idProveedor = idProveedor;
-      const pozo: IPozo = { id: 46250 };
-      autorizaciones.pozo = pozo;
+      const razonSocial: IProveedor = { id: 68432 };
+      autorizaciones.razonSocial = razonSocial;
+      const numeropozo: IPozo = { id: 46250 };
+      autorizaciones.numeropozo = numeropozo;
 
       activatedRoute.data = of({ autorizaciones });
       comp.ngOnInit();
 
-      expect(comp.proveedorsSharedCollection).toContain(idProveedor);
-      expect(comp.pozosSharedCollection).toContain(pozo);
+      expect(comp.proveedorsSharedCollection).toContain(razonSocial);
+      expect(comp.pozosSharedCollection).toContain(numeropozo);
       expect(comp.autorizaciones).toEqual(autorizaciones);
     });
   });

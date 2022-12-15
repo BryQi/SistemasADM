@@ -45,16 +45,16 @@
             </div>
           </th>
 
-          <th scope="col" jhiSortBy="idProveedor.id">
+          <th scope="col" jhiSortBy="razonSocial.razonSocial">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.infraestructura.idProveedor">Proveedor de Servicio</span>
+              <span jhiTranslate="sistemasAdmApp.infraestructura.razonSocial">Razon Social</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
 
           <th scope="col" jhiSortBy="createdAt">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.infraestructura.createdAt">Creado el</span>
+              <span jhiTranslate="sistemasAdmApp.infraestructura.createdAt">Created At</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -70,10 +70,11 @@
           <td jhiTranslate="{{ 'sistemasAdmApp.Tipo.' + infraestructura.tipo }}">{{ infraestructura.tipo }}</td>
 
           <td>
-            <div *ngIf="infraestructura.idProveedor">
-              <a [routerLink]="['/proveedor', infraestructura.idProveedor.id, 'view']">{{ infraestructura.idProveedor.id }}</a>
+            <div *ngIf="infraestructura.razonSocial">
+              <a [routerLink]="['/proveedor', infraestructura.razonSocial.id, 'view']">{{ infraestructura.razonSocial.razonSocial }}</a>
             </div>
           </td>
+
           <td>{{ infraestructura.createdAt | formatMediumDatetime }}</td>
           <td class="text-end">
             <div class="btn-group">

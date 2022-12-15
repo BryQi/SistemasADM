@@ -9,6 +9,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.municipio.sistemasadm.IntegrationTest;
 import com.municipio.sistemasadm.domain.Infraestructura;
+import com.municipio.sistemasadm.domain.Pozo;
+import com.municipio.sistemasadm.domain.Proveedor;
 import com.municipio.sistemasadm.domain.enumeration.Tipo;
 import com.municipio.sistemasadm.repository.InfraestructuraRepository;
 import com.municipio.sistemasadm.service.InfraestructuraService;
@@ -87,6 +89,26 @@ class InfraestructuraResourceIT {
      */
     public static Infraestructura createEntity(EntityManager em) {
         Infraestructura infraestructura = new Infraestructura().tipo(DEFAULT_TIPO).createdAt(DEFAULT_CREATED_AT);
+        // Add required entity
+        Proveedor proveedor;
+        if (TestUtil.findAll(em, Proveedor.class).isEmpty()) {
+            proveedor = ProveedorResourceIT.createEntity(em);
+            em.persist(proveedor);
+            em.flush();
+        } else {
+            proveedor = TestUtil.findAll(em, Proveedor.class).get(0);
+        }
+        infraestructura.setRazonSocial(proveedor);
+        // Add required entity
+        Pozo pozo;
+        if (TestUtil.findAll(em, Pozo.class).isEmpty()) {
+            pozo = PozoResourceIT.createEntity(em);
+            em.persist(pozo);
+            em.flush();
+        } else {
+            pozo = TestUtil.findAll(em, Pozo.class).get(0);
+        }
+        infraestructura.getNumeropozos().add(pozo);
         return infraestructura;
     }
 
@@ -98,6 +120,26 @@ class InfraestructuraResourceIT {
      */
     public static Infraestructura createUpdatedEntity(EntityManager em) {
         Infraestructura infraestructura = new Infraestructura().tipo(UPDATED_TIPO).createdAt(UPDATED_CREATED_AT);
+        // Add required entity
+        Proveedor proveedor;
+        if (TestUtil.findAll(em, Proveedor.class).isEmpty()) {
+            proveedor = ProveedorResourceIT.createUpdatedEntity(em);
+            em.persist(proveedor);
+            em.flush();
+        } else {
+            proveedor = TestUtil.findAll(em, Proveedor.class).get(0);
+        }
+        infraestructura.setRazonSocial(proveedor);
+        // Add required entity
+        Pozo pozo;
+        if (TestUtil.findAll(em, Pozo.class).isEmpty()) {
+            pozo = PozoResourceIT.createUpdatedEntity(em);
+            em.persist(pozo);
+            em.flush();
+        } else {
+            pozo = TestUtil.findAll(em, Pozo.class).get(0);
+        }
+        infraestructura.getNumeropozos().add(pozo);
         return infraestructura;
     }
 

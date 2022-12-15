@@ -23,9 +23,11 @@ public class PagoDTO implements Serializable {
     @NotNull
     private ZonedDateTime createdAt;
 
-    private DespliegueInfraestructuraTroncalDistribucionDTO idDespliegueInfraestructuraTroncalDistribucion;
+    private ProveedorDTO razonSocial;
 
-    private DespliegueinfraestructuradispersionDTO idDespliegueinfraestructuradispersion;
+    private DespliegueInfraestructuraTroncalDistribucionDTO calculoValorPago;
+
+    private DespliegueinfraestructuradispersionDTO calculoValorPagoD;
 
     public Long getId() {
         return id;
@@ -59,22 +61,28 @@ public class PagoDTO implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public DespliegueInfraestructuraTroncalDistribucionDTO getIdDespliegueInfraestructuraTroncalDistribucion() {
-        return idDespliegueInfraestructuraTroncalDistribucion;
+    public ProveedorDTO getRazonSocial() {
+        return razonSocial;
     }
 
-    public void setIdDespliegueInfraestructuraTroncalDistribucion(
-        DespliegueInfraestructuraTroncalDistribucionDTO idDespliegueInfraestructuraTroncalDistribucion
-    ) {
-        this.idDespliegueInfraestructuraTroncalDistribucion = idDespliegueInfraestructuraTroncalDistribucion;
+    public void setRazonSocial(ProveedorDTO razonSocial) {
+        this.razonSocial = razonSocial;
     }
 
-    public DespliegueinfraestructuradispersionDTO getIdDespliegueinfraestructuradispersion() {
-        return idDespliegueinfraestructuradispersion;
+    public DespliegueInfraestructuraTroncalDistribucionDTO getCalculoValorPago() {
+        return calculoValorPago;
     }
 
-    public void setIdDespliegueinfraestructuradispersion(DespliegueinfraestructuradispersionDTO idDespliegueinfraestructuradispersion) {
-        this.idDespliegueinfraestructuradispersion = idDespliegueinfraestructuradispersion;
+    public void setCalculoValorPago(DespliegueInfraestructuraTroncalDistribucionDTO calculoValorPago) {
+        this.calculoValorPago = calculoValorPago;
+    }
+
+    public DespliegueinfraestructuradispersionDTO getCalculoValorPagoD() {
+        return calculoValorPagoD;
+    }
+
+    public void setCalculoValorPagoD(DespliegueinfraestructuradispersionDTO calculoValorPagoD) {
+        this.calculoValorPagoD = calculoValorPagoD;
     }
 
     @Override
@@ -106,8 +114,9 @@ public class PagoDTO implements Serializable {
             ", fechaPago='" + getFechaPago() + "'" +
             ", pago=" + getPago() +
             ", createdAt='" + getCreatedAt() + "'" +
-            ", idDespliegueInfraestructuraTroncalDistribucion=" + getIdDespliegueInfraestructuraTroncalDistribucion() +
-            ", idDespliegueinfraestructuradispersion=" + getIdDespliegueinfraestructuradispersion() +
+            ", razonSocial=" + getRazonSocial() +
+            ", calculoValorPago=" + getCalculoValorPago() +
+            ", calculoValorPagoD=" + getCalculoValorPagoD() +
             "}";
     }
 }

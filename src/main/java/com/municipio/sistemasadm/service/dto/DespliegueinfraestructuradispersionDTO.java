@@ -41,19 +41,19 @@ public class DespliegueinfraestructuradispersionDTO implements Serializable {
     private Double metrajeFinal;
 
     @NotNull
-    private Double calculoValorPago;
-
-    @NotNull
     private ZonedDateTime createdAt;
 
     @NotNull
     private Float valorMetro;
 
-    private Set<PozoDTO> pozos = new HashSet<>();
+    @NotNull
+    private Float calculoValorPagoD;
 
-    private DespliegueInfraestructuraTroncalDistribucionDTO idDespliegueInfraestructuraTroncalDistribucion;
+    private DespliegueInfraestructuraTroncalDistribucionDTO nombreRuta;
 
-    private ProveedorDTO idProveedor;
+    private ProveedorDTO razonSocial;
+
+    private Set<PozoDTO> numeropozos = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -127,14 +127,6 @@ public class DespliegueinfraestructuradispersionDTO implements Serializable {
         this.metrajeFinal = metrajeFinal;
     }
 
-    public Double getCalculoValorPago() {
-        return calculoValorPago;
-    }
-
-    public void setCalculoValorPago(Double calculoValorPago) {
-        this.calculoValorPago = calculoValorPago;
-    }
-
     public ZonedDateTime getCreatedAt() {
         return createdAt;
     }
@@ -151,30 +143,36 @@ public class DespliegueinfraestructuradispersionDTO implements Serializable {
         this.valorMetro = valorMetro;
     }
 
-    public Set<PozoDTO> getPozos() {
-        return pozos;
+    public Float getCalculoValorPagoD() {
+        return calculoValorPagoD;
     }
 
-    public void setPozos(Set<PozoDTO> pozos) {
-        this.pozos = pozos;
+    public void setCalculoValorPagoD(Float calculoValorPagoD) {
+        this.calculoValorPagoD = calculoValorPagoD;
     }
 
-    public DespliegueInfraestructuraTroncalDistribucionDTO getIdDespliegueInfraestructuraTroncalDistribucion() {
-        return idDespliegueInfraestructuraTroncalDistribucion;
+    public DespliegueInfraestructuraTroncalDistribucionDTO getNombreRuta() {
+        return nombreRuta;
     }
 
-    public void setIdDespliegueInfraestructuraTroncalDistribucion(
-        DespliegueInfraestructuraTroncalDistribucionDTO idDespliegueInfraestructuraTroncalDistribucion
-    ) {
-        this.idDespliegueInfraestructuraTroncalDistribucion = idDespliegueInfraestructuraTroncalDistribucion;
+    public void setNombreRuta(DespliegueInfraestructuraTroncalDistribucionDTO nombreRuta) {
+        this.nombreRuta = nombreRuta;
     }
 
-    public ProveedorDTO getIdProveedor() {
-        return idProveedor;
+    public ProveedorDTO getRazonSocial() {
+        return razonSocial;
     }
 
-    public void setIdProveedor(ProveedorDTO idProveedor) {
-        this.idProveedor = idProveedor;
+    public void setRazonSocial(ProveedorDTO razonSocial) {
+        this.razonSocial = razonSocial;
+    }
+
+    public Set<PozoDTO> getNumeropozos() {
+        return numeropozos;
+    }
+
+    public void setNumeropozos(Set<PozoDTO> numeropozos) {
+        this.numeropozos = numeropozos;
     }
 
     @Override
@@ -211,12 +209,12 @@ public class DespliegueinfraestructuradispersionDTO implements Serializable {
             ", descripcionDePozosUsadosRuta='" + getDescripcionDePozosUsadosRuta() + "'" +
             ", metrajeInicial=" + getMetrajeInicial() +
             ", metrajeFinal=" + getMetrajeFinal() +
-            ", calculoValorPago=" + getCalculoValorPago() +
             ", createdAt='" + getCreatedAt() + "'" +
             ", valorMetro=" + getValorMetro() +
-            ", pozos=" + getPozos() +
-            ", idDespliegueInfraestructuraTroncalDistribucion=" + getIdDespliegueInfraestructuraTroncalDistribucion() +
-            ", idProveedor=" + getIdProveedor() +
+            ", calculoValorPagoD=" + getCalculoValorPagoD() +
+            ", nombreRuta=" + getNombreRuta() +
+            ", razonSocial=" + getRazonSocial() +
+            ", numeropozos=" + getNumeropozos() +
             "}";
     }
 }

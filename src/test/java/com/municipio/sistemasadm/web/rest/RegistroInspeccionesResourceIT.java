@@ -3,26 +3,37 @@ package com.municipio.sistemasadm.web.rest;
 import static com.municipio.sistemasadm.web.rest.TestUtil.sameInstant;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.municipio.sistemasadm.IntegrationTest;
+import com.municipio.sistemasadm.domain.Pozo;
+import com.municipio.sistemasadm.domain.Proveedor;
 import com.municipio.sistemasadm.domain.RegistroInspecciones;
 import com.municipio.sistemasadm.repository.RegistroInspeccionesRepository;
+import com.municipio.sistemasadm.service.RegistroInspeccionesService;
 import com.municipio.sistemasadm.service.dto.RegistroInspeccionesDTO;
 import com.municipio.sistemasadm.service.mapper.RegistroInspeccionesMapper;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import javax.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -32,6 +43,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Integration tests for the {@link RegistroInspeccionesResource} REST controller.
  */
 @IntegrationTest
+@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 class RegistroInspeccionesResourceIT {
@@ -69,8 +81,14 @@ class RegistroInspeccionesResourceIT {
     @Autowired
     private RegistroInspeccionesRepository registroInspeccionesRepository;
 
+    @Mock
+    private RegistroInspeccionesRepository registroInspeccionesRepositoryMock;
+
     @Autowired
     private RegistroInspeccionesMapper registroInspeccionesMapper;
+
+    @Mock
+    private RegistroInspeccionesService registroInspeccionesServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -96,6 +114,26 @@ class RegistroInspeccionesResourceIT {
             .cumpleArregloCables(DEFAULT_CUMPLE_ARREGLO_CABLES)
             .cumplelimpiezaOrdenPozo(DEFAULT_CUMPLELIMPIEZA_ORDEN_POZO)
             .createdAt(DEFAULT_CREATED_AT);
+        // Add required entity
+        Proveedor proveedor;
+        if (TestUtil.findAll(em, Proveedor.class).isEmpty()) {
+            proveedor = ProveedorResourceIT.createEntity(em);
+            em.persist(proveedor);
+            em.flush();
+        } else {
+            proveedor = TestUtil.findAll(em, Proveedor.class).get(0);
+        }
+        registroInspecciones.setRazonSocial(proveedor);
+        // Add required entity
+        Pozo pozo;
+        if (TestUtil.findAll(em, Pozo.class).isEmpty()) {
+            pozo = PozoResourceIT.createEntity(em);
+            em.persist(pozo);
+            em.flush();
+        } else {
+            pozo = TestUtil.findAll(em, Pozo.class).get(0);
+        }
+        registroInspecciones.setNumeropozo(pozo);
         return registroInspecciones;
     }
 
@@ -115,6 +153,26 @@ class RegistroInspeccionesResourceIT {
             .cumpleArregloCables(UPDATED_CUMPLE_ARREGLO_CABLES)
             .cumplelimpiezaOrdenPozo(UPDATED_CUMPLELIMPIEZA_ORDEN_POZO)
             .createdAt(UPDATED_CREATED_AT);
+        // Add required entity
+        Proveedor proveedor;
+        if (TestUtil.findAll(em, Proveedor.class).isEmpty()) {
+            proveedor = ProveedorResourceIT.createUpdatedEntity(em);
+            em.persist(proveedor);
+            em.flush();
+        } else {
+            proveedor = TestUtil.findAll(em, Proveedor.class).get(0);
+        }
+        registroInspecciones.setRazonSocial(proveedor);
+        // Add required entity
+        Pozo pozo;
+        if (TestUtil.findAll(em, Pozo.class).isEmpty()) {
+            pozo = PozoResourceIT.createUpdatedEntity(em);
+            em.persist(pozo);
+            em.flush();
+        } else {
+            pozo = TestUtil.findAll(em, Pozo.class).get(0);
+        }
+        registroInspecciones.setNumeropozo(pozo);
         return registroInspecciones;
     }
 
@@ -238,6 +296,23 @@ class RegistroInspeccionesResourceIT {
             .andExpect(jsonPath("$.[*].cumpleArregloCables").value(hasItem(DEFAULT_CUMPLE_ARREGLO_CABLES.booleanValue())))
             .andExpect(jsonPath("$.[*].cumplelimpiezaOrdenPozo").value(hasItem(DEFAULT_CUMPLELIMPIEZA_ORDEN_POZO.booleanValue())))
             .andExpect(jsonPath("$.[*].createdAt").value(hasItem(sameInstant(DEFAULT_CREATED_AT))));
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    void getAllRegistroInspeccionesWithEagerRelationshipsIsEnabled() throws Exception {
+        when(registroInspeccionesServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restRegistroInspeccionesMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
+
+        verify(registroInspeccionesServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    void getAllRegistroInspeccionesWithEagerRelationshipsIsNotEnabled() throws Exception {
+        when(registroInspeccionesServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restRegistroInspeccionesMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
+        verify(registroInspeccionesRepositoryMock, times(1)).findAll(any(Pageable.class));
     }
 
     @Test

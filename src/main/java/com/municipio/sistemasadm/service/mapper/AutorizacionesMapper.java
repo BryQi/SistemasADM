@@ -13,17 +13,19 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring")
 public interface AutorizacionesMapper extends EntityMapper<AutorizacionesDTO, Autorizaciones> {
-    @Mapping(target = "idProveedor", source = "idProveedor", qualifiedByName = "proveedorId")
-    @Mapping(target = "pozo", source = "pozo", qualifiedByName = "pozoId")
+    @Mapping(target = "razonSocial", source = "razonSocial", qualifiedByName = "proveedorRazonSocial")
+    @Mapping(target = "numeropozo", source = "numeropozo", qualifiedByName = "pozoNumeropozo")
     AutorizacionesDTO toDto(Autorizaciones s);
 
-    @Named("proveedorId")
+    @Named("proveedorRazonSocial")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    ProveedorDTO toDtoProveedorId(Proveedor proveedor);
+    @Mapping(target = "razonSocial", source = "razonSocial")
+    ProveedorDTO toDtoProveedorRazonSocial(Proveedor proveedor);
 
-    @Named("pozoId")
+    @Named("pozoNumeropozo")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    PozoDTO toDtoPozoId(Pozo pozo);
+    @Mapping(target = "numeropozo", source = "numeropozo")
+    PozoDTO toDtoPozoNumeropozo(Pozo pozo);
 }

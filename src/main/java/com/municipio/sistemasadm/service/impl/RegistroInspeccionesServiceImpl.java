@@ -72,11 +72,15 @@ public class RegistroInspeccionesServiceImpl implements RegistroInspeccionesServ
         return registroInspeccionesRepository.findAll(pageable).map(registroInspeccionesMapper::toDto);
     }
 
+    public Page<RegistroInspeccionesDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return registroInspeccionesRepository.findAllWithEagerRelationships(pageable).map(registroInspeccionesMapper::toDto);
+    }
+
     @Override
     @Transactional(readOnly = true)
     public Optional<RegistroInspeccionesDTO> findOne(Long id) {
         log.debug("Request to get RegistroInspecciones : {}", id);
-        return registroInspeccionesRepository.findById(id).map(registroInspeccionesMapper::toDto);
+        return registroInspeccionesRepository.findOneWithEagerRelationships(id).map(registroInspeccionesMapper::toDto);
     }
 
     @Override

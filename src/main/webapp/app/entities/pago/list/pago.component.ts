@@ -106,6 +106,7 @@ export class PagoComponent implements OnInit {
     const queryObject = {
       page: pageToLoad - 1,
       size: this.itemsPerPage,
+      eagerload: true,
       sort: this.getSortQueryParam(predicate, ascending),
     };
     return this.pagoService.query(queryObject).pipe(tap(() => (this.isLoading = false)));

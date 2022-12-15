@@ -1,6 +1,5 @@
 package com.municipio.sistemasadm.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.municipio.sistemasadm.domain.enumeration.ContactoTecnico;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -63,21 +62,13 @@ public class Autorizaciones implements Serializable {
     @Column(name = "direccion_destino", nullable = false)
     private String direccionDestino;
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = { "despliegueinfraestructuradispersions", "autorizaciones", "infraestructuras" }, allowSetters = true)
-    private Proveedor idProveedor;
+    @ManyToOne(optional = false)
+    @NotNull
+    private Proveedor razonSocial;
 
-    @ManyToOne
-    @JsonIgnoreProperties(
-        value = {
-            "fotoPozos",
-            "registroInspecciones",
-            "idDespliegueInfraestructuraTroncalDistribucions",
-            "idDespliegueinfraestructuradispersions",
-        },
-        allowSetters = true
-    )
-    private Pozo pozo;
+    @ManyToOne(optional = false)
+    @NotNull
+    private Pozo numeropozo;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -211,29 +202,29 @@ public class Autorizaciones implements Serializable {
         this.direccionDestino = direccionDestino;
     }
 
-    public Proveedor getIdProveedor() {
-        return this.idProveedor;
+    public Proveedor getRazonSocial() {
+        return this.razonSocial;
     }
 
-    public void setIdProveedor(Proveedor proveedor) {
-        this.idProveedor = proveedor;
+    public void setRazonSocial(Proveedor proveedor) {
+        this.razonSocial = proveedor;
     }
 
-    public Autorizaciones idProveedor(Proveedor proveedor) {
-        this.setIdProveedor(proveedor);
+    public Autorizaciones razonSocial(Proveedor proveedor) {
+        this.setRazonSocial(proveedor);
         return this;
     }
 
-    public Pozo getPozo() {
-        return this.pozo;
+    public Pozo getNumeropozo() {
+        return this.numeropozo;
     }
 
-    public void setPozo(Pozo pozo) {
-        this.pozo = pozo;
+    public void setNumeropozo(Pozo pozo) {
+        this.numeropozo = pozo;
     }
 
-    public Autorizaciones pozo(Pozo pozo) {
-        this.setPozo(pozo);
+    public Autorizaciones numeropozo(Pozo pozo) {
+        this.setNumeropozo(pozo);
         return this;
     }
 

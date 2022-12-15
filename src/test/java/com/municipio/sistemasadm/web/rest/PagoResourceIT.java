@@ -3,12 +3,16 @@ package com.municipio.sistemasadm.web.rest;
 import static com.municipio.sistemasadm.web.rest.TestUtil.sameInstant;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.municipio.sistemasadm.IntegrationTest;
+import com.municipio.sistemasadm.domain.Despliegueinfraestructuradispersion;
 import com.municipio.sistemasadm.domain.Pago;
+import com.municipio.sistemasadm.domain.Proveedor;
 import com.municipio.sistemasadm.repository.PagoRepository;
+import com.municipio.sistemasadm.service.PagoService;
 import com.municipio.sistemasadm.service.dto.PagoDTO;
 import com.municipio.sistemasadm.service.mapper.PagoMapper;
 import java.time.Instant;
@@ -16,14 +20,21 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import javax.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -33,6 +44,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Integration tests for the {@link PagoResource} REST controller.
  */
 @IntegrationTest
+@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 class PagoResourceIT {
@@ -55,8 +67,14 @@ class PagoResourceIT {
     @Autowired
     private PagoRepository pagoRepository;
 
+    @Mock
+    private PagoRepository pagoRepositoryMock;
+
     @Autowired
     private PagoMapper pagoMapper;
+
+    @Mock
+    private PagoService pagoServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -74,6 +92,26 @@ class PagoResourceIT {
      */
     public static Pago createEntity(EntityManager em) {
         Pago pago = new Pago().fechaPago(DEFAULT_FECHA_PAGO).pago(DEFAULT_PAGO).createdAt(DEFAULT_CREATED_AT);
+        // Add required entity
+        Proveedor proveedor;
+        if (TestUtil.findAll(em, Proveedor.class).isEmpty()) {
+            proveedor = ProveedorResourceIT.createEntity(em);
+            em.persist(proveedor);
+            em.flush();
+        } else {
+            proveedor = TestUtil.findAll(em, Proveedor.class).get(0);
+        }
+        pago.setRazonSocial(proveedor);
+        // Add required entity
+        Despliegueinfraestructuradispersion despliegueinfraestructuradispersion;
+        if (TestUtil.findAll(em, Despliegueinfraestructuradispersion.class).isEmpty()) {
+            despliegueinfraestructuradispersion = DespliegueinfraestructuradispersionResourceIT.createEntity(em);
+            em.persist(despliegueinfraestructuradispersion);
+            em.flush();
+        } else {
+            despliegueinfraestructuradispersion = TestUtil.findAll(em, Despliegueinfraestructuradispersion.class).get(0);
+        }
+        pago.setCalculoValorPagoD(despliegueinfraestructuradispersion);
         return pago;
     }
 
@@ -85,6 +123,26 @@ class PagoResourceIT {
      */
     public static Pago createUpdatedEntity(EntityManager em) {
         Pago pago = new Pago().fechaPago(UPDATED_FECHA_PAGO).pago(UPDATED_PAGO).createdAt(UPDATED_CREATED_AT);
+        // Add required entity
+        Proveedor proveedor;
+        if (TestUtil.findAll(em, Proveedor.class).isEmpty()) {
+            proveedor = ProveedorResourceIT.createUpdatedEntity(em);
+            em.persist(proveedor);
+            em.flush();
+        } else {
+            proveedor = TestUtil.findAll(em, Proveedor.class).get(0);
+        }
+        pago.setRazonSocial(proveedor);
+        // Add required entity
+        Despliegueinfraestructuradispersion despliegueinfraestructuradispersion;
+        if (TestUtil.findAll(em, Despliegueinfraestructuradispersion.class).isEmpty()) {
+            despliegueinfraestructuradispersion = DespliegueinfraestructuradispersionResourceIT.createUpdatedEntity(em);
+            em.persist(despliegueinfraestructuradispersion);
+            em.flush();
+        } else {
+            despliegueinfraestructuradispersion = TestUtil.findAll(em, Despliegueinfraestructuradispersion.class).get(0);
+        }
+        pago.setCalculoValorPagoD(despliegueinfraestructuradispersion);
         return pago;
     }
 
@@ -200,6 +258,23 @@ class PagoResourceIT {
             .andExpect(jsonPath("$.[*].fechaPago").value(hasItem(DEFAULT_FECHA_PAGO.toString())))
             .andExpect(jsonPath("$.[*].pago").value(hasItem(DEFAULT_PAGO)))
             .andExpect(jsonPath("$.[*].createdAt").value(hasItem(sameInstant(DEFAULT_CREATED_AT))));
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    void getAllPagosWithEagerRelationshipsIsEnabled() throws Exception {
+        when(pagoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restPagoMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
+
+        verify(pagoServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    void getAllPagosWithEagerRelationshipsIsNotEnabled() throws Exception {
+        when(pagoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restPagoMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
+        verify(pagoRepositoryMock, times(1)).findAll(any(Pageable.class));
     }
 
     @Test

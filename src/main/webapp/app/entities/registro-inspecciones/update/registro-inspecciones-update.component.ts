@@ -7,10 +7,10 @@ import { finalize, map } from 'rxjs/operators';
 import { RegistroInspeccionesFormService, RegistroInspeccionesFormGroup } from './registro-inspecciones-form.service';
 import { IRegistroInspecciones } from '../registro-inspecciones.model';
 import { RegistroInspeccionesService } from '../service/registro-inspecciones.service';
-import { IPozo } from 'app/entities/pozo/pozo.model';
-import { PozoService } from 'app/entities/pozo/service/pozo.service';
 import { IProveedor } from 'app/entities/proveedor/proveedor.model';
 import { ProveedorService } from 'app/entities/proveedor/service/proveedor.service';
+import { IPozo } from 'app/entities/pozo/pozo.model';
+import { PozoService } from 'app/entities/pozo/service/pozo.service';
 
 @Component({
   selector: 'jhi-registro-inspecciones-update',
@@ -20,22 +20,22 @@ export class RegistroInspeccionesUpdateComponent implements OnInit {
   isSaving = false;
   registroInspecciones: IRegistroInspecciones | null = null;
 
-  pozosSharedCollection: IPozo[] = [];
   proveedorsSharedCollection: IProveedor[] = [];
+  pozosSharedCollection: IPozo[] = [];
 
   editForm: RegistroInspeccionesFormGroup = this.registroInspeccionesFormService.createRegistroInspeccionesFormGroup();
 
   constructor(
     protected registroInspeccionesService: RegistroInspeccionesService,
     protected registroInspeccionesFormService: RegistroInspeccionesFormService,
-    protected pozoService: PozoService,
     protected proveedorService: ProveedorService,
+    protected pozoService: PozoService,
     protected activatedRoute: ActivatedRoute
   ) {}
 
-  comparePozo = (o1: IPozo | null, o2: IPozo | null): boolean => this.pozoService.comparePozo(o1, o2);
-
   compareProveedor = (o1: IProveedor | null, o2: IProveedor | null): boolean => this.proveedorService.compareProveedor(o1, o2);
+
+  comparePozo = (o1: IPozo | null, o2: IPozo | null): boolean => this.pozoService.comparePozo(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ registroInspecciones }) => {
@@ -85,31 +85,31 @@ export class RegistroInspeccionesUpdateComponent implements OnInit {
     this.registroInspecciones = registroInspecciones;
     this.registroInspeccionesFormService.resetForm(this.editForm, registroInspecciones);
 
-    this.pozosSharedCollection = this.pozoService.addPozoToCollectionIfMissing<IPozo>(
-      this.pozosSharedCollection,
-      registroInspecciones.idPozo
-    );
     this.proveedorsSharedCollection = this.proveedorService.addProveedorToCollectionIfMissing<IProveedor>(
       this.proveedorsSharedCollection,
-      registroInspecciones.provedorinspeciones
+      registroInspecciones.razonSocial
+    );
+    this.pozosSharedCollection = this.pozoService.addPozoToCollectionIfMissing<IPozo>(
+      this.pozosSharedCollection,
+      registroInspecciones.numeropozo
     );
   }
 
   protected loadRelationshipsOptions(): void {
-    this.pozoService
-      .query()
-      .pipe(map((res: HttpResponse<IPozo[]>) => res.body ?? []))
-      .pipe(map((pozos: IPozo[]) => this.pozoService.addPozoToCollectionIfMissing<IPozo>(pozos, this.registroInspecciones?.idPozo)))
-      .subscribe((pozos: IPozo[]) => (this.pozosSharedCollection = pozos));
-
     this.proveedorService
       .query()
       .pipe(map((res: HttpResponse<IProveedor[]>) => res.body ?? []))
       .pipe(
         map((proveedors: IProveedor[]) =>
-          this.proveedorService.addProveedorToCollectionIfMissing<IProveedor>(proveedors, this.registroInspecciones?.provedorinspeciones)
+          this.proveedorService.addProveedorToCollectionIfMissing<IProveedor>(proveedors, this.registroInspecciones?.razonSocial)
         )
       )
       .subscribe((proveedors: IProveedor[]) => (this.proveedorsSharedCollection = proveedors));
+
+    this.pozoService
+      .query()
+      .pipe(map((res: HttpResponse<IPozo[]>) => res.body ?? []))
+      .pipe(map((pozos: IPozo[]) => this.pozoService.addPozoToCollectionIfMissing<IPozo>(pozos, this.registroInspecciones?.numeropozo)))
+      .subscribe((pozos: IPozo[]) => (this.pozosSharedCollection = pozos));
   }
 }

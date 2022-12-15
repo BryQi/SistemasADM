@@ -89,9 +89,12 @@ export class AutorizacionesUpdateComponent implements OnInit {
 
     this.proveedorsSharedCollection = this.proveedorService.addProveedorToCollectionIfMissing<IProveedor>(
       this.proveedorsSharedCollection,
-      autorizaciones.idProveedor
+      autorizaciones.razonSocial
     );
-    this.pozosSharedCollection = this.pozoService.addPozoToCollectionIfMissing<IPozo>(this.pozosSharedCollection, autorizaciones.pozo);
+    this.pozosSharedCollection = this.pozoService.addPozoToCollectionIfMissing<IPozo>(
+      this.pozosSharedCollection,
+      autorizaciones.numeropozo
+    );
   }
 
   protected loadRelationshipsOptions(): void {
@@ -100,7 +103,7 @@ export class AutorizacionesUpdateComponent implements OnInit {
       .pipe(map((res: HttpResponse<IProveedor[]>) => res.body ?? []))
       .pipe(
         map((proveedors: IProveedor[]) =>
-          this.proveedorService.addProveedorToCollectionIfMissing<IProveedor>(proveedors, this.autorizaciones?.idProveedor)
+          this.proveedorService.addProveedorToCollectionIfMissing<IProveedor>(proveedors, this.autorizaciones?.razonSocial)
         )
       )
       .subscribe((proveedors: IProveedor[]) => (this.proveedorsSharedCollection = proveedors));
@@ -108,7 +111,7 @@ export class AutorizacionesUpdateComponent implements OnInit {
     this.pozoService
       .query()
       .pipe(map((res: HttpResponse<IPozo[]>) => res.body ?? []))
-      .pipe(map((pozos: IPozo[]) => this.pozoService.addPozoToCollectionIfMissing<IPozo>(pozos, this.autorizaciones?.pozo)))
+      .pipe(map((pozos: IPozo[]) => this.pozoService.addPozoToCollectionIfMissing<IPozo>(pozos, this.autorizaciones?.numeropozo)))
       .subscribe((pozos: IPozo[]) => (this.pozosSharedCollection = pozos));
   }
 }

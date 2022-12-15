@@ -9,12 +9,12 @@ import { of, Subject, from } from 'rxjs';
 import { DespliegueinfraestructuradispersionFormService } from './despliegueinfraestructuradispersion-form.service';
 import { DespliegueinfraestructuradispersionService } from '../service/despliegueinfraestructuradispersion.service';
 import { IDespliegueinfraestructuradispersion } from '../despliegueinfraestructuradispersion.model';
-import { IPozo } from 'app/entities/pozo/pozo.model';
-import { PozoService } from 'app/entities/pozo/service/pozo.service';
 import { IDespliegueInfraestructuraTroncalDistribucion } from 'app/entities/despliegue-infraestructura-troncal-distribucion/despliegue-infraestructura-troncal-distribucion.model';
 import { DespliegueInfraestructuraTroncalDistribucionService } from 'app/entities/despliegue-infraestructura-troncal-distribucion/service/despliegue-infraestructura-troncal-distribucion.service';
 import { IProveedor } from 'app/entities/proveedor/proveedor.model';
 import { ProveedorService } from 'app/entities/proveedor/service/proveedor.service';
+import { IPozo } from 'app/entities/pozo/pozo.model';
+import { PozoService } from 'app/entities/pozo/service/pozo.service';
 
 import { DespliegueinfraestructuradispersionUpdateComponent } from './despliegueinfraestructuradispersion-update.component';
 
@@ -24,9 +24,9 @@ describe('Despliegueinfraestructuradispersion Management Update Component', () =
   let activatedRoute: ActivatedRoute;
   let despliegueinfraestructuradispersionFormService: DespliegueinfraestructuradispersionFormService;
   let despliegueinfraestructuradispersionService: DespliegueinfraestructuradispersionService;
-  let pozoService: PozoService;
   let despliegueInfraestructuraTroncalDistribucionService: DespliegueInfraestructuraTroncalDistribucionService;
   let proveedorService: ProveedorService;
+  let pozoService: PozoService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -49,46 +49,24 @@ describe('Despliegueinfraestructuradispersion Management Update Component', () =
     activatedRoute = TestBed.inject(ActivatedRoute);
     despliegueinfraestructuradispersionFormService = TestBed.inject(DespliegueinfraestructuradispersionFormService);
     despliegueinfraestructuradispersionService = TestBed.inject(DespliegueinfraestructuradispersionService);
-    pozoService = TestBed.inject(PozoService);
     despliegueInfraestructuraTroncalDistribucionService = TestBed.inject(DespliegueInfraestructuraTroncalDistribucionService);
     proveedorService = TestBed.inject(ProveedorService);
+    pozoService = TestBed.inject(PozoService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should call Pozo query and add missing value', () => {
-      const despliegueinfraestructuradispersion: IDespliegueinfraestructuradispersion = { id: 456 };
-      const pozos: IPozo[] = [{ id: 94196 }];
-      despliegueinfraestructuradispersion.pozos = pozos;
-
-      const pozoCollection: IPozo[] = [{ id: 31601 }];
-      jest.spyOn(pozoService, 'query').mockReturnValue(of(new HttpResponse({ body: pozoCollection })));
-      const additionalPozos = [...pozos];
-      const expectedCollection: IPozo[] = [...additionalPozos, ...pozoCollection];
-      jest.spyOn(pozoService, 'addPozoToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ despliegueinfraestructuradispersion });
-      comp.ngOnInit();
-
-      expect(pozoService.query).toHaveBeenCalled();
-      expect(pozoService.addPozoToCollectionIfMissing).toHaveBeenCalledWith(
-        pozoCollection,
-        ...additionalPozos.map(expect.objectContaining)
-      );
-      expect(comp.pozosSharedCollection).toEqual(expectedCollection);
-    });
-
     it('Should call DespliegueInfraestructuraTroncalDistribucion query and add missing value', () => {
       const despliegueinfraestructuradispersion: IDespliegueinfraestructuradispersion = { id: 456 };
-      const idDespliegueInfraestructuraTroncalDistribucion: IDespliegueInfraestructuraTroncalDistribucion = { id: 90277 };
-      despliegueinfraestructuradispersion.idDespliegueInfraestructuraTroncalDistribucion = idDespliegueInfraestructuraTroncalDistribucion;
+      const nombreRuta: IDespliegueInfraestructuraTroncalDistribucion = { id: 90277 };
+      despliegueinfraestructuradispersion.nombreRuta = nombreRuta;
 
       const despliegueInfraestructuraTroncalDistribucionCollection: IDespliegueInfraestructuraTroncalDistribucion[] = [{ id: 70679 }];
       jest
         .spyOn(despliegueInfraestructuraTroncalDistribucionService, 'query')
         .mockReturnValue(of(new HttpResponse({ body: despliegueInfraestructuraTroncalDistribucionCollection })));
-      const additionalDespliegueInfraestructuraTroncalDistribucions = [idDespliegueInfraestructuraTroncalDistribucion];
+      const additionalDespliegueInfraestructuraTroncalDistribucions = [nombreRuta];
       const expectedCollection: IDespliegueInfraestructuraTroncalDistribucion[] = [
         ...additionalDespliegueInfraestructuraTroncalDistribucions,
         ...despliegueInfraestructuraTroncalDistribucionCollection,
@@ -112,12 +90,12 @@ describe('Despliegueinfraestructuradispersion Management Update Component', () =
 
     it('Should call Proveedor query and add missing value', () => {
       const despliegueinfraestructuradispersion: IDespliegueinfraestructuradispersion = { id: 456 };
-      const idProveedor: IProveedor = { id: 45443 };
-      despliegueinfraestructuradispersion.idProveedor = idProveedor;
+      const razonSocial: IProveedor = { id: 45443 };
+      despliegueinfraestructuradispersion.razonSocial = razonSocial;
 
       const proveedorCollection: IProveedor[] = [{ id: 2544 }];
       jest.spyOn(proveedorService, 'query').mockReturnValue(of(new HttpResponse({ body: proveedorCollection })));
-      const additionalProveedors = [idProveedor];
+      const additionalProveedors = [razonSocial];
       const expectedCollection: IProveedor[] = [...additionalProveedors, ...proveedorCollection];
       jest.spyOn(proveedorService, 'addProveedorToCollectionIfMissing').mockReturnValue(expectedCollection);
 
@@ -132,21 +110,43 @@ describe('Despliegueinfraestructuradispersion Management Update Component', () =
       expect(comp.proveedorsSharedCollection).toEqual(expectedCollection);
     });
 
-    it('Should update editForm', () => {
+    it('Should call Pozo query and add missing value', () => {
       const despliegueinfraestructuradispersion: IDespliegueinfraestructuradispersion = { id: 456 };
-      const pozo: IPozo = { id: 67104 };
-      despliegueinfraestructuradispersion.pozos = [pozo];
-      const idDespliegueInfraestructuraTroncalDistribucion: IDespliegueInfraestructuraTroncalDistribucion = { id: 30329 };
-      despliegueinfraestructuradispersion.idDespliegueInfraestructuraTroncalDistribucion = idDespliegueInfraestructuraTroncalDistribucion;
-      const idProveedor: IProveedor = { id: 58191 };
-      despliegueinfraestructuradispersion.idProveedor = idProveedor;
+      const numeropozos: IPozo[] = [{ id: 94196 }];
+      despliegueinfraestructuradispersion.numeropozos = numeropozos;
+
+      const pozoCollection: IPozo[] = [{ id: 31601 }];
+      jest.spyOn(pozoService, 'query').mockReturnValue(of(new HttpResponse({ body: pozoCollection })));
+      const additionalPozos = [...numeropozos];
+      const expectedCollection: IPozo[] = [...additionalPozos, ...pozoCollection];
+      jest.spyOn(pozoService, 'addPozoToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ despliegueinfraestructuradispersion });
       comp.ngOnInit();
 
-      expect(comp.pozosSharedCollection).toContain(pozo);
-      expect(comp.despliegueInfraestructuraTroncalDistribucionsSharedCollection).toContain(idDespliegueInfraestructuraTroncalDistribucion);
-      expect(comp.proveedorsSharedCollection).toContain(idProveedor);
+      expect(pozoService.query).toHaveBeenCalled();
+      expect(pozoService.addPozoToCollectionIfMissing).toHaveBeenCalledWith(
+        pozoCollection,
+        ...additionalPozos.map(expect.objectContaining)
+      );
+      expect(comp.pozosSharedCollection).toEqual(expectedCollection);
+    });
+
+    it('Should update editForm', () => {
+      const despliegueinfraestructuradispersion: IDespliegueinfraestructuradispersion = { id: 456 };
+      const nombreRuta: IDespliegueInfraestructuraTroncalDistribucion = { id: 30329 };
+      despliegueinfraestructuradispersion.nombreRuta = nombreRuta;
+      const razonSocial: IProveedor = { id: 58191 };
+      despliegueinfraestructuradispersion.razonSocial = razonSocial;
+      const numeropozo: IPozo = { id: 67104 };
+      despliegueinfraestructuradispersion.numeropozos = [numeropozo];
+
+      activatedRoute.data = of({ despliegueinfraestructuradispersion });
+      comp.ngOnInit();
+
+      expect(comp.despliegueInfraestructuraTroncalDistribucionsSharedCollection).toContain(nombreRuta);
+      expect(comp.proveedorsSharedCollection).toContain(razonSocial);
+      expect(comp.pozosSharedCollection).toContain(numeropozo);
       expect(comp.despliegueinfraestructuradispersion).toEqual(despliegueinfraestructuradispersion);
     });
   });
@@ -224,16 +224,6 @@ describe('Despliegueinfraestructuradispersion Management Update Component', () =
   });
 
   describe('Compare relationships', () => {
-    describe('comparePozo', () => {
-      it('Should forward to pozoService', () => {
-        const entity = { id: 123 };
-        const entity2 = { id: 456 };
-        jest.spyOn(pozoService, 'comparePozo');
-        comp.comparePozo(entity, entity2);
-        expect(pozoService.comparePozo).toHaveBeenCalledWith(entity, entity2);
-      });
-    });
-
     describe('compareDespliegueInfraestructuraTroncalDistribucion', () => {
       it('Should forward to despliegueInfraestructuraTroncalDistribucionService', () => {
         const entity = { id: 123 };
@@ -253,6 +243,16 @@ describe('Despliegueinfraestructuradispersion Management Update Component', () =
         jest.spyOn(proveedorService, 'compareProveedor');
         comp.compareProveedor(entity, entity2);
         expect(proveedorService.compareProveedor).toHaveBeenCalledWith(entity, entity2);
+      });
+    });
+
+    describe('comparePozo', () => {
+      it('Should forward to pozoService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(pozoService, 'comparePozo');
+        comp.comparePozo(entity, entity2);
+        expect(pozoService.comparePozo).toHaveBeenCalledWith(entity, entity2);
       });
     });
   });

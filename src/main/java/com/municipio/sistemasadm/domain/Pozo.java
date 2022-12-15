@@ -1,11 +1,8 @@
 package com.municipio.sistemasadm.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.municipio.sistemasadm.domain.enumeration.TipoPozo;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
@@ -51,29 +48,6 @@ public class Pozo implements Serializable {
     @NotNull
     @Column(name = "latitud", nullable = false)
     private String latitud;
-
-    @OneToMany(mappedBy = "idPozo")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "idPozo" }, allowSetters = true)
-    private Set<FotoPozo> fotoPozos = new HashSet<>();
-
-    @OneToMany(mappedBy = "idPozo")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "idPozo", "provedorinspeciones" }, allowSetters = true)
-    private Set<RegistroInspecciones> registroInspecciones = new HashSet<>();
-
-    @ManyToMany(mappedBy = "pozos")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "despliegueInfraestructuraDispersions", "pagos", "pozos", "infraestructura" }, allowSetters = true)
-    private Set<DespliegueInfraestructuraTroncalDistribucion> idDespliegueInfraestructuraTroncalDistribucions = new HashSet<>();
-
-    @ManyToMany(mappedBy = "pozos")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(
-        value = { "pagos", "pozos", "idDespliegueInfraestructuraTroncalDistribucion", "idProveedor" },
-        allowSetters = true
-    )
-    private Set<Despliegueinfraestructuradispersion> idDespliegueinfraestructuradispersions = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -166,138 +140,6 @@ public class Pozo implements Serializable {
 
     public void setLatitud(String latitud) {
         this.latitud = latitud;
-    }
-
-    public Set<FotoPozo> getFotoPozos() {
-        return this.fotoPozos;
-    }
-
-    public void setFotoPozos(Set<FotoPozo> fotoPozos) {
-        if (this.fotoPozos != null) {
-            this.fotoPozos.forEach(i -> i.setIdPozo(null));
-        }
-        if (fotoPozos != null) {
-            fotoPozos.forEach(i -> i.setIdPozo(this));
-        }
-        this.fotoPozos = fotoPozos;
-    }
-
-    public Pozo fotoPozos(Set<FotoPozo> fotoPozos) {
-        this.setFotoPozos(fotoPozos);
-        return this;
-    }
-
-    public Pozo addFotoPozo(FotoPozo fotoPozo) {
-        this.fotoPozos.add(fotoPozo);
-        fotoPozo.setIdPozo(this);
-        return this;
-    }
-
-    public Pozo removeFotoPozo(FotoPozo fotoPozo) {
-        this.fotoPozos.remove(fotoPozo);
-        fotoPozo.setIdPozo(null);
-        return this;
-    }
-
-    public Set<RegistroInspecciones> getRegistroInspecciones() {
-        return this.registroInspecciones;
-    }
-
-    public void setRegistroInspecciones(Set<RegistroInspecciones> registroInspecciones) {
-        if (this.registroInspecciones != null) {
-            this.registroInspecciones.forEach(i -> i.setIdPozo(null));
-        }
-        if (registroInspecciones != null) {
-            registroInspecciones.forEach(i -> i.setIdPozo(this));
-        }
-        this.registroInspecciones = registroInspecciones;
-    }
-
-    public Pozo registroInspecciones(Set<RegistroInspecciones> registroInspecciones) {
-        this.setRegistroInspecciones(registroInspecciones);
-        return this;
-    }
-
-    public Pozo addRegistroInspecciones(RegistroInspecciones registroInspecciones) {
-        this.registroInspecciones.add(registroInspecciones);
-        registroInspecciones.setIdPozo(this);
-        return this;
-    }
-
-    public Pozo removeRegistroInspecciones(RegistroInspecciones registroInspecciones) {
-        this.registroInspecciones.remove(registroInspecciones);
-        registroInspecciones.setIdPozo(null);
-        return this;
-    }
-
-    public Set<DespliegueInfraestructuraTroncalDistribucion> getIdDespliegueInfraestructuraTroncalDistribucions() {
-        return this.idDespliegueInfraestructuraTroncalDistribucions;
-    }
-
-    public void setIdDespliegueInfraestructuraTroncalDistribucions(
-        Set<DespliegueInfraestructuraTroncalDistribucion> despliegueInfraestructuraTroncalDistribucions
-    ) {
-        if (this.idDespliegueInfraestructuraTroncalDistribucions != null) {
-            this.idDespliegueInfraestructuraTroncalDistribucions.forEach(i -> i.removePozo(this));
-        }
-        if (despliegueInfraestructuraTroncalDistribucions != null) {
-            despliegueInfraestructuraTroncalDistribucions.forEach(i -> i.addPozo(this));
-        }
-        this.idDespliegueInfraestructuraTroncalDistribucions = despliegueInfraestructuraTroncalDistribucions;
-    }
-
-    public Pozo idDespliegueInfraestructuraTroncalDistribucions(
-        Set<DespliegueInfraestructuraTroncalDistribucion> despliegueInfraestructuraTroncalDistribucions
-    ) {
-        this.setIdDespliegueInfraestructuraTroncalDistribucions(despliegueInfraestructuraTroncalDistribucions);
-        return this;
-    }
-
-    public Pozo addIdDespliegueInfraestructuraTroncalDistribucion(
-        DespliegueInfraestructuraTroncalDistribucion despliegueInfraestructuraTroncalDistribucion
-    ) {
-        this.idDespliegueInfraestructuraTroncalDistribucions.add(despliegueInfraestructuraTroncalDistribucion);
-        despliegueInfraestructuraTroncalDistribucion.getPozos().add(this);
-        return this;
-    }
-
-    public Pozo removeIdDespliegueInfraestructuraTroncalDistribucion(
-        DespliegueInfraestructuraTroncalDistribucion despliegueInfraestructuraTroncalDistribucion
-    ) {
-        this.idDespliegueInfraestructuraTroncalDistribucions.remove(despliegueInfraestructuraTroncalDistribucion);
-        despliegueInfraestructuraTroncalDistribucion.getPozos().remove(this);
-        return this;
-    }
-
-    public Set<Despliegueinfraestructuradispersion> getIdDespliegueinfraestructuradispersions() {
-        return this.idDespliegueinfraestructuradispersions;
-    }
-
-    public void setIdDespliegueinfraestructuradispersions(Set<Despliegueinfraestructuradispersion> despliegueinfraestructuradispersions) {
-        if (this.idDespliegueinfraestructuradispersions != null) {
-            this.idDespliegueinfraestructuradispersions.forEach(i -> i.removePozo(this));
-        }
-        if (despliegueinfraestructuradispersions != null) {
-            despliegueinfraestructuradispersions.forEach(i -> i.addPozo(this));
-        }
-        this.idDespliegueinfraestructuradispersions = despliegueinfraestructuradispersions;
-    }
-
-    public Pozo idDespliegueinfraestructuradispersions(Set<Despliegueinfraestructuradispersion> despliegueinfraestructuradispersions) {
-        this.setIdDespliegueinfraestructuradispersions(despliegueinfraestructuradispersions);
-        return this;
-    }
-
-    public Pozo addIdDespliegueinfraestructuradispersion(Despliegueinfraestructuradispersion despliegueinfraestructuradispersion) {
-        this.idDespliegueinfraestructuradispersions.add(despliegueinfraestructuradispersion);
-        despliegueinfraestructuradispersion.getPozos().add(this);
-        return this;
-    }
-
-    public Pozo removeIdDespliegueinfraestructuradispersion(Despliegueinfraestructuradispersion despliegueinfraestructuradispersion) {
-        this.idDespliegueinfraestructuradispersions.remove(despliegueinfraestructuradispersion);
-        despliegueinfraestructuradispersion.getPozos().remove(this);
-        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

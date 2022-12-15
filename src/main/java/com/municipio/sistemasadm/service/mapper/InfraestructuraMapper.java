@@ -15,25 +15,27 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring")
 public interface InfraestructuraMapper extends EntityMapper<InfraestructuraDTO, Infraestructura> {
-    @Mapping(target = "idProveedor", source = "idProveedor", qualifiedByName = "proveedorId")
-    @Mapping(target = "pozos", source = "pozos", qualifiedByName = "pozoIdSet")
+    @Mapping(target = "razonSocial", source = "razonSocial", qualifiedByName = "proveedorRazonSocial")
+    @Mapping(target = "numeropozos", source = "numeropozos", qualifiedByName = "pozoNumeropozoSet")
     InfraestructuraDTO toDto(Infraestructura s);
 
-    @Mapping(target = "removePozo", ignore = true)
+    @Mapping(target = "removeNumeropozo", ignore = true)
     Infraestructura toEntity(InfraestructuraDTO infraestructuraDTO);
 
-    @Named("proveedorId")
+    @Named("proveedorRazonSocial")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    ProveedorDTO toDtoProveedorId(Proveedor proveedor);
+    @Mapping(target = "razonSocial", source = "razonSocial")
+    ProveedorDTO toDtoProveedorRazonSocial(Proveedor proveedor);
 
-    @Named("pozoId")
+    @Named("pozoNumeropozo")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    PozoDTO toDtoPozoId(Pozo pozo);
+    @Mapping(target = "numeropozo", source = "numeropozo")
+    PozoDTO toDtoPozoNumeropozo(Pozo pozo);
 
-    @Named("pozoIdSet")
-    default Set<PozoDTO> toDtoPozoIdSet(Set<Pozo> pozo) {
-        return pozo.stream().map(this::toDtoPozoId).collect(Collectors.toSet());
+    @Named("pozoNumeropozoSet")
+    default Set<PozoDTO> toDtoPozoNumeropozoSet(Set<Pozo> pozo) {
+        return pozo.stream().map(this::toDtoPozoNumeropozo).collect(Collectors.toSet());
     }
 }

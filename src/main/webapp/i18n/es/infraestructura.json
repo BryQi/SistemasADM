@@ -20,8 +20,8 @@
       "id": "ID",
       "tipo": "Tipo",
       "createdAt": "Creado el",
-      "idProveedor": "Proveedor de Servicio",
-      "pozo": "Pozo"
+      "razonSocial": "Proveedor",
+      "numeropozo": "Pozos Utilizados"
     }
   }
 }

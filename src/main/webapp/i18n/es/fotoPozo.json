@@ -2,7 +2,7 @@
   "sistemasAdmApp": {
     "fotoPozo": {
       "home": {
-        "title": "Foto Pozos",
+        "title": "Fotos de los Pozos",
         "refreshListLabel": "Refrescar lista",
         "createLabel": "Crear nuevo Foto Pozo",
         "createOrEditLabel": "Crear o editar Foto Pozo",
@@ -19,9 +19,9 @@
       },
       "id": "ID",
       "foto": "Foto",
-      "descripcion": "Descripcion",
-      "createdAt": "Created At",
-      "idPozo": "Id Pozo"
+      "descripcion": "Descripción",
+      "createdAt": "Creado el",
+      "numeropozo": "Nombre del Pozo"
     }
   }
 }

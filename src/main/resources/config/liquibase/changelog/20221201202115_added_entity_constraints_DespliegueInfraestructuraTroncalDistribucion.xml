@@ -20,10 +20,10 @@
                                  referencedColumnNames="id"
                                  referencedTableName="pozo"/>
 
-        <addForeignKeyConstraint baseColumnNames="infraestructura_id"
+        <addForeignKeyConstraint baseColumnNames="razon_social_id"
                                  baseTableName="despliegue_infraestructura_troncal_distribucion"
-                                 constraintName="fk_despliegue_infraestructura_t__infraestructura_94_id"
+                                 constraintName="fk_despliegue_infraestructura_t__razon_social_bd_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="infraestructura"/>
+                                 referencedTableName="proveedor"/>
     </changeSet>
 </databaseChangeLog>

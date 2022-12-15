@@ -9,6 +9,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.municipio.sistemasadm.IntegrationTest;
 import com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion;
+import com.municipio.sistemasadm.domain.Pozo;
+import com.municipio.sistemasadm.domain.Proveedor;
 import com.municipio.sistemasadm.repository.DespliegueInfraestructuraTroncalDistribucionRepository;
 import com.municipio.sistemasadm.service.DespliegueInfraestructuraTroncalDistribucionService;
 import com.municipio.sistemasadm.service.dto.DespliegueInfraestructuraTroncalDistribucionDTO;
@@ -108,6 +110,26 @@ class DespliegueInfraestructuraTroncalDistribucionResourceIT {
             .calculoValorPago(DEFAULT_CALCULO_VALOR_PAGO)
             .createdAt(DEFAULT_CREATED_AT)
             .valorMetro(DEFAULT_VALOR_METRO);
+        // Add required entity
+        Pozo pozo;
+        if (TestUtil.findAll(em, Pozo.class).isEmpty()) {
+            pozo = PozoResourceIT.createEntity(em);
+            em.persist(pozo);
+            em.flush();
+        } else {
+            pozo = TestUtil.findAll(em, Pozo.class).get(0);
+        }
+        despliegueInfraestructuraTroncalDistribucion.getPozos().add(pozo);
+        // Add required entity
+        Proveedor proveedor;
+        if (TestUtil.findAll(em, Proveedor.class).isEmpty()) {
+            proveedor = ProveedorResourceIT.createEntity(em);
+            em.persist(proveedor);
+            em.flush();
+        } else {
+            proveedor = TestUtil.findAll(em, Proveedor.class).get(0);
+        }
+        despliegueInfraestructuraTroncalDistribucion.setRazonSocial(proveedor);
         return despliegueInfraestructuraTroncalDistribucion;
     }
 
@@ -126,6 +148,26 @@ class DespliegueInfraestructuraTroncalDistribucionResourceIT {
             .calculoValorPago(UPDATED_CALCULO_VALOR_PAGO)
             .createdAt(UPDATED_CREATED_AT)
             .valorMetro(UPDATED_VALOR_METRO);
+        // Add required entity
+        Pozo pozo;
+        if (TestUtil.findAll(em, Pozo.class).isEmpty()) {
+            pozo = PozoResourceIT.createUpdatedEntity(em);
+            em.persist(pozo);
+            em.flush();
+        } else {
+            pozo = TestUtil.findAll(em, Pozo.class).get(0);
+        }
+        despliegueInfraestructuraTroncalDistribucion.getPozos().add(pozo);
+        // Add required entity
+        Proveedor proveedor;
+        if (TestUtil.findAll(em, Proveedor.class).isEmpty()) {
+            proveedor = ProveedorResourceIT.createUpdatedEntity(em);
+            em.persist(proveedor);
+            em.flush();
+        } else {
+            proveedor = TestUtil.findAll(em, Proveedor.class).get(0);
+        }
+        despliegueInfraestructuraTroncalDistribucion.setRazonSocial(proveedor);
         return despliegueInfraestructuraTroncalDistribucion;
     }
 

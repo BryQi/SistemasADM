@@ -21,14 +21,30 @@ public interface DespliegueInfraestructuraTroncalDistribucionRepository
         DespliegueInfraestructuraTroncalDistribucionRepositoryWithBagRelationships,
         JpaRepository<DespliegueInfraestructuraTroncalDistribucion, Long> {
     default Optional<DespliegueInfraestructuraTroncalDistribucion> findOneWithEagerRelationships(Long id) {
-        return this.fetchBagRelationships(this.findById(id));
+        return this.fetchBagRelationships(this.findOneWithToOneRelationships(id));
     }
 
     default List<DespliegueInfraestructuraTroncalDistribucion> findAllWithEagerRelationships() {
-        return this.fetchBagRelationships(this.findAll());
+        return this.fetchBagRelationships(this.findAllWithToOneRelationships());
     }
 
     default Page<DespliegueInfraestructuraTroncalDistribucion> findAllWithEagerRelationships(Pageable pageable) {
-        return this.fetchBagRelationships(this.findAll(pageable));
+        return this.fetchBagRelationships(this.findAllWithToOneRelationships(pageable));
     }
+
+    @Query(
+        value = "select distinct despliegueInfraestructuraTroncalDistribucion from DespliegueInfraestructuraTroncalDistribucion despliegueInfraestructuraTroncalDistribucion left join fetch despliegueInfraestructuraTroncalDistribucion.razonSocial",
+        countQuery = "select count(distinct despliegueInfraestructuraTroncalDistribucion) from DespliegueInfraestructuraTroncalDistribucion despliegueInfraestructuraTroncalDistribucion"
+    )
+    Page<DespliegueInfraestructuraTroncalDistribucion> findAllWithToOneRelationships(Pageable pageable);
+
+    @Query(
+        "select distinct despliegueInfraestructuraTroncalDistribucion from DespliegueInfraestructuraTroncalDistribucion despliegueInfraestructuraTroncalDistribucion left join fetch despliegueInfraestructuraTroncalDistribucion.razonSocial"
+    )
+    List<DespliegueInfraestructuraTroncalDistribucion> findAllWithToOneRelationships();
+
+    @Query(
+        "select despliegueInfraestructuraTroncalDistribucion from DespliegueInfraestructuraTroncalDistribucion despliegueInfraestructuraTroncalDistribucion left join fetch despliegueInfraestructuraTroncalDistribucion.razonSocial where despliegueInfraestructuraTroncalDistribucion.id =:id"
+    )
+    Optional<DespliegueInfraestructuraTroncalDistribucion> findOneWithToOneRelationships(@Param("id") Long id);
 }

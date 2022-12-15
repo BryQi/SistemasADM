@@ -8,15 +8,21 @@
     -->
     <changeSet id="20221201202121-2" author="jhipster">
 
-        <addForeignKeyConstraint baseColumnNames="id_despliegue_infraestructura_troncal_distribucion_id"
+        <addForeignKeyConstraint baseColumnNames="razon_social_id"
                                  baseTableName="pago"
-                                 constraintName="fk_pago__id_despliegue_infraestructura_troncal_distribucion_id"
+                                 constraintName="fk_pago__razon_social_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="proveedor"/>
+
+        <addForeignKeyConstraint baseColumnNames="calculo_valor_pago_id"
+                                 baseTableName="pago"
+                                 constraintName="fk_pago__calculo_valor_pago_id"
                                  referencedColumnNames="id"
                                  referencedTableName="despliegue_infraestructura_troncal_distribucion"/>
 
-        <addForeignKeyConstraint baseColumnNames="id_despliegueinfraestructuradispersion_id"
+        <addForeignKeyConstraint baseColumnNames="calculo_valor_pagod_id"
                                  baseTableName="pago"
-                                 constraintName="fk_pago__id_despliegueinfraestructuradispersion_id"
+                                 constraintName="fk_pago__calculo_valor_pagod_id"
                                  referencedColumnNames="id"
                                  referencedTableName="despliegueinfraestructuradispersion"/>
     </changeSet>

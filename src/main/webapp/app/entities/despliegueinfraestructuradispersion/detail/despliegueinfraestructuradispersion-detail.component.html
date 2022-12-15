@@ -54,46 +54,38 @@
         <dd>
           <span>{{ despliegueinfraestructuradispersion.metrajeFinal }}</span>
         </dd>
-        <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.calculoValorPago">Calculo Valor Pago</span></dt>
-        <dd>
-          <span>{{ despliegueinfraestructuradispersion.calculoValorPago }}</span>
-        </dd>
 
         <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.valorMetro">Valor Metro</span></dt>
         <dd>
           <span>{{ despliegueinfraestructuradispersion.valorMetro }}</span>
         </dd>
-        <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.pozo">Pozo</span></dt>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.calculoValorPagoD">Calculo Valor Pago D</span></dt>
         <dd>
-          <span *ngFor="let pozo of despliegueinfraestructuradispersion.pozos; let last = last">
-            <a [routerLink]="['/pozo', pozo.id, 'view']">{{ pozo.id }}</a
-            >{{ last ? '' : ', ' }}
-          </span>
+          <span>{{ despliegueinfraestructuradispersion.calculoValorPagoD }}</span>
         </dd>
-        <dt>
-          <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.idDespliegueInfraestructuraTroncalDistribucion"
-            >Id Despliegue Infraestructura Troncal Distribucion</span
-          >
-        </dt>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.nombreRuta">Nombre Ruta</span></dt>
         <dd>
-          <div *ngIf="despliegueinfraestructuradispersion.idDespliegueInfraestructuraTroncalDistribucion">
+          <div *ngIf="despliegueinfraestructuradispersion.nombreRuta">
             <a
-              [routerLink]="[
-                '/despliegue-infraestructura-troncal-distribucion',
-                despliegueinfraestructuradispersion.idDespliegueInfraestructuraTroncalDistribucion.id,
-                'view'
-              ]"
-              >{{ despliegueinfraestructuradispersion.idDespliegueInfraestructuraTroncalDistribucion.id }}</a
+              [routerLink]="['/despliegue-infraestructura-troncal-distribucion', despliegueinfraestructuradispersion.nombreRuta.id, 'view']"
+              >{{ despliegueinfraestructuradispersion.nombreRuta.nombreRuta }}</a
             >
           </div>
         </dd>
-        <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.idProveedor">Id Proveedor</span></dt>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.razonSocial">Razon Social</span></dt>
         <dd>
-          <div *ngIf="despliegueinfraestructuradispersion.idProveedor">
-            <a [routerLink]="['/proveedor', despliegueinfraestructuradispersion.idProveedor.id, 'view']">{{
-              despliegueinfraestructuradispersion.idProveedor.id
+          <div *ngIf="despliegueinfraestructuradispersion.razonSocial">
+            <a [routerLink]="['/proveedor', despliegueinfraestructuradispersion.razonSocial.id, 'view']">{{
+              despliegueinfraestructuradispersion.razonSocial.razonSocial
             }}</a>
           </div>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.numeropozo">Numeropozo</span></dt>
+        <dd>
+          <span *ngFor="let numeropozo of despliegueinfraestructuradispersion.numeropozos; let last = last">
+            <a [routerLink]="['/pozo', numeropozo.id, 'view']">{{ numeropozo.numeropozo }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
         </dd>
 
         <dt><span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.createdAt">Created At</span></dt>

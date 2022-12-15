@@ -4,9 +4,9 @@
       "null": "",
       "MANGA": "MANGA",
       "NAP": "NAP",
-      "CajaDistribucion": "CajaDistribucion",
+      "CajaDistribucion": "Distribution Box",
       "Pedestal": "Pedestal",
-      "Nodo": "Nodo"
+      "Nodo": "Node"
     }
   }
 }

@@ -40,8 +40,8 @@ type AutorizacionesFormGroupContent = {
   observaciones: FormControl<AutorizacionesFormRawValue['observaciones']>;
   createdAt: FormControl<AutorizacionesFormRawValue['createdAt']>;
   direccionDestino: FormControl<AutorizacionesFormRawValue['direccionDestino']>;
-  idProveedor: FormControl<AutorizacionesFormRawValue['idProveedor']>;
-  pozo: FormControl<AutorizacionesFormRawValue['pozo']>;
+  razonSocial: FormControl<AutorizacionesFormRawValue['razonSocial']>;
+  numeropozo: FormControl<AutorizacionesFormRawValue['numeropozo']>;
 };
 
 export type AutorizacionesFormGroup = FormGroup<AutorizacionesFormGroupContent>;
@@ -86,8 +86,12 @@ export class AutorizacionesFormService {
       direccionDestino: new FormControl(autorizacionesRawValue.direccionDestino, {
         validators: [Validators.required],
       }),
-      idProveedor: new FormControl(autorizacionesRawValue.idProveedor),
-      pozo: new FormControl(autorizacionesRawValue.pozo),
+      razonSocial: new FormControl(autorizacionesRawValue.razonSocial, {
+        validators: [Validators.required],
+      }),
+      numeropozo: new FormControl(autorizacionesRawValue.numeropozo, {
+        validators: [Validators.required],
+      }),
     });
   }
 

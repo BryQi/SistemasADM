@@ -18,37 +18,36 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring")
 public interface DespliegueinfraestructuradispersionMapper
     extends EntityMapper<DespliegueinfraestructuradispersionDTO, Despliegueinfraestructuradispersion> {
-    @Mapping(target = "pozos", source = "pozos", qualifiedByName = "pozoIdSet")
-    @Mapping(
-        target = "idDespliegueInfraestructuraTroncalDistribucion",
-        source = "idDespliegueInfraestructuraTroncalDistribucion",
-        qualifiedByName = "despliegueInfraestructuraTroncalDistribucionId"
-    )
-    @Mapping(target = "idProveedor", source = "idProveedor", qualifiedByName = "proveedorId")
+    @Mapping(target = "nombreRuta", source = "nombreRuta", qualifiedByName = "despliegueInfraestructuraTroncalDistribucionNombreRuta")
+    @Mapping(target = "razonSocial", source = "razonSocial", qualifiedByName = "proveedorRazonSocial")
+    @Mapping(target = "numeropozos", source = "numeropozos", qualifiedByName = "pozoNumeropozoSet")
     DespliegueinfraestructuradispersionDTO toDto(Despliegueinfraestructuradispersion s);
 
-    @Mapping(target = "removePozo", ignore = true)
+    @Mapping(target = "removeNumeropozo", ignore = true)
     Despliegueinfraestructuradispersion toEntity(DespliegueinfraestructuradispersionDTO despliegueinfraestructuradispersionDTO);
 
-    @Named("pozoId")
+    @Named("despliegueInfraestructuraTroncalDistribucionNombreRuta")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    PozoDTO toDtoPozoId(Pozo pozo);
-
-    @Named("pozoIdSet")
-    default Set<PozoDTO> toDtoPozoIdSet(Set<Pozo> pozo) {
-        return pozo.stream().map(this::toDtoPozoId).collect(Collectors.toSet());
-    }
-
-    @Named("despliegueInfraestructuraTroncalDistribucionId")
-    @BeanMapping(ignoreByDefault = true)
-    @Mapping(target = "id", source = "id")
-    DespliegueInfraestructuraTroncalDistribucionDTO toDtoDespliegueInfraestructuraTroncalDistribucionId(
+    @Mapping(target = "nombreRuta", source = "nombreRuta")
+    DespliegueInfraestructuraTroncalDistribucionDTO toDtoDespliegueInfraestructuraTroncalDistribucionNombreRuta(
         DespliegueInfraestructuraTroncalDistribucion despliegueInfraestructuraTroncalDistribucion
     );
 
-    @Named("proveedorId")
+    @Named("proveedorRazonSocial")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    ProveedorDTO toDtoProveedorId(Proveedor proveedor);
+    @Mapping(target = "razonSocial", source = "razonSocial")
+    ProveedorDTO toDtoProveedorRazonSocial(Proveedor proveedor);
+
+    @Named("pozoNumeropozo")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    @Mapping(target = "numeropozo", source = "numeropozo")
+    PozoDTO toDtoPozoNumeropozo(Pozo pozo);
+
+    @Named("pozoNumeropozoSet")
+    default Set<PozoDTO> toDtoPozoNumeropozoSet(Set<Pozo> pozo) {
+        return pozo.stream().map(this::toDtoPozoNumeropozo).collect(Collectors.toSet());
+    }
 }

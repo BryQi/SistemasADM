@@ -26,66 +26,88 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="sistemasAdmApp.infraestructura.idProveedor" for="field_idProveedor"
-            >Proveedor de Servicio</label
-          >
+          <label class="form-label" jhiTranslate="sistemasAdmApp.infraestructura.razonSocial" for="field_razonSocial">Razon Social</label>
           <select
             class="form-control"
-            id="field_idProveedor"
-            data-cy="idProveedor"
-            name="idProveedor"
-            formControlName="idProveedor"
+            id="field_razonSocial"
+            data-cy="razonSocial"
+            name="razonSocial"
+            formControlName="razonSocial"
             [compareWith]="compareProveedor"
           >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="proveedorOption" *ngFor="let proveedorOption of proveedorsSharedCollection">{{ proveedorOption.id }}</option>
+            <option *ngIf="!editForm.get('razonSocial')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="proveedorOption" *ngFor="let proveedorOption of proveedorsSharedCollection">
+              {{ proveedorOption.razonSocial }}
+            </option>
           </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['razonSocial'])!.invalid && (editForm.get(['razonSocial'])!.dirty || editForm.get(['razonSocial'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['razonSocial'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
         </div>
 
         <div class="row mb-3">
-          <label jhiTranslate="sistemasAdmApp.infraestructura.pozo" for="field_pozos">Pozo</label>
+          <label jhiTranslate="sistemasAdmApp.infraestructura.numeropozo" for="field_numeropozos">Numeropozo</label>
           <select
             class="form-control"
-            id="field_pozos"
-            data-cy="pozo"
+            id="field_numeropozos"
+            data-cy="numeropozo"
             multiple
-            name="pozos"
-            formControlName="pozos"
+            name="numeropozos"
+            formControlName="numeropozos"
             [compareWith]="comparePozo"
           >
-            <option [ngValue]="pozoOption" *ngFor="let pozoOption of pozosSharedCollection">{{ pozoOption.id }}</option>
+            <option [ngValue]="pozoOption" *ngFor="let pozoOption of pozosSharedCollection">{{ pozoOption.numeropozo }}</option>
           </select>
         </div>
+        <div
+          *ngIf="editForm.get(['numeropozos'])!.invalid && (editForm.get(['numeropozos'])!.dirty || editForm.get(['numeropozos'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['numeropozos'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+        </div>
+      </div>
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="sistemasAdmApp.infraestructura.createdAt" for="field_createdAt">Created At</label>
-          <div class="d-flex">
-            <input
-              id="field_createdAt"
-              data-cy="createdAt"
-              type="datetime-local"
-              class="form-control"
-              name="createdAt"
-              formControlName="createdAt"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
-          </div>
-          <div *ngIf="editForm.get('createdAt')!.invalid && (editForm.get('createdAt')!.dirty || editForm.get('createdAt')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('createdAt')?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              Este campo es obligatorio.
-            </small>
-            <small
-              class="form-text text-danger"
-              [hidden]="!editForm.get('createdAt')?.errors?.datetimelocal"
-              jhiTranslate="entity.validation.datetimelocal"
-            >
-              Este campo debe ser una fecha y hora.
-            </small>
-          </div>
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="sistemasAdmApp.infraestructura.createdAt" for="field_createdAt">Created At</label>
+        <div class="d-flex">
+          <input
+            id="field_createdAt"
+            data-cy="createdAt"
+            type="datetime-local"
+            class="form-control"
+            name="createdAt"
+            formControlName="createdAt"
+            placeholder="YYYY-MM-DD HH:mm"
+          />
+        </div>
+        <div *ngIf="editForm.get('createdAt')!.invalid && (editForm.get('createdAt')!.dirty || editForm.get('createdAt')!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get('createdAt')?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+          <small
+            class="form-text text-danger"
+            [hidden]="!editForm.get('createdAt')?.errors?.datetimelocal"
+            jhiTranslate="entity.validation.datetimelocal"
+          >
+            Este campo debe ser una fecha y hora.
+          </small>
         </div>
       </div>
 

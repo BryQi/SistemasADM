@@ -11,11 +11,12 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring")
 public interface FotoPozoMapper extends EntityMapper<FotoPozoDTO, FotoPozo> {
-    @Mapping(target = "idPozo", source = "idPozo", qualifiedByName = "pozoId")
+    @Mapping(target = "numeropozo", source = "numeropozo", qualifiedByName = "pozoNumeropozo")
     FotoPozoDTO toDto(FotoPozo s);
 
-    @Named("pozoId")
+    @Named("pozoNumeropozo")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    PozoDTO toDtoPozoId(Pozo pozo);
+    @Mapping(target = "numeropozo", source = "numeropozo")
+    PozoDTO toDtoPozoNumeropozo(Pozo pozo);
 }

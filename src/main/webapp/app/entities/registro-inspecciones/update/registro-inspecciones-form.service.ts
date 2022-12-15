@@ -49,8 +49,8 @@ type RegistroInspeccionesFormGroupContent = {
   cumpleArregloCables: FormControl<RegistroInspeccionesFormRawValue['cumpleArregloCables']>;
   cumplelimpiezaOrdenPozo: FormControl<RegistroInspeccionesFormRawValue['cumplelimpiezaOrdenPozo']>;
   createdAt: FormControl<RegistroInspeccionesFormRawValue['createdAt']>;
-  idPozo: FormControl<RegistroInspeccionesFormRawValue['idPozo']>;
-  provedorinspeciones: FormControl<RegistroInspeccionesFormRawValue['provedorinspeciones']>;
+  razonSocial: FormControl<RegistroInspeccionesFormRawValue['razonSocial']>;
+  numeropozo: FormControl<RegistroInspeccionesFormRawValue['numeropozo']>;
 };
 
 export type RegistroInspeccionesFormGroup = FormGroup<RegistroInspeccionesFormGroupContent>;
@@ -84,8 +84,12 @@ export class RegistroInspeccionesFormService {
       createdAt: new FormControl(registroInspeccionesRawValue.createdAt, {
         validators: [Validators.required],
       }),
-      idPozo: new FormControl(registroInspeccionesRawValue.idPozo),
-      provedorinspeciones: new FormControl(registroInspeccionesRawValue.provedorinspeciones),
+      razonSocial: new FormControl(registroInspeccionesRawValue.razonSocial, {
+        validators: [Validators.required],
+      }),
+      numeropozo: new FormControl(registroInspeccionesRawValue.numeropozo, {
+        validators: [Validators.required],
+      }),
     });
   }
 

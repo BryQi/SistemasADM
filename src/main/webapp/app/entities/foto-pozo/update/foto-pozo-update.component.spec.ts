@@ -51,12 +51,12 @@ describe('FotoPozo Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Pozo query and add missing value', () => {
       const fotoPozo: IFotoPozo = { id: 456 };
-      const idPozo: IPozo = { id: 65678 };
-      fotoPozo.idPozo = idPozo;
+      const numeropozo: IPozo = { id: 65678 };
+      fotoPozo.numeropozo = numeropozo;
 
       const pozoCollection: IPozo[] = [{ id: 69448 }];
       jest.spyOn(pozoService, 'query').mockReturnValue(of(new HttpResponse({ body: pozoCollection })));
-      const additionalPozos = [idPozo];
+      const additionalPozos = [numeropozo];
       const expectedCollection: IPozo[] = [...additionalPozos, ...pozoCollection];
       jest.spyOn(pozoService, 'addPozoToCollectionIfMissing').mockReturnValue(expectedCollection);
 
@@ -73,13 +73,13 @@ describe('FotoPozo Management Update Component', () => {
 
     it('Should update editForm', () => {
       const fotoPozo: IFotoPozo = { id: 456 };
-      const idPozo: IPozo = { id: 33652 };
-      fotoPozo.idPozo = idPozo;
+      const numeropozo: IPozo = { id: 33652 };
+      fotoPozo.numeropozo = numeropozo;
 
       activatedRoute.data = of({ fotoPozo });
       comp.ngOnInit();
 
-      expect(comp.pozosSharedCollection).toContain(idPozo);
+      expect(comp.pozosSharedCollection).toContain(numeropozo);
       expect(comp.fotoPozo).toEqual(fotoPozo);
     });
   });

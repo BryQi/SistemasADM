@@ -82,7 +82,13 @@
               </a>
             </li>
 
-            <li>
+            <li
+              *jhiHasAnyAuthority="'ROLE_ADMIN'"
+              ngbDropdown
+              display="dynamic"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
               <a
                 class="dropdown-item"
                 routerLink="infraestructura"

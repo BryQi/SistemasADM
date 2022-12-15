@@ -11,8 +11,8 @@ import { DespliegueInfraestructuraTroncalDistribucionService } from '../service/
 import { IDespliegueInfraestructuraTroncalDistribucion } from '../despliegue-infraestructura-troncal-distribucion.model';
 import { IPozo } from 'app/entities/pozo/pozo.model';
 import { PozoService } from 'app/entities/pozo/service/pozo.service';
-import { IInfraestructura } from 'app/entities/infraestructura/infraestructura.model';
-import { InfraestructuraService } from 'app/entities/infraestructura/service/infraestructura.service';
+import { IProveedor } from 'app/entities/proveedor/proveedor.model';
+import { ProveedorService } from 'app/entities/proveedor/service/proveedor.service';
 
 import { DespliegueInfraestructuraTroncalDistribucionUpdateComponent } from './despliegue-infraestructura-troncal-distribucion-update.component';
 
@@ -23,7 +23,7 @@ describe('DespliegueInfraestructuraTroncalDistribucion Management Update Compone
   let despliegueInfraestructuraTroncalDistribucionFormService: DespliegueInfraestructuraTroncalDistribucionFormService;
   let despliegueInfraestructuraTroncalDistribucionService: DespliegueInfraestructuraTroncalDistribucionService;
   let pozoService: PozoService;
-  let infraestructuraService: InfraestructuraService;
+  let proveedorService: ProveedorService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -47,7 +47,7 @@ describe('DespliegueInfraestructuraTroncalDistribucion Management Update Compone
     despliegueInfraestructuraTroncalDistribucionFormService = TestBed.inject(DespliegueInfraestructuraTroncalDistribucionFormService);
     despliegueInfraestructuraTroncalDistribucionService = TestBed.inject(DespliegueInfraestructuraTroncalDistribucionService);
     pozoService = TestBed.inject(PozoService);
-    infraestructuraService = TestBed.inject(InfraestructuraService);
+    proveedorService = TestBed.inject(ProveedorService);
 
     comp = fixture.componentInstance;
   });
@@ -75,40 +75,40 @@ describe('DespliegueInfraestructuraTroncalDistribucion Management Update Compone
       expect(comp.pozosSharedCollection).toEqual(expectedCollection);
     });
 
-    it('Should call Infraestructura query and add missing value', () => {
+    it('Should call Proveedor query and add missing value', () => {
       const despliegueInfraestructuraTroncalDistribucion: IDespliegueInfraestructuraTroncalDistribucion = { id: 456 };
-      const infraestructura: IInfraestructura = { id: 13653 };
-      despliegueInfraestructuraTroncalDistribucion.infraestructura = infraestructura;
+      const razonSocial: IProveedor = { id: 80003 };
+      despliegueInfraestructuraTroncalDistribucion.razonSocial = razonSocial;
 
-      const infraestructuraCollection: IInfraestructura[] = [{ id: 98994 }];
-      jest.spyOn(infraestructuraService, 'query').mockReturnValue(of(new HttpResponse({ body: infraestructuraCollection })));
-      const additionalInfraestructuras = [infraestructura];
-      const expectedCollection: IInfraestructura[] = [...additionalInfraestructuras, ...infraestructuraCollection];
-      jest.spyOn(infraestructuraService, 'addInfraestructuraToCollectionIfMissing').mockReturnValue(expectedCollection);
+      const proveedorCollection: IProveedor[] = [{ id: 37359 }];
+      jest.spyOn(proveedorService, 'query').mockReturnValue(of(new HttpResponse({ body: proveedorCollection })));
+      const additionalProveedors = [razonSocial];
+      const expectedCollection: IProveedor[] = [...additionalProveedors, ...proveedorCollection];
+      jest.spyOn(proveedorService, 'addProveedorToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ despliegueInfraestructuraTroncalDistribucion });
       comp.ngOnInit();
 
-      expect(infraestructuraService.query).toHaveBeenCalled();
-      expect(infraestructuraService.addInfraestructuraToCollectionIfMissing).toHaveBeenCalledWith(
-        infraestructuraCollection,
-        ...additionalInfraestructuras.map(expect.objectContaining)
+      expect(proveedorService.query).toHaveBeenCalled();
+      expect(proveedorService.addProveedorToCollectionIfMissing).toHaveBeenCalledWith(
+        proveedorCollection,
+        ...additionalProveedors.map(expect.objectContaining)
       );
-      expect(comp.infraestructurasSharedCollection).toEqual(expectedCollection);
+      expect(comp.proveedorsSharedCollection).toEqual(expectedCollection);
     });
 
     it('Should update editForm', () => {
       const despliegueInfraestructuraTroncalDistribucion: IDespliegueInfraestructuraTroncalDistribucion = { id: 456 };
       const pozo: IPozo = { id: 70073 };
       despliegueInfraestructuraTroncalDistribucion.pozos = [pozo];
-      const infraestructura: IInfraestructura = { id: 45134 };
-      despliegueInfraestructuraTroncalDistribucion.infraestructura = infraestructura;
+      const razonSocial: IProveedor = { id: 25603 };
+      despliegueInfraestructuraTroncalDistribucion.razonSocial = razonSocial;
 
       activatedRoute.data = of({ despliegueInfraestructuraTroncalDistribucion });
       comp.ngOnInit();
 
       expect(comp.pozosSharedCollection).toContain(pozo);
-      expect(comp.infraestructurasSharedCollection).toContain(infraestructura);
+      expect(comp.proveedorsSharedCollection).toContain(razonSocial);
       expect(comp.despliegueInfraestructuraTroncalDistribucion).toEqual(despliegueInfraestructuraTroncalDistribucion);
     });
   });
@@ -198,13 +198,13 @@ describe('DespliegueInfraestructuraTroncalDistribucion Management Update Compone
       });
     });
 
-    describe('compareInfraestructura', () => {
-      it('Should forward to infraestructuraService', () => {
+    describe('compareProveedor', () => {
+      it('Should forward to proveedorService', () => {
         const entity = { id: 123 };
         const entity2 = { id: 456 };
-        jest.spyOn(infraestructuraService, 'compareInfraestructura');
-        comp.compareInfraestructura(entity, entity2);
-        expect(infraestructuraService.compareInfraestructura).toHaveBeenCalledWith(entity, entity2);
+        jest.spyOn(proveedorService, 'compareProveedor');
+        comp.compareProveedor(entity, entity2);
+        expect(proveedorService.compareProveedor).toHaveBeenCalledWith(entity, entity2);
       });
     });
   });

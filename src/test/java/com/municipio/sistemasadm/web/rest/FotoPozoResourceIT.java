@@ -3,26 +3,36 @@ package com.municipio.sistemasadm.web.rest;
 import static com.municipio.sistemasadm.web.rest.TestUtil.sameInstant;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.municipio.sistemasadm.IntegrationTest;
 import com.municipio.sistemasadm.domain.FotoPozo;
+import com.municipio.sistemasadm.domain.Pozo;
 import com.municipio.sistemasadm.repository.FotoPozoRepository;
+import com.municipio.sistemasadm.service.FotoPozoService;
 import com.municipio.sistemasadm.service.dto.FotoPozoDTO;
 import com.municipio.sistemasadm.service.mapper.FotoPozoMapper;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import javax.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -33,6 +43,7 @@ import org.springframework.util.Base64Utils;
  * Integration tests for the {@link FotoPozoResource} REST controller.
  */
 @IntegrationTest
+@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 class FotoPozoResourceIT {
@@ -57,8 +68,14 @@ class FotoPozoResourceIT {
     @Autowired
     private FotoPozoRepository fotoPozoRepository;
 
+    @Mock
+    private FotoPozoRepository fotoPozoRepositoryMock;
+
     @Autowired
     private FotoPozoMapper fotoPozoMapper;
+
+    @Mock
+    private FotoPozoService fotoPozoServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -80,6 +97,16 @@ class FotoPozoResourceIT {
             .fotoContentType(DEFAULT_FOTO_CONTENT_TYPE)
             .descripcion(DEFAULT_DESCRIPCION)
             .createdAt(DEFAULT_CREATED_AT);
+        // Add required entity
+        Pozo pozo;
+        if (TestUtil.findAll(em, Pozo.class).isEmpty()) {
+            pozo = PozoResourceIT.createEntity(em);
+            em.persist(pozo);
+            em.flush();
+        } else {
+            pozo = TestUtil.findAll(em, Pozo.class).get(0);
+        }
+        fotoPozo.setNumeropozo(pozo);
         return fotoPozo;
     }
 
@@ -95,6 +122,16 @@ class FotoPozoResourceIT {
             .fotoContentType(UPDATED_FOTO_CONTENT_TYPE)
             .descripcion(UPDATED_DESCRIPCION)
             .createdAt(UPDATED_CREATED_AT);
+        // Add required entity
+        Pozo pozo;
+        if (TestUtil.findAll(em, Pozo.class).isEmpty()) {
+            pozo = PozoResourceIT.createUpdatedEntity(em);
+            em.persist(pozo);
+            em.flush();
+        } else {
+            pozo = TestUtil.findAll(em, Pozo.class).get(0);
+        }
+        fotoPozo.setNumeropozo(pozo);
         return fotoPozo;
     }
 
@@ -194,6 +231,23 @@ class FotoPozoResourceIT {
             .andExpect(jsonPath("$.[*].foto").value(hasItem(Base64Utils.encodeToString(DEFAULT_FOTO))))
             .andExpect(jsonPath("$.[*].descripcion").value(hasItem(DEFAULT_DESCRIPCION)))
             .andExpect(jsonPath("$.[*].createdAt").value(hasItem(sameInstant(DEFAULT_CREATED_AT))));
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    void getAllFotoPozosWithEagerRelationshipsIsEnabled() throws Exception {
+        when(fotoPozoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restFotoPozoMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
+
+        verify(fotoPozoServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    void getAllFotoPozosWithEagerRelationshipsIsNotEnabled() throws Exception {
+        when(fotoPozoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restFotoPozoMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
+        verify(fotoPozoRepositoryMock, times(1)).findAll(any(Pageable.class));
     }
 
     @Test

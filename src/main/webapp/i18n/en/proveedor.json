@@ -18,15 +18,12 @@
         "title": "Proveedor"
       },
       "id": "ID",
-      "razonSocial": "Razon Social",
-      "contactoTecnico": "Contacto Tecnico",
-      "correoEmpresa": "Correo Empresa",
-      "direccion": "Direccion",
-      "celular": "Celular",
-      "createdAt": "Created At",
-      "despliegueinfraestructuradispersion": "Despliegueinfraestructuradispersion",
-      "autorizaciones": "Autorizaciones",
-      "infraestructura": "Infraestructura"
+      "razonSocial": "Social Reason",
+      "contactoTecnico": "Technical Contact",
+      "correoEmpresa": "Company Mail",
+      "direccion": "Address",
+      "celular": "CellulCell phonear",
+      "createdAt": "Created At"
     }
   }
 }

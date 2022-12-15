@@ -142,12 +142,21 @@ public class FotoPozoResource {
      * {@code GET  /foto-pozos} : get all the fotoPozos.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of fotoPozos in body.
      */
     @GetMapping("/foto-pozos")
-    public ResponseEntity<List<FotoPozoDTO>> getAllFotoPozos(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
+    public ResponseEntity<List<FotoPozoDTO>> getAllFotoPozos(
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false, defaultValue = "false") boolean eagerload
+    ) {
         log.debug("REST request to get a page of FotoPozos");
-        Page<FotoPozoDTO> page = fotoPozoService.findAll(pageable);
+        Page<FotoPozoDTO> page;
+        if (eagerload) {
+            page = fotoPozoService.findAllWithEagerRelationships(pageable);
+        } else {
+            page = fotoPozoService.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

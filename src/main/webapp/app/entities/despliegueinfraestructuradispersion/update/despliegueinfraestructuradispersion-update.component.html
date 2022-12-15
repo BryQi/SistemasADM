@@ -266,34 +266,35 @@
         <div class="row mb-3">
           <label
             class="form-label"
-            jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.calculoValorPago"
+            jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.calculoValorPagoD"
             for="field_calculoValorPago"
             >Calculo Valor Pago</label
           >
           <input
             type="number"
             class="form-control"
-            name="calculoValorPago"
+            name="calculoValorPagoD"
             id="field_calculoValorPago"
-            data-cy="calculoValorPago"
-            formControlName="calculoValorPago"
+            data-cy="calculoValorPagoD"
+            formControlName="calculoValorPagoD"
+            readonly
           />
           <div
             *ngIf="
-              editForm.get('calculoValorPago')!.invalid &&
-              (editForm.get('calculoValorPago')!.dirty || editForm.get('calculoValorPago')!.touched)
+              editForm.get('calculoValorPagoD')!.invalid &&
+              (editForm.get('calculoValorPagoD')!.dirty || editForm.get('calculoValorPagoD')!.touched)
             "
           >
             <small
               class="form-text text-danger"
-              *ngIf="editForm.get('calculoValorPago')?.errors?.required"
+              *ngIf="editForm.get('calculoValorPagoD')?.errors?.required"
               jhiTranslate="entity.validation.required"
             >
               Este campo es obligatorio.
             </small>
             <small
               class="form-text text-danger"
-              [hidden]="!editForm.get('calculoValorPago')?.errors?.number"
+              [hidden]="!editForm.get('calculoValorPagoD')?.errors?.number"
               jhiTranslate="entity.validation.number"
             >
               Este campo debe ser un número.
@@ -302,62 +303,96 @@
         </div>
 
         <div class="row mb-3">
-          <label jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.pozo" for="field_pozos">Pozos Utilizados</label>
-          <select
-            class="form-control"
-            id="field_pozos"
-            data-cy="pozo"
-            multiple
-            name="pozos"
-            formControlName="pozos"
-            [compareWith]="comparePozo"
-          >
-            <option [ngValue]="pozoOption" *ngFor="let pozoOption of pozosSharedCollection">{{ pozoOption.id }}</option>
-          </select>
-        </div>
-
-        <div class="row mb-3">
-          <label
-            class="form-label"
-            jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.idDespliegueInfraestructuraTroncalDistribucion"
-            for="field_idDespliegueInfraestructuraTroncalDistribucion"
-            >Troncal de Distribucion Usada</label
+          <label class="form-label" jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.nombreRuta" for="field_nombreRuta"
+            >Nombre Ruta</label
           >
           <select
             class="form-control"
-            id="field_idDespliegueInfraestructuraTroncalDistribucion"
-            data-cy="idDespliegueInfraestructuraTroncalDistribucion"
-            name="idDespliegueInfraestructuraTroncalDistribucion"
-            formControlName="idDespliegueInfraestructuraTroncalDistribucion"
+            id="field_nombreRuta"
+            data-cy="nombreRuta"
+            name="nombreRuta"
+            formControlName="nombreRuta"
             [compareWith]="compareDespliegueInfraestructuraTroncalDistribucion"
           >
-            <option [ngValue]="null"></option>
+            <option *ngIf="!editForm.get('nombreRuta')!.value" [ngValue]="null" selected></option>
             <option
               [ngValue]="despliegueInfraestructuraTroncalDistribucionOption"
               *ngFor="
                 let despliegueInfraestructuraTroncalDistribucionOption of despliegueInfraestructuraTroncalDistribucionsSharedCollection
               "
             >
-              {{ despliegueInfraestructuraTroncalDistribucionOption.id }}
+              {{ despliegueInfraestructuraTroncalDistribucionOption.nombreRuta }}
             </option>
           </select>
         </div>
 
+        <div
+          *ngIf="editForm.get(['nombreRuta'])!.invalid && (editForm.get(['nombreRuta'])!.dirty || editForm.get(['nombreRuta'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['nombreRuta'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+        </div>
+
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.idProveedor" for="field_idProveedor"
-            >Proveedor de Servicio</label
+          <label class="form-label" jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.razonSocial" for="field_razonSocial"
+            >Razon Social</label
           >
           <select
             class="form-control"
-            id="field_idProveedor"
-            data-cy="idProveedor"
-            name="idProveedor"
-            formControlName="idProveedor"
+            id="field_razonSocial"
+            data-cy="razonSocial"
+            name="razonSocial"
+            formControlName="razonSocial"
             [compareWith]="compareProveedor"
           >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="proveedorOption" *ngFor="let proveedorOption of proveedorsSharedCollection">{{ proveedorOption.id }}</option>
+            <option *ngIf="!editForm.get('razonSocial')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="proveedorOption" *ngFor="let proveedorOption of proveedorsSharedCollection">
+              {{ proveedorOption.razonSocial }}
+            </option>
           </select>
+        </div>
+
+        <div
+          *ngIf="editForm.get(['razonSocial'])!.invalid && (editForm.get(['razonSocial'])!.dirty || editForm.get(['razonSocial'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['razonSocial'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.numeropozo" for="field_numeropozos">Numeropozo</label>
+          <select
+            class="form-control"
+            id="field_numeropozos"
+            data-cy="numeropozo"
+            multiple
+            name="numeropozos"
+            formControlName="numeropozos"
+            [compareWith]="comparePozo"
+          >
+            <option [ngValue]="pozoOption" *ngFor="let pozoOption of pozosSharedCollection">{{ pozoOption.numeropozo }}</option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['numeropozos'])!.invalid && (editForm.get(['numeropozos'])!.dirty || editForm.get(['numeropozos'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['numeropozos'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
         </div>
       </div>
 

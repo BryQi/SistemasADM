@@ -19,16 +19,16 @@
       },
       "id": "ID",
       "cliente": "Cliente",
-      "direccionOrigen": "Direccion Origen",
-      "fechaOperacion": "Fecha Operacion",
-      "ventanaTrabajo": "Ventana Trabajo",
-      "contactoTecnico": "Contacto Tecnico",
-      "tipoTrabajo": "Tipo Trabajo",
+      "direccionOrigen": "Dirección Origen",
+      "fechaOperacion": "Fecha de Operacion",
+      "ventanaTrabajo": "Ventana de Trabajo",
+      "contactoTecnico": "Contacto Técnico",
+      "tipoTrabajo": "Tipo de Trabajo",
       "observaciones": "Observaciones",
-      "createdAt": "Created At",
-      "direccionDestino": "Direccion Destino",
-      "idProveedor": "Proveedor de Servicio",
-      "pozo": "Pozo de salida"
+      "createdAt": "Creado el",
+      "direccionDestino": "Dirección Destino",
+      "razonSocial": "Proveedor que Brinda el Servicio",
+      "numeropozo": "Pozo de Salida"
     }
   }
 }

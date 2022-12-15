@@ -23,7 +23,7 @@ describe('FotoPozo Form Service', () => {
             foto: expect.any(Object),
             descripcion: expect.any(Object),
             createdAt: expect.any(Object),
-            idPozo: expect.any(Object),
+            numeropozo: expect.any(Object),
           })
         );
       });
@@ -37,7 +37,7 @@ describe('FotoPozo Form Service', () => {
             foto: expect.any(Object),
             descripcion: expect.any(Object),
             createdAt: expect.any(Object),
-            idPozo: expect.any(Object),
+            numeropozo: expect.any(Object),
           })
         );
       });

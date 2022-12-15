@@ -41,25 +41,6 @@
   "name": "Proveedor",
   "pagination": "pagination",
   "readOnly": false,
-  "relationships": [
-    {
-      "otherEntityName": "despliegueinfraestructuradispersion",
-      "otherEntityRelationshipName": "idProveedor",
-      "relationshipName": "despliegueinfraestructuradispersion",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityName": "autorizaciones",
-      "otherEntityRelationshipName": "idProveedor",
-      "relationshipName": "autorizaciones",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityName": "infraestructura",
-      "otherEntityRelationshipName": "idProveedor",
-      "relationshipName": "infraestructura",
-      "relationshipType": "one-to-many"
-    }
-  ],
+  "relationships": [],
   "service": "serviceImpl"
 }

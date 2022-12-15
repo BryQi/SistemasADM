@@ -14,8 +14,8 @@ export interface IAutorizaciones {
   observaciones?: string | null;
   createdAt?: dayjs.Dayjs | null;
   direccionDestino?: string | null;
-  idProveedor?: Pick<IProveedor, 'id'> | null;
-  pozo?: Pick<IPozo, 'id'> | null;
+  razonSocial?: Pick<IProveedor, 'id' | 'razonSocial'> | null;
+  numeropozo?: Pick<IPozo, 'id' | 'numeropozo'> | null;
 }
 
 export type NewAutorizaciones = Omit<IAutorizaciones, 'id'> & { id: null };

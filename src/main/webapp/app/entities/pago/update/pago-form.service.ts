@@ -34,8 +34,9 @@ type PagoFormGroupContent = {
   fechaPago: FormControl<PagoFormRawValue['fechaPago']>;
   pago: FormControl<PagoFormRawValue['pago']>;
   createdAt: FormControl<PagoFormRawValue['createdAt']>;
-  idDespliegueInfraestructuraTroncalDistribucion: FormControl<PagoFormRawValue['idDespliegueInfraestructuraTroncalDistribucion']>;
-  idDespliegueinfraestructuradispersion: FormControl<PagoFormRawValue['idDespliegueinfraestructuradispersion']>;
+  razonSocial: FormControl<PagoFormRawValue['razonSocial']>;
+  calculoValorPago: FormControl<PagoFormRawValue['calculoValorPago']>;
+  calculoValorPagoD: FormControl<PagoFormRawValue['calculoValorPagoD']>;
 };
 
 export type PagoFormGroup = FormGroup<PagoFormGroupContent>;
@@ -64,8 +65,13 @@ export class PagoFormService {
       createdAt: new FormControl(pagoRawValue.createdAt, {
         validators: [Validators.required],
       }),
-      idDespliegueInfraestructuraTroncalDistribucion: new FormControl(pagoRawValue.idDespliegueInfraestructuraTroncalDistribucion),
-      idDespliegueinfraestructuradispersion: new FormControl(pagoRawValue.idDespliegueinfraestructuradispersion),
+      razonSocial: new FormControl(pagoRawValue.razonSocial, {
+        validators: [Validators.required],
+      }),
+      calculoValorPago: new FormControl(pagoRawValue.calculoValorPago),
+      calculoValorPagoD: new FormControl(pagoRawValue.calculoValorPagoD, {
+        validators: [Validators.required],
+      }),
     });
   }
 

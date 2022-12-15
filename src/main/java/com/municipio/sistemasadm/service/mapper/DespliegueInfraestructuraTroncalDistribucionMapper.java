@@ -1,11 +1,11 @@
 package com.municipio.sistemasadm.service.mapper;
 
 import com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion;
-import com.municipio.sistemasadm.domain.Infraestructura;
 import com.municipio.sistemasadm.domain.Pozo;
+import com.municipio.sistemasadm.domain.Proveedor;
 import com.municipio.sistemasadm.service.dto.DespliegueInfraestructuraTroncalDistribucionDTO;
-import com.municipio.sistemasadm.service.dto.InfraestructuraDTO;
 import com.municipio.sistemasadm.service.dto.PozoDTO;
+import com.municipio.sistemasadm.service.dto.ProveedorDTO;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.mapstruct.*;
@@ -16,8 +16,8 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring")
 public interface DespliegueInfraestructuraTroncalDistribucionMapper
     extends EntityMapper<DespliegueInfraestructuraTroncalDistribucionDTO, DespliegueInfraestructuraTroncalDistribucion> {
-    @Mapping(target = "pozos", source = "pozos", qualifiedByName = "pozoIdSet")
-    @Mapping(target = "infraestructura", source = "infraestructura", qualifiedByName = "infraestructuraId")
+    @Mapping(target = "pozos", source = "pozos", qualifiedByName = "pozoNumeropozoSet")
+    @Mapping(target = "razonSocial", source = "razonSocial", qualifiedByName = "proveedorRazonSocial")
     DespliegueInfraestructuraTroncalDistribucionDTO toDto(DespliegueInfraestructuraTroncalDistribucion s);
 
     @Mapping(target = "removePozo", ignore = true)
@@ -25,18 +25,20 @@ public interface DespliegueInfraestructuraTroncalDistribucionMapper
         DespliegueInfraestructuraTroncalDistribucionDTO despliegueInfraestructuraTroncalDistribucionDTO
     );
 
-    @Named("pozoId")
+    @Named("pozoNumeropozo")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    PozoDTO toDtoPozoId(Pozo pozo);
+    @Mapping(target = "numeropozo", source = "numeropozo")
+    PozoDTO toDtoPozoNumeropozo(Pozo pozo);
 
-    @Named("pozoIdSet")
-    default Set<PozoDTO> toDtoPozoIdSet(Set<Pozo> pozo) {
-        return pozo.stream().map(this::toDtoPozoId).collect(Collectors.toSet());
+    @Named("pozoNumeropozoSet")
+    default Set<PozoDTO> toDtoPozoNumeropozoSet(Set<Pozo> pozo) {
+        return pozo.stream().map(this::toDtoPozoNumeropozo).collect(Collectors.toSet());
     }
 
-    @Named("infraestructuraId")
+    @Named("proveedorRazonSocial")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    InfraestructuraDTO toDtoInfraestructuraId(Infraestructura infraestructura);
+    @Mapping(target = "razonSocial", source = "razonSocial")
+    ProveedorDTO toDtoProveedorRazonSocial(Proveedor proveedor);
 }

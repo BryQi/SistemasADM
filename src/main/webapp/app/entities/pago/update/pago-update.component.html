@@ -53,6 +53,94 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.pago.razonSocial" for="field_razonSocial">Razon Social</label>
+          <select
+            class="form-control"
+            id="field_razonSocial"
+            data-cy="razonSocial"
+            name="razonSocial"
+            formControlName="razonSocial"
+            [compareWith]="compareProveedor"
+          >
+            <option *ngIf="!editForm.get('razonSocial')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="proveedorOption" *ngFor="let proveedorOption of proveedorsSharedCollection">
+              {{ proveedorOption.razonSocial }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['razonSocial'])!.invalid && (editForm.get(['razonSocial'])!.dirty || editForm.get(['razonSocial'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['razonSocial'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.pago.calculoValorPago" for="field_calculoValorPago"
+            >Calculo Valor Pago</label
+          >
+          <select
+            class="form-control"
+            id="field_calculoValorPago"
+            data-cy="calculoValorPago"
+            name="calculoValorPago"
+            formControlName="calculoValorPago"
+            [compareWith]="compareDespliegueInfraestructuraTroncalDistribucion"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="despliegueInfraestructuraTroncalDistribucionOption"
+              *ngFor="
+                let despliegueInfraestructuraTroncalDistribucionOption of despliegueInfraestructuraTroncalDistribucionsSharedCollection
+              "
+            >
+              {{ despliegueInfraestructuraTroncalDistribucionOption.calculoValorPago }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.pago.calculoValorPagoD" for="field_calculoValorPagoD"
+            >Calculo Valor Pago D</label
+          >
+          <select
+            class="form-control"
+            id="field_calculoValorPagoD"
+            data-cy="calculoValorPagoD"
+            name="calculoValorPagoD"
+            formControlName="calculoValorPagoD"
+            [compareWith]="compareDespliegueinfraestructuradispersion"
+          >
+            <option *ngIf="!editForm.get('calculoValorPagoD')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="despliegueinfraestructuradispersionOption"
+              *ngFor="let despliegueinfraestructuradispersionOption of despliegueinfraestructuradispersionsSharedCollection"
+            >
+              {{ despliegueinfraestructuradispersionOption.calculoValorPagoD }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['calculoValorPagoD'])!.invalid &&
+            (editForm.get(['calculoValorPagoD'])!.dirty || editForm.get(['calculoValorPagoD'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['calculoValorPagoD'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+        </div>
+
+        <div class="row mb-3">
           <label class="form-label" jhiTranslate="sistemasAdmApp.pago.createdAt" for="field_createdAt">Created At</label>
           <div class="d-flex">
             <input
@@ -81,58 +169,6 @@
               Este campo debe ser una fecha y hora.
             </small>
           </div>
-        </div>
-
-        <div class="row mb-3">
-          <label
-            class="form-label"
-            jhiTranslate="sistemasAdmApp.pago.idDespliegueInfraestructuraTroncalDistribucion"
-            for="field_idDespliegueInfraestructuraTroncalDistribucion"
-            >Id Despliegue Infraestructura Troncal Distribucion</label
-          >
-          <select
-            class="form-control"
-            id="field_idDespliegueInfraestructuraTroncalDistribucion"
-            data-cy="idDespliegueInfraestructuraTroncalDistribucion"
-            name="idDespliegueInfraestructuraTroncalDistribucion"
-            formControlName="idDespliegueInfraestructuraTroncalDistribucion"
-            [compareWith]="compareDespliegueInfraestructuraTroncalDistribucion"
-          >
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="despliegueInfraestructuraTroncalDistribucionOption"
-              *ngFor="
-                let despliegueInfraestructuraTroncalDistribucionOption of despliegueInfraestructuraTroncalDistribucionsSharedCollection
-              "
-            >
-              {{ despliegueInfraestructuraTroncalDistribucionOption.id }}
-            </option>
-          </select>
-        </div>
-
-        <div class="row mb-3">
-          <label
-            class="form-label"
-            jhiTranslate="sistemasAdmApp.pago.idDespliegueinfraestructuradispersion"
-            for="field_idDespliegueinfraestructuradispersion"
-            >Id Despliegueinfraestructuradispersion</label
-          >
-          <select
-            class="form-control"
-            id="field_idDespliegueinfraestructuradispersion"
-            data-cy="idDespliegueinfraestructuradispersion"
-            name="idDespliegueinfraestructuradispersion"
-            formControlName="idDespliegueinfraestructuradispersion"
-            [compareWith]="compareDespliegueinfraestructuradispersion"
-          >
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="despliegueinfraestructuradispersionOption"
-              *ngFor="let despliegueinfraestructuradispersionOption of despliegueinfraestructuradispersionsSharedCollection"
-            >
-              {{ despliegueinfraestructuradispersionOption.id }}
-            </option>
-          </select>
         </div>
       </div>
 

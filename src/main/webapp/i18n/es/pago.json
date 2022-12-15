@@ -18,11 +18,12 @@
         "title": "Pago"
       },
       "id": "ID",
-      "fechaPago": "Fecha Pago",
-      "pago": "Pago",
-      "createdAt": "Created At",
-      "idDespliegueInfraestructuraTroncalDistribucion": "Id Despliegue Infraestructura Troncal Distribucion",
-      "idDespliegueinfraestructuradispersion": "Id Despliegueinfraestructuradispersion"
+      "fechaPago": "Fecha de Pago",
+      "pago": "Total a Pagar",
+      "createdAt": "Creado el",
+      "razonSocial": "Proveedor",
+      "calculoValorPago": "Valor por troncal de Dispersión",
+      "calculoValorPagoD": "Valor por troncal de Distribución"
     }
   }
 }

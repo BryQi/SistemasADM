@@ -212,6 +212,38 @@ public class CacheConfiguration {
                 com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
                 ".despliegueInfraestructuraDispersions"
             );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(
+                cm,
+                com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion.class.getName() +
+                ".despliegueInfraestructuraDispersions"
+            );
+            createCache(cm, com.municipio.sistemasadm.domain.Infraestructura.class.getName() + ".numeropozos");
+            createCache(cm, com.municipio.sistemasadm.domain.Despliegueinfraestructuradispersion.class.getName() + ".numeropozos");
             // jhipster-needle-ehcache-add-entry
         };
     }

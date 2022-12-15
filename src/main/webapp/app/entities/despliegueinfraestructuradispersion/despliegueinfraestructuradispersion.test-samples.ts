@@ -13,9 +13,9 @@ export const sampleWithRequiredData: IDespliegueinfraestructuradispersion = {
   descripcionDePozosUsadosRuta: 'Pollo Burundi',
   metrajeInicial: 52059,
   metrajeFinal: 4172,
-  calculoValorPago: 13612,
-  createdAt: dayjs('2022-12-01T07:58'),
-  valorMetro: 66251,
+  createdAt: dayjs('2022-12-01T17:05'),
+  valorMetro: 51548,
+  calculoValorPagoD: 66251,
 };
 
 export const sampleWithPartialData: IDespliegueinfraestructuradispersion = {
@@ -28,9 +28,9 @@ export const sampleWithPartialData: IDespliegueinfraestructuradispersion = {
   descripcionDePozosUsadosRuta: 'Artesanal política Salud',
   metrajeInicial: 45513,
   metrajeFinal: 68428,
-  calculoValorPago: 26823,
-  createdAt: dayjs('2022-12-01T16:34'),
-  valorMetro: 74384,
+  createdAt: dayjs('2022-12-01T13:54'),
+  valorMetro: 15773,
+  calculoValorPagoD: 74384,
 };
 
 export const sampleWithFullData: IDespliegueinfraestructuradispersion = {
@@ -43,9 +43,9 @@ export const sampleWithFullData: IDespliegueinfraestructuradispersion = {
   descripcionDePozosUsadosRuta: 'Infraestructura up',
   metrajeInicial: 48630,
   metrajeFinal: 13629,
-  calculoValorPago: 32006,
-  createdAt: dayjs('2022-12-01T03:04'),
-  valorMetro: 91525,
+  createdAt: dayjs('2022-12-01T12:40'),
+  valorMetro: 71982,
+  calculoValorPagoD: 91525,
 };
 
 export const sampleWithNewData: NewDespliegueinfraestructuradispersion = {
@@ -56,9 +56,9 @@ export const sampleWithNewData: NewDespliegueinfraestructuradispersion = {
   descripcionDePozosUsadosRuta: 'Loan',
   metrajeInicial: 1830,
   metrajeFinal: 30630,
-  calculoValorPago: 71400,
-  createdAt: dayjs('2022-12-01T08:51'),
-  valorMetro: 92368,
+  createdAt: dayjs('2022-12-01T03:13'),
+  valorMetro: 47909,
+  calculoValorPagoD: 92368,
   id: null,
 };
 

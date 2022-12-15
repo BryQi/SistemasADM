@@ -29,8 +29,8 @@ describe('Autorizaciones Form Service', () => {
             observaciones: expect.any(Object),
             createdAt: expect.any(Object),
             direccionDestino: expect.any(Object),
-            idProveedor: expect.any(Object),
-            pozo: expect.any(Object),
+            razonSocial: expect.any(Object),
+            numeropozo: expect.any(Object),
           })
         );
       });
@@ -50,8 +50,8 @@ describe('Autorizaciones Form Service', () => {
             observaciones: expect.any(Object),
             createdAt: expect.any(Object),
             direccionDestino: expect.any(Object),
-            idProveedor: expect.any(Object),
-            pozo: expect.any(Object),
+            razonSocial: expect.any(Object),
+            numeropozo: expect.any(Object),
           })
         );
       });

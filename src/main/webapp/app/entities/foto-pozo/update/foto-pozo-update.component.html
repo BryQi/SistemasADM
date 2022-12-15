@@ -71,6 +71,32 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sistemasAdmApp.fotoPozo.numeropozo" for="field_numeropozo">Numeropozo</label>
+          <select
+            class="form-control"
+            id="field_numeropozo"
+            data-cy="numeropozo"
+            name="numeropozo"
+            formControlName="numeropozo"
+            [compareWith]="comparePozo"
+          >
+            <option *ngIf="!editForm.get('numeropozo')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="pozoOption" *ngFor="let pozoOption of pozosSharedCollection">{{ pozoOption.numeropozo }}</option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['numeropozo'])!.invalid && (editForm.get(['numeropozo'])!.dirty || editForm.get(['numeropozo'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['numeropozo'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+        </div>
+
+        <div class="row mb-3">
           <label class="form-label" jhiTranslate="sistemasAdmApp.fotoPozo.createdAt" for="field_createdAt">Created At</label>
           <div class="d-flex">
             <input
@@ -99,21 +125,6 @@
               Este campo debe ser una fecha y hora.
             </small>
           </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="sistemasAdmApp.fotoPozo.idPozo" for="field_idPozo">Id Pozo</label>
-          <select
-            class="form-control"
-            id="field_idPozo"
-            data-cy="idPozo"
-            name="idPozo"
-            formControlName="idPozo"
-            [compareWith]="comparePozo"
-          >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="pozoOption" *ngFor="let pozoOption of pozosSharedCollection">{{ pozoOption.id }}</option>
-          </select>
         </div>
       </div>
 

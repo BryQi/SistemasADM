@@ -29,10 +29,11 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "numeropozo",
       "otherEntityName": "pozo",
-      "otherEntityRelationshipName": "fotoPozo",
-      "relationshipName": "idPozo",
-      "relationshipType": "many-to-one"
+      "relationshipName": "numeropozo",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
     }
   ],
   "service": "serviceImpl"

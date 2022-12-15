@@ -8,15 +8,15 @@
     -->
     <changeSet id="20221201202118-2" author="jhipster">
 
-        <addForeignKeyConstraint baseColumnNames="id_proveedor_id"
+        <addForeignKeyConstraint baseColumnNames="razon_social_id"
                                  baseTableName="autorizaciones"
-                                 constraintName="fk_autorizaciones__id_proveedor_id"
+                                 constraintName="fk_autorizaciones__razon_social_id"
                                  referencedColumnNames="id"
                                  referencedTableName="proveedor"/>
 
-        <addForeignKeyConstraint baseColumnNames="pozo_id"
+        <addForeignKeyConstraint baseColumnNames="numeropozo_id"
                                  baseTableName="autorizaciones"
-                                 constraintName="fk_autorizaciones__pozo_id"
+                                 constraintName="fk_autorizaciones__numeropozo_id"
                                  referencedColumnNames="id"
                                  referencedTableName="pozo"/>
     </changeSet>

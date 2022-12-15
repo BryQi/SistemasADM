@@ -8,7 +8,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.municipio.sistemasadm.IntegrationTest;
+import com.municipio.sistemasadm.domain.DespliegueInfraestructuraTroncalDistribucion;
 import com.municipio.sistemasadm.domain.Despliegueinfraestructuradispersion;
+import com.municipio.sistemasadm.domain.Pozo;
+import com.municipio.sistemasadm.domain.Proveedor;
 import com.municipio.sistemasadm.domain.enumeration.Origen;
 import com.municipio.sistemasadm.repository.DespliegueinfraestructuradispersionRepository;
 import com.municipio.sistemasadm.service.DespliegueinfraestructuradispersionService;
@@ -72,14 +75,14 @@ class DespliegueinfraestructuradispersionResourceIT {
     private static final Double DEFAULT_METRAJE_FINAL = 1D;
     private static final Double UPDATED_METRAJE_FINAL = 2D;
 
-    private static final Double DEFAULT_CALCULO_VALOR_PAGO = 1D;
-    private static final Double UPDATED_CALCULO_VALOR_PAGO = 2D;
-
     private static final ZonedDateTime DEFAULT_CREATED_AT = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATED_AT = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
     private static final Float DEFAULT_VALOR_METRO = 1F;
     private static final Float UPDATED_VALOR_METRO = 2F;
+
+    private static final Float DEFAULT_CALCULO_VALOR_PAGO_D = 1F;
+    private static final Float UPDATED_CALCULO_VALOR_PAGO_D = 2F;
 
     private static final String ENTITY_API_URL = "/api/despliegueinfraestructuradispersions";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -123,9 +126,39 @@ class DespliegueinfraestructuradispersionResourceIT {
             .descripcionDePozosUsadosRuta(DEFAULT_DESCRIPCION_DE_POZOS_USADOS_RUTA)
             .metrajeInicial(DEFAULT_METRAJE_INICIAL)
             .metrajeFinal(DEFAULT_METRAJE_FINAL)
-            .calculoValorPago(DEFAULT_CALCULO_VALOR_PAGO)
             .createdAt(DEFAULT_CREATED_AT)
-            .valorMetro(DEFAULT_VALOR_METRO);
+            .valorMetro(DEFAULT_VALOR_METRO)
+            .calculoValorPagoD(DEFAULT_CALCULO_VALOR_PAGO_D);
+        // Add required entity
+        DespliegueInfraestructuraTroncalDistribucion despliegueInfraestructuraTroncalDistribucion;
+        if (TestUtil.findAll(em, DespliegueInfraestructuraTroncalDistribucion.class).isEmpty()) {
+            despliegueInfraestructuraTroncalDistribucion = DespliegueInfraestructuraTroncalDistribucionResourceIT.createEntity(em);
+            em.persist(despliegueInfraestructuraTroncalDistribucion);
+            em.flush();
+        } else {
+            despliegueInfraestructuraTroncalDistribucion = TestUtil.findAll(em, DespliegueInfraestructuraTroncalDistribucion.class).get(0);
+        }
+        despliegueinfraestructuradispersion.setNombreRuta(despliegueInfraestructuraTroncalDistribucion);
+        // Add required entity
+        Proveedor proveedor;
+        if (TestUtil.findAll(em, Proveedor.class).isEmpty()) {
+            proveedor = ProveedorResourceIT.createEntity(em);
+            em.persist(proveedor);
+            em.flush();
+        } else {
+            proveedor = TestUtil.findAll(em, Proveedor.class).get(0);
+        }
+        despliegueinfraestructuradispersion.setRazonSocial(proveedor);
+        // Add required entity
+        Pozo pozo;
+        if (TestUtil.findAll(em, Pozo.class).isEmpty()) {
+            pozo = PozoResourceIT.createEntity(em);
+            em.persist(pozo);
+            em.flush();
+        } else {
+            pozo = TestUtil.findAll(em, Pozo.class).get(0);
+        }
+        despliegueinfraestructuradispersion.getNumeropozos().add(pozo);
         return despliegueinfraestructuradispersion;
     }
 
@@ -145,9 +178,39 @@ class DespliegueinfraestructuradispersionResourceIT {
             .descripcionDePozosUsadosRuta(UPDATED_DESCRIPCION_DE_POZOS_USADOS_RUTA)
             .metrajeInicial(UPDATED_METRAJE_INICIAL)
             .metrajeFinal(UPDATED_METRAJE_FINAL)
-            .calculoValorPago(UPDATED_CALCULO_VALOR_PAGO)
             .createdAt(UPDATED_CREATED_AT)
-            .valorMetro(UPDATED_VALOR_METRO);
+            .valorMetro(UPDATED_VALOR_METRO)
+            .calculoValorPagoD(UPDATED_CALCULO_VALOR_PAGO_D);
+        // Add required entity
+        DespliegueInfraestructuraTroncalDistribucion despliegueInfraestructuraTroncalDistribucion;
+        if (TestUtil.findAll(em, DespliegueInfraestructuraTroncalDistribucion.class).isEmpty()) {
+            despliegueInfraestructuraTroncalDistribucion = DespliegueInfraestructuraTroncalDistribucionResourceIT.createUpdatedEntity(em);
+            em.persist(despliegueInfraestructuraTroncalDistribucion);
+            em.flush();
+        } else {
+            despliegueInfraestructuraTroncalDistribucion = TestUtil.findAll(em, DespliegueInfraestructuraTroncalDistribucion.class).get(0);
+        }
+        despliegueinfraestructuradispersion.setNombreRuta(despliegueInfraestructuraTroncalDistribucion);
+        // Add required entity
+        Proveedor proveedor;
+        if (TestUtil.findAll(em, Proveedor.class).isEmpty()) {
+            proveedor = ProveedorResourceIT.createUpdatedEntity(em);
+            em.persist(proveedor);
+            em.flush();
+        } else {
+            proveedor = TestUtil.findAll(em, Proveedor.class).get(0);
+        }
+        despliegueinfraestructuradispersion.setRazonSocial(proveedor);
+        // Add required entity
+        Pozo pozo;
+        if (TestUtil.findAll(em, Pozo.class).isEmpty()) {
+            pozo = PozoResourceIT.createUpdatedEntity(em);
+            em.persist(pozo);
+            em.flush();
+        } else {
+            pozo = TestUtil.findAll(em, Pozo.class).get(0);
+        }
+        despliegueinfraestructuradispersion.getNumeropozos().add(pozo);
         return despliegueinfraestructuradispersion;
     }
 
@@ -187,9 +250,9 @@ class DespliegueinfraestructuradispersionResourceIT {
             .isEqualTo(DEFAULT_DESCRIPCION_DE_POZOS_USADOS_RUTA);
         assertThat(testDespliegueinfraestructuradispersion.getMetrajeInicial()).isEqualTo(DEFAULT_METRAJE_INICIAL);
         assertThat(testDespliegueinfraestructuradispersion.getMetrajeFinal()).isEqualTo(DEFAULT_METRAJE_FINAL);
-        assertThat(testDespliegueinfraestructuradispersion.getCalculoValorPago()).isEqualTo(DEFAULT_CALCULO_VALOR_PAGO);
         assertThat(testDespliegueinfraestructuradispersion.getCreatedAt()).isEqualTo(DEFAULT_CREATED_AT);
         assertThat(testDespliegueinfraestructuradispersion.getValorMetro()).isEqualTo(DEFAULT_VALOR_METRO);
+        assertThat(testDespliegueinfraestructuradispersion.getCalculoValorPagoD()).isEqualTo(DEFAULT_CALCULO_VALOR_PAGO_D);
     }
 
     @Test
@@ -387,30 +450,6 @@ class DespliegueinfraestructuradispersionResourceIT {
 
     @Test
     @Transactional
-    void checkCalculoValorPagoIsRequired() throws Exception {
-        int databaseSizeBeforeTest = despliegueinfraestructuradispersionRepository.findAll().size();
-        // set the field null
-        despliegueinfraestructuradispersion.setCalculoValorPago(null);
-
-        // Create the Despliegueinfraestructuradispersion, which fails.
-        DespliegueinfraestructuradispersionDTO despliegueinfraestructuradispersionDTO = despliegueinfraestructuradispersionMapper.toDto(
-            despliegueinfraestructuradispersion
-        );
-
-        restDespliegueinfraestructuradispersionMockMvc
-            .perform(
-                post(ENTITY_API_URL)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(TestUtil.convertObjectToJsonBytes(despliegueinfraestructuradispersionDTO))
-            )
-            .andExpect(status().isBadRequest());
-
-        List<Despliegueinfraestructuradispersion> despliegueinfraestructuradispersionList = despliegueinfraestructuradispersionRepository.findAll();
-        assertThat(despliegueinfraestructuradispersionList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     void checkCreatedAtIsRequired() throws Exception {
         int databaseSizeBeforeTest = despliegueinfraestructuradispersionRepository.findAll().size();
         // set the field null
@@ -459,6 +498,30 @@ class DespliegueinfraestructuradispersionResourceIT {
 
     @Test
     @Transactional
+    void checkCalculoValorPagoDIsRequired() throws Exception {
+        int databaseSizeBeforeTest = despliegueinfraestructuradispersionRepository.findAll().size();
+        // set the field null
+        despliegueinfraestructuradispersion.setCalculoValorPagoD(null);
+
+        // Create the Despliegueinfraestructuradispersion, which fails.
+        DespliegueinfraestructuradispersionDTO despliegueinfraestructuradispersionDTO = despliegueinfraestructuradispersionMapper.toDto(
+            despliegueinfraestructuradispersion
+        );
+
+        restDespliegueinfraestructuradispersionMockMvc
+            .perform(
+                post(ENTITY_API_URL)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(TestUtil.convertObjectToJsonBytes(despliegueinfraestructuradispersionDTO))
+            )
+            .andExpect(status().isBadRequest());
+
+        List<Despliegueinfraestructuradispersion> despliegueinfraestructuradispersionList = despliegueinfraestructuradispersionRepository.findAll();
+        assertThat(despliegueinfraestructuradispersionList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void getAllDespliegueinfraestructuradispersions() throws Exception {
         // Initialize the database
         despliegueinfraestructuradispersionRepository.saveAndFlush(despliegueinfraestructuradispersion);
@@ -477,9 +540,9 @@ class DespliegueinfraestructuradispersionResourceIT {
             .andExpect(jsonPath("$.[*].descripcionDePozosUsadosRuta").value(hasItem(DEFAULT_DESCRIPCION_DE_POZOS_USADOS_RUTA)))
             .andExpect(jsonPath("$.[*].metrajeInicial").value(hasItem(DEFAULT_METRAJE_INICIAL.doubleValue())))
             .andExpect(jsonPath("$.[*].metrajeFinal").value(hasItem(DEFAULT_METRAJE_FINAL.doubleValue())))
-            .andExpect(jsonPath("$.[*].calculoValorPago").value(hasItem(DEFAULT_CALCULO_VALOR_PAGO.doubleValue())))
             .andExpect(jsonPath("$.[*].createdAt").value(hasItem(sameInstant(DEFAULT_CREATED_AT))))
-            .andExpect(jsonPath("$.[*].valorMetro").value(hasItem(DEFAULT_VALOR_METRO.doubleValue())));
+            .andExpect(jsonPath("$.[*].valorMetro").value(hasItem(DEFAULT_VALOR_METRO.doubleValue())))
+            .andExpect(jsonPath("$.[*].calculoValorPagoD").value(hasItem(DEFAULT_CALCULO_VALOR_PAGO_D.doubleValue())));
     }
 
     @SuppressWarnings({ "unchecked" })
@@ -521,9 +584,9 @@ class DespliegueinfraestructuradispersionResourceIT {
             .andExpect(jsonPath("$.descripcionDePozosUsadosRuta").value(DEFAULT_DESCRIPCION_DE_POZOS_USADOS_RUTA))
             .andExpect(jsonPath("$.metrajeInicial").value(DEFAULT_METRAJE_INICIAL.doubleValue()))
             .andExpect(jsonPath("$.metrajeFinal").value(DEFAULT_METRAJE_FINAL.doubleValue()))
-            .andExpect(jsonPath("$.calculoValorPago").value(DEFAULT_CALCULO_VALOR_PAGO.doubleValue()))
             .andExpect(jsonPath("$.createdAt").value(sameInstant(DEFAULT_CREATED_AT)))
-            .andExpect(jsonPath("$.valorMetro").value(DEFAULT_VALOR_METRO.doubleValue()));
+            .andExpect(jsonPath("$.valorMetro").value(DEFAULT_VALOR_METRO.doubleValue()))
+            .andExpect(jsonPath("$.calculoValorPagoD").value(DEFAULT_CALCULO_VALOR_PAGO_D.doubleValue()));
     }
 
     @Test
@@ -556,9 +619,9 @@ class DespliegueinfraestructuradispersionResourceIT {
             .descripcionDePozosUsadosRuta(UPDATED_DESCRIPCION_DE_POZOS_USADOS_RUTA)
             .metrajeInicial(UPDATED_METRAJE_INICIAL)
             .metrajeFinal(UPDATED_METRAJE_FINAL)
-            .calculoValorPago(UPDATED_CALCULO_VALOR_PAGO)
             .createdAt(UPDATED_CREATED_AT)
-            .valorMetro(UPDATED_VALOR_METRO);
+            .valorMetro(UPDATED_VALOR_METRO)
+            .calculoValorPagoD(UPDATED_CALCULO_VALOR_PAGO_D);
         DespliegueinfraestructuradispersionDTO despliegueinfraestructuradispersionDTO = despliegueinfraestructuradispersionMapper.toDto(
             updatedDespliegueinfraestructuradispersion
         );
@@ -586,9 +649,9 @@ class DespliegueinfraestructuradispersionResourceIT {
             .isEqualTo(UPDATED_DESCRIPCION_DE_POZOS_USADOS_RUTA);
         assertThat(testDespliegueinfraestructuradispersion.getMetrajeInicial()).isEqualTo(UPDATED_METRAJE_INICIAL);
         assertThat(testDespliegueinfraestructuradispersion.getMetrajeFinal()).isEqualTo(UPDATED_METRAJE_FINAL);
-        assertThat(testDespliegueinfraestructuradispersion.getCalculoValorPago()).isEqualTo(UPDATED_CALCULO_VALOR_PAGO);
         assertThat(testDespliegueinfraestructuradispersion.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
         assertThat(testDespliegueinfraestructuradispersion.getValorMetro()).isEqualTo(UPDATED_VALOR_METRO);
+        assertThat(testDespliegueinfraestructuradispersion.getCalculoValorPagoD()).isEqualTo(UPDATED_CALCULO_VALOR_PAGO_D);
     }
 
     @Test
@@ -684,9 +747,9 @@ class DespliegueinfraestructuradispersionResourceIT {
             .destino(UPDATED_DESTINO)
             .descripcionDePozosUsadosRuta(UPDATED_DESCRIPCION_DE_POZOS_USADOS_RUTA)
             .metrajeFinal(UPDATED_METRAJE_FINAL)
-            .calculoValorPago(UPDATED_CALCULO_VALOR_PAGO)
             .createdAt(UPDATED_CREATED_AT)
-            .valorMetro(UPDATED_VALOR_METRO);
+            .valorMetro(UPDATED_VALOR_METRO)
+            .calculoValorPagoD(UPDATED_CALCULO_VALOR_PAGO_D);
 
         restDespliegueinfraestructuradispersionMockMvc
             .perform(
@@ -711,9 +774,9 @@ class DespliegueinfraestructuradispersionResourceIT {
             .isEqualTo(UPDATED_DESCRIPCION_DE_POZOS_USADOS_RUTA);
         assertThat(testDespliegueinfraestructuradispersion.getMetrajeInicial()).isEqualTo(DEFAULT_METRAJE_INICIAL);
         assertThat(testDespliegueinfraestructuradispersion.getMetrajeFinal()).isEqualTo(UPDATED_METRAJE_FINAL);
-        assertThat(testDespliegueinfraestructuradispersion.getCalculoValorPago()).isEqualTo(UPDATED_CALCULO_VALOR_PAGO);
         assertThat(testDespliegueinfraestructuradispersion.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
         assertThat(testDespliegueinfraestructuradispersion.getValorMetro()).isEqualTo(UPDATED_VALOR_METRO);
+        assertThat(testDespliegueinfraestructuradispersion.getCalculoValorPagoD()).isEqualTo(UPDATED_CALCULO_VALOR_PAGO_D);
     }
 
     @Test
@@ -737,9 +800,9 @@ class DespliegueinfraestructuradispersionResourceIT {
             .descripcionDePozosUsadosRuta(UPDATED_DESCRIPCION_DE_POZOS_USADOS_RUTA)
             .metrajeInicial(UPDATED_METRAJE_INICIAL)
             .metrajeFinal(UPDATED_METRAJE_FINAL)
-            .calculoValorPago(UPDATED_CALCULO_VALOR_PAGO)
             .createdAt(UPDATED_CREATED_AT)
-            .valorMetro(UPDATED_VALOR_METRO);
+            .valorMetro(UPDATED_VALOR_METRO)
+            .calculoValorPagoD(UPDATED_CALCULO_VALOR_PAGO_D);
 
         restDespliegueinfraestructuradispersionMockMvc
             .perform(
@@ -764,9 +827,9 @@ class DespliegueinfraestructuradispersionResourceIT {
             .isEqualTo(UPDATED_DESCRIPCION_DE_POZOS_USADOS_RUTA);
         assertThat(testDespliegueinfraestructuradispersion.getMetrajeInicial()).isEqualTo(UPDATED_METRAJE_INICIAL);
         assertThat(testDespliegueinfraestructuradispersion.getMetrajeFinal()).isEqualTo(UPDATED_METRAJE_FINAL);
-        assertThat(testDespliegueinfraestructuradispersion.getCalculoValorPago()).isEqualTo(UPDATED_CALCULO_VALOR_PAGO);
         assertThat(testDespliegueinfraestructuradispersion.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
         assertThat(testDespliegueinfraestructuradispersion.getValorMetro()).isEqualTo(UPDATED_VALOR_METRO);
+        assertThat(testDespliegueinfraestructuradispersion.getCalculoValorPagoD()).isEqualTo(UPDATED_CALCULO_VALOR_PAGO_D);
     }
 
     @Test

@@ -23,11 +23,14 @@
             <column name="created_at" type="${datetimeType}">
                 <constraints nullable="false" />
             </column>
-            <column name="id_despliegue_infraestructura_troncal_distribucion_id" type="bigint">
+            <column name="razon_social_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="calculo_valor_pago_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="id_despliegueinfraestructuradispersion_id" type="bigint">
-                <constraints nullable="true" />
+            <column name="calculo_valor_pagod_id" type="bigint">
+                <constraints nullable="false" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
@@ -54,6 +57,8 @@
             <column name="fecha_pago" type="date"/>
             <column name="pago" type="numeric"/>
             <column name="created_at" type="date"/>
+            <column name="razon_social_id" type="numeric"/>
+            <column name="calculo_valor_pagod_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

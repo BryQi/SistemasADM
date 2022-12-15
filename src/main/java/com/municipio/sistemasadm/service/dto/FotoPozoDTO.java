@@ -25,7 +25,7 @@ public class FotoPozoDTO implements Serializable {
     @NotNull
     private ZonedDateTime createdAt;
 
-    private PozoDTO idPozo;
+    private PozoDTO numeropozo;
 
     public Long getId() {
         return id;
@@ -67,12 +67,12 @@ public class FotoPozoDTO implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public PozoDTO getIdPozo() {
-        return idPozo;
+    public PozoDTO getNumeropozo() {
+        return numeropozo;
     }
 
-    public void setIdPozo(PozoDTO idPozo) {
-        this.idPozo = idPozo;
+    public void setNumeropozo(PozoDTO numeropozo) {
+        this.numeropozo = numeropozo;
     }
 
     @Override
@@ -104,7 +104,7 @@ public class FotoPozoDTO implements Serializable {
             ", foto='" + getFoto() + "'" +
             ", descripcion='" + getDescripcion() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
-            ", idPozo=" + getIdPozo() +
+            ", numeropozo=" + getNumeropozo() +
             "}";
     }
 }

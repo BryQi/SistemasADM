@@ -38,11 +38,11 @@
             <column name="created_at" type="${datetimeType}">
                 <constraints nullable="false" />
             </column>
-            <column name="id_pozo_id" type="bigint">
-                <constraints nullable="true" />
+            <column name="razon_social_id" type="bigint">
+                <constraints nullable="false" />
             </column>
-            <column name="provedorinspeciones_id" type="bigint">
-                <constraints nullable="true" />
+            <column name="numeropozo_id" type="bigint">
+                <constraints nullable="false" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
@@ -74,6 +74,8 @@
             <column name="cumple_arreglo_cables" type="boolean"/>
             <column name="cumplelimpieza_orden_pozo" type="boolean"/>
             <column name="created_at" type="date"/>
+            <column name="razon_social_id" type="numeric"/>
+            <column name="numeropozo_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

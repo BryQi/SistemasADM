@@ -27,14 +27,14 @@ type InfraestructuraFormRawValue = FormValueOf<IInfraestructura>;
 
 type NewInfraestructuraFormRawValue = FormValueOf<NewInfraestructura>;
 
-type InfraestructuraFormDefaults = Pick<NewInfraestructura, 'id' | 'createdAt' | 'pozos'>;
+type InfraestructuraFormDefaults = Pick<NewInfraestructura, 'id' | 'createdAt' | 'numeropozos'>;
 
 type InfraestructuraFormGroupContent = {
   id: FormControl<InfraestructuraFormRawValue['id'] | NewInfraestructura['id']>;
   tipo: FormControl<InfraestructuraFormRawValue['tipo']>;
   createdAt: FormControl<InfraestructuraFormRawValue['createdAt']>;
-  idProveedor: FormControl<InfraestructuraFormRawValue['idProveedor']>;
-  pozos: FormControl<InfraestructuraFormRawValue['pozos']>;
+  razonSocial: FormControl<InfraestructuraFormRawValue['razonSocial']>;
+  numeropozos: FormControl<InfraestructuraFormRawValue['numeropozos']>;
 };
 
 export type InfraestructuraFormGroup = FormGroup<InfraestructuraFormGroupContent>;
@@ -58,8 +58,10 @@ export class InfraestructuraFormService {
       createdAt: new FormControl(infraestructuraRawValue.createdAt, {
         validators: [Validators.required],
       }),
-      idProveedor: new FormControl(infraestructuraRawValue.idProveedor),
-      pozos: new FormControl(infraestructuraRawValue.pozos ?? []),
+      razonSocial: new FormControl(infraestructuraRawValue.razonSocial, {
+        validators: [Validators.required],
+      }),
+      numeropozos: new FormControl(infraestructuraRawValue.numeropozos ?? []),
     });
   }
 
@@ -85,7 +87,7 @@ export class InfraestructuraFormService {
     return {
       id: null,
       createdAt: currentTime,
-      pozos: [],
+      numeropozos: [],
     };
   }
 
@@ -104,7 +106,7 @@ export class InfraestructuraFormService {
     return {
       ...infraestructura,
       createdAt: infraestructura.createdAt ? infraestructura.createdAt.format(DATE_TIME_FORMAT) : undefined,
-      pozos: infraestructura.pozos ?? [],
+      numeropozos: infraestructura.numeropozos ?? [],
     };
   }
 }

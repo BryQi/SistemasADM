@@ -3,13 +3,17 @@ package com.municipio.sistemasadm.web.rest;
 import static com.municipio.sistemasadm.web.rest.TestUtil.sameInstant;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.municipio.sistemasadm.IntegrationTest;
 import com.municipio.sistemasadm.domain.Autorizaciones;
+import com.municipio.sistemasadm.domain.Pozo;
+import com.municipio.sistemasadm.domain.Proveedor;
 import com.municipio.sistemasadm.domain.enumeration.ContactoTecnico;
 import com.municipio.sistemasadm.repository.AutorizacionesRepository;
+import com.municipio.sistemasadm.service.AutorizacionesService;
 import com.municipio.sistemasadm.service.dto.AutorizacionesDTO;
 import com.municipio.sistemasadm.service.mapper.AutorizacionesMapper;
 import java.time.Instant;
@@ -17,14 +21,21 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import javax.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -34,6 +45,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Integration tests for the {@link AutorizacionesResource} REST controller.
  */
 @IntegrationTest
+@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 class AutorizacionesResourceIT {
@@ -74,8 +86,14 @@ class AutorizacionesResourceIT {
     @Autowired
     private AutorizacionesRepository autorizacionesRepository;
 
+    @Mock
+    private AutorizacionesRepository autorizacionesRepositoryMock;
+
     @Autowired
     private AutorizacionesMapper autorizacionesMapper;
+
+    @Mock
+    private AutorizacionesService autorizacionesServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -102,6 +120,26 @@ class AutorizacionesResourceIT {
             .observaciones(DEFAULT_OBSERVACIONES)
             .createdAt(DEFAULT_CREATED_AT)
             .direccionDestino(DEFAULT_DIRECCION_DESTINO);
+        // Add required entity
+        Proveedor proveedor;
+        if (TestUtil.findAll(em, Proveedor.class).isEmpty()) {
+            proveedor = ProveedorResourceIT.createEntity(em);
+            em.persist(proveedor);
+            em.flush();
+        } else {
+            proveedor = TestUtil.findAll(em, Proveedor.class).get(0);
+        }
+        autorizaciones.setRazonSocial(proveedor);
+        // Add required entity
+        Pozo pozo;
+        if (TestUtil.findAll(em, Pozo.class).isEmpty()) {
+            pozo = PozoResourceIT.createEntity(em);
+            em.persist(pozo);
+            em.flush();
+        } else {
+            pozo = TestUtil.findAll(em, Pozo.class).get(0);
+        }
+        autorizaciones.setNumeropozo(pozo);
         return autorizaciones;
     }
 
@@ -122,6 +160,26 @@ class AutorizacionesResourceIT {
             .observaciones(UPDATED_OBSERVACIONES)
             .createdAt(UPDATED_CREATED_AT)
             .direccionDestino(UPDATED_DIRECCION_DESTINO);
+        // Add required entity
+        Proveedor proveedor;
+        if (TestUtil.findAll(em, Proveedor.class).isEmpty()) {
+            proveedor = ProveedorResourceIT.createUpdatedEntity(em);
+            em.persist(proveedor);
+            em.flush();
+        } else {
+            proveedor = TestUtil.findAll(em, Proveedor.class).get(0);
+        }
+        autorizaciones.setRazonSocial(proveedor);
+        // Add required entity
+        Pozo pozo;
+        if (TestUtil.findAll(em, Pozo.class).isEmpty()) {
+            pozo = PozoResourceIT.createUpdatedEntity(em);
+            em.persist(pozo);
+            em.flush();
+        } else {
+            pozo = TestUtil.findAll(em, Pozo.class).get(0);
+        }
+        autorizaciones.setNumeropozo(pozo);
         return autorizaciones;
     }
 
@@ -359,6 +417,23 @@ class AutorizacionesResourceIT {
             .andExpect(jsonPath("$.[*].observaciones").value(hasItem(DEFAULT_OBSERVACIONES)))
             .andExpect(jsonPath("$.[*].createdAt").value(hasItem(sameInstant(DEFAULT_CREATED_AT))))
             .andExpect(jsonPath("$.[*].direccionDestino").value(hasItem(DEFAULT_DIRECCION_DESTINO)));
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    void getAllAutorizacionesWithEagerRelationshipsIsEnabled() throws Exception {
+        when(autorizacionesServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restAutorizacionesMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
+
+        verify(autorizacionesServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    void getAllAutorizacionesWithEagerRelationshipsIsNotEnabled() throws Exception {
+        when(autorizacionesServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restAutorizacionesMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
+        verify(autorizacionesRepositoryMock, times(1)).findAll(any(Pageable.class));
     }
 
     @Test

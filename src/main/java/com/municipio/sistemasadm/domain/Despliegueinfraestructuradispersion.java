@@ -62,10 +62,6 @@ public class Despliegueinfraestructuradispersion implements Serializable {
     private Double metrajeFinal;
 
     @NotNull
-    @Column(name = "calculo_valor_pago", nullable = false)
-    private Double calculoValorPago;
-
-    @NotNull
     @Column(name = "created_at", nullable = false)
     private ZonedDateTime createdAt;
 
@@ -73,39 +69,28 @@ public class Despliegueinfraestructuradispersion implements Serializable {
     @Column(name = "valor_metro", nullable = false)
     private Float valorMetro;
 
-    @OneToMany(mappedBy = "idDespliegueinfraestructuradispersion")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(
-        value = { "idDespliegueInfraestructuraTroncalDistribucion", "idDespliegueinfraestructuradispersion" },
-        allowSetters = true
-    )
-    private Set<Pago> pagos = new HashSet<>();
+    @NotNull
+    @Column(name = "calculo_valor_pago_d", nullable = false)
+    private Float calculoValorPagoD;
+
+    @ManyToOne(optional = false)
+    @NotNull
+    @JsonIgnoreProperties(value = { "pozos", "razonSocial" }, allowSetters = true)
+    private DespliegueInfraestructuraTroncalDistribucion nombreRuta;
+
+    @ManyToOne(optional = false)
+    @NotNull
+    private Proveedor razonSocial;
 
     @ManyToMany
+    @NotNull
     @JoinTable(
-        name = "rel_despliegueinfraestructuradispersion__pozo",
+        name = "rel_despliegueinfraestructuradispersion__numeropozo",
         joinColumns = @JoinColumn(name = "despliegueinfraestructuradispersion_id"),
-        inverseJoinColumns = @JoinColumn(name = "pozo_id")
+        inverseJoinColumns = @JoinColumn(name = "numeropozo_id")
     )
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(
-        value = {
-            "fotoPozos",
-            "registroInspecciones",
-            "idDespliegueInfraestructuraTroncalDistribucions",
-            "idDespliegueinfraestructuradispersions",
-        },
-        allowSetters = true
-    )
-    private Set<Pozo> pozos = new HashSet<>();
-
-    @ManyToOne
-    @JsonIgnoreProperties(value = { "despliegueInfraestructuraDispersions", "pagos", "pozos", "infraestructura" }, allowSetters = true)
-    private DespliegueInfraestructuraTroncalDistribucion idDespliegueInfraestructuraTroncalDistribucion;
-
-    @ManyToOne
-    @JsonIgnoreProperties(value = { "despliegueinfraestructuradispersions", "autorizaciones", "infraestructuras" }, allowSetters = true)
-    private Proveedor idProveedor;
+    private Set<Pozo> numeropozos = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -226,19 +211,6 @@ public class Despliegueinfraestructuradispersion implements Serializable {
         this.metrajeFinal = metrajeFinal;
     }
 
-    public Double getCalculoValorPago() {
-        return this.calculoValorPago;
-    }
-
-    public Despliegueinfraestructuradispersion calculoValorPago(Double calculoValorPago) {
-        this.setCalculoValorPago(calculoValorPago);
-        return this;
-    }
-
-    public void setCalculoValorPago(Double calculoValorPago) {
-        this.calculoValorPago = calculoValorPago;
-    }
-
     public ZonedDateTime getCreatedAt() {
         return this.createdAt;
     }
@@ -265,89 +237,67 @@ public class Despliegueinfraestructuradispersion implements Serializable {
         this.valorMetro = valorMetro;
     }
 
-    public Set<Pago> getPagos() {
-        return this.pagos;
+    public Float getCalculoValorPagoD() {
+        return this.calculoValorPagoD;
     }
 
-    public void setPagos(Set<Pago> pagos) {
-        if (this.pagos != null) {
-            this.pagos.forEach(i -> i.setIdDespliegueinfraestructuradispersion(null));
-        }
-        if (pagos != null) {
-            pagos.forEach(i -> i.setIdDespliegueinfraestructuradispersion(this));
-        }
-        this.pagos = pagos;
-    }
-
-    public Despliegueinfraestructuradispersion pagos(Set<Pago> pagos) {
-        this.setPagos(pagos);
+    public Despliegueinfraestructuradispersion calculoValorPagoD(Float calculoValorPagoD) {
+        this.setCalculoValorPagoD(calculoValorPagoD);
         return this;
     }
 
-    public Despliegueinfraestructuradispersion addPago(Pago pago) {
-        this.pagos.add(pago);
-        pago.setIdDespliegueinfraestructuradispersion(this);
-        return this;
+    public void setCalculoValorPagoD(Float calculoValorPagoD) {
+        this.calculoValorPagoD = calculoValorPagoD;
     }
 
-    public Despliegueinfraestructuradispersion removePago(Pago pago) {
-        this.pagos.remove(pago);
-        pago.setIdDespliegueinfraestructuradispersion(null);
-        return this;
+    public DespliegueInfraestructuraTroncalDistribucion getNombreRuta() {
+        return this.nombreRuta;
     }
 
-    public Set<Pozo> getPozos() {
-        return this.pozos;
+    public void setNombreRuta(DespliegueInfraestructuraTroncalDistribucion despliegueInfraestructuraTroncalDistribucion) {
+        this.nombreRuta = despliegueInfraestructuraTroncalDistribucion;
     }
 
-    public void setPozos(Set<Pozo> pozos) {
-        this.pozos = pozos;
-    }
-
-    public Despliegueinfraestructuradispersion pozos(Set<Pozo> pozos) {
-        this.setPozos(pozos);
-        return this;
-    }
-
-    public Despliegueinfraestructuradispersion addPozo(Pozo pozo) {
-        this.pozos.add(pozo);
-        pozo.getIdDespliegueinfraestructuradispersions().add(this);
-        return this;
-    }
-
-    public Despliegueinfraestructuradispersion removePozo(Pozo pozo) {
-        this.pozos.remove(pozo);
-        pozo.getIdDespliegueinfraestructuradispersions().remove(this);
-        return this;
-    }
-
-    public DespliegueInfraestructuraTroncalDistribucion getIdDespliegueInfraestructuraTroncalDistribucion() {
-        return this.idDespliegueInfraestructuraTroncalDistribucion;
-    }
-
-    public void setIdDespliegueInfraestructuraTroncalDistribucion(
+    public Despliegueinfraestructuradispersion nombreRuta(
         DespliegueInfraestructuraTroncalDistribucion despliegueInfraestructuraTroncalDistribucion
     ) {
-        this.idDespliegueInfraestructuraTroncalDistribucion = despliegueInfraestructuraTroncalDistribucion;
-    }
-
-    public Despliegueinfraestructuradispersion idDespliegueInfraestructuraTroncalDistribucion(
-        DespliegueInfraestructuraTroncalDistribucion despliegueInfraestructuraTroncalDistribucion
-    ) {
-        this.setIdDespliegueInfraestructuraTroncalDistribucion(despliegueInfraestructuraTroncalDistribucion);
+        this.setNombreRuta(despliegueInfraestructuraTroncalDistribucion);
         return this;
     }
 
-    public Proveedor getIdProveedor() {
-        return this.idProveedor;
+    public Proveedor getRazonSocial() {
+        return this.razonSocial;
     }
 
-    public void setIdProveedor(Proveedor proveedor) {
-        this.idProveedor = proveedor;
+    public void setRazonSocial(Proveedor proveedor) {
+        this.razonSocial = proveedor;
     }
 
-    public Despliegueinfraestructuradispersion idProveedor(Proveedor proveedor) {
-        this.setIdProveedor(proveedor);
+    public Despliegueinfraestructuradispersion razonSocial(Proveedor proveedor) {
+        this.setRazonSocial(proveedor);
+        return this;
+    }
+
+    public Set<Pozo> getNumeropozos() {
+        return this.numeropozos;
+    }
+
+    public void setNumeropozos(Set<Pozo> pozos) {
+        this.numeropozos = pozos;
+    }
+
+    public Despliegueinfraestructuradispersion numeropozos(Set<Pozo> pozos) {
+        this.setNumeropozos(pozos);
+        return this;
+    }
+
+    public Despliegueinfraestructuradispersion addNumeropozo(Pozo pozo) {
+        this.numeropozos.add(pozo);
+        return this;
+    }
+
+    public Despliegueinfraestructuradispersion removeNumeropozo(Pozo pozo) {
+        this.numeropozos.remove(pozo);
         return this;
     }
 
@@ -383,9 +333,9 @@ public class Despliegueinfraestructuradispersion implements Serializable {
             ", descripcionDePozosUsadosRuta='" + getDescripcionDePozosUsadosRuta() + "'" +
             ", metrajeInicial=" + getMetrajeInicial() +
             ", metrajeFinal=" + getMetrajeFinal() +
-            ", calculoValorPago=" + getCalculoValorPago() +
             ", createdAt='" + getCreatedAt() + "'" +
             ", valorMetro=" + getValorMetro() +
+            ", calculoValorPagoD=" + getCalculoValorPagoD() +
             "}";
     }
 }

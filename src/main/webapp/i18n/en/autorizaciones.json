@@ -1,34 +1,34 @@
 {
   "sistemasAdmApp": {
-    "autorizaciones": {
+    "Authorizations": {
       "home": {
-        "title": "Autorizaciones",
+        "title": "Authorizations",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Autorizaciones",
-        "createOrEditLabel": "Create or edit a Autorizaciones",
-        "notFound": "No Autorizaciones found"
+        "createLabel": "Create a new Authorizations",
+        "createOrEditLabel": "Create or edit a Authorizations",
+        "notFound": "No Authorizations found"
       },
-      "created": "A new Autorizaciones is created with identifier {{ param }}",
-      "updated": "A Autorizaciones is updated with identifier {{ param }}",
-      "deleted": "A Autorizaciones is deleted with identifier {{ param }}",
+      "created": "A new Authorizations is created with identifier {{ param }}",
+      "updated": "A Authorizations is updated with identifier {{ param }}",
+      "deleted": "A Authorizations is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Autorizaciones {{ id }}?"
+        "question": "Are you sure you want to delete Authorizations {{ id }}?"
       },
       "detail": {
-        "title": "Autorizaciones"
+        "title": "Authorizations"
       },
       "id": "ID",
-      "cliente": "Cliente",
-      "direccionOrigen": "Direccion Origen",
-      "fechaOperacion": "Fecha Operacion",
-      "ventanaTrabajo": "Ventana Trabajo",
-      "contactoTecnico": "Contacto Tecnico",
-      "tipoTrabajo": "Tipo Trabajo",
-      "observaciones": "Observaciones",
+      "cliente": "Client",
+      "direccionOrigen": "Source Address",
+      "fechaOperacion": "Operation Date",
+      "ventanaTrabajo": "Work Window",
+      "contactoTecnico": "Technical Contact",
+      "tipoTrabajo": "Type of work",
+      "observaciones": "Observations",
       "createdAt": "Created At",
-      "direccionDestino": "Direccion Destino",
-      "idProveedor": "Service Provider",
-      "pozo": "Outlet well"
+      "direccionDestino": "Address Destination",
+      "razonSocial": "Supplier Providing the Service",
+      "numeropozo": "Exit Well"
     }
   }
 }

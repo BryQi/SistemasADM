@@ -23,8 +23,9 @@ describe('Pago Form Service', () => {
             fechaPago: expect.any(Object),
             pago: expect.any(Object),
             createdAt: expect.any(Object),
-            idDespliegueInfraestructuraTroncalDistribucion: expect.any(Object),
-            idDespliegueinfraestructuradispersion: expect.any(Object),
+            razonSocial: expect.any(Object),
+            calculoValorPago: expect.any(Object),
+            calculoValorPagoD: expect.any(Object),
           })
         );
       });
@@ -38,8 +39,9 @@ describe('Pago Form Service', () => {
             fechaPago: expect.any(Object),
             pago: expect.any(Object),
             createdAt: expect.any(Object),
-            idDespliegueInfraestructuraTroncalDistribucion: expect.any(Object),
-            idDespliegueinfraestructuradispersion: expect.any(Object),
+            razonSocial: expect.any(Object),
+            calculoValorPago: expect.any(Object),
+            calculoValorPagoD: expect.any(Object),
           })
         );
       });

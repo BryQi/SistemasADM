@@ -20,22 +20,24 @@
         <dd>
           <span jhiTranslate="{{ 'sistemasAdmApp.Tipo.' + infraestructura.tipo }}">{{ infraestructura.tipo }}</span>
         </dd>
+
+        <dt><span jhiTranslate="sistemasAdmApp.infraestructura.razonSocial">Razon Social</span></dt>
+        <dd>
+          <div *ngIf="infraestructura.razonSocial">
+            <a [routerLink]="['/proveedor', infraestructura.razonSocial.id, 'view']">{{ infraestructura.razonSocial.razonSocial }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="sistemasAdmApp.infraestructura.numeropozo">Numeropozo</span></dt>
+        <dd>
+          <span *ngFor="let numeropozo of infraestructura.numeropozos; let last = last">
+            <a [routerLink]="['/pozo', numeropozo.id, 'view']">{{ numeropozo.numeropozo }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+
         <dt><span jhiTranslate="sistemasAdmApp.infraestructura.createdAt">Created At</span></dt>
         <dd>
           <span>{{ infraestructura.createdAt | formatMediumDatetime }}</span>
-        </dd>
-        <dt><span jhiTranslate="sistemasAdmApp.infraestructura.idProveedor">Id Proveedor</span></dt>
-        <dd>
-          <div *ngIf="infraestructura.idProveedor">
-            <a [routerLink]="['/proveedor', infraestructura.idProveedor.id, 'view']">{{ infraestructura.idProveedor.id }}</a>
-          </div>
-        </dd>
-        <dt><span jhiTranslate="sistemasAdmApp.infraestructura.pozo">Pozo</span></dt>
-        <dd>
-          <span *ngFor="let pozo of infraestructura.pozos; let last = last">
-            <a [routerLink]="['/pozo', pozo.id, 'view']">{{ pozo.id }}</a
-            >{{ last ? '' : ', ' }}
-          </span>
         </dd>
       </dl>
 

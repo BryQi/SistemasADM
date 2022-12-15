@@ -23,18 +23,20 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "razonSocial",
       "otherEntityName": "proveedor",
-      "otherEntityRelationshipName": "infraestructura",
-      "relationshipName": "idProveedor",
-      "relationshipType": "many-to-one"
+      "relationshipName": "razonSocial",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
     },
     {
-      "otherEntityField": "id",
+      "otherEntityField": "numeropozo",
       "otherEntityName": "pozo",
-      "otherEntityRelationshipName": "infraestructura",
+      "otherEntityRelationshipName": "numeropozo",
       "ownerSide": true,
-      "relationshipName": "pozo",
-      "relationshipType": "many-to-many"
+      "relationshipName": "numeropozo",
+      "relationshipType": "many-to-many",
+      "relationshipValidateRules": ["required"]
     }
   ],
   "service": "serviceImpl"

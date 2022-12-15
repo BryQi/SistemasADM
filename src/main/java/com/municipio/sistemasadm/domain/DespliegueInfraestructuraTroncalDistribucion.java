@@ -1,6 +1,5 @@
 package com.municipio.sistemasadm.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
@@ -55,43 +54,19 @@ public class DespliegueInfraestructuraTroncalDistribucion implements Serializabl
     @Column(name = "valor_metro", nullable = false)
     private Float valorMetro;
 
-    @OneToMany(mappedBy = "idDespliegueInfraestructuraTroncalDistribucion")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(
-        value = { "pagos", "pozos", "idDespliegueInfraestructuraTroncalDistribucion", "idProveedor" },
-        allowSetters = true
-    )
-    private Set<Despliegueinfraestructuradispersion> despliegueInfraestructuraDispersions = new HashSet<>();
-
-    @OneToMany(mappedBy = "idDespliegueInfraestructuraTroncalDistribucion")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(
-        value = { "idDespliegueInfraestructuraTroncalDistribucion", "idDespliegueinfraestructuradispersion" },
-        allowSetters = true
-    )
-    private Set<Pago> pagos = new HashSet<>();
-
     @ManyToMany
+    @NotNull
     @JoinTable(
         name = "rel_despliegue_infraestructura_troncal_distribucion__pozo",
         joinColumns = @JoinColumn(name = "despliegue_infraestructura_troncal_distribucion_id"),
         inverseJoinColumns = @JoinColumn(name = "pozo_id")
     )
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(
-        value = {
-            "fotoPozos",
-            "registroInspecciones",
-            "idDespliegueInfraestructuraTroncalDistribucions",
-            "idDespliegueinfraestructuradispersions",
-        },
-        allowSetters = true
-    )
     private Set<Pozo> pozos = new HashSet<>();
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = { "idProveedor", "pozos" }, allowSetters = true)
-    private Infraestructura infraestructura;
+    @ManyToOne(optional = false)
+    @NotNull
+    private Proveedor razonSocial;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -199,74 +174,6 @@ public class DespliegueInfraestructuraTroncalDistribucion implements Serializabl
         this.valorMetro = valorMetro;
     }
 
-    public Set<Despliegueinfraestructuradispersion> getDespliegueInfraestructuraDispersions() {
-        return this.despliegueInfraestructuraDispersions;
-    }
-
-    public void setDespliegueInfraestructuraDispersions(Set<Despliegueinfraestructuradispersion> despliegueinfraestructuradispersions) {
-        if (this.despliegueInfraestructuraDispersions != null) {
-            this.despliegueInfraestructuraDispersions.forEach(i -> i.setIdDespliegueInfraestructuraTroncalDistribucion(null));
-        }
-        if (despliegueinfraestructuradispersions != null) {
-            despliegueinfraestructuradispersions.forEach(i -> i.setIdDespliegueInfraestructuraTroncalDistribucion(this));
-        }
-        this.despliegueInfraestructuraDispersions = despliegueinfraestructuradispersions;
-    }
-
-    public DespliegueInfraestructuraTroncalDistribucion despliegueInfraestructuraDispersions(
-        Set<Despliegueinfraestructuradispersion> despliegueinfraestructuradispersions
-    ) {
-        this.setDespliegueInfraestructuraDispersions(despliegueinfraestructuradispersions);
-        return this;
-    }
-
-    public DespliegueInfraestructuraTroncalDistribucion addDespliegueInfraestructuraDispersion(
-        Despliegueinfraestructuradispersion despliegueinfraestructuradispersion
-    ) {
-        this.despliegueInfraestructuraDispersions.add(despliegueinfraestructuradispersion);
-        despliegueinfraestructuradispersion.setIdDespliegueInfraestructuraTroncalDistribucion(this);
-        return this;
-    }
-
-    public DespliegueInfraestructuraTroncalDistribucion removeDespliegueInfraestructuraDispersion(
-        Despliegueinfraestructuradispersion despliegueinfraestructuradispersion
-    ) {
-        this.despliegueInfraestructuraDispersions.remove(despliegueinfraestructuradispersion);
-        despliegueinfraestructuradispersion.setIdDespliegueInfraestructuraTroncalDistribucion(null);
-        return this;
-    }
-
-    public Set<Pago> getPagos() {
-        return this.pagos;
-    }
-
-    public void setPagos(Set<Pago> pagos) {
-        if (this.pagos != null) {
-            this.pagos.forEach(i -> i.setIdDespliegueInfraestructuraTroncalDistribucion(null));
-        }
-        if (pagos != null) {
-            pagos.forEach(i -> i.setIdDespliegueInfraestructuraTroncalDistribucion(this));
-        }
-        this.pagos = pagos;
-    }
-
-    public DespliegueInfraestructuraTroncalDistribucion pagos(Set<Pago> pagos) {
-        this.setPagos(pagos);
-        return this;
-    }
-
-    public DespliegueInfraestructuraTroncalDistribucion addPago(Pago pago) {
-        this.pagos.add(pago);
-        pago.setIdDespliegueInfraestructuraTroncalDistribucion(this);
-        return this;
-    }
-
-    public DespliegueInfraestructuraTroncalDistribucion removePago(Pago pago) {
-        this.pagos.remove(pago);
-        pago.setIdDespliegueInfraestructuraTroncalDistribucion(null);
-        return this;
-    }
-
     public Set<Pozo> getPozos() {
         return this.pozos;
     }
@@ -282,26 +189,24 @@ public class DespliegueInfraestructuraTroncalDistribucion implements Serializabl
 
     public DespliegueInfraestructuraTroncalDistribucion addPozo(Pozo pozo) {
         this.pozos.add(pozo);
-        pozo.getIdDespliegueInfraestructuraTroncalDistribucions().add(this);
         return this;
     }
 
     public DespliegueInfraestructuraTroncalDistribucion removePozo(Pozo pozo) {
         this.pozos.remove(pozo);
-        pozo.getIdDespliegueInfraestructuraTroncalDistribucions().remove(this);
         return this;
     }
 
-    public Infraestructura getInfraestructura() {
-        return this.infraestructura;
+    public Proveedor getRazonSocial() {
+        return this.razonSocial;
     }
 
-    public void setInfraestructura(Infraestructura infraestructura) {
-        this.infraestructura = infraestructura;
+    public void setRazonSocial(Proveedor proveedor) {
+        this.razonSocial = proveedor;
     }
 
-    public DespliegueInfraestructuraTroncalDistribucion infraestructura(Infraestructura infraestructura) {
-        this.setInfraestructura(infraestructura);
+    public DespliegueInfraestructuraTroncalDistribucion razonSocial(Proveedor proveedor) {
+        this.setRazonSocial(proveedor);
         return this;
     }
 

@@ -7,8 +7,8 @@ export interface IInfraestructura {
   id: number;
   tipo?: Tipo | null;
   createdAt?: dayjs.Dayjs | null;
-  idProveedor?: Pick<IProveedor, 'id'> | null;
-  pozos?: Pick<IPozo, 'id'>[] | null;
+  razonSocial?: Pick<IProveedor, 'id' | 'razonSocial'> | null;
+  numeropozos?: Pick<IPozo, 'id' | 'numeropozo'>[] | null;
 }
 
 export type NewInfraestructura = Omit<IInfraestructura, 'id'> & { id: null };

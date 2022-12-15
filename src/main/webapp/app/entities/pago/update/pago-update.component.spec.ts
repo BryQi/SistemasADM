@@ -9,6 +9,8 @@ import { of, Subject, from } from 'rxjs';
 import { PagoFormService } from './pago-form.service';
 import { PagoService } from '../service/pago.service';
 import { IPago } from '../pago.model';
+import { IProveedor } from 'app/entities/proveedor/proveedor.model';
+import { ProveedorService } from 'app/entities/proveedor/service/proveedor.service';
 import { IDespliegueInfraestructuraTroncalDistribucion } from 'app/entities/despliegue-infraestructura-troncal-distribucion/despliegue-infraestructura-troncal-distribucion.model';
 import { DespliegueInfraestructuraTroncalDistribucionService } from 'app/entities/despliegue-infraestructura-troncal-distribucion/service/despliegue-infraestructura-troncal-distribucion.service';
 import { IDespliegueinfraestructuradispersion } from 'app/entities/despliegueinfraestructuradispersion/despliegueinfraestructuradispersion.model';
@@ -22,6 +24,7 @@ describe('Pago Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let pagoFormService: PagoFormService;
   let pagoService: PagoService;
+  let proveedorService: ProveedorService;
   let despliegueInfraestructuraTroncalDistribucionService: DespliegueInfraestructuraTroncalDistribucionService;
   let despliegueinfraestructuradispersionService: DespliegueinfraestructuradispersionService;
 
@@ -46,6 +49,7 @@ describe('Pago Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     pagoFormService = TestBed.inject(PagoFormService);
     pagoService = TestBed.inject(PagoService);
+    proveedorService = TestBed.inject(ProveedorService);
     despliegueInfraestructuraTroncalDistribucionService = TestBed.inject(DespliegueInfraestructuraTroncalDistribucionService);
     despliegueinfraestructuradispersionService = TestBed.inject(DespliegueinfraestructuradispersionService);
 
@@ -53,16 +57,38 @@ describe('Pago Management Update Component', () => {
   });
 
   describe('ngOnInit', () => {
+    it('Should call Proveedor query and add missing value', () => {
+      const pago: IPago = { id: 456 };
+      const razonSocial: IProveedor = { id: 69587 };
+      pago.razonSocial = razonSocial;
+
+      const proveedorCollection: IProveedor[] = [{ id: 37700 }];
+      jest.spyOn(proveedorService, 'query').mockReturnValue(of(new HttpResponse({ body: proveedorCollection })));
+      const additionalProveedors = [razonSocial];
+      const expectedCollection: IProveedor[] = [...additionalProveedors, ...proveedorCollection];
+      jest.spyOn(proveedorService, 'addProveedorToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ pago });
+      comp.ngOnInit();
+
+      expect(proveedorService.query).toHaveBeenCalled();
+      expect(proveedorService.addProveedorToCollectionIfMissing).toHaveBeenCalledWith(
+        proveedorCollection,
+        ...additionalProveedors.map(expect.objectContaining)
+      );
+      expect(comp.proveedorsSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should call DespliegueInfraestructuraTroncalDistribucion query and add missing value', () => {
       const pago: IPago = { id: 456 };
-      const idDespliegueInfraestructuraTroncalDistribucion: IDespliegueInfraestructuraTroncalDistribucion = { id: 57471 };
-      pago.idDespliegueInfraestructuraTroncalDistribucion = idDespliegueInfraestructuraTroncalDistribucion;
+      const calculoValorPago: IDespliegueInfraestructuraTroncalDistribucion = { id: 57471 };
+      pago.calculoValorPago = calculoValorPago;
 
       const despliegueInfraestructuraTroncalDistribucionCollection: IDespliegueInfraestructuraTroncalDistribucion[] = [{ id: 43382 }];
       jest
         .spyOn(despliegueInfraestructuraTroncalDistribucionService, 'query')
         .mockReturnValue(of(new HttpResponse({ body: despliegueInfraestructuraTroncalDistribucionCollection })));
-      const additionalDespliegueInfraestructuraTroncalDistribucions = [idDespliegueInfraestructuraTroncalDistribucion];
+      const additionalDespliegueInfraestructuraTroncalDistribucions = [calculoValorPago];
       const expectedCollection: IDespliegueInfraestructuraTroncalDistribucion[] = [
         ...additionalDespliegueInfraestructuraTroncalDistribucions,
         ...despliegueInfraestructuraTroncalDistribucionCollection,
@@ -86,14 +112,14 @@ describe('Pago Management Update Component', () => {
 
     it('Should call Despliegueinfraestructuradispersion query and add missing value', () => {
       const pago: IPago = { id: 456 };
-      const idDespliegueinfraestructuradispersion: IDespliegueinfraestructuradispersion = { id: 97415 };
-      pago.idDespliegueinfraestructuradispersion = idDespliegueinfraestructuradispersion;
+      const calculoValorPagoD: IDespliegueinfraestructuradispersion = { id: 97415 };
+      pago.calculoValorPagoD = calculoValorPagoD;
 
       const despliegueinfraestructuradispersionCollection: IDespliegueinfraestructuradispersion[] = [{ id: 53413 }];
       jest
         .spyOn(despliegueinfraestructuradispersionService, 'query')
         .mockReturnValue(of(new HttpResponse({ body: despliegueinfraestructuradispersionCollection })));
-      const additionalDespliegueinfraestructuradispersions = [idDespliegueinfraestructuradispersion];
+      const additionalDespliegueinfraestructuradispersions = [calculoValorPagoD];
       const expectedCollection: IDespliegueinfraestructuradispersion[] = [
         ...additionalDespliegueinfraestructuradispersions,
         ...despliegueinfraestructuradispersionCollection,
@@ -115,16 +141,19 @@ describe('Pago Management Update Component', () => {
 
     it('Should update editForm', () => {
       const pago: IPago = { id: 456 };
-      const idDespliegueInfraestructuraTroncalDistribucion: IDespliegueInfraestructuraTroncalDistribucion = { id: 66497 };
-      pago.idDespliegueInfraestructuraTroncalDistribucion = idDespliegueInfraestructuraTroncalDistribucion;
-      const idDespliegueinfraestructuradispersion: IDespliegueinfraestructuradispersion = { id: 35896 };
-      pago.idDespliegueinfraestructuradispersion = idDespliegueinfraestructuradispersion;
+      const razonSocial: IProveedor = { id: 8694 };
+      pago.razonSocial = razonSocial;
+      const calculoValorPago: IDespliegueInfraestructuraTroncalDistribucion = { id: 66497 };
+      pago.calculoValorPago = calculoValorPago;
+      const calculoValorPagoD: IDespliegueinfraestructuradispersion = { id: 35896 };
+      pago.calculoValorPagoD = calculoValorPagoD;
 
       activatedRoute.data = of({ pago });
       comp.ngOnInit();
 
-      expect(comp.despliegueInfraestructuraTroncalDistribucionsSharedCollection).toContain(idDespliegueInfraestructuraTroncalDistribucion);
-      expect(comp.despliegueinfraestructuradispersionsSharedCollection).toContain(idDespliegueinfraestructuradispersion);
+      expect(comp.proveedorsSharedCollection).toContain(razonSocial);
+      expect(comp.despliegueInfraestructuraTroncalDistribucionsSharedCollection).toContain(calculoValorPago);
+      expect(comp.despliegueinfraestructuradispersionsSharedCollection).toContain(calculoValorPagoD);
       expect(comp.pago).toEqual(pago);
     });
   });
@@ -198,6 +227,16 @@ describe('Pago Management Update Component', () => {
   });
 
   describe('Compare relationships', () => {
+    describe('compareProveedor', () => {
+      it('Should forward to proveedorService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(proveedorService, 'compareProveedor');
+        comp.compareProveedor(entity, entity2);
+        expect(proveedorService.compareProveedor).toHaveBeenCalledWith(entity, entity2);
+      });
+    });
+
     describe('compareDespliegueInfraestructuraTroncalDistribucion', () => {
       it('Should forward to despliegueInfraestructuraTroncalDistribucionService', () => {
         const entity = { id: 123 };

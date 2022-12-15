@@ -89,11 +89,11 @@ export class InfraestructuraUpdateComponent implements OnInit {
 
     this.proveedorsSharedCollection = this.proveedorService.addProveedorToCollectionIfMissing<IProveedor>(
       this.proveedorsSharedCollection,
-      infraestructura.idProveedor
+      infraestructura.razonSocial
     );
     this.pozosSharedCollection = this.pozoService.addPozoToCollectionIfMissing<IPozo>(
       this.pozosSharedCollection,
-      ...(infraestructura.pozos ?? [])
+      ...(infraestructura.numeropozos ?? [])
     );
   }
 
@@ -103,7 +103,7 @@ export class InfraestructuraUpdateComponent implements OnInit {
       .pipe(map((res: HttpResponse<IProveedor[]>) => res.body ?? []))
       .pipe(
         map((proveedors: IProveedor[]) =>
-          this.proveedorService.addProveedorToCollectionIfMissing<IProveedor>(proveedors, this.infraestructura?.idProveedor)
+          this.proveedorService.addProveedorToCollectionIfMissing<IProveedor>(proveedors, this.infraestructura?.razonSocial)
         )
       )
       .subscribe((proveedors: IProveedor[]) => (this.proveedorsSharedCollection = proveedors));
@@ -111,7 +111,9 @@ export class InfraestructuraUpdateComponent implements OnInit {
     this.pozoService
       .query()
       .pipe(map((res: HttpResponse<IPozo[]>) => res.body ?? []))
-      .pipe(map((pozos: IPozo[]) => this.pozoService.addPozoToCollectionIfMissing<IPozo>(pozos, ...(this.infraestructura?.pozos ?? []))))
+      .pipe(
+        map((pozos: IPozo[]) => this.pozoService.addPozoToCollectionIfMissing<IPozo>(pozos, ...(this.infraestructura?.numeropozos ?? [])))
+      )
       .subscribe((pozos: IPozo[]) => (this.pozosSharedCollection = pozos));
   }
 }

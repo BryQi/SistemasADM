@@ -69,11 +69,15 @@ public class PagoServiceImpl implements PagoService {
         return pagoRepository.findAll(pageable).map(pagoMapper::toDto);
     }
 
+    public Page<PagoDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return pagoRepository.findAllWithEagerRelationships(pageable).map(pagoMapper::toDto);
+    }
+
     @Override
     @Transactional(readOnly = true)
     public Optional<PagoDTO> findOne(Long id) {
         log.debug("Request to get Pago : {}", id);
-        return pagoRepository.findById(id).map(pagoMapper::toDto);
+        return pagoRepository.findOneWithEagerRelationships(id).map(pagoMapper::toDto);
     }
 
     @Override

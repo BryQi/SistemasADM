@@ -1,6 +1,5 @@
 package com.municipio.sistemasadm.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import javax.persistence.*;
@@ -41,17 +40,9 @@ public class FotoPozo implements Serializable {
     @Column(name = "created_at", nullable = false)
     private ZonedDateTime createdAt;
 
-    @ManyToOne
-    @JsonIgnoreProperties(
-        value = {
-            "fotoPozos",
-            "registroInspecciones",
-            "idDespliegueInfraestructuraTroncalDistribucions",
-            "idDespliegueinfraestructuradispersions",
-        },
-        allowSetters = true
-    )
-    private Pozo idPozo;
+    @ManyToOne(optional = false)
+    @NotNull
+    private Pozo numeropozo;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -120,16 +111,16 @@ public class FotoPozo implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public Pozo getIdPozo() {
-        return this.idPozo;
+    public Pozo getNumeropozo() {
+        return this.numeropozo;
     }
 
-    public void setIdPozo(Pozo pozo) {
-        this.idPozo = pozo;
+    public void setNumeropozo(Pozo pozo) {
+        this.numeropozo = pozo;
     }
 
-    public FotoPozo idPozo(Pozo pozo) {
-        this.setIdPozo(pozo);
+    public FotoPozo numeropozo(Pozo pozo) {
+        this.setNumeropozo(pozo);
         return this;
     }
 

@@ -3,7 +3,16 @@
     <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.home.title">Despliegueinfraestructuradispersions</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+      <button
+        class="btn btn-info me-2"
+        (click)="load()"
+        [disabled]="isLoading"
+        *jhiHasAnyAuthority="'ROLE_ADMIN'"
+        ngbDropdown
+        display="dynamic"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.home.refreshListLabel">Refrescar lista</span>
       </button>
@@ -37,7 +46,15 @@
     id="entities"
     *ngIf="despliegueinfraestructuradispersions && despliegueinfraestructuradispersions.length > 0"
   >
-    <table class="table table-striped" aria-describedby="page-heading">
+    <table
+      class="table table-striped"
+      aria-describedby="page-heading"
+      *jhiHasAnyAuthority="'ROLE_ADMIN'"
+      ngbDropdown
+      display="dynamic"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
           <th scope="col" jhiSortBy="id">
@@ -96,12 +113,6 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="calculoValorPago">
-            <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.calculoValorPago">Calculo Valor Pago</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
 
           <th scope="col" jhiSortBy="valorMetro">
             <div class="d-flex">
@@ -109,17 +120,21 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="idDespliegueInfraestructuraTroncalDistribucion.id">
+          <th scope="col" jhiSortBy="calculoValorPagoD">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.idDespliegueInfraestructuraTroncalDistribucion"
-                >Id Despliegue Infraestructura Troncal Distribucion</span
-              >
+              <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.calculoValorPagoD">Calculo Valor Pago D</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="idProveedor.id">
+          <th scope="col" jhiSortBy="nombreRuta.nombreRuta">
             <div class="d-flex">
-              <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.idProveedor">Id Proveedor</span>
+              <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.nombreRuta">Nombre Ruta</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="razonSocial.razonSocial">
+            <div class="d-flex">
+              <span jhiTranslate="sistemasAdmApp.despliegueinfraestructuradispersion.razonSocial">Razon Social</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -154,25 +169,25 @@
           <td>{{ despliegueinfraestructuradispersion.descripcionDePozosUsadosRuta }}</td>
           <td>{{ despliegueinfraestructuradispersion.metrajeInicial }}</td>
           <td>{{ despliegueinfraestructuradispersion.metrajeFinal }}</td>
-          <td>{{ despliegueinfraestructuradispersion.calculoValorPago }}</td>
 
           <td>{{ despliegueinfraestructuradispersion.valorMetro }}</td>
+          <td>{{ despliegueinfraestructuradispersion.calculoValorPagoD }}</td>
           <td>
-            <div *ngIf="despliegueinfraestructuradispersion.idDespliegueInfraestructuraTroncalDistribucion">
+            <div *ngIf="despliegueinfraestructuradispersion.nombreRuta">
               <a
                 [routerLink]="[
                   '/despliegue-infraestructura-troncal-distribucion',
-                  despliegueinfraestructuradispersion.idDespliegueInfraestructuraTroncalDistribucion.id,
+                  despliegueinfraestructuradispersion.nombreRuta.id,
                   'view'
                 ]"
-                >{{ despliegueinfraestructuradispersion.idDespliegueInfraestructuraTroncalDistribucion.id }}</a
+                >{{ despliegueinfraestructuradispersion.nombreRuta.nombreRuta }}</a
               >
             </div>
           </td>
           <td>
-            <div *ngIf="despliegueinfraestructuradispersion.idProveedor">
-              <a [routerLink]="['/proveedor', despliegueinfraestructuradispersion.idProveedor.id, 'view']">{{
-                despliegueinfraestructuradispersion.idProveedor.id
+            <div *ngIf="despliegueinfraestructuradispersion.razonSocial">
+              <a [routerLink]="['/proveedor', despliegueinfraestructuradispersion.razonSocial.id, 'view']">{{
+                despliegueinfraestructuradispersion.razonSocial.razonSocial
               }}</a>
             </div>
           </td>
@@ -218,11 +233,25 @@
   </div>
 
   <div *ngIf="despliegueinfraestructuradispersions && despliegueinfraestructuradispersions.length > 0">
-    <div class="d-flex justify-content-center">
+    <div
+      class="d-flex justify-content-center"
+      *jhiHasAnyAuthority="'ROLE_ADMIN'"
+      ngbDropdown
+      display="dynamic"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
       <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
     </div>
 
-    <div class="d-flex justify-content-center">
+    <div
+      class="d-flex justify-content-center"
+      *jhiHasAnyAuthority="'ROLE_ADMIN'"
+      ngbDropdown
+      display="dynamic"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
       <ngb-pagination
         [collectionSize]="totalItems"
         [page]="page"

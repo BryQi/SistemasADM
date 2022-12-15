@@ -35,7 +35,7 @@ type FotoPozoFormGroupContent = {
   fotoContentType: FormControl<FotoPozoFormRawValue['fotoContentType']>;
   descripcion: FormControl<FotoPozoFormRawValue['descripcion']>;
   createdAt: FormControl<FotoPozoFormRawValue['createdAt']>;
-  idPozo: FormControl<FotoPozoFormRawValue['idPozo']>;
+  numeropozo: FormControl<FotoPozoFormRawValue['numeropozo']>;
 };
 
 export type FotoPozoFormGroup = FormGroup<FotoPozoFormGroupContent>;
@@ -65,7 +65,9 @@ export class FotoPozoFormService {
       createdAt: new FormControl(fotoPozoRawValue.createdAt, {
         validators: [Validators.required],
       }),
-      idPozo: new FormControl(fotoPozoRawValue.idPozo),
+      numeropozo: new FormControl(fotoPozoRawValue.numeropozo, {
+        validators: [Validators.required],
+      }),
     });
   }
 

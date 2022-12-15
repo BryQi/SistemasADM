@@ -18,10 +18,10 @@
         "title": "Infraestructura"
       },
       "id": "ID",
-      "tipo": "Tipo",
+      "tipo": "Type",
       "createdAt": "Created At",
-      "idProveedor": "Service Provider",
-      "pozo": "Pozo"
+      "razonSocial": "Supplier",
+      "numeropozo": "Wells Used"
     }
   }
 }

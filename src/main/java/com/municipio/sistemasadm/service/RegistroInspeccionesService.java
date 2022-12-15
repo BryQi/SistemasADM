@@ -42,6 +42,14 @@ public interface RegistroInspeccionesService {
     Page<RegistroInspeccionesDTO> findAll(Pageable pageable);
 
     /**
+     * Get all the registroInspecciones with eager load of many-to-many relationships.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<RegistroInspeccionesDTO> findAllWithEagerRelationships(Pageable pageable);
+
+    /**
      * Get the "id" registroInspecciones.
      *
      * @param id the id of the entity.

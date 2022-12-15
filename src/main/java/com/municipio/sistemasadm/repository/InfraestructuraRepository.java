@@ -18,14 +18,28 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InfraestructuraRepository extends InfraestructuraRepositoryWithBagRelationships, JpaRepository<Infraestructura, Long> {
     default Optional<Infraestructura> findOneWithEagerRelationships(Long id) {
-        return this.fetchBagRelationships(this.findById(id));
+        return this.fetchBagRelationships(this.findOneWithToOneRelationships(id));
     }
 
     default List<Infraestructura> findAllWithEagerRelationships() {
-        return this.fetchBagRelationships(this.findAll());
+        return this.fetchBagRelationships(this.findAllWithToOneRelationships());
     }
 
     default Page<Infraestructura> findAllWithEagerRelationships(Pageable pageable) {
-        return this.fetchBagRelationships(this.findAll(pageable));
+        return this.fetchBagRelationships(this.findAllWithToOneRelationships(pageable));
     }
+
+    @Query(
+        value = "select distinct infraestructura from Infraestructura infraestructura left join fetch infraestructura.razonSocial",
+        countQuery = "select count(distinct infraestructura) from Infraestructura infraestructura"
+    )
+    Page<Infraestructura> findAllWithToOneRelationships(Pageable pageable);
+
+    @Query("select distinct infraestructura from Infraestructura infraestructura left join fetch infraestructura.razonSocial")
+    List<Infraestructura> findAllWithToOneRelationships();
+
+    @Query(
+        "select infraestructura from Infraestructura infraestructura left join fetch infraestructura.razonSocial where infraestructura.id =:id"
+    )
+    Optional<Infraestructura> findOneWithToOneRelationships(@Param("id") Long id);
 }

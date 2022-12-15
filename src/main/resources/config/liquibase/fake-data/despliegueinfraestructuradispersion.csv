@@ -1,11 +1,11 @@
-id;nombre_cliente;direccion;fecha_instalacion;origen;destino;descripcion_de_pozos_usados_ruta;metraje_inicial;metraje_final;calculo_valor_pago;created_at;valor_metro
-1;Juguetería matrices;Ghana withdrawal web-readiness;2022-12-01;CajaDistribucion;Gerente Fiji Cantabria;Especialista leading-edge Investment;67217;97512;19155;2022-12-01T15:18:03;11951
-2;Ladrillo;Bedfordshire Progresivo Horizontal;2022-12-01;CajaDistribucion;B2B;ADP Borders;8148;24343;23899;2022-12-01T00:25:35;95030
-3;sensor THX de;Calidad modelo Barranco;2022-12-01;Pedestal;Plaza driver Aplicaciones;potenciada;94104;89658;70872;2022-12-01T15:30:17;1465
-4;Berkshire bypass adaptador;synthesize XML;2022-12-01;NAP;Lituania Bedfordshire;Checking Jefe;7884;95056;57761;2022-12-01T17:26:21;2492
-5;Hecho;Artesanal;2022-12-01;CajaDistribucion;microchip Refinado Factores;up Acero;85464;91116;16344;2022-11-30T23:14:20;63026
-6;applications calculating;Puente;2022-12-01;Pedestal;Gerente Pollo Administrador;multi-byte;8293;31819;19655;2022-12-01T17:40:05;62588
-7;Madera interfaces;Granito bifurcada;2022-11-30;CajaDistribucion;connecting Futuro matrices;Congo China Peso;84924;14258;35704;2022-12-01T18:15:40;16584
-8;deposit Optimización SDD;estable;2022-11-30;NAP;Práctico;Hormigon Reactivo;80995;47671;4737;2022-12-01T06:00:54;22358
-9;Codes web;bidireccional;2022-12-01;Nodo;Artesanal;hack EXE;57787;22158;43905;2022-12-01T14:58:32;16007
-10;Distrito Madera;Deportes;2022-12-01;MANGA;Bedfordshire benchmark Configuración;Gestionado Bedfordshire;52899;190;65003;2022-11-30T20:21:32;67325
+id;nombre_cliente;direccion;fecha_instalacion;origen;destino;descripcion_de_pozos_usados_ruta;metraje_inicial;metraje_final;created_at;valor_metro;calculo_valor_pago_d;nombre_ruta_id;razon_social_id
+1;Juguetería matrices;Ghana withdrawal web-readiness;2022-12-01;CajaDistribucion;Gerente Fiji Cantabria;Especialista leading-edge Investment;67217;97512;2022-12-01T15:45:25;21055;11951;1;1
+2;Ladrillo;Bedfordshire Progresivo Horizontal;2022-12-01;CajaDistribucion;B2B;ADP Borders;8148;24343;2022-12-01T14:37:05;83032;95030;2;2
+3;sensor THX de;Calidad modelo Barranco;2022-12-01;Pedestal;Plaza driver Aplicaciones;potenciada;94104;89658;2022-12-01T03:20:42;20205;1465;3;3
+4;Berkshire bypass adaptador;synthesize XML;2022-12-01;NAP;Lituania Bedfordshire;Checking Jefe;7884;95056;2022-12-01T06:29:29;12145;2492;4;4
+5;Hecho;Artesanal;2022-12-01;CajaDistribucion;microchip Refinado Factores;up Acero;85464;91116;2022-12-01T16:25:53;87980;63026;5;5
+6;applications calculating;Puente;2022-12-01;Pedestal;Gerente Pollo Administrador;multi-byte;8293;31819;2022-12-01T15:38:13;11192;62588;6;6
+7;Madera interfaces;Granito bifurcada;2022-11-30;CajaDistribucion;connecting Futuro matrices;Congo China Peso;84924;14258;2022-12-01T11:47:06;8720;16584;7;7
+8;deposit Optimización SDD;estable;2022-11-30;NAP;Práctico;Hormigon Reactivo;80995;47671;2022-12-01T19:13:01;59746;22358;8;8
+9;Codes web;bidireccional;2022-12-01;Nodo;Artesanal;hack EXE;57787;22158;2022-12-01T09:49:00;22410;16007;9;9
+10;Distrito Madera;Deportes;2022-12-01;MANGA;Bedfordshire benchmark Configuración;Gestionado Bedfordshire;52899;190;2022-12-01T04:45:12;99980;67325;10;10

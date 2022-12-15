@@ -47,16 +47,18 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "pozo",
-      "otherEntityRelationshipName": "registroInspecciones",
-      "relationshipName": "idPozo",
-      "relationshipType": "many-to-one"
+      "otherEntityField": "razonSocial",
+      "otherEntityName": "proveedor",
+      "relationshipName": "razonSocial",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
     },
     {
-      "otherEntityField": "id",
-      "otherEntityName": "proveedor",
-      "relationshipName": "provedorinspeciones",
-      "relationshipType": "many-to-one"
+      "otherEntityField": "numeropozo",
+      "otherEntityName": "pozo",
+      "relationshipName": "numeropozo",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
     }
   ],
   "service": "serviceImpl"

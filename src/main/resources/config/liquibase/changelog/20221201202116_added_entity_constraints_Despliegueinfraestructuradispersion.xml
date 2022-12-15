@@ -8,28 +8,28 @@
     -->
     <changeSet id="20221201202116-2" author="jhipster">
 
-        <addForeignKeyConstraint baseColumnNames="despliegueinfraestructuradispersion_id"
-                                 baseTableName="rel_despliegueinfraestructuradispersion__pozo"
-                                 constraintName="fk_rel_despliegueinfraestructur__despliegueinfraestructur_94_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="despliegueinfraestructuradispersion"/>
-
-        <addForeignKeyConstraint baseColumnNames="pozo_id"
-                                 baseTableName="rel_despliegueinfraestructuradispersion__pozo"
-                                 constraintName="fk_rel_despliegueinfraestructuradispersion__pozo__pozo_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="pozo"/>
-
-        <addForeignKeyConstraint baseColumnNames="id_despliegue_infraestructura_troncal_distribucion_id"
+        <addForeignKeyConstraint baseColumnNames="nombre_ruta_id"
                                  baseTableName="despliegueinfraestructuradispersion"
-                                 constraintName="fk_despliegueinfraestructuradis__id_despliegue_infraestru_2f_id"
+                                 constraintName="fk_despliegueinfraestructuradispersion__nombre_ruta_id"
                                  referencedColumnNames="id"
                                  referencedTableName="despliegue_infraestructura_troncal_distribucion"/>
 
-        <addForeignKeyConstraint baseColumnNames="id_proveedor_id"
+        <addForeignKeyConstraint baseColumnNames="razon_social_id"
                                  baseTableName="despliegueinfraestructuradispersion"
-                                 constraintName="fk_despliegueinfraestructuradispersion__id_proveedor_id"
+                                 constraintName="fk_despliegueinfraestructuradispersion__razon_social_id"
                                  referencedColumnNames="id"
                                  referencedTableName="proveedor"/>
+
+        <addForeignKeyConstraint baseColumnNames="despliegueinfraestructuradispersion_id"
+                                 baseTableName="rel_despliegueinfraestructuradispersion__numeropozo"
+                                 constraintName="fk_rel_despliegueinfraestructur__despliegueinfraestructur_77_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="despliegueinfraestructuradispersion"/>
+
+        <addForeignKeyConstraint baseColumnNames="numeropozo_id"
+                                 baseTableName="rel_despliegueinfraestructuradispersion__numeropozo"
+                                 constraintName="fk_rel_despliegueinfraestructur__numeropozo_50_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pozo"/>
     </changeSet>
 </databaseChangeLog>

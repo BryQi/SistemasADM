@@ -9,10 +9,10 @@ import { of, Subject, from } from 'rxjs';
 import { RegistroInspeccionesFormService } from './registro-inspecciones-form.service';
 import { RegistroInspeccionesService } from '../service/registro-inspecciones.service';
 import { IRegistroInspecciones } from '../registro-inspecciones.model';
-import { IPozo } from 'app/entities/pozo/pozo.model';
-import { PozoService } from 'app/entities/pozo/service/pozo.service';
 import { IProveedor } from 'app/entities/proveedor/proveedor.model';
 import { ProveedorService } from 'app/entities/proveedor/service/proveedor.service';
+import { IPozo } from 'app/entities/pozo/pozo.model';
+import { PozoService } from 'app/entities/pozo/service/pozo.service';
 
 import { RegistroInspeccionesUpdateComponent } from './registro-inspecciones-update.component';
 
@@ -22,8 +22,8 @@ describe('RegistroInspecciones Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let registroInspeccionesFormService: RegistroInspeccionesFormService;
   let registroInspeccionesService: RegistroInspeccionesService;
-  let pozoService: PozoService;
   let proveedorService: ProveedorService;
+  let pozoService: PozoService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -46,43 +46,21 @@ describe('RegistroInspecciones Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     registroInspeccionesFormService = TestBed.inject(RegistroInspeccionesFormService);
     registroInspeccionesService = TestBed.inject(RegistroInspeccionesService);
-    pozoService = TestBed.inject(PozoService);
     proveedorService = TestBed.inject(ProveedorService);
+    pozoService = TestBed.inject(PozoService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should call Pozo query and add missing value', () => {
-      const registroInspecciones: IRegistroInspecciones = { id: 456 };
-      const idPozo: IPozo = { id: 38130 };
-      registroInspecciones.idPozo = idPozo;
-
-      const pozoCollection: IPozo[] = [{ id: 14501 }];
-      jest.spyOn(pozoService, 'query').mockReturnValue(of(new HttpResponse({ body: pozoCollection })));
-      const additionalPozos = [idPozo];
-      const expectedCollection: IPozo[] = [...additionalPozos, ...pozoCollection];
-      jest.spyOn(pozoService, 'addPozoToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ registroInspecciones });
-      comp.ngOnInit();
-
-      expect(pozoService.query).toHaveBeenCalled();
-      expect(pozoService.addPozoToCollectionIfMissing).toHaveBeenCalledWith(
-        pozoCollection,
-        ...additionalPozos.map(expect.objectContaining)
-      );
-      expect(comp.pozosSharedCollection).toEqual(expectedCollection);
-    });
-
     it('Should call Proveedor query and add missing value', () => {
       const registroInspecciones: IRegistroInspecciones = { id: 456 };
-      const provedorinspeciones: IProveedor = { id: 37353 };
-      registroInspecciones.provedorinspeciones = provedorinspeciones;
+      const razonSocial: IProveedor = { id: 37353 };
+      registroInspecciones.razonSocial = razonSocial;
 
       const proveedorCollection: IProveedor[] = [{ id: 28029 }];
       jest.spyOn(proveedorService, 'query').mockReturnValue(of(new HttpResponse({ body: proveedorCollection })));
-      const additionalProveedors = [provedorinspeciones];
+      const additionalProveedors = [razonSocial];
       const expectedCollection: IProveedor[] = [...additionalProveedors, ...proveedorCollection];
       jest.spyOn(proveedorService, 'addProveedorToCollectionIfMissing').mockReturnValue(expectedCollection);
 
@@ -97,18 +75,40 @@ describe('RegistroInspecciones Management Update Component', () => {
       expect(comp.proveedorsSharedCollection).toEqual(expectedCollection);
     });
 
-    it('Should update editForm', () => {
+    it('Should call Pozo query and add missing value', () => {
       const registroInspecciones: IRegistroInspecciones = { id: 456 };
-      const idPozo: IPozo = { id: 47125 };
-      registroInspecciones.idPozo = idPozo;
-      const provedorinspeciones: IProveedor = { id: 1886 };
-      registroInspecciones.provedorinspeciones = provedorinspeciones;
+      const numeropozo: IPozo = { id: 38130 };
+      registroInspecciones.numeropozo = numeropozo;
+
+      const pozoCollection: IPozo[] = [{ id: 14501 }];
+      jest.spyOn(pozoService, 'query').mockReturnValue(of(new HttpResponse({ body: pozoCollection })));
+      const additionalPozos = [numeropozo];
+      const expectedCollection: IPozo[] = [...additionalPozos, ...pozoCollection];
+      jest.spyOn(pozoService, 'addPozoToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ registroInspecciones });
       comp.ngOnInit();
 
-      expect(comp.pozosSharedCollection).toContain(idPozo);
-      expect(comp.proveedorsSharedCollection).toContain(provedorinspeciones);
+      expect(pozoService.query).toHaveBeenCalled();
+      expect(pozoService.addPozoToCollectionIfMissing).toHaveBeenCalledWith(
+        pozoCollection,
+        ...additionalPozos.map(expect.objectContaining)
+      );
+      expect(comp.pozosSharedCollection).toEqual(expectedCollection);
+    });
+
+    it('Should update editForm', () => {
+      const registroInspecciones: IRegistroInspecciones = { id: 456 };
+      const razonSocial: IProveedor = { id: 1886 };
+      registroInspecciones.razonSocial = razonSocial;
+      const numeropozo: IPozo = { id: 47125 };
+      registroInspecciones.numeropozo = numeropozo;
+
+      activatedRoute.data = of({ registroInspecciones });
+      comp.ngOnInit();
+
+      expect(comp.proveedorsSharedCollection).toContain(razonSocial);
+      expect(comp.pozosSharedCollection).toContain(numeropozo);
       expect(comp.registroInspecciones).toEqual(registroInspecciones);
     });
   });
@@ -182,16 +182,6 @@ describe('RegistroInspecciones Management Update Component', () => {
   });
 
   describe('Compare relationships', () => {
-    describe('comparePozo', () => {
-      it('Should forward to pozoService', () => {
-        const entity = { id: 123 };
-        const entity2 = { id: 456 };
-        jest.spyOn(pozoService, 'comparePozo');
-        comp.comparePozo(entity, entity2);
-        expect(pozoService.comparePozo).toHaveBeenCalledWith(entity, entity2);
-      });
-    });
-
     describe('compareProveedor', () => {
       it('Should forward to proveedorService', () => {
         const entity = { id: 123 };
@@ -199,6 +189,16 @@ describe('RegistroInspecciones Management Update Component', () => {
         jest.spyOn(proveedorService, 'compareProveedor');
         comp.compareProveedor(entity, entity2);
         expect(proveedorService.compareProveedor).toHaveBeenCalledWith(entity, entity2);
+      });
+    });
+
+    describe('comparePozo', () => {
+      it('Should forward to pozoService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(pozoService, 'comparePozo');
+        comp.comparePozo(entity, entity2);
+        expect(pozoService.comparePozo).toHaveBeenCalledWith(entity, entity2);
       });
     });
   });
