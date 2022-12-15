@@ -71,9 +71,14 @@ export class DespliegueInfraestructuraTroncalDistribucionUpdateComponent impleme
     let metrajef = this.editForm.controls['metrajeFinal'].value || 0;
     let valormet = this.editForm.controls['valorMetro'].value || 0;
 
-    let result = (metrajef - metrajei) * valormet;
+    const result = (metrajef - metrajei) * valormet;
 
-    this.editForm.controls['calculoValorPago'].setValue(parseFloat(result.toFixed(2)));
+    if (result < 0) {
+      const result2 = result * -1;
+      this.editForm.controls['calculoValorPago'].setValue(parseFloat(result2.toFixed(2)));
+    } else {
+      this.editForm.controls['calculoValorPago'].setValue(parseFloat(result.toFixed(2)));
+    }
   }
   /* hasta acá */
 
